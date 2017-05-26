@@ -2,4 +2,4 @@
 A collection of python and C/C++ programs to help with programming and image analysis related tasks.
 
 ## image data frame
-An image data frame is a folder with a set of image bands, either in a single file (BSQ format) or in multiple files. Files are identified by .hdr (ENVI format) header files.
+An image data frame is a folder with a set of image bands, either in a single file (BSQ format) or in multiple files. Files are identified by .hdr (ENVI format) header files. A file in an image frame must be a .hdr file, or must correspond to one. Moreover, the correspondence must be consistent.
