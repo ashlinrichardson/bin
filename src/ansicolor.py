@@ -1,4 +1,7 @@
 #!/usr/bin/env python2.7
+'''
+  ansi color codes for posix terminal
+'''
 color = {"KNRM": "\\x1B[0m",  #normal
          "KBLK": "\\x1B[30m", #black
          "KRED": "\\x1B[31m", #red
@@ -26,4 +29,5 @@ color = {"KNRM": "\\x1B[0m",  #normal
 for c in color:
   exec(c + ' = "'  + color[c] + '"')
 
-print KMAG + "ansicolor" + KYEL + "." + KGRN + "py" + KNRM
+if __name__ == '__main__':
+  print KMAG + "ansicolor" + KYEL + "." + KGRN + "py" + KNRM
