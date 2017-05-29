@@ -1,7 +1,7 @@
 #!/usr/bin/env python2.7
 ''' by ashlin richardson 20160524
 
-For annoying "Missing separator" errors: fix c/c++ Makefile
+For "missing separator" errors: fix c/c++ Makefile
   by replacing each string of consecutive whitespace characters, with
   a single tab character.'''
 import os
