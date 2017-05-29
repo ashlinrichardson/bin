@@ -89,7 +89,8 @@ def load_envi_cv2(fn):
             for j in range(0, nc):
                 d[i, j] = float(struct.unpack('f', f.read(4))[0])
     else:
-        error('loading nbs != 3 not supported')
+        # undefined data
+        error('nb != 3 not supported')
     return d / 255.
 
 '''
@@ -119,6 +120,6 @@ def write_cv2_envi(d, fn):
             for j in range(0, nc):
                 f.write(struct.pack('f', d[i, j]))
     else:
-        # undefined image type
-        error('only 1 or 3 bands supported')  
+        # undefined data
+        error('nb != 3 not supported')  
 
