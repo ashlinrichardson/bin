@@ -69,11 +69,11 @@ def load_envi_cv2(fn):
         if(fn[-4:] == '.bin'):
             h_fn = fn[:-4] + '.hdr'
     if not exists(h_fn):
-      error('could not find header file for envi binary file :' + fn)
+        error('could not find header file for envi binary file :' + fn)
 
     nr, nc, nb = read_envi_hdr(h_fn)
     d, nb, nr, nc = None, int(nb), int(nr), int(nc)
-    
+
     if(nb == 3):
         # bgr image
         m = {2: 0, 1: 1, 0: 2}
@@ -121,5 +121,4 @@ def write_cv2_envi(d, fn):
                 f.write(struct.pack('f', d[i, j]))
     else:
         # undefined data
-        error('nb != 3 not supported')  
-
+        error('nb != 3 not supported')
