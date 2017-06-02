@@ -44,10 +44,10 @@ def readlines(fn):
 
 # run a system command
 def run(cmd):
-  print KGRN + str(cmd).strip() + KNRM
-  a = os.system(cmd)
-  if(a != 0):
-    error('command failed')
+    print KGRN + str(cmd).strip() + KNRM
+    a = os.system(cmd)
+    if(a != 0):
+        error('command failed')
 
 
 # test

@@ -1,22 +1,18 @@
-#!/usr/bin/env python
-
-import os,sys
+#!/usr/bin/env python2.7
+import os
+import sys
+from fl0w3r import error, run, exists
 
 args = sys.argv
+if(len(args) < 4):
+    m = "pdfcut\nUse: [first pg (1-)] [last pg] [infile.pdf] [outfile.pdf]\n"
+    error(m)
 
-if(len(args)<4):
-	print("pdfcut.py.\nUsage: [firstpage# (from 1)] [lastpage #] [infile.pdf] [outfile.pdf]\n");
-	sys.exit(1);
+start, end, infile, outfile = int(args[1]), int(args[2]), args[3], args[4]
 
-start = int(args[1])
-end = int(args[2])
-infile=args[3]
-outfile=args[4]
-if not os.path.exists(infile):
-  print "Error: input file not found", infile
-  sys.exit(1)
+if not exists(infile):
+    error("input file not found:" + infile)
 
-cmd = "gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dFirstPage="+str(start)+" -dLastPage="+str(end)+" -sOutputFile=" + outfile + " " + infile 
-print cmd
-a = os.system(cmd)
-
+# run ghostscript
+run("gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dFirstPage=" + str(start) +
+    " -dLastPage=" + str(end) + " -sOutputFile=" + outfile + " " + infile)
