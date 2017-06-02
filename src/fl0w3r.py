@@ -42,6 +42,14 @@ def readlines(fn):
     return open(fn).readlines()
 
 
+# run a system command
+def run(cmd):
+  print KGRN + str(cmd).strip() + KNRM
+  a = os.system(cmd)
+  if(a != 0):
+    error('command failed')
+
+
 # test
 if __name__ == '__main__':
     error("this is an error message")
