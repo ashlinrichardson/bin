@@ -7,23 +7,21 @@
 using namespace std;
 
 int main(int argc, char **argv){
+  if(argc < 4){
+    error("abs.cpp: take magnitude of complex channel, allowing vertical averaging (e.g., for rsat2 S2 data) reimplemented 20170602 from original code 20090829\n\tuse: abs [nrow] [ncol] [file: ENVI type 6] [multiplier: vertical multilook]\n\tNote: config.txt file must be present in input directory\n");	
+  }
 
-	if(argc < 4){
-	  error("abs.cpp: take magnitude of complex channel, allowing vertical averaging (e.g., for rsat2 S2 data) reimplemented 20170602 from original code 20090829\n\tuse: abs [nrow] [ncol] [file: ENVI type 6] [multiplier: vertical multilook]\n\tNote: config.txt file must be present in input directory\n");	
-	}
-
-	int nrow, ncol, row, col, i, j, k, ind;
-	nrow = atoi(argv[1]);
-	ncol = atoi(argv[2]);
-	char * infn  = argv[3];
+  int nrow, ncol, row, col, i, j, k, ind;
+  nrow = atoi(argv[1]);
+  ncol = atoi(argv[2]);
+  char * infn  = argv[3];
   string outfn(string(infn) + string(".abs"));
   int outr = nrow;
-	float real, imag, abs;
+  float real, imag, abs;
   double dreal, dimag, sum; 
   sum = 0.;
   FILE * infile = open(infn);
   FILE * outfile = wopen(outfn);
-
 
   if(argc==4){
     for0(row, nrow){
@@ -32,17 +30,16 @@ int main(int argc, char **argv){
         fread( &real, sizeof(float), 1, infile);
         fread( &imag, sizeof(float), 1, infile);
         dreal = double(real);
-			  dimag = double(imag);
-			  abs = (float) ( sqrt( (dreal*dreal) + (dimag*dimag) ));
-			  fwrite( &abs, sizeof(float), 1, outfile);
-		  }
+        dimag = double(imag);
+	abs = (float) ( sqrt( (dreal*dreal) + (dimag*dimag) ));
+	fwrite( &abs, sizeof(float), 1, outfile);
+      }
     }
-	}
-  else{
+  }else{
     /* argc==5 */
     int mlook = atoi(argv[4]);
-	  if(mlook < 1){
-		  error("Error: invalid multilook factor.\n");
+    if(mlook < 1){
+    error("Error: invalid multilook factor.\n");
 	  }
 	
     int nf = nrow * ncol;
