@@ -71,8 +71,8 @@ if exists(binname):
 
 command_args, dat = '', None
 shebang = "#!/usr/bin/python\n"
-last_comp = "print('" + comp_m + "')\n"
 comp_m = "compile time: " + str(time_string)
+last_comp = "print('" + comp_m + "')\n"
 imp = "import sys\nsys.path.append('" + source_folder + "')\n"
 command_args = compiler_cmd + ' ' + f + ' -o ' + binname + '.exe'
 
