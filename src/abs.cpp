@@ -31,16 +31,16 @@ int main(int argc, char **argv){
         fread( &imag, sizeof(float), 1, infile);
         dreal = double(real);
         dimag = double(imag);
-	abs = (float) ( sqrt( (dreal*dreal) + (dimag*dimag) ));
-	fwrite( &abs, sizeof(float), 1, outfile);
+				abs = (float) ( sqrt( (dreal*dreal) + (dimag*dimag) ));
+				fwrite( &abs, sizeof(float), 1, outfile);
       }
     }
   }else{
     /* argc==5 */
     int mlook = atoi(argv[4]);
     if(mlook < 1){
-    error("Error: invalid multilook factor.\n");
-	  }
+    	error("Error: invalid multilook factor.\n");
+    }
 	
     int nf = nrow * ncol;
 	  float * datr = f32(nf);
