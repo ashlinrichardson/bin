@@ -10,6 +10,7 @@ int main(int argc, char ** argv){
   if(argc < 4){
     error("abs.cpp: take magnitude of complex channel, allowing vertical averaging (e.g., for rsat2 S2 data) reimplemented 20170602 from original code 20090829\n\tuse: abs [nrow] [ncol] [file: ENVI type 6] [multiplier: vertical multilook]\n\tNote: config.txt file must be present in input directory\n");
   }
+  size_t sf = sizeof(float);
   int nrow, ncol, row, col, i, j, k, ind;
   nrow = atoi(argv[1]);
   ncol = atoi(argv[2]);
@@ -26,12 +27,12 @@ int main(int argc, char ** argv){
     for0(row, nrow){
       printf("\rProcessing row %d of %d    ", row + 1, nrow);
       for0(col, ncol){
-        fread(& real, sizeof(float), 1, infile);
-        fread(& imag, sizeof(float), 1, infile);
-        dreal = double(real);
-        dimag = double(imag);
+        fread(&real, sf, 1, infile);
+        fread(&imag, sf, 1, infile);
+        dreal = (double)real;
+        dimag = (double)imag;
         absv = (float)(sqrt((dreal * dreal) + (dimag * dimag)));
-        fwrite(&absv, sizeof(float), 1, outfile);
+        fwrite(&absv, sf, 1, outfile);
       }
     }
   }else{
@@ -48,8 +49,8 @@ int main(int argc, char ** argv){
     for0(row, nrow){
       printf("\rReading row %d of %d  ", row + 1, nrow);
       for0(col, ncol) {
-        fread(& real, sizeof(float), 1, infile);
-        fread(& imag, sizeof(float), 1, infile);
+        fread(& real, sf, 1, infile);
+        fread(& imag, sf, 1, infile);
         datr[(row * ncol) + col] = real;
         dati[(row * ncol) + col] = imag;
       }
@@ -61,13 +62,13 @@ int main(int argc, char ** argv){
         for0(k, mlook){
           row = (i * mlook) + k;
           ind = (row * ncol) + col;
-          dreal = (double) datr[ind];
-          dimag = (double) dati[ind];
+          dreal = (double)datr[ind];
+          dimag = (double)dati[ind];
           sum += sqrt((dreal * dreal) + (dimag * dimag));
         }
-        sum /= (double)(mlook);
-        absv = (float) sum;
-        fwrite(&absv, sizeof(float), 1, outfile);
+        sum /= (double)mlook;
+        absv = (float)sum;
+        fwrite(&absv, sf, 1, outfile);
       }
     }
     printf("\r");
