@@ -14,7 +14,7 @@ def error(msg):
 
 # printing message
 def printw(f):
-    print(KMAG + '+' + KRED + 'w' + KGRN + f.strip() + KNRM)
+    print(KMAG + '+' + KRED + 'w ' + KGRN + f.strip() + KNRM)
 
 
 # check file message
@@ -65,7 +65,14 @@ def normpath(p):
 
 # normalized directory name (file member removed)
 def normdir(p):
-    return(normpath(os.path.dirname(p)));
+    return(normpath(os.path.dirname(p)))
+
+
+# standardized time stamp string
+def timestring():
+    import time
+    t = time.localtime()
+    return ('%04d' % t.tm_year) + ('%02d' % t.tm_mon) + ('%02d' % t.tm_mday) + ('%02d' % t.tm_hour) + ('%02d' % t.tm_min) + ('%02d' % t.tm_sec)
 
 
 # test
