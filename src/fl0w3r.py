@@ -50,6 +50,11 @@ def run(cmd):
         error('command failed')
 
 
+# read lines from a file
+def readlines(f):
+    return open(f).read().strip().split('\n')
+
+
 # test
 if __name__ == '__main__':
     error("this is an error message")
