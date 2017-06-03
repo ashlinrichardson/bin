@@ -10,7 +10,6 @@ int main(int argc, char **argv){
   if(argc < 4){
     error("abs.cpp: take magnitude of complex channel, allowing vertical averaging (e.g., for rsat2 S2 data) reimplemented 20170602 from original code 20090829\n\tuse: abs [nrow] [ncol] [file: ENVI type 6] [multiplier: vertical multilook]\n\tNote: config.txt file must be present in input directory\n");	
   }
-
   int nrow, ncol, row, col, i, j, k, ind;
   nrow = atoi(argv[1]);
   ncol = atoi(argv[2]);
@@ -39,7 +38,7 @@ int main(int argc, char **argv){
     /* argc==5 */
     int mlook = atoi(argv[4]);
     if(mlook < 1){
-    	error("Error: invalid multilook factor.\n");
+      error("Error: invalid multilook factor.\n");
     }
 	
     int nf = nrow * ncol;
@@ -70,15 +69,15 @@ int main(int argc, char **argv){
           sum /= (double)(mlook);
 	  abs = (float)sum;
 	  fwrite(&abs, sizeof(float), 1, outfile);
-	  }
 	}
-	printf("\r");
-	outr = nrow / mlook;
-    	free(datr);
-    	free(dati);
       }
-      printf("\r"); 
-      fclose(outfile); fclose(infile);
-      write_envi_hdr(outfn + string(".hdr"), outr, ncol);
-      return 0;
-}
+      printf("\r");
+      outr = nrow / mlook;
+      free(datr);
+      free(dati);
+    }
+    printf("\r"); 
+    fclose(outfile); fclose(infile);
+    write_envi_hdr(outfn + string(".hdr"), outr, ncol);
+    return 0;
+  }
