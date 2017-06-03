@@ -1,10 +1,8 @@
-/*
+#include"envi.h"
+int main(int argc, char ** argv){
+  write_envi_hdr("test.hdr", 10, 10, 10, 4);
+  return 0;
+}
 
-For this one, open ENVI files: consider a folder to be a data frame
 
-- check if data frame
-- carry header information, if available..
 
-- add band(s) to output frame...  
-
-*/
