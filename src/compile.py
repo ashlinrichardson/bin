@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/env python2.7
 '''compile scripts: this script expects to live at relative path:
       src/compile.py'''
 import os
@@ -41,8 +41,9 @@ if not os.path.isdir(bin_folder):
     error('not a directory: ' + bin_folder)
 
 if len(sys.argv) < 2:
-    error('compile.py re-implemented 20170602 by ashlin richardson\n\tUsage: python src/compile.py src/name_of_program_to_compile')
-
+    msg = 'compile.py re-implemented 20170602 by ashlin richardson\n'
+    msg += '\tUsage: python src/compile.py src/name_of_program_to_compile'
+    error(msg)
 
 f = os.path.abspath(args[1].strip())
 cmdname = f.split("/")[-1]
@@ -60,7 +61,7 @@ elif ext == 'py':
 else:
     error('file extension not supported')
 
-cmdname =  fileend.split('.')[0]
+cmdname = fileend.split('.')[0]
 binname = normpath(normpath(bin_folder) + cmdname)
 
 if exists(binname):
@@ -69,28 +70,31 @@ if exists(binname):
     a = os.system(cmd)
 
 command_args, dat = '', None
-command_args = compiler_cmd + ' ' + f + ' -o ' + binname + '.exe'
 shebang = "#!/usr/bin/python\n"
-comp_m = "compile time: " + str(time_string)
 last_comp = "print('" + comp_m + "')\n"
+comp_m = "compile time: " + str(time_string)
 imp = "import sys\nsys.path.append('" + source_folder + "')\n"
-dat = shebang + "import os\n" + imp + "args = sys.argv[1:]\nargs = (' ').join(args)\n" + last_comp + "a = os.system('"+binname+".exe ' + args)\n"
+command_args = compiler_cmd + ' ' + f + ' -o ' + binname + '.exe'
+
+dat = shebang + "import os\n" + imp
+dat += "args = sys.argv[1:]\nargs = (' ').join(args)\n"
+dat += last_comp + "a = os.system('"+binname+".exe ' + args)\n"
 
 if ext == 'cpp' or ext == 'c':
     print KYEL + command_args + KNRM
     a = os.system(command_args)
     open(binname, 'w').write(dat)
 elif ext == 'py':
-    src_contents = open(f).read();
+    src_contents = open(f).read()
     dat = shebang + imp + last_comp + src_contents
-    open((binname),'w').write(dat)
+    open((binname), 'w').write(dat)
 else:
     error('extension not supported')
-
 printw(binname)
 
 readme_fn = bin_folder + '.' + cmdname + '.README'
-open(readme_fn, 'w').write('compile.py\n' + comp_m + '\nbinary directory: ' + bin_folder + '\ncommand arguments used: ' + command_args + '\n')
+wdat = 'compile.py\n' + comp_m + '\nbinary directory: ' + bin_folder
+open(readme_fn, 'w').write(wdat + '\ncommand arguments used: ' + command_args)
 
 if(os.path.exists(binname)):
     os.system('chmod 755 ' + binname)
