@@ -1,5 +1,6 @@
 #!/usr/bin/env python2.7
-''' by arichardson 20170120 reimplemented 20170602  '''
+''' ws.py: remove trailing whitespace and systematic left-whitespace
+by arichardson 20170120 reimplemented 20170602  '''
 
 import os
 import sys
