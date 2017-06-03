@@ -71,8 +71,10 @@ if exists(binname):
 command_args, dat = '', None
 command_args = compiler_cmd + ' ' + f + ' -o ' + binname + '.exe'
 shebang = "#!/usr/bin/python\n"
+comp_m = "compile time: " + str(time_string)
+last_comp = "print('" + comp_m + "')\n"
 imp = "import sys\nsys.path.append('" + source_folder + "')\n"
-dat = shebang + "import os\n" + imp + "args = sys.argv[1:]\nargs = (' ').join(args)\nprint('last compiled " + str(time_string) + "')\na = os.system('"+binname+".exe ' + args)\n"
+dat = shebang + "import os\n" + imp + "args = sys.argv[1:]\nargs = (' ').join(args)\n" + last_comp + "a = os.system('"+binname+".exe ' + args)\n"
 
 if ext == 'cpp' or ext == 'c':
     print KYEL + command_args + KNRM
@@ -80,7 +82,7 @@ if ext == 'cpp' or ext == 'c':
     open(binname, 'w').write(dat)
 elif ext == 'py':
     src_contents = open(f).read();
-    dat = shebang + imp + "print('last compiled " + time_string + "');\n" + src_contents
+    dat = shebang + imp + last_comp + src_contents
     open((binname),'w').write(dat)
 else:
     error('extension not supported')
@@ -88,7 +90,7 @@ else:
 printw(binname)
 
 readme_fn = bin_folder + '.' + cmdname + '.README'
-open(readme_fn, 'w').write('compile.py\ntime: ' + time_string + '\nbinary directory: ' + bin_folder + '\ncommand arguments used: ' + command_args + '\n')
+open(readme_fn, 'w').write('compile.py\n' + comp_m + '\nbinary directory: ' + bin_folder + '\ncommand arguments used: ' + command_args + '\n')
 
 if(os.path.exists(binname)):
     os.system('chmod 755 ' + binname)
