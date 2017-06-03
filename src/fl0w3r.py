@@ -55,6 +55,19 @@ def readlines(f):
     return open(f).read().strip().split('\n')
 
 
+# normalized file path (with slash, if directory)
+def normpath(p):
+    pp = os.path.abspath(p)
+    if os.path.isdir(pp):
+        pp += '/'
+    return pp
+
+
+# normalized directory name (file member removed)
+def normdir(p):
+    return(normpath(os.path.dirname(p)));
+
+
 # test
 if __name__ == '__main__':
     error("this is an error message")
