@@ -16,7 +16,7 @@ int main(int argc, char ** argv){
   char * infn = argv[3];
   string outfn(string(infn) + string(".abs"));
   int outr = nrow;
-  float real, imag, abs;
+  float real, imag, absv;
   double dreal, dimag, sum;
   sum = 0.;
   FILE * infile = open(infn);
@@ -30,8 +30,8 @@ int main(int argc, char ** argv){
         fread(& imag, sizeof(float), 1, infile);
         dreal = double(real);
         dimag = double(imag);
-        abs = (float)(sqrt((dreal * dreal) + (dimag * dimag)));
-        fwrite(& abs, sizeof(float), 1, outfile);
+        absv = (float)(sqrt((dreal * dreal) + (dimag * dimag)));
+        fwrite(&absv, sizeof(float), 1, outfile);
       }
     }
   }else{
@@ -66,8 +66,8 @@ int main(int argc, char ** argv){
           sum += sqrt((dreal * dreal) + (dimag * dimag));
         }
         sum /= (double)(mlook);
-        abs = (float) sum;
-        fwrite(& abs, sizeof(float), 1, outfile);
+        absv = (float) sum;
+        fwrite(&absv, sizeof(float), 1, outfile);
       }
     }
     printf("\r");
