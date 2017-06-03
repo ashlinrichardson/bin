@@ -31,8 +31,8 @@ int main(int argc, char **argv){
         fread( &imag, sizeof(float), 1, infile);
         dreal = double(real);
         dimag = double(imag);
-				abs = (float) ( sqrt( (dreal*dreal) + (dimag*dimag) ));
-				fwrite( &abs, sizeof(float), 1, outfile);
+	abs = (float) ( sqrt( (dreal*dreal) + (dimag*dimag) ));
+	fwrite( &abs, sizeof(float), 1, outfile);
       }
     }
   }else{
@@ -43,42 +43,42 @@ int main(int argc, char **argv){
     }
 	
     int nf = nrow * ncol;
-	  float * datr = f32(nf);
-	  float * dati = f32(nf);
+    float * datr = f32(nf);
+    float * dati = f32(nf);
 
     /* have to read this way because of the interleave-- should put this in a reader later (for S2) */
-	  for0(row, nrow){
-		  printf("\rReading row %d of %d  ", row+1, nrow);
-		  for0(col, ncol){
-			  fread(&real, sizeof(float), 1, infile);
-			  fread(&imag, sizeof(float), 1, infile);
-			  datr[(row*ncol)+ col] = real;
-			  dati[(row*ncol)+ col] = imag;
-		  }
-	  }
-	  for0(i, nrow/mlook){
-		  printf("\rWriting row %d of %d    ", i + 1, nrow / mlook);
-		  for0(col, ncol){
-			  sum = 0.;
-			  for0(k, mlook){
-				  row = (i * mlook) + k;
-				  ind = (row * ncol) + col;
-				  dreal = (double)datr[ind];  
-				  dimag = (double)dati[ind];
-          sum += sqrt((dreal * dreal) + (dimag * dimag));
-			  }
-			  sum /= (double)(mlook);
-			  abs = (float)sum;
-			  fwrite(&abs, sizeof(float), 1, outfile);
-		  }
-	  }
-	  printf("\r");
-	  outr = nrow / mlook;
-    free(datr);
-    free(dati);
+    for0(row, nrow){
+      printf("\rReading row %d of %d  ", row+1, nrow);
+      for0(col, ncol){
+	fread(&real, sizeof(float), 1, infile);
+	fread(&imag, sizeof(float), 1, infile);
+	datr[(row*ncol)+ col] = real;
+	dati[(row*ncol)+ col] = imag;
 	}
-  printf("\r"); 
-  fclose(outfile); fclose(infile);
-  write_envi_hdr(outfn + string(".hdr"), outr, ncol);
-	return 0;
+      }
+      for0(i, nrow/mlook){
+        printf("\rWriting row %d of %d    ", i + 1, nrow / mlook);
+	for0(col, ncol){
+          sum = 0.;
+	  for0(k, mlook){
+	    row = (i * mlook) + k;
+	    ind = (row * ncol) + col;
+	    dreal = (double)datr[ind];  
+	    dimag = (double)dati[ind];
+            sum += sqrt((dreal * dreal) + (dimag * dimag));
+	  }
+          sum /= (double)(mlook);
+	  abs = (float)sum;
+	  fwrite(&abs, sizeof(float), 1, outfile);
+	  }
+	}
+	printf("\r");
+	outr = nrow / mlook;
+    	free(datr);
+    	free(dati);
+      }
+      printf("\r"); 
+      fclose(outfile); fclose(infile);
+      write_envi_hdr(outfn + string(".hdr"), outr, ncol);
+      return 0;
 }
