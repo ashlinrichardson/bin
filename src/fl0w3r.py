@@ -72,7 +72,12 @@ def normdir(p):
 def timestring():
     import time
     t = time.localtime()
-    return ('%04d' % t.tm_year) + ('%02d' % t.tm_mon) + ('%02d' % t.tm_mday) + ('%02d' % t.tm_hour) + ('%02d' % t.tm_min) + ('%02d' % t.tm_sec)
+    return (('%04d' % t.tm_year) +
+            ('%02d' % t.tm_mon) +
+            ('%02d' % t.tm_mday) +
+            ('%02d' % t.tm_hour) +
+            ('%02d' % t.tm_min) +
+            ('%02d' % t.tm_sec))
 
 
 # test
