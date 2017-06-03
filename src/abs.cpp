@@ -67,7 +67,7 @@ int main(int argc, char ** argv){
         }
         sum /= (double)(mlook);
         abs = (float) sum;
-        fwrite( & abs, sizeof(float), 1, outfile);
+        fwrite(& abs, sizeof(float), 1, outfile);
       }
     }
     printf("\r");
