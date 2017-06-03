@@ -70,8 +70,9 @@ if exists(binname):
 
 command_args, dat = '', None
 command_args = compiler_cmd + ' ' + f + ' -o ' + binname + '.exe'
-command_args = compiler_cmd + ' ' + f + ' -o ' + binname + '.exe'
-dat = "#!/usr/bin/env python\nimport os\nimport sys\nargs = sys.argv[1:]\nargs = (' ').join(args)\nprint('last compiled " + str(time_string) + "')\na = os.system('"+binname+".exe ' + args)\n"
+shebang = "#!/usr/bin/python\n"
+imp = "import sys\nsys.path.append('" + source_folder + "')\n"
+dat = shebang + "import os\n" + imp + "args = sys.argv[1:]\nargs = (' ').join(args)\nprint('last compiled " + str(time_string) + "')\na = os.system('"+binname+".exe ' + args)\n"
 
 if ext == 'cpp' or ext == 'c':
     print KYEL + command_args + KNRM
@@ -79,7 +80,7 @@ if ext == 'cpp' or ext == 'c':
     open(binname, 'w').write(dat)
 elif ext == 'py':
     src_contents = open(f).read();
-    dat = "#!/usr/bin/python\nprint('last compiled " + time_string + "');\n" + src_contents
+    dat = shebang + imp + "print('last compiled " + time_string + "');\n" + src_contents
     open((binname),'w').write(dat)
 else:
     error('extension not supported')
