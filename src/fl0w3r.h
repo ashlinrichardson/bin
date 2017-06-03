@@ -6,6 +6,10 @@
 #include"ansicolor.h"
 using namespace std;
 
+/* macros */
+#define sq(x) ((x) * (x))
+#define for0(j, n) for(j = 0; j < (n); j++)
+
 void wprint(char * file_name){
   printf("%s+%sw %s%s%s\n", KMAG, KRED, KGRN, file_name, KNRM);
 }
@@ -18,6 +22,46 @@ void error(const char * msg){
   printf("%sError: %s%s%s\n", KRED, KGRN, msg, KNRM);
   exit(1);
 }
+
+void error(string msg){
+  printf("%sError: %s%s%s\n", KRED, KGRN, msg.c_str(), KNRM);
+  exit(1);
+}
+
+float * f32(int nfloat){
+  int nb = sizeof(float) * nfloat;
+	float * r = (float*)(void*)malloc(nb);
+  if(!r){
+    error("memory allocation failed");
+  }
+	memset(r, '\0', nb);
+  return r;
+}
+
+FILE * open(char * fn){
+  FILE * f = fopen(fn, "rb");
+  if(!f){
+    error(string("could not open (read-access) file: ") + string(fn));
+  }
+  return(f);
+}
+
+FILE * open(string fn){
+  return open(fn.c_str());
+}
+
+FILE * wopen(char * fn){
+  FILE * f = fopen(fn, "wb");
+  if(!f){
+    error(string("could not open (write-access) file: ") + string(fn));
+  }
+  return(f);
+}
+
+FILE * wopen(string fn){
+  return wopen(fn.c_str());
+}
+
 
 /*convert char to string: single character: interpret whitspace as space character */
 string chartos(char s){
