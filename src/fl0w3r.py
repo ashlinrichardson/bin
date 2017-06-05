@@ -88,6 +88,9 @@ def require_gdal():
     if os.popen("which gdalinfo").read().strip() == "":
         error('could not find gdal:: gdalinfo')
 
+def config_file(nrow, ncol):
+    return "Nrow\n"+str(nrow)+"\n"+"---------\nNcol\n"+str(ncol)+"\n---------\nPolarCase\nbistatic\n---------\nPolarType\nfull"
+
 # test
 if __name__ == '__main__':
     error("this is an error message")

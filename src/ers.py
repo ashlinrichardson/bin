@@ -10,7 +10,7 @@ require_gdal()
 args = sys.argv
 if len(sys.argv) < 3:
     msg = 'ers.py: Extract Radarsat-2 data to ENVI format using GDAL\n'
-    msg += 'Usage: ers [Radarsat2 Data Directory][Output Directory]\n'
+    msg += 'Usage: ers [rsat2 data dir] [output dir]\n'
     error(msg + 'reimplemented 20170605 from Sept 2008 script')
 
 in_dir, out_dir = args[1], args[2]
