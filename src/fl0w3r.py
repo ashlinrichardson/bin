@@ -28,6 +28,10 @@ def exists(f):
     return os.path.exists(f)
 
 
+def chkdir(f):
+    return os.path.exists(f) and os.path.isdir(f)
+
+
 # open write mode
 def wopen(fn):
     f = open(fn, 'w')
@@ -63,9 +67,9 @@ def normpath(p):
     return pp
 
 
-# normalized directory name (file member removed)
+# normalized directory name (file member removed).. Given a file, get a standardized parent directory name
 def normdir(p):
-    return(normpath(os.path.dirname(p)))
+    return normpath(os.path.dirname(p))
 
 
 # standardized time stamp string
@@ -79,6 +83,10 @@ def timestring():
             ('%02d' % t.tm_min) +
             ('%02d' % t.tm_sec))
 
+
+def require_gdal():
+    if not os.popen("gdalinfo").read().strip().split[0] == "Usage:":
+        error('could not find gdal:: gdalinfo')
 
 # test
 if __name__ == '__main__':
