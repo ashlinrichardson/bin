@@ -85,7 +85,7 @@ def timestring():
 
 
 def require_gdal():
-    if not os.popen("gdalinfo").read().strip().split[0] == "Usage:":
+    if os.popen("which gdalinfo").read().strip() == "":
         error('could not find gdal:: gdalinfo')
 
 # test
