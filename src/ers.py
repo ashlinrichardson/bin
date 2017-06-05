@@ -6,7 +6,7 @@ import os
 import re
 import sys
 from os.path import *
-from fl0w3r import error, chkdir, normpath, run, require_gdal
+from fl0w3r import error, chkdir, chkfile, normpath, run, require_gdal, wopen
 
 require_gdal()
 
@@ -31,13 +31,12 @@ sf = {'s11':'HH', 's12':'HV', 's21':'VH', 's22':'VV'}
 
 for s in sf:
     run('gdal_translate -of ENVI -ot Float32 -co INTERLEAVE=BIP ' + in_dir + 'imagery_' + sf[s] + '.tif ' + out_dir + s + '.bin')
-    hfn = out_dir + s + '.bin.hdr'
+    hfn = out_dir + s + '.hdr'
     chkfile(hfn)
     hd = open(hfn).read()
+    hd = hd.replace('description = {\n', 'description = {')
     hd = hd.replace('bands   = 2', 'bands   = 1')
     hd = hd.replace('data type = 4', 'data type = 6')
     hd = hd.replace('interleave = bip', 'interleave = bsq')
     hd = hd.replace('\nband names = {\nBand 1,\nBand 2}', '')
     wopen(hfn).write(hd)
-
-print "Extracted Radarsat-2 data in "+d+" to "+cwd
