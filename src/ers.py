@@ -1,7 +1,4 @@
 #!/usr/bin/env python
-'''ers.py: convert radarsat 2 data to S2 format
-reimplemented 20170605 from 200809 cfs aft script'''
-
 import os
 import re
 import sys
@@ -12,7 +9,9 @@ require_gdal()
 
 args = sys.argv
 if len(sys.argv) < 3:
-    error('ers.py: Extract Radarsat-2 data to ENVI format using GDAL library.\nUsage: ers [Radarsat2 Data Directory][Output Directory]\n\nBy Ash Richardson September 2008\n')
+    msg = 'ers.py: Extract Radarsat-2 data to ENVI format using GDAL\n'
+    msg += 'Usage: ers [Radarsat2 Data Directory][Output Directory]\n'
+    error(msg + 'reimplemented 20170605 from Sept 2008 script')
 
 in_dir, out_dir = args[1], args[2]
 
@@ -27,10 +26,14 @@ in_dir, out_dir = normpath(in_dir), normpath(out_dir)
 run('irs ' + in_dir)
 run('mv ' + in_dir + 'config.txt ' + out_dir)
 
-sf = {'s11':'HH', 's12':'HV', 's21':'VH', 's22':'VV'}
+sf = {'s11': 'HH', 's12': 'HV', 's21': 'VH', 's22': 'VV'}
 
 for s in sf:
-    run('gdal_translate -of ENVI -ot Float32 -co INTERLEAVE=BIP ' + in_dir + 'imagery_' + sf[s] + '.tif ' + out_dir + s + '.bin')
+    # extract the data with gdal_translate
+    run('gdal_translate -of ENVI -ot Float32 -co INTERLEAVE=BIP ' +
+        in_dir + 'imagery_' + sf[s] + '.tif ' + out_dir + s + '.bin')
+
+    # adjust header file
     hfn = out_dir + s + '.hdr'
     chkfile(hfn)
     hd = open(hfn).read()
