@@ -8,7 +8,7 @@ using namespace std;
 
 int main(int argc, char ** argv){
   if(argc < 4){
-    error("abs.cpp: take magnitude of complex channel, allowing vertical averaging (e.g., for rsat2 S2 data) reimplemented 20170602 from original code 20090829\n\tuse: abs [nrow] [ncol] [file: ENVI type 6] [multiplier: vertical multilook]\n\tNote: config.txt file must be present in input directory\n");
+    error("abs.cpp: take magnitude of complex channel (ENVI type 6), allowing vertical averaging (e.g., for rsat2 S2 data) reimplemented 20170602 from original code 20090829\n\tuse: abs [nrow] [ncol] [file: ENVI type 6] [multiplier: vertical multilook]\n\tNote: config.txt file must be present in input directory\n");
   }
   size_t sf = sizeof(float);
   int nrow, ncol, row, col, i, j, k, ind;
