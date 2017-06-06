@@ -23,8 +23,12 @@ if not chkdir(out_dir):
 
 in_dir, out_dir = normpath(in_dir), normpath(out_dir)
 
+# read rsat-2 header
 run('irs ' + in_dir)
-run('mv ' + in_dir + 'config.txt ' + out_dir)
+
+# copy product.xml and config.txt files
+run('cp ' + in_dir + 'config.txt ' + out_dir)
+run('cp ' + in_dir + 'product.xml ' + out_dir)
 
 sf = {'s11': 'HH', 's12': 'HV', 's21': 'VH', 's22': 'VV'}
 
