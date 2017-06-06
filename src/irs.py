@@ -3,7 +3,7 @@ import re
 import os
 import sys
 from ansicolor import KRED, KGRN, KNRM, KMAG
-from fl0w3r import chkdir, error, normpath, config_file, wopen
+from fl0w3r import chkdir, error, normpath, config_file, wopen, printw
 
 args = sys.argv
 if len(args) < 2:
@@ -22,55 +22,43 @@ if len(re.findall(r'<satellite>RADARSAT-2</satellite>', L)) != 1:
     error('not known RADARSAT-2 product format')
 
 rf = re.findall
-product_id = rf(r'productId.*productId', L)[0]\
-                .split('<')[0].split('>')[1]
-acquisition_type = rf(r'acquisitionType.*acquisitionType', L)[0]\
-                      .split('<')[0].split('>')[1]
-polarizations = rf(r'polarizations.*polarizations', L)[0]\
-                   .split('<')[0].split('>')[1]
-product_type = rf(r'productType.*productType', L)[0]\
-                  .split('<')[0].split('>')[1]
 
-m = KMAG + ','
-print KGRN + "productId" + m + KRED, product_id
-print KGRN + "acquisitionType" + m + KRED, acquisition_type
-print KGRN + "polarizations" + m + KRED, polarizations
-print KGRN + "productType" + m + KRED, product_type
+def cut(s):
+    # from, e.g., 'lineScale>3932</lineScale' get 3932
+    return s[0].split('<')[0].split('>')[1]
+
+def get(expr):
+    global L
+    val = eval("cut(rf(r'" + expr + ".*" + expr + "', L))")
+    # print KGRN + expr + KMAG + ' = ' + KRED + val
+    return val
+
+product_id = get('productId')
+acquisition_type = get('acquisitionType')
+polarizations =  get('polarizations')
+product_type =  get('productType')
+
+line_scale = get('lineScale')
+pixel_scale = get('pixelScale')
+latitude_scale = get('latitudeScale')
+longitudeScale = get('longitudeScale')
+
 J = L.split("rasterAttributes")
 L = J[1]
 
-samples_per_line = rf(r'numberOfSamplesPerLine.*numberOfSamplesPerLine', L)[0]\
-                                .split('<')[0].split('>')[1]
-number_of_lines = rf(r'numberOfLines.*numberOfLines', L)[0]\
-                    .split('<')[0].split('>')[1]
-sampled_pixel_spacing = rf(r'sampledPixelSpacing.*sampledPixelSpacing', L)[0]\
-                           .split('<')[0].split('>')[1]
-sampled_line_spacing = rf(r'sampledLineSpacing.*sampledLineSpacing', L)[0]\
-                          .split('<')[0].split('>')[1]
-
-print KGRN + "numberOfSamplesPerLine" + m + KRED, samples_per_line
-print KGRN + "numberOfLines" + m + KRED, number_of_lines
-print KGRN + "sampledPixelSpacing" + m + KRED, sampled_pixel_spacing
-print KGRN + "sampledLineSpacing" + m + KRED, sampled_line_spacing
+samples_per_line = get('numberOfSamplesPerLine')
+number_of_lines = get('numberOfLines')
+sampled_pixel_spacing = get('sampledPixelSpacing')
+sampled_line_spacing = get('sampledLineSpacing')
 
 if polarizations != "HH VV HV VH":
     error('polarizations HH VV HV VH not found')
 
 wopen(cfg_fn).write(config_file(number_of_lines, samples_per_line))
+printw(cfg_fn)
 
-a, b = float(sampled_pixel_spacing), float(sampled_line_spacing)
+print KMAG + "Recommended vertical multilook factor:" + KGRN
+print '\t' + KRED, int(round( float(line_scale) / float(pixel_scale))), KNRM
 
-fact, last_dif, lasti, lastj, sfact = a / b, 100., 1, 1, 9
-for i in range(1, sfact):
-    fi = float(i)
-    for j in range(1, sfact):
-        nfact = fi / float(j)
-        if(abs(nfact - fact) < last_dif):
-            last_dif = abs(nfact - fact)
-            lasti, lastj = i, j
-print KMAG + "\nrecommended Multilook Factors (of " + str(sfact) + " or less):"
-print KGRN + "\tCol: " + KRED, lasti
-print KGRN + "\tRow: " + KRED, lastj
 
-if (lasti == 1) & (lastj == 1):
-    print KRED + '\nConclusion: ' + KGRN + 'Pixels roughly square' + KNRM
+
