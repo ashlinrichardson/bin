@@ -53,11 +53,6 @@ htrim_factor = 2.
 if htrim_factor <= 0. or htrim_factor >= 100.:
     error('htrim factor should be between 0 and 100')
 
-
-def extend(ext):
-    global out_dir
-    return out_dir.strip('/') + '_' + ext + '/'
-
 # intermediary folders
 fr_dir = (out_dir[:-1] + '_fr/') if use_faraday else in_dir
 t4_dir, fl_dir = out_dir[:-1] + '_fr_t4/', out_dir[:-1] + '_fr_T4_fl'
