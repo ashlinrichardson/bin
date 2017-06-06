@@ -51,7 +51,7 @@ def run(cmd):
     print KGRN + str(cmd).strip() + KNRM
     a = os.system(cmd)
     if(a != 0):
-        error('command failed')
+        error('command failed: ' + cmd)
 
 
 # read lines from a file
