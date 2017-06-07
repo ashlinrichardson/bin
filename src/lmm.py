@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-'''want to know where your disk space is used? 
+'''want to know where your disk space is used?
 summarize file space usage, producing a grand total (du -c), with sorting
 '''
 import os, sys
 def msg():
-  print("lmm.py\n\tlmm.py\t\t\t\t(this defaults to current directory)\n\tlmm.py [path]\t\t\t\t(this allows a path to be specified.\n"); 
+  print("lmm.py\n\tlmm.py\t\t\t\t(this defaults to current directory)\n\tlmm.py [path]\t\t\t\t(this allows a path to be specified.\n");
   sys.exit(1);
 args = sys.argv
 pwd = os.path.abspath( os.popen("pwd").read().strip() );
@@ -14,7 +14,7 @@ if(len(args)>1):
     msg();
 cmd = "du -c "+pwd
 a =os.popen(cmd).read().strip().split("\n");
-lines = [ ] 
+lines = [ ]
 for line in a:
   #print line.strip();
   ls = line.strip().split();
