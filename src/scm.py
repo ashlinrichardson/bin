@@ -12,7 +12,7 @@ e.g.,can run the following 5 unix/linux commands:
   ers RS2_OK76385_PK678063_DK606752_FQ2_20080415_143807_HH_VV_HV_VH_SLC s2
   rm -rf RS2_OK76385_PK678063_DK606752_FQ2_20080415_143807_HH_VV_HV_VH_SLC*
   mkdir scm
-  scm s2 scm
+  scm.py ./s2/ ./scm/ box 5 yes 4 1
 
 
 '''
