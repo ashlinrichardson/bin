@@ -68,7 +68,7 @@ if htrim_factor <= 0. or htrim_factor >= 100.:
 
 # intermediary folders
 fr_dir = (out_dir[:-1] + '_fr/') if use_faraday else in_dir
-t4_dir, fl_dir = out_dir[:-1] + '_fr_t4/', out_dir[:-1] + '_fr_t4_fl'
+t4_dir, fl_dir = out_dir[:-1] + '_fr_t4/', out_dir[:-1] + '_fr_t4_fl/'
 for tf in [fr_dir, t4_dir, fl_dir]:
     run('mkdir -p ' + tf)
 run('cp -v ' + in_dir + 'config.txt ' + fr_dir)
@@ -87,7 +87,7 @@ run('sch ' + fl_dir + ' ' + out_dir + ' ' + str(0) + ' ' +
     str(alpha_select) + ' ' + str(1.5) + ' 0')
 
 # copy config file
-run('cp ' + t4_dir + '/config.txt ' + out_dir)
+run('cp ' + t4_dir + 'config.txt ' + out_dir)
 
 # create rgb mapping
 run('rgbtrim ' + out_dir)
