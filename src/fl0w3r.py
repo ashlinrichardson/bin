@@ -5,7 +5,6 @@ import os
 import sys
 from ansicolor import KRED, KGRN, KNRM, KMAG
 
-
 # error message and quit
 def error(msg):
     print KRED + "Error: " + KGRN + msg.strip() + KNRM
@@ -46,14 +45,6 @@ def readlines(fn):
     return open(fn).readlines()
 
 
-# run a system command
-def run(cmd):
-    print KGRN + str(cmd).strip() + KNRM
-    a = os.system(cmd)
-    if(a != 0):
-        error('command failed: ' + cmd)
-
-
 # read lines from a file
 def readlines(f):
     return open(f).read().strip().split('\n')
@@ -82,6 +73,21 @@ def timestring():
             ('%02d' % t.tm_hour) +
             ('%02d' % t.tm_min) +
             ('%02d' % t.tm_sec))
+
+# run a system command
+def run(cmd):
+    global log_file
+    print KGRN + str(cmd).strip() + KNRM
+    log_file = open('logfile.txt', 'a')
+    log_file.write(timestring() + ' ' + cmd.strip() + '\n')
+    log_file.close()
+    a = os.system(cmd)
+    if(a != 0):
+        error('command failed: ' + cmd)
+    log_file = open('logfile.txt', 'a')
+    log_file.write('\t' + timestring() + '\n')
+    log_file.close()
+
 
 
 def require_gdal():
