@@ -12,7 +12,7 @@ e.g.,can run the following 5 unix/linux commands:
   ers RS2_OK76385_PK678063_DK606752_FQ2_20080415_143807_HH_VV_HV_VH_SLC s2
   rm -rf RS2_OK76385_PK678063_DK606752_FQ2_20080415_143807_HH_VV_HV_VH_SLC*
   mkdir scm
-  scm.py ./s2/ ./scm/ box 5 yes 4 1
+  scm.py ./s2/ ./scm/ box 5 yes 3 1
 
 
 '''
@@ -28,7 +28,7 @@ if len(args) < 8:
     msg += 'Cloude. By Ash Richardson, June 24, 2009-- reimplemented 20170605'
     msg += 'Usage: scm4 [input directory] [output directory] [filter type] '
     msg += '[filter size] [faraday correction {yes,no}] [alpha \in'
-    error(msg + ' {1, 2, 3, 4}] [vertical multilook factor]')
+    error(msg + ' {1, 2, 3}] [vertical multilook factor]')
     # prev. versions: mappingf in ["sch", "sche", "sc1", "sc2"]
 
 # check input and output directories valid
@@ -43,7 +43,7 @@ in_dir, out_dir = normpath(in_dir), normpath(out_dir)
 filter_type, filter_cmds = args[3], {'gauss': 'g4', 'box': 'b4', 'lee': 'l4'}
 filter_cmd = filter_cmds[filter_type] if filter_type in filter_cmds else None
 if not filter_cmd:
-    error('invalid filter type: allowed filters: ' + str(allowed))
+    error('invalid filter type: allowed filters: ' + str(filter_cmds))
 
 # filter size
 filter_size = int(args[4])
@@ -53,10 +53,10 @@ if filter_size < 0:
 # faraday rotation correction? yes/no
 use_faraday = True if args[5] == "yes" else False
 
-# selection from 1, 2, 3, or 4
+# selection from 1, 2, 3
 alpha_select = int(args[6])
-if alpha_select < 1 or alpha_select > 4:
-    error('alpha_select \in {1,2,3,4}')
+if alpha_select < 1 or alpha_select > 3:
+    error('alpha_select \in {1,2,3}')
 
 # row-coord multilook factor
 multi_look = int(args[7])
