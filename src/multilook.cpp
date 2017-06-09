@@ -1,3 +1,6 @@
+/* 
+    not sure why this doesn't multilook in both directions.. fix it.
+*/
 #include "envi.h"
 #include <math.h>
 #include <stdio.h>
