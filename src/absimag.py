@@ -1,7 +1,9 @@
 #!/usr/bin/env python
+'''20170608 reimplemented from CFS version'''
 import os
 import sys
-from fl0wer import error, normpath, read_config
+from fl0w3r import error, normpath, read_config, run
+
 args = sys.argv
 if len(args) < 3:
     msg = 'absimag.py: take magnitudes of complex (ENVI type 6) images'
@@ -18,18 +20,18 @@ bins = os.popen('ls -1 ' + cwd + '*.bin').readlines()
 for b in bins:
     b = normpath(b)
     fn = b.strip().split("/")[-1]
-    datatype = 4
+    data_type = 4
     if fn[0] == 'T':
-        datatype = 4
-    elif fn[0] == 's' & (fn[1] == '1' | fn[1] == '2'):
+        data_type = 4
+    elif (fn[0] == 's') & ((fn[1] == '1') | (fn[1] == '2')):
         # complex scattering matrix data (polsarpro format)
-        datatype = 6
-    elif (fn[0] == 'R' | fn[0] == 'L') & (fn[1] == 'R' | fn[1] == 'L'):
+        data_type = 6
+    elif ((fn[0] == 'R') | (fn[0] == 'L')) & ((fn[1] == 'R') | (fn[1] == 'L')):
         # circular polarization complex data written by circ.cpp
-        datatype = 6
+        data_type = 6
     else:
         pass
-    if datatype == 6:
+    if data_type == 6:
         cmd = cmd = 'abs ' + str(nlin) + ' ' + str(ncol) + ' ' + b
         if multi_look != 1:
             cmd += ' ' + str(multi_look)
