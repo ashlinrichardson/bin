@@ -6,7 +6,7 @@ import re
 import sys
 import copy
 import time
-from ansicolor import KYEL, KNRM
+from ansicolor import KYEL, KNRM, KGRN, KRED
 from fl0w3r import error, exists, normpath, normdir, timestring, run, printw
 
 time_string = timestring()
@@ -63,6 +63,13 @@ else:
 
 cmdname = fileend.split('.')[0]
 binname = normpath(normpath(bin_folder) + cmdname)
+which = os.popen('which '+ cmdname).read().strip()
+while which != '':
+    cmd = 'rm ' + which
+    if os.path.exists(which) and os.path.isfile(which):
+        a = os.system(cmd)
+    which = os.popen('which ' + cmdname).read().strip()
+
 
 if exists(binname):
     cmd = 'rm -rf ' + binname
@@ -71,7 +78,7 @@ if exists(binname):
 
 command_args, dat = '', None
 shebang = "#!/usr/bin/python\n"
-comp_m = "compile time: " + str(time_string)
+comp_m = KGRN + "compile time: " + KRED + str(time_string) + KNRM
 last_comp = "print('" + comp_m + "')\n"
 imp = "import sys\nsys.path.append('" + source_folder + "')\n"
 command_args = compiler_cmd + ' ' + f + ' -o ' + binname + '.exe'
