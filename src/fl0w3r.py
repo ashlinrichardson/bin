@@ -108,7 +108,7 @@ def write_config(fn, nrow, ncol):
 # read a PolSARPro config file
 def read_config(fn):
     chkfile(fn)
-    lines = open(fn).readlines()
+    gl = open(fn).readlines()
     nlin, ncol = int(gl[1].strip()), int(gl[4].strip())
     return nlin, ncol
 
