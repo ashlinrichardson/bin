@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import error, run, chkdir
+from fl0w3r import error, run, chkdir, read_config
 
 args = sys.argv
 if len(args) < 2:
@@ -12,10 +12,12 @@ o_dir = args[1]
 if not chkdir(o_dir):
     error('could not find output folder: ' + o_dir)
 
+nrow, ncol = read_config(o_dir)
+
 # histogram trim the R,G,B channels
-run('htrim ' + o_dir + ' ' + o_dir + '/R.bin' + ' 1 1 ' + o_dir + '/Rtrim.bin')
-run('htrim ' + o_dir + ' ' + o_dir + '/G.bin' + ' 1 1 ' + o_dir + '/Gtrim.bin')
-run('htrim ' + o_dir + ' ' + o_dir + '/B.bin' + ' 1 1 ' + o_dir + '/Btrim.bin')
+run('htrim ' + o_dir + '/R.bin' + ' ' + str(nrow) + ' ' + str(ncol) + ' 1 1 ' + o_dir + '/Rtrim.bin')
+run('htrim ' + o_dir + '/G.bin' + ' ' + str(nrow) + ' ' + str(ncol) + ' 1 1 ' + o_dir + '/Gtrim.bin')
+run('htrim ' + o_dir + '/B.bin' + ' ' + str(nrow) + ' ' + str(ncol) + ' 1 1 ' + o_dir + '/Btrim.bin')
 
 # overwrite the original R,G,B files
 run('mv ' + o_dir + '/Rtrim.bin ' + o_dir + '/R.bin')
