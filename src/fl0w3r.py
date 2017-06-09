@@ -89,13 +89,29 @@ def run(cmd):
     log_file.close()
 
 
-
+# assert that GDAL is installed
 def require_gdal():
     if os.popen("which gdalinfo").read().strip() == "":
         error('could not find gdal:: gdalinfo')
 
+
+# data for PolSARPro config file
 def config_file(nrow, ncol):
     return "Nrow\n"+str(nrow)+"\n"+"---------\nNcol\n"+str(ncol)+"\n---------\nPolarCase\nbistatic\n---------\nPolarType\nfull"
+
+
+# write a PolSARPro config file
+def write_config(fn, nrow, ncol):
+    open(fn, 'wb').write(config_file(nrow, ncol))
+
+
+# read a PolSARPro config file
+def read_config(fn):
+    chkfile(fn)
+    lines = open(fn).readlines()
+    nlin, ncol = int(gl[1].strip()), int(gl[4].strip())
+    return nlin, ncol
+
 
 # test
 if __name__ == '__main__':
