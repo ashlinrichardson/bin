@@ -6,6 +6,7 @@
 #include"ansicolor.h"
 
 void write_envi_hdr(const char * fn, int nrow, int ncol, int nband, int datatype){
+  wprint(fn);
   time_t rawtime;
   struct tm * timeinfo;
   time(&rawtime);
@@ -27,7 +28,6 @@ void write_envi_hdr(const char * fn, int nrow, int ncol, int nband, int datatype
   fprintf(f, "interleave = bsq\n");
   fprintf(f, "byte order = 0\n");
   fclose(f);
-  wprint(fn);
 }
 
 /* wrap for default params */
