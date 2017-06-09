@@ -18,9 +18,9 @@ run('htrim ' + o_dir + ' ' + o_dir + '/G.bin' + ' 1 1 ' + o_dir + '/Gtrim.bin')
 run('htrim ' + o_dir + ' ' + o_dir + '/B.bin' + ' 1 1 ' + o_dir + '/Btrim.bin')
 
 # overwrite the original R,G,B files
-run('mv ' + o_dir + '/Rtrim.bin ' + o_dir + '/R.bin")
-run('mv ' + o_dir + '/Gtrim.bin ' + o_dir + '/G.bin")
-run('mv ' + o_dir + '/Btrim.bin ' + o_dir + '/B.bin")
+run('mv ' + o_dir + '/Rtrim.bin ' + o_dir + '/R.bin')
+run('mv ' + o_dir + '/Gtrim.bin ' + o_dir + '/G.bin')
+run('mv ' + o_dir + '/Btrim.bin ' + o_dir + '/B.bin')
 
 # create a bmp file
 run('bin2bmp ' + o_dir + ' ' + o_dir + 'out.bmp')
