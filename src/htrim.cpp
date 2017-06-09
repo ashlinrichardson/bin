@@ -21,36 +21,23 @@ int main(int argc, char ** argv){
 	float p1 = atof(argv[4]);
 	float p2 = atof(argv[5]);
 	char * outfile = argv[6];
+	int index_lower = int(floor((p1 / 100.) * ((float)Nrow) * ((float)Ncol)));
+	int index_upper = int(floor(((100. - p2) / 100.) * ((float)Nrow) * ((float)Ncol)));
 
-	int index_lower = int(  floor(   (p1 / 100.) * (float)Nrow * (float)Ncol));
-	int index_upper = int(  floor(  (  (100.-p2) / 100.) * (float)Nrow * (float)Ncol));
+	printf("index lower %d index upper %d Nrow*Ncol %d\n", index_lower, index_upper, Nrow * Ncol);
 
-	printf("index lower %d\n", index_lower);
-	printf("index upper %d\n", index_upper);
-	printf("Nrow*Ncol %d\n", Nrow*Ncol);
 
-	write_envi_hdr(outfile, Nrow,Ncol);
-
-	FILE * outf = fopen( outfile, "wb");
-
-	if(!outf){
-			printf("Could not open output file\n");
-			exit(1);
-	}
-
-	FILE * inf  = fopen( infile, "rb");
-	if(!inf){
-		printf("Could not open input file.\n");
-		exit(1);
-	}
+	FILE * outf = wopen(outfile);
+	FILE * inf  = open(infile);
 
 	float min, max, dat;
-	min = FLT_MAX;
-	max = FLT_MIN;
+	int lig, col, count;
 
 	std::list<float> my_list;
-	int lig, col, count;
+
+	min = max = FLT_MAX;
   count = 0;
+
 	for(lig = 0; lig < Nrow; lig++){
 		for(col = 0; col < Ncol; col++){
 			count++;
@@ -67,11 +54,13 @@ int main(int argc, char ** argv){
 			}
 		}
 	}
-	printf("Min %e\n", min);
-	printf("Max %e\n", max);
-	fclose(inf);
-	inf = fopen(infile, "rb");
-	my_list.sort();
+	printf("Min %e Max %e\n", min, max);
+
+  /* another pass on the file coming */	
+  rewind(inf);
+
+  /* sort the list of values */	
+  my_list.sort();
 
 	for(int q = 0; q < index_lower; q++){
     my_list.pop_front();
@@ -85,21 +74,20 @@ int main(int argc, char ** argv){
   }
   float top_cut = my_list.back();
 
-	printf("Index lower %d  Index upper %d\n", index_lower, index_upper);
-	printf("Bot %e  Top %e\n", lower_cut, top_cut);
+	printf("index_lower %d  index_upper %d nrow*ncol %d\n", index_lower, index_upper, Nrow * Ncol);
 	printf("Lowercut %e  Topcut %e\n", lower_cut, top_cut);
 
 	if(isnan(lower_cut) || isinf(lower_cut)){
 		lower_cut = min;
-		printf("Newlower_cut %e  Topcut %e\n", lower_cut, top_cut);
+		printf("Warning: NewLower_cut %e  topcut %e\n", lower_cut, top_cut);
 	}
 
 	if(isnan(top_cut) || isinf(top_cut)){
     top_cut = max;
-    printf("Lowercut %e  NewTopcut %e\n", lower_cut, top_cut);
+    printf("Warning: lowercut %e  NewTopcut %e\n", lower_cut, top_cut);
   }
 
-	printf("Applying histogram derived cutoffs to Hue and Value...\n");
+	printf("Applying histogram derived cutoffs..\n");
 
 	for(lig = 0; lig < Nrow; lig++){
 		for(col = 0; col < Ncol; col++){
@@ -119,4 +107,6 @@ int main(int argc, char ** argv){
 	}
 	fclose(inf);
 	fclose(outf);
+	write_envi_hdr(string(outfile) + string(".hdr"), Nrow, Ncol);
+  printf("done");
 }
