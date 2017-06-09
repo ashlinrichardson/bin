@@ -5,7 +5,7 @@
 #include<string.h>
 #include"ansicolor.h"
 
-void write_envi_hdr(char * fn, int nrow, int ncol, int nband, int datatype){
+void write_envi_hdr(const char * fn, int nrow, int ncol, int nband, int datatype){
   time_t rawtime;
   struct tm * timeinfo;
   time(&rawtime);
