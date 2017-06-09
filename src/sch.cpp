@@ -345,7 +345,7 @@ void read_config(char *dir, int *Nlig, int *Ncol, char *PolarCase,
 int main(int argc, char *argv[]){
 	if(argc<4)
 	{
-	  printf("cloude_v3_change_percent.cpp: Shane Cloude Algorithm Implemented by Ash Richardson March 2008 with arbitrary histogram scaling\nUsage: sch [in_dir] [out_dir] [value cutoff 0-100] [alpha=1/2/3] [hue cutoff 0-100] \n");
+	  printf("cloude_v3_change_percent.cpp: Shane Cloude Algorithm Implemented by Ash Richardson March 2008 with arbitrary histogram scaling reimplemented 20170608 \nUsage: sch [in_dir] [out_dir] [value cutoff 0-100] [alpha=1/2/3] [hue cutoff 0-100] \n");
 	  exit(1);
 	}
 
