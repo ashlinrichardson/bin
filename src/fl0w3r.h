@@ -14,6 +14,10 @@ void wprint(char * file_name){
   printf("%s+%sw %s%s%s\n", KMAG, KRED, KGRN, file_name, KNRM);
 }
 
+void wprint(string file_name){
+  printf("%s+%sw %s%s%s\n", KMAG, KRED, KGRN, file_name.c_str(), KNRM);
+}
+
 void rprint(char * file_name){
   printf("%s+%sr %s%s%s\n", KMAG, KGRN, KRED, file_name, KNRM);
 }
@@ -38,7 +42,7 @@ float * f32(int nfloat){
   return r;
 }
 
-FILE * open(char * fn){
+FILE * open(const char * fn){
   FILE * f = fopen(fn, "rb");
   if(!f){
     error(string("could not open (read-access) file: ") + string(fn));
@@ -50,7 +54,8 @@ FILE * open(string fn){
   return open(fn.c_str());
 }
 
-FILE * wopen(char * fn){
+FILE * wopen(const char * fn){
+  wprint(fn);
   FILE * f = fopen(fn, "wb");
   if(!f){
     error(string("could not open (write-access) file: ") + string(fn));
@@ -224,4 +229,10 @@ vector<string> parseHeaderFile(string hfn, long int & NRow, long int & NCol, lon
     }
   }
   return bandNames;
+}
+
+void read_config(string hfn, int & NRow, int & NCol){
+  vector<string> lines =  readLines(hfn);
+  NRow = atoi(lines[1].c_str());
+  NCol = atoi(lines[4].c_str());
 }
