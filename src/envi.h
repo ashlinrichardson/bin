@@ -31,11 +31,11 @@ void write_envi_hdr(char * fn, int nrow, int ncol, int nband, int datatype){
 }
 
 /* wrap for default params */
-void write_envi_hdr(char * fn, int nrow, int ncol, int nband){
+void write_envi_hdr(const char * fn, int nrow, int ncol, int nband){
   write_envi_hdr(fn, nrow, ncol, nband, 4);
 }
 
-void write_envi_hdr(char * fn, int nrow, int ncol){
+void write_envi_hdr(const char * fn, int nrow, int ncol){
   write_envi_hdr(fn, nrow, ncol, 1);
 }
 
