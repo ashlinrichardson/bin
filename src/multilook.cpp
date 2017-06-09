@@ -1,8 +1,7 @@
+#include "envi.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "envi.h"
-
 int main(int argc, char *argv[]){
 	int NBINS;
 
@@ -16,22 +15,22 @@ int main(int argc, char *argv[]){
 		exit(1);
 
 	}
-	int NRow, NCol;
-	register int i, j;
+	int NRow, NCol, i, j;
 
 	FILE * infile;
 	FILE * outfile;
 
-	char * INFILE        = argv[1];
+	char * INFILE = argv[1];
   read_config(string(argv[2]) + string("/config.txt"), NRow, NCol);
-	char * OUTFILE       = argv[3];
-	int windowsize = atoi( argv[4]);
+	
+  char * OUTFILE = argv[3];
+	int windowsize = atoi(argv[4]);
 
 	infile = open(INFILE);
   outfile = wopen(OUTFILE);
 
-	int dw = (windowsize-1)/2;
-	float * dat = f32(NRow*NCol); //new SA<float>(NRow*NCol);
+	int dw = (windowsize - 1) / 2;
+	float * dat = f32(NRow*NCol);
 
 	float d=0;
 	double total=0.;
@@ -51,43 +50,37 @@ int main(int argc, char *argv[]){
 		rc = row*windowsize;
 		for(col = 0; col < ncol_new; col++){
 			cc = col * windowsize; //pixel window.
-			total = 0.;
-			totaln = 0;
-			d = 0;
-            isBad = false;
-			for(i=rc; i< rc+windowsize; i++){
-				for(j=cc; j<cc+windowsize; j++){
-					if( (i>=0) && (j>=0) && (i<NRow) &&(j<NCol)   ){
-						ind = i*NCol + j;  //linear coordinate of pixel.
+			d = total = totaln = 0.;
+      isBad = false;
+			for(i = rc; i < rc + windowsize; i++){
+				for(j = cc; j < cc + windowsize; j++){
+					if((i >= 0) && (j >= 0) && (i < NRow) && (j < NCol)){
+						ind = i*NCol + j;  //linear coord of pixel
 						d = dat[ind];
 						dt += (double)d;
-                        if(isinf(d) || isnan(d)){
-                            isBad = true;
-                        }
-									total += (double)d;
-									totaln ++;
+            if(isinf(d) || isnan(d)){
+              isBad = true;
+            }
+						total += (double)d;
+						totaln ++;
 			
 					}
 				} 
 			}
 			if(totaln > 0){
-				d = (float) ( total /  ((double)totaln));
+				d = (float)(total / ((double)totaln));
       }
 			else{
-				d=0;
+				d = 0;
       }
       if(isBad){
-        d = 0.; /* NAN; */
+        d = 0.; /* was NAN; */
       }
-			fwrite( &d, sizeof(float), 1, outfile);
-		
+			fwrite(&d, sizeof(float), 1, outfile);
 		}
 	}
-
 	printf("\r\n");
 	fclose(outfile);
 	write_envi_hdr(string(OUTFILE)+string(".hdr"), nrow_new, ncol_new);
 	return 0;
 }
-
-
