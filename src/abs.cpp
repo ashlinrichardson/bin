@@ -31,7 +31,7 @@ int main(int argc, char ** argv){
   }
 
   for0(row, nrow){
-    printf("\rProcessing row %d of %d    ", row + 1, nrow);
+    if(nrow % 100 ==0) printf("\rProcessing row %d of %d    ", row + 1, nrow);
     for0(col, ncol){
       fread(&real, sf, 1, infile);
       fread(&imag, sf, 1, infile);
