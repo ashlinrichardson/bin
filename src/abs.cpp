@@ -19,8 +19,6 @@ int main(int argc, char ** argv){
 
   string outfn(string(infn) + string(".abs"));
   float real, imag, absv;
-  double dreal, dimag, sum;
-  sum = 0.;
 
   FILE * infile = open(infn);
     if(!infile){
@@ -37,9 +35,7 @@ int main(int argc, char ** argv){
     for0(col, ncol){
       fread(&real, sf, 1, infile);
       fread(&imag, sf, 1, infile);
-      dreal = (double)real;
-      dimag = (double)imag;
-      absv = (float)(sqrt((dreal * dreal) + (dimag * dimag)));
+      absv = (float)(sqrt(  sq(real) + sq(imag)));
       fwrite(&absv, sf, 1, outfile);
     }
   }
