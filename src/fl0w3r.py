@@ -5,6 +5,14 @@ import os
 import sys
 from ansicolor import KRED, KGRN, KNRM, KMAG
 
+def terminal_shape():
+    # it would be cool to have progress indicators that varied (in shape, accordingly:) with the size of the terminal screen : ) e.g., to fill up the terminal screen
+    try:
+        rows, columns = os.popen('stty size', 'r').read().split()
+        return rows, columns
+    except:
+        return None, None
+
 # error message and quit
 def error(msg):
     print KRED + "Error: " + KGRN + msg.strip() + KNRM
