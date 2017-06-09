@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+'''compile all the entries in the package'''
 import os
 import sys
 from fl0w3r import normpath, run
@@ -17,6 +19,3 @@ for afiles in [pyfiles, cfiles, cppfiles]:
     if(f.split('/')[-1] != '__init__.py'):
       f = normpath(f)
       run(cmpl + ' ' + f)
-      
-
-
