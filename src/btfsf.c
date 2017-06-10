@@ -8,7 +8,6 @@ void read_config(char *dir, int *Nlig, int *Ncol, char *PolarCase, char *PolarTy
     char file_name[128];
     char Tmp[128];
     FILE *file;
-
     sprintf(file_name, "%sconfig.txt", dir);
     if ((file = fopen(file_name, "r")) == NULL){
 	    printf("Could not open configuration file : %s\n", file_name);
@@ -25,7 +24,6 @@ void read_config(char *dir, int *Nlig, int *Ncol, char *PolarCase, char *PolarTy
     fscanf(file, "%s\n", Tmp);
     fscanf(file, "%s\n", Tmp);
     fscanf(file, "%s\n", PolarType);
-
     fclose(file);
 }
 
@@ -47,7 +45,7 @@ void writeENVIHeader(char * filename, int datatype, int NRows, int NCols){
 		printf("w %s\n",file_name);
 	}
 
-int main(int argc, char *argv[]){
+int main(int argc, char ** argv){
 	if(argc != 5){
 		printf("btf.c: Scale float binary file to float in range 0-1; by Ash Richardson 200807, updates 200906, 20170609\n");
 		printf("Usage: btf [infile] [Nrow] [Ncol] [Outfile]\n");
@@ -82,7 +80,8 @@ int main(int argc, char *argv[]){
 		}
 		else{
  			if(d < min){
-				min=d;  mini=i;
+				min = d;
+        mini = i;
 			}
 			if(d > max){
 				max = d;
@@ -93,10 +92,9 @@ int main(int argc, char *argv[]){
 
 	for(i=0; i<size; i++){
 		if( ! ( isnan(d) || isinf(d)) ){
-		  dat[i] =(float) (  (  ((double)dat[i]) - ((double)min) )/(  ((double)max)- ((double)min))) ;  //bring the element to the range (0,1);
+		  dat[i] =(float)((((double)dat[i]) - ((double)min) )/(  ((double)max)- ((double)min)));
 		}
 	}
-
 	FILE * o = fopen(outfile,"wb");
 	fwrite(&dat[0], size*sizeof(float), 1,o);
 	free(dat);
