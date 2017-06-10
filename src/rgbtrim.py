@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+'''
+takes files named R.bin, G.bin, and B.bin
+ -- overwrites them with histogram-trimmed versions
+ -- combines those to create a bmp file.
+'''
 import os
 import sys
 from fl0w3r import error, run, chkdir, read_config

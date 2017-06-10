@@ -343,13 +343,10 @@ void read_config(char *dir, int *Nlig, int *Ncol, char *PolarCase,
     fclose(file);
 }
 int main(int argc, char *argv[]){
-	if(argc<4)
-	{
-	  printf("cloude_v3_change_percent.cpp: Shane Cloude Algorithm Implemented by Ash Richardson March 2008 with arbitrary histogram scaling reimplemented 20170608 \nUsage: sch [in_dir] [out_dir] [value cutoff 0-100] [alpha=1/2/3] [hue cutoff 0-100] \n");
+	if(argc<4){
+	  printf("cloude_v3_change_percent.cpp: Shane Cloude Algorithm Implemented by Ash Richardson March 2008 with arbitrary histogram scaling revisioned 20170608 \nUsage: sch [in_dir] [out_dir] [value cutoff 0-100] [alpha=1/2/3] [hue cutoff 0-100] \n");
 	  exit(1);
 	}
-
-
     register int lig, col;
     FILE *in_file[Npolar_in], *out_file[Npolar_out];
     char file_name[128], in_dir[128], out_dir[128];
@@ -661,15 +658,13 @@ printf("Applying histogram derived cutoffs to Hue and Value...\n");
 			fread( &__S, sizeof(float), 1, out_file[oS]);
 			fread( &__V, sizeof(float), 1, out_file[oV]);
 
-
 			//__H = ((__H - minH)/(maxH-minH))*360.;   //was 90 degrees.
 			if(__H < huecutoff){
-                                __H = 0.;
-                        }
-                        else
-                        {
-                                __H = (__H - huecutoff)/(maxH-huecutoff);
-                        }
+        __H = 0.;
+      }
+      else{
+        __H = (__H - huecutoff)/(maxH-huecutoff);
+      }
 			__H *= 90.;
 
 			if(__H<0) __H=eps;
@@ -689,7 +684,6 @@ printf("Applying histogram derived cutoffs to Hue and Value...\n");
 			if(__V<0) __V=eps;
 			HSVtoRGB( &__R, &__G, &__B, __H, __S, __V);
 
-
 			fwrite( &__R, sizeof(float), 1, out_file[oR]);
 			fwrite( &__G, sizeof(float), 1, out_file[oG]);
 			fwrite( &__B, sizeof(float), 1, out_file[oB]);
@@ -706,7 +700,5 @@ printf("Applying histogram derived cutoffs to Hue and Value...\n");
 	printf("\r                         ");
 	printf("\rminH %f maxH %f\nminS %f maxS %f\nminL %f maxL %f\n", minH, maxH, minS, maxS, minL, maxL );
 	printf("L cutoff %f \n",_2percent_cutoff);
-  
   return 0;
-
 }
