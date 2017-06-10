@@ -63,6 +63,13 @@ else:
 
 cmdname = fileend.split('.')[0]
 binname = normpath(normpath(bin_folder) + cmdname)
+
+''' note: this next block should be commented out eventually
+re: "which"
+
+this code ensures replacement of existing/previous versions
+of commands. don't want to run this on someone else's system
+'''
 which = os.popen('which '+ cmdname).read().strip()
 while which != '':
     cmd = 'rm ' + which
