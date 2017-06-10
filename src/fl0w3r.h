@@ -186,7 +186,7 @@ vector<string> readLines(string fn){
   return(ret);
 }
 
-string getHeaderFileName( string fn){
+string getHeaderFileName(string fn){
   string gfn(trim(fn, '\"'));
   string hfn(gfn + string(".hdr"));
   string hfn2((gfn.substr(0, gfn.size()-3)) + string("hdr"));
@@ -229,6 +229,11 @@ vector<string> parseHeaderFile(string hfn, long int & NRow, long int & NCol, lon
     }
   }
   return bandNames;
+}
+
+/* read an envi header file (make a guess at what the header file is called, based on the binary file name */
+void read_envi_hdr(string hfn, int & nrow, int & ncol, int & nband){
+  parseHeaderFile(getHeaderFileName(hfn), nrow, ncol, nband);
 }
 
 void read_config(string hfn, int & NRow, int & NCol){
