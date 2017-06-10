@@ -76,12 +76,12 @@ Revision G, October 2005, JAXA, Earth Observation Researcg and Application Cente
 /* ROUTINES DECLARATION */
 
 #include "../psp/psp.h"
-//#include "../lib/alos_ceos.h"            /* CEOS file definitions */
-//#include "../lib/alos_header.h"          /* Constants, output strings */
-//#include "../lib/graphics.h"
-//#include "../lib/matrix.h"
-//#include "../lib/processing.h"
-//#include "../lib/util.h"
+#include "../psp/alos_ceos.h"            /* CEOS file definitions */
+#include "../psp/alos_header.h"          /* Constants, output strings */
+#include "../psp/graphics.h"
+#include "../psp/matrix.h"
+#include "../psp/processing.h"
+#include "../psp/util.h"
 
 /******************************************************************************
 *                                                                             *
@@ -147,14 +147,12 @@ Wr_Image_Process(image_file_struct *fs, FILE *fp_wr);
     void                        /* SART: Write file descriptor */
 Wr_Trailer_Descript(trailer_file_struct *rp, FILE *fp_wr);
 
-    void                        /* left-justify a string */
-justify(char *src, int length, char *dest);
+    void                        /* left-justify a string */ justify(char *src, int length, char *dest);
 
-	unsigned long 				/* Convert long word integer */
-htonl( unsigned long x );
+  // 20170609 commented this line out:
+	//unsigned long /* Convert long word integer */ htonl( unsigned long x );
 
-	unsigned short 				/* Convert short word integer */
-htonc( unsigned short x );
+	unsigned short 				/* Convert short word integer */ htonc( unsigned short x );
 
     void                        /* Read Imagery Options File */
 PolSARproConfigFile();
@@ -4682,17 +4680,16 @@ void justify(char *src, int length, char *destination)
 * Return Value:  converted integer
 *
 ******************************************************************************/
-
-unsigned long htonl( unsigned long x )
-{
-	union {
+// 20170609 commented this function out:
+/*
+unsigned long htonl(unsigned long x ){
+	union{
 		unsigned long x;
 		unsigned char b[4];
-	} y;
+	}y;
 	unsigned char tmp;
 
 	y.x = x;
-
 	tmp = y.b[0];
 	y.b[0] = y.b[3];
 	y.b[3] = tmp;
@@ -4701,7 +4698,7 @@ unsigned long htonl( unsigned long x )
 	y.b[2] = tmp;
 
 	return ( y.x );
-} /* End of htonl */
+}*/ /* End of htonl */
 
 /******************************************************************************
 *
