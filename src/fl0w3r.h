@@ -232,7 +232,7 @@ vector<string> parseHeaderFile(string hfn, long int & NRow, long int & NCol, lon
 }
 
 /* read an envi header file (make a guess at what the header file is called, based on the binary file name */
-void read_envi_hdr(string hfn, int & nrow, int & ncol, int & nband){
+void read_envi_hdr(string hfn, long int & nrow, long int & ncol, long int & nband){
   parseHeaderFile(getHeaderFileName(hfn), nrow, ncol, nband);
 }
 

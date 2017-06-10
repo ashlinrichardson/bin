@@ -11,7 +11,7 @@ int main(int argc, char * argv[]){
 		exit(1);
 	}
   long int nrow, ncol, nband;
-  parseHeaderFile(getHeaderFileName(argv[1]), nrow, ncol, nband);
+  read_envi_hdr(argv[1], nrow, ncol, nband);
   
   if(nband != 1){
     error("single-band input file required.\n");
