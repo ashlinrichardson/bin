@@ -42,6 +42,16 @@ float * f32(int nfloat){
   return r;
 }
 
+char * c8(int nchar){
+  int nb = sizeof(char) * nchar;
+	char * r = (char*)(void*)malloc(nb);
+  if(!r){
+    error("memory allocation failed");
+  }
+	memset(r, '\0', nb);
+  return r;
+}
+
 FILE * open(const char * fn){
   FILE * f = fopen(fn, "rb");
   if(!f){
