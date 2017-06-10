@@ -6,7 +6,7 @@ from fl0w3r import error, normpath, read_config, run
 
 args = sys.argv
 if len(args) < 3:
-    msg = 'absimag.py: take magnitudes of complex (ENVI type 6) images'
+    msg = 'absimag.py: visualise magnitudes of complex (ENVI type 6) images'
     error(msg + '\n\tuse: absimag [input path] [vertical multilook factor]')
 
 cwd, multi_look = normpath(args[1]), int(args[2])
@@ -38,6 +38,4 @@ for b in bins:
         run('multilook ' + abs_file + ' ' + os.path.dirname(cwd) + ' ' + ml_file + ' ' + str(multi_look))
         ht_file = ml_file + '.ht'
         run('htrim ' + ml_file + ' ' + str(int(nlin/multi_look)) + ' ' + str(ncol) + ' 1.5 1.5 ' + ht_file)
-
-        
 
