@@ -181,7 +181,7 @@ inline void kennaugh_huynen(complex<TYPE> s11_, complex<TYPE> s12_, complex<TYPE
 
 	psi  = tau = m = gamma = nu = rho = 0.;
 	TYPE err =0.;
-	M2C  M( s11_, s12_, s12_, s22_);
+	M2C  M(s11_, s12_, s12_, s22_);
 	M2C S(remove_absolute_phase(M));
 	TYPE alpha  = angle ( M.a);
 	M2C residue_alpha((exp( (cf_(0,alpha)))*S) - M);
