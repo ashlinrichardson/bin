@@ -29,9 +29,7 @@ using namespace _matrix3;
 using namespace _S2;
 using namespace _T3;
 
-//constants==================================================================
 #define STRLEN_ 1000
-//#define BUFS STRLEN_
 #define ENVI_DATA_TYPE 4
 #define PI 3.14159265358979323846264338327950288419716939937510f 
 #define EPS FLT_EPSILON //#define eps FLT_EPSILON
@@ -61,8 +59,6 @@ complex<float> LL, LR, RL, RR;
 #define S12_out (S2_out.pixel[s12])
 #define S21_out (S2_out.pixel[s21])
 #define S22_out (S2_out.pixel[s22])
-
-//==================================================================================================
 
 #include "M2C.h"
 #include "condiag.h"
