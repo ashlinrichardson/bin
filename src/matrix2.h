@@ -22,9 +22,11 @@ struct complex{
 	inline complex<T> log(){
 		return complex<T>( (T) (double)std::log( (double) sqrt( (double)(re*re + im*im))), (T) (double)atan2(  (double)im, (double)re));
 	}
+
 	inline void real( T dat){
 		re = dat;
 	}
+
 	inline void imag( T dat){
 		im = dat;
 	}
@@ -33,11 +35,12 @@ struct complex{
 		re=0.;
 		im=0.;
 	}
+
 	inline void operator = (const complex &A){
-		re=A.re; im=A.im; 
+		re = A.re;
+    im = A.im; 
 	}
         
-
 	T re; T im;
 };
 
@@ -48,31 +51,34 @@ struct complex{
 		output << right ;
 		output << scientific;
   	if( A.im < 0){
-			output << A.re << A.im << "i" ;//<<endl;
+			output << A.re << A.im << "i" ;
 		}
 		else{
-			output << A.re << "+" << A.im << "i" ;//<<endl;
+			output << A.re << "+" << A.im << "i" ;
 		}
 		return output;
 	} 
+
 	template<class T>
 	inline complex<T> operator+( const complex<T> &A, const complex<T> &B){
 		complex<T> ret( B.re+A.re, B.im+A.im);
 		return ret;
 	}
+
 	template<class T>
 	inline complex<T>  operator-( const complex<T> &A, const complex<T> &B){
 		complex<T> ret( A.re-B.re, A.im-B.im);
 		return ret;
 	}
+
 	template<class T>
-	inline complex<T> operator-( const complex<T> &B)
-	{
+	inline complex<T> operator-( const complex<T> &B){
 		complex<T> ret(-B.re, -B.im);
 		return ret;
 	}
+
 	template<class T>
-	inline complex<T>  operator*( const complex<T> &A, const complex<T> &B){
+	inline complex<T> operator*( const complex<T> &A, const complex<T> &B){
 		complex<T> ret( ((A.re)*(B.re))-((A.im)*(B.im)) ,   ((A.im)*(B.re))+((A.re)*(B.im)) );
 		return ret;
 	}
@@ -99,7 +105,7 @@ struct complex{
 	}
 
 	template<class T>
-	inline complex<T>  operator/( const complex<T> &A, const complex<T> &B){
+	inline complex<T> operator/( const complex<T> &A, const complex<T> &B){
 		T babs = abs(B);
 		babs = babs*babs;
 		complex<T> ret( (((A.re)*(B.re))+((A.im)*(B.im)))/babs ,   
@@ -187,14 +193,17 @@ struct complex{
 
 template<class T>
 struct vec2{
-	inline vec2( T A, T B) : a(A), b(B){}
+	inline vec2 T A, T B) : a(A), b(B){}
 	inline vec2<T>(const vec2<T> &A): a(A.a), b(A.b){}
 	inline vec2<T>(): a(), b(){  a.zero(); b.zero();  }
 
 	inline void operator = (const vec2 &A){
-		a=A.a; b=A.b; 
+		a = A.a;
+    b = A.b; 
 	}
+
 	T a; T b;
+
 	inline void normalize(){
 		TYPE norm = sqrt(abs(a)*abs(a)+abs(b)*abs(b));
 		a.re /= norm;
@@ -202,38 +211,41 @@ struct vec2{
 		b.re /= norm;
 		b.im /= norm;
 	}
-	inline void unit(){ normalize(); }
+
+	inline void unit(){
+    normalize();
+  }
 };
 
 	template<class T>
-	inline ostream & operator<<( ostream &output, const vec2<T> A){
+	inline ostream & operator<<(ostream &output, const vec2<T> A){
 		output << "["<< A.a << "]" <<endl
 			<< "["<<A.b << "]" <<endl;
 		return output;
 	} 
 
 	template<class T>
-	inline vec2<T> operator+( const vec2<T> &A, const vec2<T> &B){
-		vec2<T> ret( B.a+A.a, B.b+A.b);
+	inline vec2<T> operator+(const vec2<T> &A, const vec2<T> &B){
+		vec2<T> ret(B.a+A.a, B.b+A.b);
 		return ret;
 	}
 
 	template<class T>
-	inline vec2<T>  operator-( const vec2<T> &A, const vec2<T> &B){
-		vec2<T> ret( A.a-B.a, A.b-B.b);
+	inline vec2<T>  operator-(const vec2<T> &A, const vec2<T> &B){
+		vec2<T> ret(A.a-B.a, A.b-B.b);
 		return ret;
 	}
 
 	template<class T>
-	inline vec2<T> operator-( const vec2<T> &B){
+	inline vec2<T> operator-(const vec2<T> &B){
 		vec2<T> ret(-B.a, -B.b);
 		return ret;
 	}
 
 	template<class T>
 	inline vec2<T> conj(vec2<T> const &A){
-		vec2<T> ret( conj(A.a), conj(A.b));
-			return ret;
+		vec2<T> ret(conj(A.a), conj(A.b));
+		return ret;
 	}
 
 
@@ -247,69 +259,71 @@ struct mat2{
 	inline void operator = (const mat2 &A){
 		a=A.a; b=A.b; c=A.c; d=A.d;
 	}
+
 	T a; T b; T c; T d;
 };
 	
   template<class T>
-	inline ostream & operator<<( ostream &output, const mat2<T> A){
+	inline ostream & operator<<(ostream &output, const mat2<T> A){
 		output << "["<< A.a << " " <<A.b << "]" <<endl
 		<< "["<<A.c <<  " "<<A.d  << "]" <<endl;
 		return output;
 	} 
 
 	template<class T>
-	inline mat2<T> operator+( const mat2<T> &A, const mat2<T> &B){
+	inline mat2<T> operator+(const mat2<T> &A, const mat2<T> &B){
 		mat2<T> ret( B.a+A.a, B.b+A.b, B.c+A.c, B.d+A.d  );
 		return ret;
 	}
 
 	template<class T>
-	inline mat2<T>  operator-( const mat2<T> &A, const mat2<T> &B){
-		mat2<T> ret( A.a-B.a, A.b-B.b, A.c-B.c, A.d-B.d  );
+	inline mat2<T>  operator-(const mat2<T> &A, const mat2<T> &B){
+		mat2<T> ret(A.a-B.a, A.b-B.b, A.c-B.c, A.d-B.d);
 		return ret;
 	}
 	template<class T>
-	inline mat2<T> operator-( const mat2<T> &B){
-		mat2<T> ret(-B.a, -B.b, -B.c, -B.d  );
+	inline mat2<T> operator-(const mat2<T> &B){
+		mat2<T> ret(-B.a, -B.b, -B.c, -B.d);
 		return ret;
 	}
 
 	template<class T>
-	inline mat2<T> operator*( const mat2<T> &A, const mat2<T> &B){
-		mat2<T> ret( 	 A.a*B.a+A.b*B.c, A.a*B.b+A.b*B.d,
-				A.c*B.a+A.d*B.c, A.c*B.b+A.d*B.d);
+	inline mat2<T> operator*(const mat2<T> &A, const mat2<T> &B){
+		mat2<T> ret(A.a*B.a+A.b*B.c, A.a*B.b+A.b*B.d,
+				        A.c*B.a+A.d*B.c, A.c*B.b+A.d*B.d);
 		return ret;
 	}
 	
 	template<class T>
 	inline mat2<T> inv(mat2<T> const &A){ 
-		mat2<T> ret(A.d/(A.a*A.d-A.b*A.c), -A.b/(A.a*A.d-A.b*A.c), -A.c/(A.a*A.d-A.b*A.c),  A.a/(A.a*A.d-A.b*A.c)   );
+		mat2<T> ret(A.d/(A.a*A.d-A.b*A.c),
+               -A.b/(A.a*A.d-A.b*A.c),
+               -A.c/(A.a*A.d-A.b*A.c),
+                A.a/(A.a*A.d-A.b*A.c));
 		return ret;
 	}
 
 	template<class T>
 	inline mat2<T> transpose(mat2<T> const &A){
-		mat2<T> ret( A.a, A.c, A.b, A.d );
-			return ret;
+		mat2<T> ret(A.a, A.c, A.b, A.d);
+		return ret;
 	}
 	
 	template<class T>
 	inline mat2<T> conj(mat2<T> const &A){
-		mat2<T> ret( conj(A.a), conj(A.b), conj(A.c), conj(A.d));
-			return ret;
+		mat2<T> ret(conj(A.a), conj(A.b), conj(A.c), conj(A.d));
+		return ret;
 	}
 	
 	template<class T>
 	inline mat2<T> adjoint( mat2<T> const &A){
-		mat2<T> ret( conj(A.a), conj(A.c), conj(A.b), conj(A.d) );
-			return ret;
+		mat2<T> ret(conj(A.a), conj(A.c), conj(A.b), conj(A.d) );
+		return ret;
 	}
 
 	template<class T>
 	inline vec2<T> operator*( const mat2<T> &A, const vec2<T> &B){
-		vec2<T> ret( 	 A.a*B.a+A.b*B.b, 
-				 A.c*B.a+A.d*B.b);
+		vec2<T> ret(A.a * B.a + A.b * B.b, A.c * B.a + A.d * B.b);
 		return ret;
 	}
 }
-
