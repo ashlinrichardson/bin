@@ -87,40 +87,29 @@ namespace _C4{
 
 			inline cf operator[]( unsigned int subscript){
 				switch(subscript){
-					case 11: 	return cf(pixel[r11], 0.);
-							break;
-					case 22:        return cf(pixel[r22], 0.);
-                                                        break;
-					case 33:        return cf(pixel[r33], 0.);
-                                                        break;
-					case 44:        return cf(pixel[r44], 0.);
-                                                        break;
-
-					case 12:        return cf(pixel[r12], pixel[i12]);
-                                                        break;
-					case 13:        return cf(pixel[r13], pixel[i13]);
-                                                        break;
-					case 14:        return cf(pixel[r14], pixel[i14]);
-                                                        break;
-			
-					case 21:        return cf(pixel[r12], -pixel[i12]); break;
-					case 23: 	return cf(pixel[r23],  pixel[i23]);  break;
-					case 24: 	return cf(pixel[r24],  pixel[i24]);	break;
-			
+					case 11: 	return cf(pixel[r11], 0.);  break;
+					case 22:  return cf(pixel[r22], 0.);  break;
+					case 33:  return cf(pixel[r33], 0.);  break;
+					case 44:  return cf(pixel[r44], 0.);  break;
+					case 12:  return cf(pixel[r12], pixel[i12]);  break;
+					case 13:  return cf(pixel[r13], pixel[i13]);  break;
+					case 14:  return cf(pixel[r14], pixel[i14]);  break;
+			  	case 21:  return cf(pixel[r12], -pixel[i12]); break;
+					case 23: 	return cf(pixel[r23],  pixel[i23]); break;
+					case 24: 	return cf(pixel[r24],  pixel[i24]);	break;	
 					case 31: 	return cf(pixel[r13], -pixel[i13]); break;
 					case 32: 	return cf(pixel[r23], -pixel[i23]); break;
 					case 34: 	return cf(pixel[r34],  pixel[i34]); break;
 					case 41:	return cf(pixel[r14], -pixel[i14]); break;
 					case 42: 	return cf(pixel[r24], -pixel[i24]); break;
 					case 43: 	return cf(pixel[r34], -pixel[r34]); break;
-					default:	printf("Error: invalid subscript on T4 matrix\n");
-								    exit(1);break;
+					default:	printf("Error: invalid subscript on T4 matrix\n"); exit(1);  break;
 				}
 			}
 
 		protected:
-		char * dir;
-		Image * T;
-		int NRow, NCol, i, type;
+		  char * dir;
+		  Image * T;
+		  int NRow, NCol, i, type;
 	};
 };
