@@ -1,26 +1,4 @@
-//;***********************************************************************************************************
-//;*
-//;* bin.h
-//;* \\squall\palsar\pos\RADLIB\bin.h
-//;*
-//;***********************************************************************************************************
-//;*
-//;* This header performs library type functions for generic binary file type data. See:
-//;* http://squall/wiki/index.php/RADLIB
-//;*
-//;* This header supports generic float binary files and generic complex binary files.
-//;*
-//;* Status: R&D
-//;*
-//;* Last modification:June 27, 2008.
-//;*
-//;* Developer: Ashlin Richardson <ashricha@nrcan.gc.ca> <ashlin.richardson@gmail.com>
-//;*
-//;* Modified by A. Richardson on March 18th, 2008 for commenting. with revisions 20170610
-//;*
-//;*
-//;***********************************************************************************************************
-
+/* 20080627 mods 20080318, 20170610 */
 #pragma once
 #include <fstream>
 #include <iostream>
@@ -38,7 +16,7 @@ namespace _image{
   #define OUTPUT 1
 
 inline float * falloc( int size ){
-	float * p =(float *)  malloc( size*sizeof(float));
+	float * p = (float *)  malloc( size*sizeof(float));
 	memset( p, '\0', size*sizeof(float));
 	return p;
 }
@@ -47,25 +25,24 @@ inline float * falloc( int size ){
 	class Image{
 
 		public:
-			Image()
-			{ return;
+			Image(){
 			}
 
-			~Image()
-			{
-				return;
+			~Image(){
 			}
+
 			void setDimensions(int _NRow, int _NCol){
 				NRow = _NRow;  NCol=_NCol;
-				pixels=NRow*NCol;
+				pixels = NRow * NCol;
 			}
+
 			void alloc(){
-			    buf = (float*)malloc( NRow*NCol*sizeof(float) );
-          if(!buf){
-            printf("Malloc failed to allocate memory for a band\n");
-            exit(1);
-          }
-        memset( buf, '\0', NRow*NCol*sizeof(float));
+			  buf = (float*)malloc(NRow*NCol*sizeof(float) );
+        if(!buf){
+          printf("Malloc failed to allocate memory for a band\n");
+          exit(1);
+        }
+        memset(buf, '\0', NRow*NCol*sizeof(float));
 				printf("Finished alloc\n");
 			}	
 
@@ -77,7 +54,6 @@ inline float * falloc( int size ){
 				pixels_processed=0;							//Clear the flag which counts the number of pixels processed so far.
 				alloc();
 				open();
-
 				if(type==INPUT){
 					fread(&buf[0], NRow*NCol*sizeof(float), 1, handle);
 				}
@@ -105,18 +81,18 @@ inline float * falloc( int size ){
 				}
 				fclose(handle);
 			}
+
 			void destroy(){
 				free(buf);
 			}
 
       //Get a pixel from the image and store it into the pixel buffer.
 			float getPixel(){
-
 					tmp = buf[pixels_processed];
 					++pixels_processed;
 					return tmp;
-
 			}
+
 			void rewind(){
 				pixels_processed=0;
 				close();
@@ -134,7 +110,7 @@ inline float * falloc( int size ){
 					//headers are written when the file is closed.
 			}
 
-		protected:
+  protected:
 			int type;  //type is INPUT or OUTPUT.
 			int ENVItype;  //ENVI data type (4 for this object)
 			char * filename;  //Name of the image file.
@@ -142,10 +118,7 @@ inline float * falloc( int size ){
 			int pixels_processed;  //Count how many pixels have been processed so far.
 			FILE * handle;			//File handle for the image file.
 			float tmp;
-			//SA<float> * Row;
 			int pixels;
 			float * buf;
-		private:
 	};
 }
-
