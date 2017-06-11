@@ -18,16 +18,18 @@ template<class T>
 	struct vec3{
 		inline vec3<T>( T A, T B, T C) : a(A), b(B), c(C) {}
 		inline vec3<T>(const complex<T> &A): a(A.a), b(A.b), c(A.c){}
-		inline vec3<T>(): a(_zero), b(_zero),c(_zero){}
+  	inline vec3<T>(): a(_zero), b(_zero),c(_zero){}
 	
 		inline void operator = (const vec3<T> &A){
 			a=A.a; b=A.b; c=A.c; 
 		}
+
 		T a; T b; T c;
 	};
+
 	template<class T>
-	inline ostream & operator<<( ostream &output, const vec3<T> A){
-		output <<"transpose(["<<A.a <<","  << A.b <<"," << A.c << "])";
+	inline ostream & operator<<(ostream &output, const vec3<T> A){
+		output << "transpose([" << A.a << ","  << A.b << "," << A.c << "])";
 		return output;
 	} 
 
@@ -37,7 +39,6 @@ template<class T>
 		TYPE n = sqrt(abs(A.a)*abs(A.a)+abs(A.b)*abs(A.b)+abs(A.c)*abs(A.c));
 		return n;
 	}	
-
 
 /* give vector l2 length of 1*/
 	template<class T>
@@ -64,12 +65,11 @@ template<class T>
 			printf("Error: index must be in range 0-2");
 			exit(1);
 		}
-
 	} 
 
 /* accessor */
   template<class T>
-	inline void  set(vec3<T> & A, int i, cf dat){
+	inline void set(vec3<T> & A, int i, cf dat){
     if(i==0){
       A.a = dat; return;
     }
@@ -86,17 +86,17 @@ template<class T>
   }
 
   template<class T>
-	inline vec3<T> operator+( const vec3<T> & A, const vec3<T> & B){
-		return vec3<T> (  (B.a)+(A.a), (B.b)+(A.b), (B.c)+(A.c) );
+	inline vec3<T> operator+(const vec3<T> & A, const vec3<T> & B){
+		return vec3<T> ((B.a)+(A.a), (B.b)+(A.b), (B.c)+(A.c) );
 	}
 	
   template<class T>
-	inline vec3<T> operator-( const vec3<T> & A, const vec3<T> & B){
-		return vec3<T>( A.a-B.a, A.b-B.b, A.c-B.c);
+	inline vec3<T> operator-(const vec3<T> & A, const vec3<T> & B){
+		return vec3<T>(A.a-B.a, A.b-B.b, A.c-B.c);
 	}
 
   template<class T>
-	inline vec3<T> operator-( const vec3<T> & B){
+	inline vec3<T> operator-(const vec3<T> & B){
 		return vec3<T> (-B.a, -B.b, -B.c);
 	}
 
@@ -107,34 +107,32 @@ template<class T>
 		
   template<class T>
 	inline vec3<T>  operator*(const T &B,  const vec3<T> &A){
-		return vec3<T> ( B*(A.a), B*(A.b), B*(A.c));
+		return vec3<T> (B*(A.a), B*(A.b), B*(A.c));
 	}
 
   template<class T>
 	inline vec3<T>  operator*(const vec3<T> &A, const T &B){
-		return vec3<T> ( B*(A.a), B*(A.b), B*(A.c));
+		return vec3<T> (B*(A.a), B*(A.b), B*(A.c));
 	}
 
   template<class T>
 	inline vec3<T>  operator / (const vec3<T> &A, const T &B){
-		return vec3<T> ( (A.a)/B, (A.b)/B, (A.c)/B);
+		return vec3<T> ((A.a)/B, (A.b)/B, (A.c)/B);
 	}
 
   template<class T>
   struct matrix3{
 	  inline matrix3<T>( T A, T B, T C, T D, T E, T F, T G, T H, T I) : a(A), b(B), c(C), d(D), e(E), f(F), g(G), h(H), i(I) {}
 	  inline matrix3<T>(const complex<T> &A): a(A.a), b(A.b), c(A.c), d(A.d), e(A.e), f(A.f), g(A.g), h(A.h), i(A.i) {}
-	  inline matrix3<T>(){ zero(); } //a(_zero), b(_zero),c(_zero),d(0.),e(0.),f(0.){}
+
+	  inline matrix3<T>(){
+      zero();
+    }
+
 	  inline void zero(){
-      a.real( 0.);	a.imag( 0.);
-      b.real( 0.); 	b.imag( 0.);
-      c.real( 0.);  c.imag( 0.);
-      d.real( 0.);  d.imag( 0.);
-      e.real( 0.);  e.imag( 0.);
-      f.real( 0.);	f.imag( 0.);
-      g.real( 0.);	g.imag( 0.);
-      h.real( 0.);	h.imag( 0.);
-      i.real( 0.);	i.imag( 0.);
+      a.real( 0.);	a.imag( 0.);  b.real( 0.); 	b.imag( 0.);  c.real( 0.);  c.imag( 0.);
+      d.real( 0.);  d.imag( 0.);  e.real( 0.);  e.imag( 0.);  f.real( 0.);	f.imag( 0.);
+      g.real( 0.);	g.imag( 0.);  h.real( 0.);	h.imag( 0.);  i.real( 0.);	i.imag( 0.);
 	  }
 
 	inline void operator = (const matrix3 &A){
@@ -152,17 +150,11 @@ template<class T>
   }
 	
   inline matrix3<T> inv(){
-	  cf dt = (1./det());
+	  cf dt = 1. / det();
 	  return matrix3<T>(
-		  dt* (e*i-f*h),
-			dt*(-b*i+c*h), 
-			dt* (b*f-c*e),
-			dt*(-d*i+f*g),
-			dt* (a*i-g*c),
-			dt*(-a*f+c*d),
-			dt* (h*d-e*g),
-			dt*(-a*h+b*g),
-			dt*(-b*d+a*e));
+		  dt* (e*i-f*h),  dt*(-b*i+c*h),  dt* (b*f-c*e),
+			dt*(-d*i+f*g),  dt* (a*i-g*c),  dt*(-a*f+c*d),
+			dt* (h*d-e*g),  dt*(-a*h+b*g),  dt*(-b*d+a*e));
 	}
 
 /* frobenius matrix norm */
@@ -174,13 +166,8 @@ template<class T>
 };
 
 
-
-
-
-
 template<class T>
 struct herm3{
-	
 	inline herm3<T>( T A, T B, T C, T D, T E, T F) : a(A), b(B), c(C), d(D), e(E), f(F) {}
 	inline herm3<T>(const complex<T> &A): a(A.a), b(A.b), c(A.c), d(A.d), e(A.e), f(A.f) {}
 	inline herm3<T>(){
@@ -188,27 +175,21 @@ struct herm3{
   }
 	
 	inline void initT3( float T11R, float T12I, float T12R, float T13I, float T13R, float T22R, float T23I, float T23R, float T33R){
-		a.real((double)T11R);
-		a.imag( 0.);
-		b.real((double)T12R);
-		b.imag((double)T12I);
-		c.real((double)T13R);
-		c.imag((double)T13I);
-		d.real((double)T22R);
-		d.imag(0.);
-		e.real((double)T23R);
-		e.imag((double)T23I);
-		f.real((double)T33R);
-		f.imag(0.);
+		a.real((double)T11R); a.imag( 0.);
+    b.real((double)T12R); b.imag((double)T12I);
+		c.real((double)T13R); c.imag((double)T13I);
+		d.real((double)T22R); d.imag(0.);
+		e.real((double)T23R); e.imag((double)T23I);
+		f.real((double)T33R); f.imag(0.);
 	}
 
 	inline void zero(){
-    a.real( 0.); a.imag( 0.);
-    b.real( 0.); b.imag( 0.);
-    c.real( 0.); c.imag( 0.);
-    d.real( 0.); d.imag( 0.);
-    e.real( 0.); e.imag( 0.);
-    f.real( 0.); f.imag( 0.);
+    a.real(0.); a.imag(0.);
+    b.real(0.); b.imag(0.);
+    c.real(0.); c.imag(0.);
+    d.real(0.); d.imag(0.);
+    e.real(0.); e.imag(0.);
+    f.real(0.); f.imag(0.);
 	}
 
 	inline void operator = (const herm3 &A){
@@ -217,7 +198,7 @@ struct herm3{
 	}
 
 	inline herm3<T> operator * (double s){
-		return herm3<T>( s*a, s*b, s*c, s*d, s*e, s*f);
+		return herm3<T>(s*a, s*b, s*c, s*d, s*e, s*f);
 	}
 	
 	inline cf det(){
@@ -230,11 +211,11 @@ struct herm3{
 	}
 
 	inline TYPE trace(){
-		if(imag(a+d+f) > 0.0000001){
+		if(imag(a + d + f) > 0.0000001){
 			printf("Error: hermitian matrix must have real eigenvalues");
 			exit(1);
 		}
-    return  real(a+d+f);
+    return real(a + d + f);
   }
 
 	inline _matrix3::matrix3<T> inv(){
@@ -251,11 +232,10 @@ struct herm3{
 				dt*        (a*d-abs(b)*abs(b))
 			);
 	}
-
 	
 /* frobenius norm */
 	inline TYPE norm(){
-		return abs(a) + 2.*abs(b) + 2.*abs(c) + abs(d) + 2.*abs(e) + abs(f);
+		return abs(a) + 2. * abs(b) + 2. * abs(c) + abs(d) + 2. * abs(e) + abs(f);
 	}
 	
 
@@ -324,29 +304,15 @@ struct herm3{
 
 	template<class T>
 	inline herm3<T> operator + ( const herm3<T> & A, const herm3<T> & B){		
-		return herm3<T>( 
-			B.a+A.a, 
-			B.b+A.b, 
-			B.c+A.c, 
-			B.d+A.d , 
-			B.e+A.e, 
-			B.f+A.f
-		);  
+		return herm3<T>(B.a+A.a, B.b+A.b, B.c+A.c, B.d+A.d, B.e+A.e, B.f+A.f);  
 	}
 
  	template<class T>
   inline matrix3<T> operator + ( const matrix3<T> & A, const matrix3<T> & B){
-    return matrix3<T>(B.a+A.a,
-                      B.b+A.b,
-                      B.c+A.c,
-                      B.d+A.d,
-                      B.e+A.e,
-                      B.f+A.f,
-			                B.g+A.g,
-			                B.h+A.h,
-			                B.i+A.i);
+    return matrix3<T>(B.a+A.a, B.b+A.b, B.c+A.c,
+                      B.d+A.d, B.e+A.e, B.f+A.f,
+			                B.g+A.g, B.h+A.h, B.i+A.i);
   }
-
 
 	template<class T>
 	inline matrix3<T> operator * ( const herm3<T> & A, const herm3<T> & B){		
@@ -377,21 +343,20 @@ struct herm3{
 			X.g*A.c+X.h*A.e+X.i*A.f
 		);
 	}
-
 	
 	template<class T>
-	inline herm3<T> operator-( const herm3<T> & A, const herm3<T> & B){
-		return herm3<T>( A.a-B.a, A.b-B.b, A.c-B.c, A.d-B.d , A.e-B.e, A.f-B.f );
+	inline herm3<T> operator-(const herm3<T> & A, const herm3<T> & B){
+		return herm3<T>(A.a-B.a, A.b-B.b, A.c-B.c, A.d-B.d , A.e-B.e, A.f-B.f );
 	}
 	
 	
 	template<class T>
-	inline herm3<T> operator-( const herm3<T> & B){
-		return herm3<T> (-B.a, -B.b, -B.c, -B.d, -B.e, -B.f );
+	inline herm3<T> operator-(const herm3<T> & B){
+		return herm3<T>(-B.a, -B.b, -B.c, -B.d, -B.e, -B.f);
 	}
 	
 	template<class T>
-	inline vec3<T> operator*( const herm3<T> &A, const vec3<T> &B){
+	inline vec3<T> operator*(const herm3<T> &A, const vec3<T> &B){
 	  return vec3<T>( 	
 			A.a*B.a + A.b*B.b + A.c*B.c,
 			A.d*B.b + A.e*B.c + B.a*conj(A.b),
@@ -399,7 +364,6 @@ struct herm3{
 		);
 	}
 	
-
 /* add case to avoid div by 0 */
   inline vec3<cf> solve_cubic(cf a, cf b, cf c, cf d){
     const cf _I(0.,1.);
@@ -421,16 +385,13 @@ struct herm3{
 
   /*solve characteristic equation for the 3x3 conj symmetric matrix:  [ a  b  c; b*  d  e;  c*  e*  f ]*/
   inline vec3<cf> solve_characteristic( const herm3<cf> & A){
-        cf a(A.a);
-        cf b(A.b);
-        cf c(A.c);
-        cf d(A.d);
-        cf e(A.e);
-        cf f(A.f);
+        cf a(A.a); cf b(A.b); cf c(A.c);
+        cf d(A.d); cf e(A.e); cf f(A.f);
 
-        cf _A;  cf _B;
-        cf _C;  cf _D;
+        cf _A;  cf _B;  cf _C;  cf _D;
+
         cf lambda1; cf lambda2; cf lambda3;
+
         _A = cf(-1.,0);  //-1 + 0*I;
         _B= (a + d + f);
         _C = (-(a*d) - a*f - d*f + b*conj(b) + c*conj(c) + e*conj(e));
@@ -438,7 +399,6 @@ struct herm3{
         vec3<cf> x(  solve_cubic(_A, _B, _C, _D)   ) ;
         //cout << "characteristic residual "<< residual(x, _A, _B, _C, _D) <<endl;
         return x;
-
   }
 
   inline vec3<cf> eigv( herm3<cf> &A, cf & lambda ){
@@ -464,8 +424,7 @@ struct herm3{
         */
   }
 
-
-  inline TYPE  eig(herm3<cf> &A , vec3<cf> &L, vec3<cf> &E1, vec3<cf> &E2, vec3<cf> &E3 ){
+  inline TYPE eig(herm3<cf> &A , vec3<cf> &L, vec3<cf> &E1, vec3<cf> &E2, vec3<cf> &E3 ){
     vec3<cf> lambdas(solve_characteristic( A ));
     vec3<cf> e1( eigv( A, lambdas.a));
     vec3<cf> e2( eigv( A, lambdas.b));
@@ -479,47 +438,43 @@ struct herm3{
     normalize(e2);
     normalize(e3);
 
-
-        int tmpi;
-        float tmpf;
-        int ind[3] = {0,1,2};
-        float ABS[3] ={abs(l1), abs(l2), abs(l3)};
-        vec3<cf> * ptr[3] = { &e1, &e2, &e3 };
-        int j,i;
-        for(j=2; j>0; j--){
-                for(i=0; i<j; i++)
-                {
-                        if(ABS[i]<ABS[i+1]){
-                                tmpi = ind[i];
-                                ind[i] = ind[i+1];
-                                ind[i+1]=tmpi;
-
-                                tmpf = ABS[i];
-                         ABS[i] = ABS[i+1];
-                         ABS[i+1]=tmpf;
-                        }
-                }
+    int tmpi;
+    float tmpf;
+    int ind[3] = {0,1,2};
+    float ABS[3] ={abs(l1), abs(l2), abs(l3)};
+    vec3<cf> * ptr[3] = { &e1, &e2, &e3 };
+    int j,i;
+    for(j=2; j>0; j--){
+      for(i=0; i<j; i++){
+        if(ABS[i]<ABS[i+1]){
+          tmpi = ind[i];
+          ind[i] = ind[i+1];
+          ind[i+1]=tmpi;
+          tmpf = ABS[i];
+          ABS[i] = ABS[i+1];
+          ABS[i+1]=tmpf;
         }
+      }
+   }
 
   /* vec3<cf> d1 = (A*e1)/l1 - e1;
      vec3<cf> d2 = (A*e2)/l2 - e2;
      vec3<cf> d3 = (A*e3)/l3 - e3;*/
-        for(i=0; i<3; i++){
-          set(L,i, at(lambdas,ind[i]));
-        }
-
-        E1 =  *(ptr[ind[0]]);
-        E2 =  *(ptr[ind[1]]);
-        E3 =  *(ptr[ind[2]]);
-
-
-        vec3<cf> d1 = (A*E1)/(L.a) - E1;
-        vec3<cf> d2 = (A*E2)/(L.b) - E2;
-        vec3<cf> d3 = (A*E3)/(L.c) - E3;
-        return norm(d1)+norm(d2)+norm(d3);
-    /* sort eigenvectors */     
-    //return norm ( (A*e1)/l1 - e1) + norm( (A*e2)/l2 - e2) + norm( (A*e3)/l3 - e3) 
+  for(i=0; i<3; i++){
+    set(L,i, at(lambdas,ind[i]));
   }
+
+  E1 =  *(ptr[ind[0]]);
+  E2 =  *(ptr[ind[1]]);
+  E3 =  *(ptr[ind[2]]);
+  vec3<cf> d1 = (A*E1)/(L.a) - E1;
+  vec3<cf> d2 = (A*E2)/(L.b) - E2;
+  vec3<cf> d3 = (A*E3)/(L.c) - E3;
+  return norm(d1)+norm(d2)+norm(d3);
+
+  /* sort eigenvectors */     
+  //return norm ( (A*e1)/l1 - e1) + norm( (A*e2)/l2 - e2) + norm( (A*e3)/l3 - e3) 
+}
 
 /* inline TYPE arand(){
         return frand()-frand();
