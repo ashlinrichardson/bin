@@ -153,12 +153,11 @@ void writeENVIHeader(char * filename, int datatype, int NRows, int NCols, int IN
 	class Image{
 
 		public:
-			Image()
-			{ return;
+			Image(){
+        return;
 			}
 
-			~Image()
-			{
+			~Image(){
 				return;
 			}
 
@@ -189,16 +188,17 @@ void writeENVIHeader(char * filename, int datatype, int NRows, int NCols, int IN
 
 				open();
 
-				if(type==INPUT)
-				{
+				if(type==INPUT){
 					fread(&buf[0], NRow*NCol*sizeof(float), 1, handle);
 				}
 			}
+
 //Get the image's dimensions
 			void getDimensions(int & _NRow, int & _NCol){
 				_NRow=NRow;
 				_NCol=NCol;
 			}
+
 //Open the file corresponding to this image.
 			void open(){
 				if(!(handle = fopen(filename, type?"wb":"rb"))){
@@ -206,6 +206,7 @@ void writeENVIHeader(char * filename, int datatype, int NRows, int NCols, int IN
 					exit(1);
 				}
 			}
+
 //Close the file corresponding to this image, writing an ENVI header.
 			void close(){
 				if(type==OUTPUT){
@@ -215,6 +216,7 @@ void writeENVIHeader(char * filename, int datatype, int NRows, int NCols, int IN
 				
 				fclose(handle);
 			}
+
 			void destroy(){
 				free(buf);
 			}
@@ -238,6 +240,7 @@ void writeENVIHeader(char * filename, int datatype, int NRows, int NCols, int IN
 					++pixels_processed;
 					return;
 			}
+
 			void writeHeaders(){
 					//headers are written when the file is closed.
 			}
@@ -253,9 +256,6 @@ void writeENVIHeader(char * filename, int datatype, int NRows, int NCols, int IN
 			int pixels;
 			float * buf;
 		private:
-
-
-
 	};
 
 //This is the analogous class for complex valued binary files.  See the above methods for comments as the functions are analogous (only difference is reading and writing two floats at once for the real and imaginary components).
@@ -329,6 +329,7 @@ void writeENVIHeader(char * filename, int datatype, int NRows, int NCols, int IN
 					}
 					printf("Error: tried to read too many pixels from file %s %d %d\n",filename,pixels_processed,pixels);
 				}
+
 				void setPixel(complex<float> & data){
 					if(type!=OUTPUT){
 						printf("Error: not an output file %s\n",filename);
@@ -347,6 +348,7 @@ void writeENVIHeader(char * filename, int datatype, int NRows, int NCols, int IN
 					printf("Error: tried to write too many pixels from file %s %d %d\n",filename,pixels_processed,pixels);
 
 				}
+
 				void writeHeaders(){
 				}
 
