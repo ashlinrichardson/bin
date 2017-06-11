@@ -4,7 +4,7 @@ inline TYPE frand(){
 }
 
 inline TYPE arand(){
-	return frand()-frand();
+	return frand() - frand();
 }
 
 inline cf poly(cf x, cf  a, cf  b, cf c, cf d){
