@@ -193,7 +193,7 @@ struct complex{
 
 template<class T>
 struct vec2{
-	inline vec2 T A, T B) : a(A), b(B){}
+	inline vec2(T A, T B) : a(A), b(B){}
 	inline vec2<T>(const vec2<T> &A): a(A.a), b(A.b){}
 	inline vec2<T>(): a(), b(){  a.zero(); b.zero();  }
 
