@@ -86,13 +86,13 @@ def timestring():
 def run(cmd):
     global log_file
     print KGRN + str(cmd).strip() + KNRM
-    log_file = open('logfile.txt', 'a')
+    log_file = open('logfile.bak', 'a')
     log_file.write(timestring() + ' ' + cmd.strip() + '\n')
     log_file.close()
     a = os.system(cmd)
     if(a != 0):
         error('command failed: ' + cmd)
-    log_file = open('logfile.txt', 'a')
+    log_file = open('logfile.bak', 'a')
     log_file.write('\t' + timestring() + '\n')
     log_file.close()
 

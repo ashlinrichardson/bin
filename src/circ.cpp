@@ -1,10 +1,6 @@
-/* Generate circular polarization channels from scattering matrix
-
-reference:
+/* Generate circular polarization channels from scattering matrix. refs:
   [1] "S.H. Bickel, Some invariant properties of the polarization scattering matrix", 1965
-  [2] Dr. Pottier's book
-*/
-
+  [2] Dr. Pottier's book */
 #include "radlib.h"
 using namespace _matrix2;
 
@@ -42,7 +38,7 @@ int main(int argc, char *argv[]){
 			RL = (S21) - (J*(S11));
 			RR = (S22) - (J*(S12));
 			
-      /* write output pixels */
+      /* write output pixel */
 			S11_out = LL;  S12_out = LR; 
 			S21_out = RL;  S22_out = RR;
 			S2_out.setPixel();
@@ -50,7 +46,7 @@ int main(int argc, char *argv[]){
 		}
 	}
 
-  S2_in.close();
+  S2_in.close(); 
 	S2_out.close();
   return 0;
 }
