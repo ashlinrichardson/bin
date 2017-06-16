@@ -71,9 +71,9 @@ fr_dir = (out_dir[:-1] + '_fr/') if use_faraday else in_dir
 t4_dir, fl_dir = out_dir[:-1] + '_fr_t4/', out_dir[:-1] + '_fr_t4_fl/'
 for tf in [fr_dir, t4_dir, fl_dir]:
     run('mkdir -p ' + tf)
-run('cp -v ' + in_dir + 'config.txt ' + fr_dir)
 
 if use_faraday:
+    run('cp -v ' + in_dir + 'config.txt ' + fr_dir)
     run('fra ' + in_dir + ' ' + fr_dir)
 
 # convert s2 matrix to t4 matrix
