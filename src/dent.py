@@ -24,7 +24,7 @@ if len(args) > 2:
 # check the input file is there
 chkfile(in_file)
 ext = in_file.split('.')[-1]
-if not (ext == 'c' or ext == 'cpp' or ext == 'js'):
+if not (ext == 'h' or ext == 'c' or ext == 'cpp' or ext == 'js'):
     error('only c or cpp files supported')
 
 n_indent = 0  # indentation level
