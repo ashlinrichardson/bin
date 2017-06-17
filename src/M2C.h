@@ -14,7 +14,7 @@ inline TYPE arand(){
   return frand() - frand();
 }
 
-inline cf poly(cf x, cf  a, cf  b, cf c, cf d){
+inline cf poly(cf x, cf a, cf b, cf c, cf d){
   return a * cpow(x, 3.) + b * cpow(x, 2.) + c * x + d;
 }
 
@@ -30,7 +30,7 @@ inline void assert_0(TYPE val){
   if( abs(val) < BIGTOL){
   }
   else{
-    cout << "Error: Assertion failed with " << abs(val) <<  " not less than " << BIGTOL  << endl;
+    cout << "Error: Assertion failed with " << abs(val) << " not less than " << BIGTOL << endl;
   }
 }
 
@@ -75,12 +75,12 @@ inline V2C operator*(const TYPE A, const V2C &B){
 }
 
 inline V2C operator*(const V2C &B, const cf_ &A){
-  return  A * B;
+  return A * B;
 }
 
 inline cf_ operator*(const TYPE a, const cf_ & B){
-   cf_ ret =(cf_(a,0.))*B;
-   return ret;
+  cf_ ret =(cf_(a,0.))*B;
+  return ret;
 }
 
 inline cf_ operator*( const cf_ & B, const TYPE a){
@@ -93,15 +93,15 @@ inline M2C operator*(const TYPE A, const M2C &B){
   return ret;
 }
 
-inline  void zero(cf_ & a){
+inline void zero(cf_ & a){
   a.zero();
 }
 
 inline void zero(M2C & A){
   (A.a).zero();
-	(A.b).zero();
-	(A.c).zero();
-	(A.d).zero();
+  (A.b).zero();
+  (A.c).zero();
+  (A.d).zero();
 }
 
 inline void zero(V2C &A){
