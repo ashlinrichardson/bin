@@ -5,42 +5,42 @@
 #include "bin.h"
 
 // define indexes for each channel of information from T4 matrix
-#define r11   0
-#define r12   1
-#define i12   2
-#define r13   3
-#define i13   4
-#define r14   5
-#define i14   6
-#define r22   7
-#define r23   8
-#define i23   9
-#define r24   10
-#define i24    11
-#define r33   12
-#define r34    13
-#define i34    14
-#define r44   15
+#define r11 0
+#define r12 1
+#define i12 2
+#define r13 3
+#define i13 4
+#define r14 5
+#define i14 6
+#define r22 7
+#define r23 8
+#define i23 9
+#define r24 10
+#define i24 11
+#define r33 12
+#define r34 13
+#define i34 14
+#define r44 15
 
 #define nT4Files 16
 
 // C4 matrix
-#define c4r11   0
-#define c4r12   1
-#define c4i12   2
-#define c4r13   3
-#define c4i13   4
-#define c4r14   5
-#define c4i14   6
-#define c4r22   7
-#define c4r23   8
-#define c4i23   9
-#define c4r24   10
-#define c4i24   11
-#define c4r33   12
-#define c4r34   13
-#define c4i34   14
-#define c4r44   15
+#define c4r11 0
+#define c4r12 1
+#define c4i12 2
+#define c4r13 3
+#define c4i13 4
+#define c4r14 5
+#define c4i14 6
+#define c4r22 7
+#define c4r23 8
+#define c4i23 9
+#define c4r24 10
+#define c4i24 11
+#define c4r33 12
+#define c4r34 13
+#define c4i34 14
+#define c4r44 15
 
 using std::ostream;
 using namespace std;
@@ -96,7 +96,7 @@ namespace _C4{
       
       for(i = 0; i < nT4Files; i++){
         sprintf(file_name, "%s%s", dir, filenames[i]);
-        T[i].setDimensions(NRow, NCol);  //must call this before initImage
+        T[i].setDimensions(NRow, NCol); //must call this before initImage
         T[i].initImage(_type, file_name);
         file_name[0]='\n';
       }
@@ -122,7 +122,7 @@ namespace _C4{
       
       for(i = 0; i < nT4Files; i++){
         sprintf(file_name, "%s%s", dir, filenames[i]);
-        T[i].setDimensions(NRow, NCol);  //must call this before initImage
+        T[i].setDimensions(NRow, NCol); //must call this before initImage
         T[i].initImage(_type, file_name);
         file_name[0]='\n';
       }
@@ -166,23 +166,23 @@ namespace _C4{
     
     inline cf operator[]( unsigned int subscript){
       switch(subscript){
-        case 11:   return cf(pixel[r11], 0.);  break;
-        case 22:  return cf(pixel[r22], 0.);  break;
-        case 33:  return cf(pixel[r33], 0.);  break;
-        case 44:  return cf(pixel[r44], 0.);  break;
-        case 12:  return cf(pixel[r12], pixel[i12]);  break;
-        case 13:  return cf(pixel[r13], pixel[i13]);  break;
-        case 14:  return cf(pixel[r14], pixel[i14]);  break;
-        case 21:  return cf(pixel[r12], -pixel[i12]); break;
-        case 23:   return cf(pixel[r23],  pixel[i23]); break;
-        case 24:   return cf(pixel[r24],  pixel[i24]);  break;
-        case 31:   return cf(pixel[r13], -pixel[i13]); break;
-        case 32:   return cf(pixel[r23], -pixel[i23]); break;
-        case 34:   return cf(pixel[r34],  pixel[i34]); break;
-        case 41:  return cf(pixel[r14], -pixel[i14]); break;
-        case 42:   return cf(pixel[r24], -pixel[i24]); break;
-        case 43:   return cf(pixel[r34], -pixel[r34]); break;
-        default:  printf("Error: invalid subscript on T4 matrix\n"); exit(1);  break;
+        case 11: return cf(pixel[r11], 0.); break;
+        case 22: return cf(pixel[r22], 0.); break;
+        case 33: return cf(pixel[r33], 0.); break;
+        case 44: return cf(pixel[r44], 0.); break;
+        case 12: return cf(pixel[r12], pixel[i12]); break;
+        case 13: return cf(pixel[r13], pixel[i13]); break;
+        case 14: return cf(pixel[r14], pixel[i14]); break;
+        case 21: return cf(pixel[r12], -pixel[i12]); break;
+        case 23: return cf(pixel[r23], pixel[i23]); break;
+        case 24: return cf(pixel[r24], pixel[i24]); break;
+        case 31: return cf(pixel[r13], -pixel[i13]); break;
+        case 32: return cf(pixel[r23], -pixel[i23]); break;
+        case 34: return cf(pixel[r34], pixel[i34]); break;
+        case 41: return cf(pixel[r14], -pixel[i14]); break;
+        case 42: return cf(pixel[r24], -pixel[i24]); break;
+        case 43: return cf(pixel[r34], -pixel[r34]); break;
+        default: printf("Error: invalid subscript on T4 matrix\n"); exit(1); break;
       }
     }
     
