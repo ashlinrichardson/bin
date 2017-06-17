@@ -44,6 +44,7 @@ int main(int argc, char * argv[]){
     ans = (float)sqrt(sq(dd) - sq((1.-dd)));
     fwrite(&ans, 1, sizeof(float), outf);
   }
+
   fclose(outf);
   free(dat);
   
