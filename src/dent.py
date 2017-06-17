@@ -3,9 +3,7 @@ import os
 import sys
 from fl0w3r import normpath, wopen, error, run, chkfile, args, exists
 from ansicolor import KRED, KGRN, KNRM
-''' indentation for c/c++ code, by ashlin richardson 20170617
-
-'''
+''' indentation for c/c++ code, by ashlin richardson 20170617'''
 
 if len(args) < 2:
     error('dent.py: format C/C++ files for indentation (2 spaces per tab)' +
