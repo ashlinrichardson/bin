@@ -34,10 +34,14 @@ dat = open(in_file).read()
 bak_file = in_file + '.bak'
 wopen(bak_file).write(dat)
 
+# after making the backup:
+dat = dat.replace('}else{', '}\nelse{')
+
 new_lines, lines = [], dat.strip().split('\n')
 
 for i in range(0, len(lines)):
     line = lines[i].strip()
+    line = ' '.join(line.split())
     reindent = (n_indent * indent) + line
 
     # red for lines that changed, green for unchanged
@@ -48,6 +52,11 @@ for i in range(0, len(lines)):
 
     # check if brackets are changing indentation level
     last_char = None
+    last_chars = None
+    try:
+        last_chars = line[-2:]
+    except:
+        pass
     try:
         last_char = line[-1]
     except:
@@ -55,9 +64,11 @@ for i in range(0, len(lines)):
 
     if last_char == '{':
         n_indent += 1
-    elif last_char == '}':
+    elif last_char == '}' or last_chars =='};':
         n_indent -= 1
         reindent = (n_indent * indent) + line
+
+    print reindent 
 
     # the new lines to be written
     new_lines.append(reindent)
