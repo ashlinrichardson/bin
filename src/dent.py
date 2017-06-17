@@ -26,7 +26,7 @@ if len(args) > 2:
 # check the input file is there
 chkfile(in_file)
 ext = in_file.split('.')[-1]
-if not (ext == 'c' or ext == 'cpp' or ext =='js'):
+if not (ext == 'c' or ext == 'cpp' or ext == 'js'):
     error('only c or cpp files supported')
 
 n_indent = 0  # indentation level
@@ -57,21 +57,17 @@ for i in range(0, len(lines)):
 
     if last_char == '{':
         n_indent += 1
-    elif last_char =='}':
+    elif last_char == '}':
         n_indent -= 1
         reindent = (n_indent * indent) + line
 
     # the new lines to be written
     new_lines.append(reindent)
 
-    # add a space if the last line had '{' and no space
-    if last_char == '{':
-        if lines[i+1].strip() != '':
-            new_lines.append('\n')
-
 if(n_indent != 0):
     error('indentation level not 0: either there are open brackets, ' +
           ' or the logic of this program is too simple')
 
-wopen(in_file).write(('\n'.join(new_lines)).replace('\t', spaces_per_tab * ' '))
+out = '\n'.join(new_lines).replace('\t', spaces_per_tab * ' ')
+wopen(in_file).write(out)
 sys.stdout.write(KNRM)
