@@ -5,6 +5,8 @@ import os
 import sys
 from ansicolor import KRED, KGRN, KNRM, KMAG
 
+args = sys.argv
+
 def terminal_shape():
     # it would be cool to have progress indicators that varied (in shape, accordingly:) with the size of the terminal screen : ) e.g., to fill up the terminal screen
     try:
@@ -44,6 +46,7 @@ def wopen(fn):
     f = open(fn, 'w')
     if(f is None):
         error('no write access to file: ' + fn)
+    printw(fn)
     return f
 
 
