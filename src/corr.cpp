@@ -2,8 +2,8 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <fstream.h>
-#include <iostream.h>
+#include <fstream>
+#include <iostream>
 
 long filesize(char * infile){
   long begin,end;
@@ -17,8 +17,8 @@ long filesize(char * infile){
 
 #define sq(x) ((x)*(x))
 
-int main(char argc, char * argv[]){
-	if(argc <3){
+int main(int argc, char ** argv){
+	if(argc < 3){
 		printf("corr.cpp: calculate a correlation matrix for a series of binary files.  By Ash Richardson October 19, 2009 with mods 20170612\n");
 		printf("Usage: corr [byte mask] [float point file #1] [float point file #2] ...\n");
 		printf("Note: the byte mask file must be byte data type.  Null data is indicated by 1, valid data is indicated by 0.\n");
@@ -26,7 +26,7 @@ int main(char argc, char * argv[]){
 		exit(1);
 	}
 
-	int nfloats = argc-2;
+	int nfloats = argc - 2;
 
 	long int fsize[nfloats];
 	int i;
