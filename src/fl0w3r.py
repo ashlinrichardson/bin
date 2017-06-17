@@ -115,6 +115,9 @@ def write_config(fn, nrow, ncol):
 
 # read a PolSARPro config file
 def read_config(fn):
+    fn = normpath(fn)
+    if not (exists(fn) and os.path.isfile(fn)):
+        fn += '/config.txt'
     chkfile(fn)
     gl = open(fn).readlines()
     nlin, ncol = int(gl[1].strip()), int(gl[4].strip())
