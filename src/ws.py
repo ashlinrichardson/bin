@@ -1,6 +1,6 @@
 #!/usr/bin/env python2.7
 ''' ws.py: remove trailing whitespace and systematic left-whitespace
-by arichardson 20170120 reimplemented 20170602  '''
+by arichardson 20170120 reimplemented 20170602 with mods 20170617'''
 
 import os
 import sys
@@ -45,7 +45,7 @@ head, tail = ntpath.split(fn)
 head = head.strip() + '/'
 head = os.path.abspath(head) + '/'
 print 'head', head
-bfn = head + '.' + f_base(fn)
+bfn = fn + '.bak'  # head + '.' + f_base(fn)
 print 'bfn', bfn
 
 # save a backup
