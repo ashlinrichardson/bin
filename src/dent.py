@@ -64,11 +64,11 @@ for i in range(0, len(lines)):
 
     if last_char == '{':
         n_indent += 1
-    elif last_char == '}' or last_chars =='};':
+    elif last_char == '}' or last_chars == '};':
         n_indent -= 1
         reindent = (n_indent * indent) + line
 
-    print reindent 
+    print reindent
 
     # the new lines to be written
     new_lines.append(reindent)
