@@ -1,6 +1,4 @@
-/* boxcar.cpp: revisioned 20170609
-
-need to add header reading/writing to this one */
+/* boxcar.cpp: revisioned 20170609. need to add header reading/writing to this one */
 #include <stdlib.h>
 #include <memory.h>
 #include "fl0w3r.h"
@@ -14,7 +12,7 @@ int main(int argc, char ** argv){
   int samples, lines;
   char * infile_name = argv[1];
   samples = atoi(argv[3]);
-  lines= atoi(argv[2]);
+  lines = atoi(argv[2]);
   char * outfile_name = argv[5];
   int window_size = atoi(argv[4]);
   
@@ -40,7 +38,7 @@ int main(int argc, char ** argv){
   for0(x, lines){
     for0(y, samples){
       ind = (x * samples) + y ; //calculate index of current pixel
-      out[ ind ] = 0.; //clear the output value for the current pixel (x,y).
+      out[ind] = 0.; //clear the output value for the current pixel (x,y).
       npix = 0;
       
       /* for each pixel within the filter window around (x,y): */
@@ -59,7 +57,7 @@ int main(int argc, char ** argv){
           }
         }
       }
-      if( npix > 0. ){
+      if(npix > 0.){
         out[ind]= out[ind] / ((float)npix);
       }
       else{
