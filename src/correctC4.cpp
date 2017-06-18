@@ -92,7 +92,7 @@ void convertC4toT3(float ***T, float *mean){
 
 int main(int argc, char ** argv){
   if(argc != 5){
-    printf("correctC4.cpp: correct and model C4 matrix parameters according to Shane Cloude's lecture notes January 15, 2010. By Ash Richardson. With revisions 20170612\n");
+    printf("correctC4.cpp: correct and model C4 matrix parameters according to Shane Cloude's lecture notes January 15, 2010.\nBy Ash Richardson. With revisions/reimplementation 20170612, 20170617\n");
     printf("Usage: correctC4 [indir] [nrow] [ncol] [outdir]\n");
     exit(1);
   }
@@ -253,14 +253,15 @@ int main(int argc, char ** argv){
   double s = sin(-2. * FR_mean);
 
   cf t11f, t12f, t13f, t14f, t44f, _r12, _r13, _r22, _r23, _r33;
+  
   for(i=0; i<NRow; i++){
     int ri = i*NCol;
     if(i % (NRow / 50) == 0){
       printf("%d/100\n", (int)((float)i/((float)NRow)*100.) );
     }
+    
     for(j=0; j<NCol; j++){
       int rij = ri+j;
-
       // FR_mean=mean(nonzeros(faraday));
       // c=cos(-2*FR_mean);s=sin(-2*FR_mean);
       //remove FR from T3 data
@@ -345,9 +346,11 @@ int main(int argc, char ** argv){
       Diagonalisation(4, pspT, pspV, pspLambda);
 
       for (k = 0; k < 4; k++){
-        if(pspLambda[k] < 0.)
-        pspLambda[k] = 0.;
+        if(pspLambda[k] < 0.){
+          pspLambda[k] = 0.;
+        }
       }
+      
       for (k = 0; k < 4; k++) {
         Alpha[k] = acos(sqrt(pspV[0][k][0] * pspV[0][k][0] + pspV[0][k][1] * pspV[0][k][1]));
         phase[k] = atan2(pspV[0][k][1], eps + pspV[0][k][0]);
@@ -378,6 +381,7 @@ int main(int argc, char ** argv){
       float _lambda=0.;
       float _span = 0.;
       float _anisotropy = 0.;
+      
       for(k = 0; k < 4; k++){
         _alpha += p[k]*Alpha[k];
         _entropy += -p[k]*( log(p[k])/log(3.) );
@@ -390,6 +394,7 @@ int main(int argc, char ** argv){
         _lambda+=p[k]*pspLambda[k];
         _span += pspLambda[k];
       }
+      
       float DD = pspLambda[0] * pspLambda[1] * pspLambda[2] * pspLambda[3];
       float II = pspLambda[0] + pspLambda[1] + pspLambda[2] + pspLambda[3];
       float DegPol = 1. - (4.*4.*4.*4.) * DD / (II*II*II*II + eps);
@@ -467,12 +472,14 @@ int main(int argc, char ** argv){
       float alpha1 = acos(sqrt(k1_re*k1_re+k1_im*k1_im));
       float alpha2 = acos(sqrt(k2_re*k2_re+k2_im*k2_im));
       float _mask;
-      if(alpha2>alpha1){
+      
+      if(alpha2 > alpha1){
         _mask = 1;
       }
       else{
         _mask = 0;
       }
+      
       float _serd = (_mask*p[0]+(1-_mask)*p[1]-p[2])/(_mask*p[0]+(1-_mask)*p[1]+p[2]+eps);
       putf(Sfile, _serd );
       putf(SNfile, (_serd + 1.) / 2.);
@@ -496,34 +503,7 @@ int main(int argc, char ** argv){
       // FILE * freemanVOLfile = outf("Freeman_Vol.bin", outdir); //"Freeman_Odd.bin", "Freeman_Dbl.bin", "Freeman_Vol.bin"
     }
   }
-
-
-  /*
-  Diagonalisation(4, t, v, lambda);
-
-  for (k = 0; k < 4; k++)
-  if (lambda[k] < 0.) lambda[k] = 0.;
-
-  for (k = 0; k < 4; k++) {
-    Alpha[k] = acos(sqrt(v[0][k][0] * v[0][k][0] + v[0][k][1] * v[0][k][1]));
-    p[k] = lambda[k] / (eps + lambda[0] + lambda[1] + lambda[2] + lambda[3]);
-    if (p[k] < 0.) p[k] = 0.;
-    if (p[k] > 1.) p[k] = 1.;
-  }
-
-  _alpha=0;
-  _entropy=0;
-  for(k=0; k<3; k++){
-    _alpha += p[k]*Alpha[k];
-    _entropy += -p[k]*( log(p[k])/log(3.) );
-  }
-
-  */
-
   fclose(gammafile);
-
-  printf("\rdone.\n");
-  printf("eps %e\n", eps);
+  printf("\rdone.\neps %e\n", eps);
   return 0;
-
 }
