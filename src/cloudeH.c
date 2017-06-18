@@ -23,9 +23,9 @@ UMR CNRS 6164
 Groupe Image et Teledetection
 Equipe SAPHIR (SAr Polarimetrie Holographie Interferometrie Radargrammetrie)
 UNIVERSITE DE RENNES I
-Pôle Micro-Ondes Radar
-Bât. 11D - Campus de Beaulieu
-263 Avenue Général Leclerc
+PÃ´le Micro-Ondes Radar
+BÃ¢t. 11D - Campus de Beaulieu
+263 Avenue GÃ©nÃ©ral Leclerc
 35042 RENNES Cedex
 Tel :(+33) 2 23 23 57 63
 Fax :(+33) 2 23 23 69 63
@@ -74,15 +74,10 @@ void diagonalisation(int MatrixDim, float ***HermitianMatrix, float ***EigenVect
 #include <string.h>
 #include <math.h>
 
-
 #ifdef _WIN32
 #include <dos.h>
 #include <conio.h>
 #endif
-
-
-/* ALIASES  */
-
 
 /* T matrix */
 #define T11     0
@@ -101,7 +96,6 @@ void diagonalisation(int MatrixDim, float ***HermitianMatrix, float ***EigenVect
 #define T34_re  13
 #define T34_im  14
 #define T44     15
-
 
 /* Decomposition parameters */
 #define Eigen1  0
@@ -125,10 +119,6 @@ void diagonalisation(int MatrixDim, float ***HermitianMatrix, float ***EigenVect
 #define HSI    18
 #define HSP    19
 #define LUN    20
-/*
-#define KA     20
-#define KCA    21
-*/
 
 /* CONSTANTS  */
 #define Npolar_in   16		/* nb of input/output files */
@@ -136,16 +126,6 @@ void diagonalisation(int MatrixDim, float ***HermitianMatrix, float ***EigenVect
 
 /* ROUTINES DECLARATION */
 #include "../psp/psp.h"
-/*
-#include "../lib/graphics.h"
-#include "../lib/matrix.h"
-#include "../lib/processing.h"
-#include "../lib/util.h"
-*/
-
-
-/* GLOBAL VARIABLES */
-
 
 /*******************************************************************************
 Routine  : main
@@ -197,24 +177,50 @@ int main(int argc, char *argv[])
 
 /* Strings */
     char file_name[1024], in_dir[1024], out_dir[1024];
-    char *file_name_in[Npolar_in] =
-	{ "T11.bin", "T12_real.bin", "T12_imag.bin",
-	"T13_real.bin", "T13_imag.bin",
-	"T14_real.bin", "T14_imag.bin",
-	"T22.bin", "T23_real.bin", "T23_imag.bin",
-	"T24_real.bin", "T24_imag.bin",
-	"T33.bin", "T34_real.bin", "T34_imag.bin",
+    char *file_name_in[Npolar_in] =     { 
+	    "T11.bin", 
+	    "T12_real.bin", 
+	    "T12_imag.bin",
+	"T13_real.bin",
+	    "T13_imag.bin",
+	    
+	"T14_real.bin",
+	    "T14_imag.bin",
+	    
+	"T22.bin",
+	    "T23_real.bin", 
+	    "T23_imag.bin",
+	"T24_real.bin", 
+	    "T24_imag.bin",
+	"T33.bin", 
+	    "T34_real.bin", 
+	    "T34_imag.bin",
 	"T44.bin"
     };
 
-    char *file_name_out[Npolar_out] =
-	{ "l1.bin", "l2.bin", "l3.bin", "l4.bin",
-	"p1.bin", "p2.bin", "p3.bin", "p4.bin",
-	"anisotropy.bin", "anisotropy12.bin", "anisotropy34.bin", "asymetry.bin",
-	"polarisation_fraction.bin", "serd.bin","derd.bin",
-	"rvi.bin", "pedestal.bin",
-	"entropy_shannon.bin", "entropy_shannon_I.bin", "entropy_shannon_P.bin",
-	"anisotropy_lueneburg.bin" };
+    char *file_name_out[Npolar_out] =   { 
+	    "l1.bin", 
+	    "l2.bin", 
+	    "l3.bin",
+	    "l4.bin",
+	"p1.bin", 
+	    "p2.bin",
+	    "p3.bin",
+	    "p4.bin",
+	"anisotropy.bin",
+	    "anisotropy12.bin", 
+	    "anisotropy34.bin", 
+	    "asymetry.bin",
+	"polarisation_fraction.bin",
+	    "serd.bin",
+	    "derd.bin",
+	"rvi.bin",
+	    "pedestal.bin",
+	"entropy_shannon.bin",
+	    "entropy_shannon_I.bin", 
+	    "entropy_shannon_P.bin",
+	"anisotropy_lueneburg.bin"
+    };
 
     char PolarCase[20], PolarType[20];
 
