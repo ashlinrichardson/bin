@@ -1,5 +1,4 @@
-/*  
-forestry calculation
+/* forestry calculation
 
 gcc ccfi.c  -Wall -lgsl -lblas -lgslcblas 
 
@@ -7,18 +6,18 @@ using code from:
 
  http://www.gnu.org/software/gsl/manual/html_node/Root-Finding-Examples.html  
  http://www.gnu.org/software/gsl/manual/html_node/Interpolation-Example-programs.html 
+
 */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
 #include <math.h>
+
 #include <gsl/gsl_errno.h>
 #include <gsl/gsl_spline.h>
-
 #include <gsl/gsl_math.h>
 #include <gsl/gsl_roots.h>
-
-
 
 #define MAXN 1000
 
@@ -46,20 +45,20 @@ int main(int argc, char * argv[]){
 	exit(1);
   }
 
-	int nlines = atoi( argv[2] );
+	int nlines = atoi(argv[2]);
 	float band[nlines];
 	float ccf[nlines];
 	float lhq[nlines];
 	double dband[nlines];
 	double dccf[nlines];
 	double dlhq[nlines];
-	memset( &band[0], '\0',  sizeof(float)*nlines);
-	memset( &ccf[0], '\0',  sizeof(float)*nlines);
-	memset( &lhq[0], '\0',  sizeof(float)*nlines);
+	memset(&band[0], '\0',  sizeof(float)*nlines);
+	memset(&ccf[0], '\0',  sizeof(float)*nlines);
+	memset(&lhq[0], '\0',  sizeof(float)*nlines);
  
-	memset( &dband[0], '\0',  sizeof(double)*nlines);
-  memset( &dccf[0], '\0',  sizeof(double)*nlines);
-  memset( &dlhq[0], '\0',  sizeof(double)*nlines);
+	memset(&dband[0], '\0',  sizeof(double)*nlines);
+  	memset(&dccf[0], '\0',  sizeof(double)*nlines);
+  	memset(&dlhq[0], '\0',  sizeof(double)*nlines);
 
 	char chars[MAXN];
 	char * fn = argv[1];
