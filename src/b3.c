@@ -23,9 +23,9 @@ UMR CNRS 6164
 Groupe Image et Teledetection
 Equipe SAPHIR (SAr Polarimetrie Holographie Interferometrie Radargrammetrie)
 UNIVERSITE DE RENNES I
-Pôle Micro-Ondes Radar
-Bât. 11D - Campus de Beaulieu
-263 Avenue Général Leclerc
+PÃ´le Micro-Ondes Radar
+BÃ¢t. 11D - Campus de Beaulieu
+263 Avenue GÃ©nÃ©ral Leclerc
 35042 RENNES Cedex
 Tel :(+33) 2 23 23 57 63
 Fax :(+33) 2 23 23 69 63
@@ -65,6 +65,8 @@ void read_config(char *dir, int *Nlig, int *Ncol, char *PolarCase, char *PolarTy
 #include <conio.h>
 #endif
 
+#include "../psp/psp.h"
+
 /* ALIASES */
 
 /* T matrix */
@@ -84,13 +86,6 @@ void read_config(char *dir, int *Nlig, int *Ncol, char *PolarCase, char *PolarTy
 #define T34_re 13
 #define T34_im 14
 #define T44 15
-
-/* CONSTANTS */
-
-/* ROUTINES DECLARATION */
-//#include "../psp/matrix.h"
-//#include "../psp/util.h"
-#include "../psp/psp.h"
 
 /*******************************************************************************
 Routine : main
@@ -137,7 +132,9 @@ int main(int argc, char *argv[]){
     "T22.bin",
     "T23_real.bin",
     "T23_imag.bin",
-  "T33.bin"};
+    "T33.bin"
+  };
+  
   char PolarCase[20], PolarType[20];
 
   /* Input variables */
@@ -160,7 +157,7 @@ int main(int argc, char *argv[]){
   if (argc == 4) {
     strcpy(in_dir, argv[1]);
     strcpy(out_dir, argv[2]);
-    //Nlook = atoi(argv[3]);
+    /* Nlook = atoi(argv[3]); */
     Nwin = atoi(argv[3]);
     Off_lig = 0;//atoi(argv[5]);
     Off_col = 0;//atoi(argv[6]);
@@ -236,8 +233,7 @@ int main(int argc, char *argv[]){
     }
 
     for (col = 0; col < Sub_Ncol; col++) {
-
-      /*Within window statistics*/
+      /* Within window statistics */
       for (Np = 0; Np < Npolar; Np++) M_out[Np][col] = 0.;
 
       for (k = -(Nwin - 1) / 2; k < 1 + (Nwin - 1) / 2; k++)
@@ -246,7 +242,6 @@ int main(int argc, char *argv[]){
       M_out[Np][col] += M_in[Np][(Nwin - 1) / 2 + k][(Nwin - 1) / 2 + col + l] / (Nwin * Nwin);
 
     }
-    /*col */
 
     /* FILTERED DATA WRITING */
     for (Np = 0; Np < Npolar; Np++)
@@ -257,9 +252,8 @@ int main(int argc, char *argv[]){
     for (col = 0; col < Sub_Ncol; col++)
     for (Np = 0; Np < Npolar; Np++)
     M_in[Np][l][(Nwin - 1) / 2 + col] = M_in[Np][l + 1][(Nwin - 1) / 2 + col];
-
   }
-  /*lig */
+
 
   free_matrix_float(M_out, Npolar);
   free_matrix3d_float(M_in, Npolar, Nwin);
