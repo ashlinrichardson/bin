@@ -5,12 +5,18 @@ using namespace _matrix2;
 
 int main(int argc, char *argv[]){
 	if(argc < 2){
-		printf("cpa.cpp: calculate phase of the difference of the HV and VH channels; implemented by Ash Richardson, May 13, 2009 with mods 20170612.\nUsage: cpa [in_dir]\nNote: config.txt file must be present in input directory\n");
+	printf("cpa.cpp: calculate phase of the difference of the HV and VH channels; implemented by Ash Richardson, May 13, 2009 with mods 20170612.\nUsage: cpa [in_dir]\nNote: config.txt file must be present in input directory\n");
 	  exit(1);
 	}
 	int NRow, NCol;
 
-  char * S2filenames[4] = {"s11.bin", "s12.bin", "s21.bin", "s22.bin"};
+  char * S2filenames[4] = {
+	  "s11.bin", 
+	  "s12.bin", 
+	  "s21.bin", 
+	  "s22.bin"
+  };
+	
 	FILE * S2_file[nS2Files];
 
 	char input_dir[BUFS];
@@ -58,7 +64,7 @@ int main(int argc, char *argv[]){
 	for(Row = 0; Row < NRow; Row++){
 		fcount = 0;
 
-		printf("\rProcessing Row %d of %d       ", Row+1, NRow);
+		printf("\rProcessing Row %d of %d       ", Row + 1, NRow);
 		for(Col = 0; Col < NCol; Col++){
 			fread(&S12r, sizeof(float), 1, S2_file[1]);
 			fread(&S12i, sizeof(float), 1, S2_file[1]);
