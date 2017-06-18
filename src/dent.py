@@ -82,7 +82,8 @@ for i in range(0, len(lines)):
         new_lines.append('')
 
 if(n_indent != 0):
-    print "n_indent", n_indent
+    print "n_indent", n_indent, "algorithm may have missed a:"
+    print "opening bracket" if n_indent < 0 else "closing bracket"
     error('indentation level not 0: either there are open brackets, ' +
           ' or the logic of this program is too simple')
 
