@@ -1,7 +1,7 @@
 // need to read and write envi headers for data frames:
-//    preserve fields that we didn't change... 
+// preserve fields that we didn't change...
 
-// need to check consistency and file size.. 
+// need to check consistency and file size..
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,7 +10,7 @@
 int main(int argc, char *argv[]){
   if(argc < 5){
     printf("unstack [nrow] [ncol] [nband] [infile]\n");
-    printf("new usage:\n\tunstack [input data frame (path)] [empty folder]\n"); 
+    printf("new usage:\n\tunstack [input data frame (path)] [empty folder]\n");
     exit(1);
   }
 
@@ -36,7 +36,7 @@ int main(int argc, char *argv[]){
   long int br = fread( d, sizeof(float), nrow*ncol*nband,fh);
   if(br != nrow*ncol*nband){
     printf("Error: wrong number (%ld) of bytes read. Expected (%ld).\n", br, nrow*ncol*nband);
-     exit(1);
+    exit(1);
   }
 
   /* write individual bands */
@@ -55,4 +55,3 @@ int main(int argc, char *argv[]){
   }
   return 0;
 }
-
