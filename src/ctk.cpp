@@ -170,7 +170,17 @@ int main(int argc, char *argv[]){
 		obuf[i] = new SA<float>(NCol);
 	}
 
-	char * filenames[nFiles] = {"T11.bin", "T12_real.bin", "T12_imag.bin", "T13_real.bin", "T13_imag.bin", "T22.bin", "T23_real.bin", "T23_imag.bin", "T33.bin"};
+	char * filenames[nFiles] = {
+		"T11.bin",
+		"T12_real.bin", 
+		"T12_imag.bin", 
+		"T13_real.bin", 
+		"T13_imag.bin", 
+		"T22.bin",
+		"T23_real.bin", 
+		"T23_imag.bin", 
+		"T33.bin"
+	};
 
 //open the input files
 	file_name[0] = '\n';
@@ -184,15 +194,77 @@ int main(int argc, char *argv[]){
     file_name[0]='\n';
   }
 
-	char * ofname0[nOutFiles0] = {"alpha.bin", "beta.bin", "delta.bin", "gamma.bin", "lambda.bin", "entropy.bin", "anisotropy.bin", "combination_HA.bin", "combination_H1mA.bin", "combination_1mHA.bin",  "combination_1mH1mA.bin"};
+	char * ofname0[nOutFiles0] = {
+		"alpha.bin", 
+		"beta.bin", 
+		"delta.bin", 
+		"gamma.bin", 
+		"lambda.bin",
+		"entropy.bin", 
+		"anisotropy.bin", 
+		"combination_HA.bin",
+		"combination_H1mA.bin", 
+		"combination_1mHA.bin",  
+		"combination_1mH1mA.bin"
+	};
 
-	char * ofname1[nOutFiles1] = {"alpha1.bin", "alpha2.bin", "alpha3.bin", "beta1.bin", "beta2.bin", "beta3.bin", "delta1.bin", "delta2.bin", "delta3.bin", "gamma1.bin", "gamma2.bin", "gamma3.bin"};
+	char * ofname1[nOutFiles1] = {
+		"alpha1.bin", 
+		"alpha2.bin", 
+		"alpha3.bin",
+		"beta1.bin",
+		"beta2.bin", 
+		"beta3.bin", 
+		"delta1.bin",
+		"delta2.bin",
+		"delta3.bin", 
+		"gamma1.bin", 
+		"gamma2.bin", 
+		"gamma3.bin"
+	};
 
-	char * ofname2[nOutFiles2] = {"lambda1.bin", "lambda2.bin", "lambda3.bin", "p1.bin", "p2.bin", "p3.bin", "anisotropy12.bin", "asymmetry.bin", "polarisation_fraction.bin", "serd.bin","derd.bin", "rvi.bin", "pedestal.bin", "entropy_shannon.bin", "entropy_shannon_I.bin", "entropy_shannon_P.bin",
-	"anisotropy_lueneburg.bin"};
+	char * ofname2[nOutFiles2] = {
+		"lambda1.bin", 
+		"lambda2.bin", 
+		"lambda3.bin",
+		"p1.bin", 
+		"p2.bin", 
+		"p3.bin", 
+		"anisotropy12.bin",
+		"asymmetry.bin", 
+		"polarisation_fraction.bin", 
+		"serd.bin","derd.bin", 
+		"rvi.bin", "pedestal.bin", 
+		"entropy_shannon.bin", 
+		"entropy_shannon_I.bin", 
+		"entropy_shannon_P.bin",
+	"anisotropy_lueneburg.bin"
+	};
 	
-	char * ofname3[nOutFiles3] = {"tsvm_alpha_s.bin", "tsvm_phi_s.bin", "tsvm_tau_m.bin", "tsvm_psi.bin", "tsvm_alpha_s1.bin", "tsvm_alpha_s2.bin", "tsvm_alpha_s3.bin", "tsvm_phi_s1.bin", "tsvm_phi_s2.bin", "tsvm_phi_s3.bin", "tsvm_tau_m1.bin", "tsvm_tau_m2.bin", "tsvm_tau_m3.bin", "tsvm_psi1.bin", "tsvm_psi2.bin", "tsvm_psi3.bin"};
-	char ** ofname[OUTFILESETS] = {ofname0, ofname1, ofname2, ofname3};
+	char * ofname3[nOutFiles3] = {"tsvm_alpha_s.bin", 
+				      "tsvm_phi_s.bin",
+				      "tsvm_tau_m.bin", 
+				      "tsvm_psi.bin",
+				      "tsvm_alpha_s1.bin",
+				      "tsvm_alpha_s2.bin",
+				      "tsvm_alpha_s3.bin",
+				      "tsvm_phi_s1.bin", 
+				      "tsvm_phi_s2.bin", 
+				      "tsvm_phi_s3.bin", 
+				      "tsvm_tau_m1.bin",
+				      "tsvm_tau_m2.bin", 
+				      "tsvm_tau_m3.bin", 
+				      "tsvm_psi1.bin", 
+				      "tsvm_psi2.bin", 
+				      "tsvm_psi3.bin"
+				     };
+	
+	char ** ofname[OUTFILESETS] = {
+		ofname0, 
+		ofname1, 
+		ofname2, 
+		ofname3
+	};
 
 	for(i=0; i<OUTFILESETS; i++){
     for(j=0; j<nOutFiles[i]; j++){
@@ -262,7 +334,7 @@ for(Row = 0; Row < NRow; Row++){
 	if(Row > 0){
 		rowtime = ((float)((double)(rtime2-rtime1))/((double)(CLOCKS_PER_SEC)));
 		timeleft = rowtime*  ((float)(NRow-(Row+1)));
-		printf("\rRow %d of %d  Rows/sec: %.1f Eta: %.1f sec (last row)     ", Row, NRow, ((float)1.)/((float)rowtime), timeleft);
+		printf("\rRow %d of %d  Rows/sec: %.1f Eta: %.1f sec (last row) ", Row, NRow, ((float)1.)/((float)rowtime), timeleft);
 	}
 	else{
 		printf("\rRow %d of %d", Row, NRow);
@@ -270,9 +342,8 @@ for(Row = 0; Row < NRow; Row++){
 
 	rtime1 = clock();//times(&time1);
 	for(i=0; i<nFiles; i++){
-		r += fread(  &(  ((*(ibuf[i]))) [0] ), sizeof(float), NCol, in_file[i]);
+		r += fread(  &(((*(ibuf[i])))[0]), sizeof(float), NCol, in_file[i]);
   }
-	
 	for(Col = 0; Col < NCol; Col++){
 		/* T3 matrix */
 		T[0][0][0] = eps + IBUF(_11r,Col);   //((*(ibuf[_11r])))[j];  //mean[T11];
@@ -314,10 +385,7 @@ for(Row = 0; Row < NRow; Row++){
 			gamma[k] = atan2((double)(sin(gamma[k])), (double)(cos(gamma[k]) + eps));
 	/* Scattering mechanism probability of occurence */
 			p[k] = lambda[k] / (eps + lambda[0] + lambda[1] + lambda[2]);
-	/*		if(k==2){
-				cout <<"p[2] "<<scientific<< p[2] <<endl;
-			}
-*/
+
 		  if (p[k] < 0.) p[k] = 0.;
 			if (p[k] > 1.) p[k] = 1.;
 		}
@@ -327,7 +395,6 @@ for(Row = 0; Row < NRow; Row++){
     OBUF(ind[2][_3Proba1],Col)=p[0];
     OBUF(ind[2][_3Proba2],Col)=p[1];
     OBUF(ind[2][_3Proba3],Col)=p[2];
-
 	  
 /* Mean scattering mechanism */
 	  OBUF(ind[0][_1Alpha],Col) = 0;
@@ -345,7 +412,6 @@ for(Row = 0; Row < NRow; Row++){
 		  OBUF(ind[0][_1Lambda],Col) += lambda[k] * p[k];
 		  OBUF(ind[0][_1H],Col) -= p[k] * log(p[k] + eps);
 	  }
-
 
 	  OBUF(ind[1][_2Alpha1],Col) = alpha[0] * 180. / pi;
 	  OBUF(ind[1][_2Alpha2],Col) = alpha[1] * 180. / pi;
@@ -401,7 +467,6 @@ for(Row = 0; Row < NRow; Row++){
 	OBUF(ind[3][_3Proba3],Col)=p[2];
 */
 
-
 /* Scaling */
     OBUF( ind[2][_3A12],Col) = (p[0] - p[1]) / (p[0] + p[1] + eps);
     OBUF( ind[2][_3AS], Col) = (p[0] - p[1]) / (1. - 3. * p[2]);
@@ -417,7 +482,6 @@ for(Row = 0; Row < NRow; Row++){
     OBUF(ind[2][_3HSI],Col) = 3. * log(exp(1.)*pi*_I/3.);
     OBUF(ind[2][_3HS],Col) = OBUF(ind[2][_3HSP],Col) + OBUF(ind[2][_3HSI],Col);
     OBUF(ind[2][_3LUN],Col) = sqrt(1.5 * (p[1]*p[1]+p[2]*p[2]) / (p[0]*p[0]+p[1]*p[1]+p[2]*p[2]+eps));
-
 
 /* ERD */
     C11 = ( IBUF(_11r,Col)+2* IBUF(_12r,Col)+ IBUF(_22r,Col))/2.; // mean[T11] + 2 * mean[T12_re] + mean[T22]) / 2;
@@ -507,7 +571,6 @@ for(Row = 0; Row < NRow; Row++){
         OBUF(ind[3][k],Col)  *= 180. / pi;
       }
 			/*
-
 			#define _4Alpha  0
 #define _4Phi    1
 #define _4Tau    2
