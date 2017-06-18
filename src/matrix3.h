@@ -18,15 +18,12 @@ namespace _matrix3{
   template<class T> struct vec3{
 
     vec3<T>(T A, T B, T C) : a(A), b(B), c(C){
-      /* pass */
     }
 
     vec3<T>(const complex<T> &A): a(A.a), b(A.b), c(A.c){
-      /* pass */
     }
 
     vec3<T>(): a(_zero), b(_zero),c(_zero){
-      /* pass */
     }
 
     void operator = (const vec3<T> &A){
@@ -125,11 +122,9 @@ namespace _matrix3{
   template<class T> struct matrix3{
 
     matrix3<T>(T A, T B, T C, T D, T E, T F, T G, T H, T I) : a(A), b(B), c(C), d(D), e(E), f(F), g(G), h(H), i(I){
-      /* pass */
     }
 
     matrix3<T>(const complex<T> &A): a(A.a), b(A.b), c(A.c), d(A.d), e(A.e), f(A.f), g(A.g), h(A.h), i(A.i){
-      /* pass */
     }
 
     matrix3<T>(){
@@ -165,23 +160,19 @@ namespace _matrix3{
     }
 
     /* frobenius matrix norm */
-
     TYPE norm(){
       return abs(a) + abs(b) + abs(c) + abs(d) + abs(e) + abs(f) +abs(g) + abs(h) + abs(i);
     }
-
+    
     T a; T b; T c; T d; T e; T f; T g; T h; T i;
-
   };
 
   template<class T> struct herm3{
 
     herm3<T>( T A, T B, T C, T D, T E, T F) : a(A), b(B), c(C), d(D), e(E), f(F){
-      /* pass */
     }
 
     herm3<T>(const complex<T> &A): a(A.a), b(A.b), c(A.c), d(A.d), e(A.e), f(A.f){
-      /* pass */
     }
 
     herm3<T>(){
@@ -251,7 +242,6 @@ namespace _matrix3{
       /* frobenius norm */
       return abs(a) + 2. * abs(b) + 2. * abs(c) + abs(d) + 2. * abs(e) + abs(f);
     }
-
 
     TYPE d3( const herm3<T> & Z){
       /* sum of positive definite matrices is positive definite: */
@@ -372,7 +362,7 @@ namespace _matrix3{
   }
 
   vec3<cf> solve_cubic(cf a, cf b, cf c, cf d){
-
+    
     /* add case to avoid div by 0 */
     const cf _I(0.,1.);
     TYPE _2t13 = pow(2.,0.3333333333333333);
@@ -389,11 +379,10 @@ namespace _matrix3{
     return vec3<cf>((bX2 + _2t23*X2 - 2.*_2t13*t2)/aX6 ,
     (2.*bX2 + _2t13*(2.*(1. + _I*sqrt3)*t2 + _I*_2t13*(_I + sqrt3)*X2 ))/(2.*aX6),
     (2.*bX2 + _2t13*(2.*(1. - _I*sqrt3)*t2 - _2t13*(1.+_I*sqrt3)*X2 ))/(2.*aX6));
-
   }
 
   vec3<cf> solve_characteristic(const herm3<cf> & A){
-
+    
     /*solve characteristic equation for the 3x3 conj symmetric matrix: [ a b c; b* d e; c* e* f ]*/
     cf a(A.a); cf b(A.b); cf c(A.c);
     cf d(A.d); cf e(A.e); cf f(A.f);
@@ -414,7 +403,6 @@ namespace _matrix3{
   }
 
   vec3<cf> eigv( herm3<cf> &A, cf & lambda){
-
     /*
     >> syms a lambda b y c z d y e z
 
@@ -436,7 +424,6 @@ namespace _matrix3{
     x.b = -(a*e-lambda*e-c*conj(b))/(b*e-d*c+lambda*c);
     x.c = (-b*conj(b)-lambda*a+d*a-d*lambda+lambda^2)/(b*e-d*c+lambda*c);
     */
-
   }
 
   TYPE eig(herm3<cf> &A , vec3<cf> &L, vec3<cf> &E1, vec3<cf> &E2, vec3<cf> &E3){
@@ -478,11 +465,8 @@ namespace _matrix3{
     int j,i;
 
     for(j=2; j>0; j--){
-
       for(i=0; i<j; i++){
-
         if(ABS[i]<ABS[i+1]){
-
           tmpi = ind[i];
           ind[i] = ind[i+1];
           ind[i+1]=tmpi;
@@ -511,7 +495,5 @@ namespace _matrix3{
 
     /* sort eigenvectors */
     //return norm ( (A*e1)/l1 - e1) + norm( (A*e2)/l2 - e2) + norm( (A*e3)/l3 - e3)
-
   }
-
 }
