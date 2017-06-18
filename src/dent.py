@@ -36,6 +36,7 @@ wopen(bak_file).write(dat)
 
 # after making the backup:
 dat = dat.replace('}else{', '}\nelse{')
+
 #dat = dat.replace('{', '{\n')
 #dat = dat.replace('\n\n', '\n')
 new_lines, lines = [], dat.strip().split('\n')
@@ -97,5 +98,6 @@ for i in range(0, len(new_lines)):
         new_lines_filt.append(new_lines[i])
 
 out = '\n'.join(new_lines_filt).replace('\t', spaces_per_tab * ' ')
+out = out.replace('\n\n\n', '\n\n')
 wopen(in_file).write(out)
 sys.stdout.write(KNRM)
