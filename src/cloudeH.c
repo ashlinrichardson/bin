@@ -166,8 +166,7 @@ argv : input arguments array
 Returned values  :
 1
 *******************************************************************************/
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
 /* LOCAL VARIABLES */
 
 
@@ -177,16 +176,14 @@ int main(int argc, char *argv[])
 
 /* Strings */
     char file_name[1024], in_dir[1024], out_dir[1024];
-    char *file_name_in[Npolar_in] =     { 
+    char *file_name_in[Npolar_in] = {
 	    "T11.bin", 
 	    "T12_real.bin", 
 	    "T12_imag.bin",
 	"T13_real.bin",
 	    "T13_imag.bin",
-	    
 	"T14_real.bin",
 	    "T14_imag.bin",
-	    
 	"T22.bin",
 	    "T23_real.bin", 
 	    "T23_imag.bin",
@@ -198,7 +195,7 @@ int main(int argc, char *argv[])
 	"T44.bin"
     };
 
-    char *file_name_out[Npolar_out] =   { 
+    char *file_name_out[Npolar_out] = {
 	    "l1.bin", 
 	    "l2.bin", 
 	    "l3.bin",
@@ -341,7 +338,7 @@ int main(int argc, char *argv[])
 
 /* FIRST (Nwin+1)/2 LINES READING TO FILTER THE FIRST DATA LINE */
     for (Np = 0; Np < Npolar_in; Np++)
-	for (lig = (Nwin - 1) / 2; lig < Nwin - 1; lig++) {
+	for (lig = (Nwin - 1) / 2; lig < Nwin - 1; lig++){
 	    fread(&M_in[Np][lig][(Nwin - 1) / 2], sizeof(float), Ncol, in_file[Np]);
 	    for (col = Off_col; col < Sub_Ncol + Off_col; col++)
 		M_in[Np][lig][col - Off_col + (Nwin - 1) / 2] =  M_in[Np][lig][col + (Nwin - 1) / 2];
@@ -351,10 +348,10 @@ int main(int argc, char *argv[])
 
 
 /* READING AVERAGING AND DECOMPOSITION */
-    for (lig = 0; lig < Sub_Nlig; lig++) {
+    for (lig = 0; lig < Sub_Nlig; lig++){
 	if (lig%(int)(Sub_Nlig/20) == 0) {printf("%f\r", 100. * lig / (Sub_Nlig - 1));fflush(stdout);}
 
-	for (Np = 0; Np < Npolar_in; Np++) {
+	for (Np = 0; Np < Npolar_in; Np++){
 /* 1 line reading with zero padding */
 	    if (lig < Sub_Nlig - (Nwin - 1) / 2)
 		fread(&M_in[Np][Nwin - 1][(Nwin - 1) / 2], sizeof(float), Ncol, in_file[Np]);
@@ -368,7 +365,7 @@ int main(int argc, char *argv[])
 		M_in[Np][Nwin - 1][col + (Nwin - 1) / 2] = 0.;
 	}
 
-	for (col = 0; col < Sub_Ncol; col++) {
+	for (col = 0; col < Sub_Ncol; col++){
 	    for (Np = 0; Np < Npolar_in; Np++) mean[Np] = 0.;
 
 
