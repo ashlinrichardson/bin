@@ -138,7 +138,7 @@ int main(int argc, char *argv[]){
 
 /* Strings */
     char file_name[128], in_dir[128], out_dir[128];
-    char *file_name_in_out[16] = { 
+    char *file_name_in_out[16] = {
 	    "T11.bin", 
 	    "T12_real.bin",
 	    "T12_imag.bin",
@@ -154,6 +154,7 @@ int main(int argc, char *argv[]){
 	    "T34_imag.bin", 
 	    "T44.bin"
     };
+	
     char PolarCase[20], PolarType[20];
 
 /* Input variables */
@@ -226,7 +227,7 @@ int main(int argc, char *argv[]){
     M_out = matrix_float(Npolar, Ncol);
 
 /* INPUT/OUTPUT FILE OPENING*/
-    for (Np = 0; Np < Npolar; Np++) {
+    for (Np = 0; Np < Npolar; Np++){
 	sprintf(file_name, "%s%s", in_dir, file_name_in_out[Np]);
 	if ((in_file[Np] = fopen(file_name, "rb")) == NULL)
 	    edit_error("Could not open input file : ", file_name);
@@ -238,7 +239,7 @@ int main(int argc, char *argv[]){
     }
 
 /* Gradient window calculation parameters */
-    switch (Nwin) {
+    switch (Nwin){
     case 3:
 	Nnwin = 1;
 	Deplct = 1;
@@ -262,6 +263,7 @@ int main(int argc, char *argv[]){
     default:
 	edit_error("The window width Nwin must be set to 3, 5, 7, 9, 11", "");
     }
+	
 /* Mask */
     make_Mask(Mask, Nwin);
 
@@ -296,10 +298,10 @@ int main(int argc, char *argv[]){
 
 
 /* FILTERING */
-    for (lig = 0; lig < Sub_Nlig; lig++) {
+    for (lig = 0; lig < Sub_Nlig; lig++){
 	if (lig%(int)(Sub_Nlig/20) == 0) {printf("%f\r", 100. * lig / (Sub_Nlig - 1));fflush(stdout);}
 
-	for (Np = 0; Np < Npolar; Np++) {
+	for (Np = 0; Np < Npolar; Np++){
 /* 1 line reading with zero padding */
 	    if (lig < Sub_Nlig - (Nwin - 1) / 2)
 		fread(&M_in[Np][Nwin - 1][(Nwin - 1) / 2], sizeof(float),
@@ -318,10 +320,11 @@ int main(int argc, char *argv[]){
 	}
 
 
-	for (col = 0; col < Sub_Ncol; col++) {
+	for (col = 0; col < Sub_Ncol; col++){
+		
 /* (Nwin*Nwin) SPAN window calculation */
 	    for (k = -(Nwin - 1) / 2; k < 1 + (Nwin - 1) / 2; k++)
-		for (l = -(Nwin - 1) / 2; l < 1 + (Nwin - 1) / 2; l++) {
+		for (l = -(Nwin - 1) / 2; l < 1 + (Nwin - 1) / 2; l++){
 		    span[(Nwin - 1) / 2 + k][(Nwin - 1) / 2 + l] =
 			M_in[T11][(Nwin - 1) / 2 + k][(Nwin - 1) / 2 +
 						      col + l] +
@@ -335,8 +338,8 @@ int main(int argc, char *argv[]){
 
 
 /* 3*3 average SPAN Sub_window calculation for directional gradient determination */
-	    for (k = 0; k < 3; k++) {
-		for (l = 0; l < 3; l++) {
+	    for (k = 0; k < 3; k++){
+		for (l = 0; l < 3; l++){
 		    subwin[k][l] = 0.;
 		    for (kk = 0; kk < Nnwin; kk++)
 			for (ll = 0; ll < Nnwin; ll++)
@@ -365,7 +368,7 @@ int main(int argc, char *argv[]){
 /* Choice of a directional mask according to the maximum gradient */
 	    MaxDist = -INIT_MINMAX;
 	    for (k = 0; k < 4; k++)
-		if (MaxDist < fabs(Dist[k])) {
+		if(MaxDist < fabs(Dist[k])){
 		    MaxDist = fabs(Dist[k]);
 		    Nmax = k;
 		}
@@ -424,6 +427,7 @@ int main(int argc, char *argv[]){
 		    (M_in[Np][(Nwin - 1) / 2][(Nwin - 1) / 2 + col] -
 		     mean[Np]);
 	}			
+	   
 	    /*col */
 
 
@@ -439,6 +443,7 @@ int main(int argc, char *argv[]){
 		    M_in[Np][l][(Nwin - 1) / 2 + col] =
 			M_in[Np][l + 1][(Nwin - 1) / 2 + col];
     }				
+	
 	/*lig */
 
     free_matrix_float(M_out, Npolar);
