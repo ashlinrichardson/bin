@@ -12,10 +12,11 @@ using namespace std;
 using std::vector;
 
 namespace _image{
+  
   #define INPUT 0
   #define OUTPUT 1
 
-  inline float * falloc( int size ){
+  inline float * falloc(int size){
     float * p = (float *) malloc( size*sizeof(float));
     memset( p, '\0', size*sizeof(float));
     return p;
@@ -23,8 +24,8 @@ namespace _image{
 
   /* floating point generic binary image. */
   class Image{
-
     public:
+    
     Image(){
     }
 
@@ -106,6 +107,7 @@ namespace _image{
       ++pixels_processed;
       return;
     }
+    
     void writeHeaders(){
       //headers are written when the file is closed.
     }
