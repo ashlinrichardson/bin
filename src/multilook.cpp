@@ -73,9 +73,7 @@ int main(int argc, char *argv[]){
             total += (double)d;
             totaln ++;
           }
-          
         }
-        
       }
       
       if(totaln > 0){
@@ -91,12 +89,9 @@ int main(int argc, char *argv[]){
       
       fwrite(&d, sizeof(float), 1, outfile);
     }
-    
   }
-
   write_envi_hdr(string(OUTFILE)+string(".hdr"), nrow_new, ncol_new);
   printf("\r\n");
   fclose(outfile);
   return 0;
-  
 }
