@@ -132,14 +132,14 @@ Returned values  :
 *******************************************************************************/
 
 int main(int argc, char *argv[]){
-	
+
 /* Input/Output file pointer arrays */
     FILE *in_file[16], *out_file[16];
 
 /* Strings */
     char file_name[128], in_dir[128], out_dir[128];
     char *file_name_in_out[16] = {
-	    "T11.bin", 
+	    "T11.bin",
 	    "T12_real.bin",
 	    "T12_imag.bin",
 	"T13_real.bin",
@@ -148,13 +148,13 @@ int main(int argc, char *argv[]){
 	    "T23_imag.bin", "T33.bin",
 	"T14_real.bin",
 	    "T14_imag.bin",
-	"T24_real.bin", 
+	"T24_real.bin",
 	    "T24_imag.bin",
-	"T34_real.bin", 
-	    "T34_imag.bin", 
+	"T34_real.bin",
+	    "T34_imag.bin",
 	    "T44.bin"
     };
-	
+
     char PolarCase[20], PolarType[20];
 
 /* Input variables */
@@ -196,7 +196,7 @@ int main(int argc, char *argv[]){
 	strcpy(in_dir, argv[1]);
 	strcpy(out_dir, argv[2]);
 	Nwin = atoi(argv[3]);
-	} 
+	}
 	else{
 		edit_error("l4 in_dir out_dir Nwin\n", "");
 	}
@@ -263,7 +263,7 @@ int main(int argc, char *argv[]){
     default:
 	edit_error("The window width Nwin must be set to 3, 5, 7, 9, 11", "");
     }
-	
+
 /* Mask */
     make_Mask(Mask, Nwin);
 
@@ -321,7 +321,7 @@ int main(int argc, char *argv[]){
 
 
 	for (col = 0; col < Sub_Ncol; col++){
-		
+
 /* (Nwin*Nwin) SPAN window calculation */
 	    for (k = -(Nwin - 1) / 2; k < 1 + (Nwin - 1) / 2; k++)
 		for (l = -(Nwin - 1) / 2; l < 1 + (Nwin - 1) / 2; l++){
@@ -426,8 +426,8 @@ int main(int argc, char *argv[]){
 		    coeff *
 		    (M_in[Np][(Nwin - 1) / 2][(Nwin - 1) / 2 + col] -
 		     mean[Np]);
-	}			
-	   
+	}
+
 	    /*col */
 
 
@@ -442,8 +442,8 @@ int main(int argc, char *argv[]){
 		for (Np = 0; Np < Npolar; Np++)
 		    M_in[Np][l][(Nwin - 1) / 2 + col] =
 			M_in[Np][l + 1][(Nwin - 1) / 2 + col];
-    }				
-	
+    }
+
 	/*lig */
 
     free_matrix_float(M_out, Npolar);
@@ -471,7 +471,7 @@ Returned values  :
 void
 *******************************************************************************/
 void make_Mask(float ***Mask, int Nwin){
-	
+
     int k, l, Nmax;
 
 	for (k = 0; k < Nwin; k++)
