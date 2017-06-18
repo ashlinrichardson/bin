@@ -23,9 +23,9 @@ UMR CNRS 6164
 Groupe Image et Teledetection
 Equipe SAPHIR (SAr Polarimetrie Holographie Interferometrie Radargrammetrie)
 UNIVERSITE DE RENNES I
-Pôle Micro-Ondes Radar
-Bât. 11D - Campus de Beaulieu
-263 Avenue Général Leclerc
+PÃ´le Micro-Ondes Radar
+BÃ¢t. 11D - Campus de Beaulieu
+263 Avenue GÃ©nÃ©ral Leclerc
 35042 RENNES Cedex
 Tel :(+33) 2 23 23 57 63
 Fax :(+33) 2 23 23 69 63
@@ -150,13 +150,23 @@ int main(int argc, char *argv[])
 
 /* Strings */
     char file_name[128], in_dir[128], out_dir[128];
-    char *file_name_in_out[16] =
-	{ "T11.bin", "T12_real.bin", "T12_imag.bin",
-	"T13_real.bin", "T13_imag.bin", "T22.bin",
-	"T23_real.bin", "T23_imag.bin", "T33.bin",
-	"T14_real.bin", "T14_imag.bin",
-	"T24_real.bin", "T24_imag.bin",
-	"T34_real.bin", "T34_imag.bin", "T44.bin"
+    char *file_name_in_out[16] = { 
+	    "T11.bin", 
+	    "T12_real.bin", 
+	    "T12_imag.bin",
+	"T13_real.bin", 
+	    "T13_imag.bin", 
+	    "T22.bin",
+	"T23_real.bin", 
+	    "T23_imag.bin", 
+	    "T33.bin",
+	"T14_real.bin", 
+	    "T14_imag.bin",
+	"T24_real.bin", 
+	    "T24_imag.bin",
+	"T34_real.bin", 
+	    "T34_imag.bin", 
+	    "T44.bin"
     };
     char PolarCase[20], PolarType[20];
 
@@ -189,11 +199,10 @@ Nlook      =1;// atoi(argv[3]);
 	Off_col = 0;//atoi(argv[6]);
 	Sub_Nlig = 0;//atoi(argv[7]);
 	Sub_Ncol = 0;//atoi(argv[8]);
-    } else
-	{
+    } 
+	else{
 		printf("gaussian_filter_T4.c (modified by Ash Richardson)\nUsage: [Input directory] [Output directory] [Window Size]\n");
 exit(1);
-
 	}
 
     check_dir(in_dir);
@@ -301,7 +310,7 @@ exit(1);
 		    for (Np = 0; Np < Npolar; Np++)
 			M_out[Np][col] += Gauss[(Nwin - 1) / 2 + k][(Nwin - 1) / 2 + l] * M_in[Np][(Nwin - 1) / 2 + k][(Nwin - 1) / 2 + col + l] / NormGauss;
 
-	}			/*col */
+	}			
 
 
 /* FILTERED DATA WRITING */
@@ -315,7 +324,7 @@ exit(1);
 		for (Np = 0; Np < Npolar; Np++)
 		    M_in[Np][l][(Nwin - 1) / 2 + col] =
 			M_in[Np][l + 1][(Nwin - 1) / 2 + col];
-    }				/*lig */
+    }				
 
     free_matrix_float(M_out, Npolar);
     free_matrix3d_float(M_in, Npolar, Nwin);
