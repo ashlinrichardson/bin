@@ -5,21 +5,26 @@
 #include <ostream>
 #include <vector>
 #include "bin.h"
+
 /* define indexes for each channel of information from S2 matrix */
 #define s11 0
 #define s12 1
 #define s21 2
 #define s22 3
 #define nS2Files 4
+
 using std::ostream;
 using namespace std;
 using std::vector;
 using namespace _bin;
+
 /* reading and writing for S2 data sets */
 namespace _S2{
+
   class S2{
 
     public:
+
     int type; //Type is INPUT or OUTPUT
     char * dir; //Directory the data set resides within.
     Image_Complex * S; //Pointer to an array of channels (S11 ,S12, S21, S22)
