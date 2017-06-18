@@ -69,11 +69,9 @@ void write_config(char *dir, int Nlig, int Ncol, char *PolarCase, char *PolarTyp
 #define vh 2
 #define vv 3
 
-
 /* CONSTANTS */
 #define Npolar_in 4 /* nb of input/output files */
 #define Npolar_out 4
-
 
 /* ROUTINES DECLARATION */
 #include "../psp/psp.h"
