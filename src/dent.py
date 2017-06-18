@@ -80,6 +80,15 @@ if(n_indent != 0):
     error('indentation level not 0: either there are open brackets, ' +
           ' or the logic of this program is too simple')
 
-out = '\n'.join(new_lines).replace('\t', spaces_per_tab * ' ')
+# add a few filters
+new_lines_filt = []
+
+for i in range(0, len(new_lines)):
+    if new_lines[i].strip() == '{':
+        new_lines_filt[-1] += '{'
+    else:
+        new_lines_filt.append(new_lines[i])
+
+out = '\n'.join(new_lines_filt).replace('\t', spaces_per_tab * ' ')
 wopen(in_file).write(out)
 sys.stdout.write(KNRM)
