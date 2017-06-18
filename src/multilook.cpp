@@ -49,15 +49,18 @@ int main(int argc, char *argv[]){
   int isBad = false;
   
   for(row = 0; row < nrow_new; row++){
+    
     printf("\rProcessing row %d of %d", row+1, nrow_new);
     rc = row*windowsize;
     
     for(col = 0; col < ncol_new; col++){
+      
       cc = col * windowsize; //pixel window.
       d = total = totaln = 0.;
       isBad = false;
       
-      for(i = rc; i < rc + windowsize; i++){        
+      for(i = rc; i < rc + windowsize; i++){      
+        
         for(j = cc; j < cc + windowsize; j++){
           
           if((i >= 0) && (j >= 0) && (i < NRow) && (j < NCol)){
@@ -70,7 +73,9 @@ int main(int argc, char *argv[]){
             total += (double)d;
             totaln ++;
           }
+          
         }
+        
       }
       
       if(totaln > 0){
@@ -79,12 +84,14 @@ int main(int argc, char *argv[]){
       else{
         d = 0;
       }
+      
       if(isBad){
         d = 0.; /* was NAN; */
       }
-      fwrite(&d, sizeof(float), 1, outfile);
       
+      fwrite(&d, sizeof(float), 1, outfile);
     }
+    
   }
 
   write_envi_hdr(string(OUTFILE)+string(".hdr"), nrow_new, ncol_new);
