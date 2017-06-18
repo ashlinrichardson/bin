@@ -9,12 +9,14 @@
 #include <list>
 
 int main(int argc, char ** argv){
+  
   if(argc<6){
     printf("htrim.cpp: trim a binary file (ENVI type 4) by histogram modification. Trim a percentage from the top and bottom.\n");
     printf("reimplemented 20170508 from 20120330 version\n");
     printf("Usage: trim [infile] [nrow] [ncol] [lower %] [upper %] [outfile]\n");
     exit(1);
   }
+  
   char * infile = argv[1];
   int Nrow = atoi(argv[2]);
   int Ncol = atoi(argv[3]);
@@ -33,11 +35,13 @@ int main(int argc, char ** argv){
   std::list<float> my_list;
   min = max = FLT_MAX;
   count = 0;
+  
   for(lig = 0; lig < Nrow; lig++){
     for(col = 0; col < Ncol; col++){
       count++;
       fread(&dat, sizeof(float), 1, inf);
       my_list.push_back(dat);
+      
       if((!isinf(dat)) && (!isnan(dat))){
         if(min > dat){
           min = dat;
@@ -46,6 +50,7 @@ int main(int argc, char ** argv){
           max = dat;
         }
       }
+      
     }
   }
   printf("Min %e Max %e\n", min, max);
@@ -59,11 +64,14 @@ int main(int argc, char ** argv){
   for(int q = 0; q < index_lower; q++){
     my_list.pop_front();
   }
+  
   float lower_cut = my_list.front();
   index_upper = (Nrow * Ncol) - index_upper - 1;
+  
   for(int q = 0; q < index_upper; q++){
     my_list.pop_back();
   }
+  
   float top_cut = my_list.back();
 
   printf("index_lower %d index_upper %d nrow*ncol %d\n", index_lower, index_upper, Nrow * Ncol);
@@ -82,6 +90,7 @@ int main(int argc, char ** argv){
   printf("Applying histogram derived cutoffs..\n");
   for(lig = 0; lig < Nrow; lig++){
     for(col = 0; col < Ncol; col++){
+      
       fread(&dat, sizeof(float), 1, inf);
 
       if(dat < lower_cut){
@@ -93,11 +102,14 @@ int main(int argc, char ** argv){
       else{
         dat = (dat - lower_cut) / (top_cut - lower_cut);
       }
+      
       fwrite(&dat, sizeof(float), 1, outf);
+      
     }
   }
-  fclose(inf);
-  fclose(outf);
+
   write_envi_hdr(string(outfile) + string(".hdr"), Nrow, Ncol);
   printf("done");
+  fclose(inf);
+  fclose(outf);
 }
