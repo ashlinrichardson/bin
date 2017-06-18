@@ -36,11 +36,16 @@ wopen(bak_file).write(dat)
 
 # after making the backup:
 dat = dat.replace('}else{', '}\nelse{')
-
+#dat = dat.replace('{', '{\n')
+#dat = dat.replace('\n\n', '\n')
 new_lines, lines = [], dat.strip().split('\n')
 
 for i in range(0, len(lines)):
     line = lines[i].strip()
+
+    #if line == '':
+    #    continue 
+
     line = ' '.join(line.split())
     reindent = (n_indent * indent) + line
 
@@ -77,6 +82,7 @@ for i in range(0, len(lines)):
         new_lines.append('')
 
 if(n_indent != 0):
+    print "n_indent", n_indent
     error('indentation level not 0: either there are open brackets, ' +
           ' or the logic of this program is too simple')
 
