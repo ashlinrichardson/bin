@@ -218,6 +218,7 @@ int main(int argc, char *argv[]){
                               "T13_real.bin", "T13_imag.bin", "T22.bin",
                               "T23_real.bin", "T23_imag.bin", "T33.bin"
     };
+	
     char *FileOutputT4[16] = {
 	    "T11.bin", "T12_real.bin", "T12_imag.bin",
                            	  "T13_real.bin", "T13_imag.bin", "T14_real.bin",
@@ -226,7 +227,8 @@ int main(int argc, char *argv[]){
                               "T33.bin", "T34_real.bin", "T34_imag.bin", "T44.bin"
     };
 	
-    char *FileOutputC3[9] = { "C11.bin", "C12_real.bin", "C12_imag.bin",
+    char *FileOutputC3[9] = { 
+	    "C11.bin", "C12_real.bin", "C12_imag.bin",
                               "C13_real.bin", "C13_imag.bin", "C22.bin",
                               "C23_real.bin", "C23_imag.bin", "C33.bin"
 			    };
@@ -315,16 +317,16 @@ int main(int argc, char *argv[]){
     if (strcmp(DataFormat, "C3") == 0) Npolar_out = 9;
     if (strcmp(DataFormat, "C4") == 0) Npolar_out = 16;
 
-    if (strcmp(DataFormat, "IPP") == 0) {
-        if (strcmp(DataFormatPP, "pp5") == 0) {
+    if (strcmp(DataFormat, "IPP") == 0){
+        if (strcmp(DataFormatPP, "pp5") == 0){
          	PolIn[0] = hh;PolIn[1] = vh;
           	PolOut[0] = I11;PolOut[1] = I21;
             }
-       if (strcmp(DataFormatPP, "pp6") == 0) {
+       if (strcmp(DataFormatPP, "pp6") == 0){
          	PolIn[0] = hv;PolIn[1] = vv;
           	PolOut[0] = I12;PolOut[1] = I22;
             }
-       if (strcmp(DataFormatPP, "pp7") == 0) {
+       if (strcmp(DataFormatPP, "pp7") == 0){
          	PolIn[0] = hh;PolIn[1] = vv;
           	PolOut[0] = I11;PolOut[1] = I22;
             }
@@ -341,13 +343,13 @@ int main(int argc, char *argv[]){
 /* INPUT / OUTPUT BINARY DATA FILES */
 /******************************************************************************/
 
-    for (np = 0; np < Npolar_in; np++) {
+    for (np = 0; np < Npolar_in; np++){
 	sprintf(file_name, "%s%s", DirInput, FileInput[np]);
 	if ((in_file[np] = fopen(file_name, "rb")) == NULL)
 	    edit_error("Could not open input file : ", file_name);
     }
 
-    for (np = 0; np < Npolar_out; np++) {
+    for (np = 0; np < Npolar_out; np++){
     if (strcmp(DataFormat, "T3") == 0) sprintf(file_name, "%s%s", DirOutput, FileOutputT3[np]);
     if (strcmp(DataFormat, "T4") == 0) sprintf(file_name, "%s%s", DirOutput, FileOutputT4[np]);
     if (strcmp(DataFormat, "C3") == 0) sprintf(file_name, "%s%s", DirOutput, FileOutputC3[np]);
@@ -363,29 +365,29 @@ int main(int argc, char *argv[]){
 for (np = 0; np < Npolar_in; np++)
      rewind(in_file[np]);
 
-for (lig = 0; lig < Nligoffset; lig++) {
-	for (np = 0; np < Npolar_in; np++) {
+for (lig = 0; lig < Nligoffset; lig++){
+	for (np = 0; np < Npolar_in; np++){
         fread(&M_tmp[0][0][0], sizeof(float), 2 * Ncol, in_file[np]);
         }
     }
 
-for (lig = 0; lig < Nligfin; lig++) {
+for (lig = 0; lig < Nligfin; lig++){
 	if (lig%(int)(Nligfin/20) == 0) {printf("%f\r", 100. * lig / (Nligfin - 1));fflush(stdout);}
-    for (ii = 0; ii < Nlook_lig; ii++) {
-   	    for (np = 0; np < Npolar_in; np++) {
+    for (ii = 0; ii < Nlook_lig; ii++){
+   	    for (np = 0; np < Npolar_in; np++){
             fread(&M_tmp[np][ii][0], sizeof(float), 2 * Ncol, in_file[np]);
-            for (col = 0; col < Ncol; col++) {
+            for (col = 0; col < Ncol; col++){
                      M_in[np][ii][2 * col] = M_tmp[np][ii][2 * col];
                      M_in[np][ii][2 * col + 1] = M_tmp[np][ii][2 * col +1];
                      }
             }
         } 
 
-    if (strcmp(DataFormat, "IPP") == 0) {
-	for (col = 0; col < Ncolfin; col++) {
+    if (strcmp(DataFormat, "IPP") == 0){
+	for (col = 0; col < Ncolfin; col++){
         for (np = 0; np < Npolar_out; np++) M_out[np][col] = 0.;
-        for (ii = 0; ii < Nlook_lig; ii++) {
-	        for (jj = 0; jj < Nlook_col; jj++) {
+        for (ii = 0; ii < Nlook_lig; ii++){
+	        for (jj = 0; jj < Nlook_col; jj++){
 	             ind = 2*(col * Nlook_col + jj + Ncoloffset);
                  for (np = 0; np < Npolar_out; np++) M_out[np][col] += M_in[PolIn[np]][ii][ind] * M_in[PolIn[np]][ii][ind] + M_in[PolIn[np]][ii][ind + 1] * M_in[PolIn[np]][ii][ind + 1];
                  }
@@ -396,11 +398,11 @@ for (lig = 0; lig < Nligfin; lig++) {
 	   fwrite(&M_out[np][0], sizeof(float), Ncolfin, out_file[np]);
     }
 
-    if (strcmp(DataFormat, "T3") == 0) {
-	for (col = 0; col < Ncolfin; col++) {
+    if (strcmp(DataFormat, "T3") == 0){
+	for (col = 0; col < Ncolfin; col++){
         for (np = 0; np < Npolar_out; np++) M_out[np][col] = 0.;
-        for (ii = 0; ii < Nlook_lig; ii++) {
-	        for (jj = 0; jj < Nlook_col; jj++) {
+        for (ii = 0; ii < Nlook_lig; ii++){
+	        for (jj = 0; jj < Nlook_col; jj++){
 	            ind = 2*(col * Nlook_col + jj + Ncoloffset);
                 k1r = (M_in[hh][ii][ind] + M_in[vv][ii][ind]) / sqrt(2.);k1i = (M_in[hh][ii][ind + 1] + M_in[vv][ii][ind + 1]) / sqrt(2.);
                 k2r = (M_in[hh][ii][ind] - M_in[vv][ii][ind]) / sqrt(2.);k2i = (M_in[hh][ii][ind + 1] - M_in[vv][ii][ind + 1]) / sqrt(2.);
@@ -422,11 +424,11 @@ for (lig = 0; lig < Nligfin; lig++) {
 	    fwrite(&M_out[np][0], sizeof(float), Ncolfin, out_file[np]);
     }
 
-    if (strcmp(DataFormat, "T4") == 0) {
-	for (col = 0; col < Ncolfin; col++) {
+    if (strcmp(DataFormat, "T4") == 0){
+	for (col = 0; col < Ncolfin; col++){
         for (np = 0; np < Npolar_out; np++) M_out[np][col] = 0.;
-        for (ii = 0; ii < Nlook_lig; ii++) {
-	        for (jj = 0; jj < Nlook_col; jj++) {
+        for (ii = 0; ii < Nlook_lig; ii++){
+	        for (jj = 0; jj < Nlook_col; jj++){
 	            ind = 2*(col * Nlook_col + jj + Ncoloffset);
                 k1r = (M_in[hh][ii][ind] + M_in[vv][ii][ind]) / sqrt(2.);k1i = (M_in[hh][ii][ind + 1] + M_in[vv][ii][ind + 1]) / sqrt(2.);
                 k2r = (M_in[hh][ii][ind] - M_in[vv][ii][ind]) / sqrt(2.);k2i = (M_in[hh][ii][ind + 1] - M_in[vv][ii][ind + 1]) / sqrt(2.);
@@ -482,11 +484,11 @@ for (lig = 0; lig < Nligfin; lig++) {
 	    fwrite(&M_out[np][0], sizeof(float), Ncolfin, out_file[np]);
     }
 
-    if (strcmp(DataFormat, "C4") == 0) {
-	for (col = 0; col < Ncolfin; col++) {
+    if (strcmp(DataFormat, "C4") == 0){
+	for (col = 0; col < Ncolfin; col++){
         for (np = 0; np < Npolar_out; np++) M_out[np][col] = 0.;
-        for (ii = 0; ii < Nlook_lig; ii++) {
-	        for (jj = 0; jj < Nlook_col; jj++) {
+        for (ii = 0; ii < Nlook_lig; ii++){
+	        for (jj = 0; jj < Nlook_col; jj++){
 	            ind = 2*(col * Nlook_col + jj + Ncoloffset);
                 k1r = M_in[hh][ii][ind]; k1i = M_in[hh][ii][ind + 1];
                 k2r = M_in[hv][ii][ind]; k2i = M_in[hv][ii][ind + 1];
