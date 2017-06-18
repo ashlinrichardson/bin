@@ -34,21 +34,21 @@ void error(string msg){
 
 float * f32(int nfloat){
   int nb = sizeof(float) * nfloat;
-	float * r = (float*)(void*)malloc(nb);
+  float * r = (float*)(void*)malloc(nb);
   if(!r){
     error("memory allocation failed");
   }
-	memset(r, '\0', nb);
+  memset(r, '\0', nb);
   return r;
 }
 
 char * c8(int nchar){
   int nb = sizeof(char) * nchar;
-	char * r = (char*)(void*)malloc(nb);
+  char * r = (char*)(void*)malloc(nb);
   if(!r){
     error("memory allocation failed");
   }
-	memset(r, '\0', nb);
+  memset(r, '\0', nb);
   return r;
 }
 
@@ -76,7 +76,6 @@ FILE * wopen(const char * fn){
 FILE * wopen(string fn){
   return wopen(fn.c_str());
 }
-
 
 /*convert char to string: single character: interpret whitspace as space character */
 string chartos(char s){
@@ -130,7 +129,7 @@ string trim(string s, char a){
   return ret;
 }
 
-long int getFileSize(std::string  fn){
+long int getFileSize(std::string fn){
   ifstream i;
   i.open(fn.c_str(), ios::binary);
   if(!i.is_open()){
@@ -176,7 +175,7 @@ vector<string> split(string s, char delim){
   while(getline(iss,token,delim)){
     ret.push_back(token);
   }
-	return ret;
+  return ret;
 }
 
 vector<string> split(string s){
@@ -204,10 +203,10 @@ string getHeaderFileName(string fn){
   if(exists(hfn)){
     return hfn;
   }
-	else if(exists(hfn2)){
+  else if(exists(hfn2)){
     return hfn2;
   }
-	else{
+  else{
     printf("%sError: could not find header file [%s] or [%s]\n", KRED, hfn.c_str(), hfn2.c_str());
     return string("");
   }
@@ -219,7 +218,7 @@ vector<string> parseHeaderFile(string hfn, long int & NRow, long int & NCol, lon
     printf("%sError: couldn't find header file\n", KRED);
   }
   else{
-    vector<string> lines =  readLines(hfn);
+    vector<string> lines = readLines(hfn);
     vector<string>::iterator it;
     for(it=lines.begin(); it!=lines.end(); it++){
       string sss(*it);
@@ -250,7 +249,7 @@ void read_envi_hdr(string hfn, long int & nrow, long int & ncol, long int & nban
 }
 
 void read_config(string hfn, int & NRow, int & NCol){
-  vector<string> lines =  readLines(hfn);
+  vector<string> lines = readLines(hfn);
   NRow = atoi(lines[1].c_str());
   NCol = atoi(lines[4].c_str());
 }
