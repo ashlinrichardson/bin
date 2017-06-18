@@ -72,10 +72,6 @@ void read_config(char *dir, int *Nlig, int *Ncol, char *PolarCase, char *PolarTy
 #include <conio.h>
 #endif
 
-
-/* ALIASES  */
-
-
 /* T matrix */
 #define T11     0
 #define T12_re  1
@@ -94,13 +90,7 @@ void read_config(char *dir, int *Nlig, int *Ncol, char *PolarCase, char *PolarTy
 #define T34_im  14
 #define T44     15
 
-
-/* CONSTANTS  */
-
-
 /* ROUTINES DECLARATION */
-//#include "matrix.h"
-//#include "util.h"
 #include "../psp/psp.h"
 
 /*******************************************************************************
@@ -136,17 +126,10 @@ Returned values  :
 1
 *******************************************************************************/
 
-
-int main(int argc, char *argv[])
-{
-
-
-/* LOCAL VARIABLES */
-
+int main(int argc, char *argv[]){
 
 /* Input/Output file pointer arrays */
     FILE *in_file[16], *out_file[16];
-
 
 /* Strings */
     char file_name[128], in_dir[128], out_dir[128];
@@ -167,7 +150,8 @@ int main(int argc, char *argv[])
 	"T34_real.bin", 
 	    "T34_imag.bin", 
 	    "T44.bin"
-    };
+   };
+	
     char PolarCase[20], PolarType[20];
 
 /* Input variables */
@@ -193,7 +177,7 @@ int main(int argc, char *argv[])
     if (argc == 4) {
 	strcpy(in_dir, argv[1]);
 	strcpy(out_dir, argv[2]);
-Nlook      =1;// atoi(argv[3]);
+Nlook      = 1; // atoi(argv[3]);
 	Nwin = atoi(argv[3]);
 	Off_lig = 0;//atoi(argv[5]);
 	Off_col = 0;//atoi(argv[6]);
@@ -201,7 +185,8 @@ Nlook      =1;// atoi(argv[3]);
 	Sub_Ncol = 0;//atoi(argv[8]);
     } 
 	else{
-		printf("gaussian_filter_T4.c (modified by Ash Richardson)\nUsage: [Input directory] [Output directory] [Window Size]\n");
+		printf("gaussian_filter_T4.c (modified by Ash Richardson)\n");
+		printf("Usage: [Input directory] [Output directory] [Window Size]\n");
 exit(1);
 	}
 
@@ -222,7 +207,7 @@ exit(1);
 
 
 /* INPUT/OUTPUT FILE OPENING*/
-    for (Np = 0; Np < Npolar; Np++) {
+    for (Np = 0; Np < Npolar; Np++){
 	sprintf(file_name, "%s%s", in_dir, file_name_in_out[Np]);
 	if ((in_file[Np] = fopen(file_name, "rb")) == NULL)
 	    edit_error("Could not open input file : ", file_name);
@@ -253,7 +238,7 @@ exit(1);
 
 /* FIRST (Nwin+1)/2 LINES READING TO FILTER THE FIRST DATA LINE */
     for (Np = 0; Np < Npolar; Np++)
-	for (lig = (Nwin - 1) / 2; lig < Nwin - 1; lig++) {
+	for (lig = (Nwin - 1) / 2; lig < Nwin - 1; lig++){
 	    fread(&M_in[Np][lig][(Nwin - 1) / 2], sizeof(float), Ncol,
 		  in_file[Np]);
 	    for (col = Off_col; col < Sub_Ncol + Off_col; col++)
@@ -269,19 +254,17 @@ exit(1);
 	NormGauss = 0.;
 	RadGauss = 0.466 * (Nwin - 1) / 2;
 	RadGauss = 2. * RadGauss * RadGauss;
-    for (k = -(Nwin - 1) / 2; k < 1 + (Nwin - 1) / 2; k++)
-   	{
-		for (l = -(Nwin - 1) / 2; l < 1 + (Nwin - 1) / 2; l++)
-		{
+    for (k = -(Nwin - 1) / 2; k < 1 + (Nwin - 1) / 2; k++){
+		for (l = -(Nwin - 1) / 2; l < 1 + (Nwin - 1) / 2; l++){
 			 Gauss[(Nwin - 1) / 2 + k][(Nwin - 1) / 2 + l] = exp(-(k*k + l*l)/RadGauss);
 			 NormGauss = NormGauss + Gauss[(Nwin - 1) / 2 + k][(Nwin - 1) / 2 + l];
 		}
 	}
 
-    for (lig = 0; lig < Sub_Nlig; lig++) {
+    for (lig = 0; lig < Sub_Nlig; lig++){
 	if (lig%(int)(Sub_Nlig/20) == 0) {printf("%f\r", 100. * lig / (Sub_Nlig - 1));fflush(stdout);}
 
-	for (Np = 0; Np < Npolar; Np++) {
+	for (Np = 0; Np < Npolar; Np++){
 /* 1 line reading with zero padding */
 	    if (lig < Sub_Nlig - (Nwin - 1) / 2)
 		fread(&M_in[Np][Nwin - 1][(Nwin - 1) / 2], sizeof(float),
@@ -299,7 +282,7 @@ exit(1);
 		M_in[Np][Nwin - 1][col + (Nwin - 1) / 2] = 0.;
 	}
 
-	for (col = 0; col < Sub_Ncol; col++) {
+	for (col = 0; col < Sub_Ncol; col++){
 
 /*Within window statistics*/
 	    for (Np = 0; Np < Npolar; Np++)
