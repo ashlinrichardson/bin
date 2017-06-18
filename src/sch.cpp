@@ -227,18 +227,15 @@ void Diagonalisation(int MatrixDim, float ***HM, float ***EigenVect, float *Eige
 
 /* this method should go in a utility file*/
 int HSVtoRGB( float *r, float *g, float *b, float h, float s, float v){
-  if( (h>360.)||(h<0.))
-  {
+  if( (h>360.)||(h<0.)){
     printf("H: HSV out of range %f %f %f %d %d\n", h, s, v);
     return(1);
   }
-  if((s<0.)||(s>1.))
-  {
+  if((s<0.)||(s>1.)){
     printf("S: HSV out of range %f %f %f %d %d\n", h, s, v);
     return(1);
   }
-  if((v<0.)||(v>1.))
-  {
+  if((v<0.)||(v>1.)){
     printf("V: HSV out of range %f %f %f %d %d\n", h, s, v);
     return(1);
   }
@@ -273,8 +270,7 @@ int HSVtoRGB( float *r, float *g, float *b, float h, float s, float v){
   return 0;
 }
 
-float *vector_float(int nrh)
-{
+float *vector_float(int nrh){
   int ii;
   float *m;
 
@@ -286,8 +282,7 @@ float *vector_float(int nrh)
   m[ii] = 0;
   return m;
 }
-float ***matrix3d_float(int nz, int nrh, int nch)
-{
+float ***matrix3d_float(int nz, int nrh, int nch){
   int ii, jj, dd;
   float ***m;
 
@@ -312,13 +307,11 @@ float ***matrix3d_float(int nz, int nrh, int nch)
   m[dd][jj][ii] = (float) (0.);
   return m;
 }
-void zero(float * a, int l)
-{
+void zero(float * a, int l){
   for(int i=0; i<l; i++) a[i]=0;
 }
 void read_config(char *dir, int *Nlig, int *Ncol, char *PolarCase,
-char *PolarType)
-{
+char *PolarType){
   char file_name[128];
   char Tmp[128];
   FILE *file;
@@ -547,8 +540,7 @@ int main(int argc, char *argv[]){
 
       //HSVtoRGB( &o[oR], &o[oG], &o[oB], o[oH], o[oS], o[oV] );
 
-      for(Np=0; Np<oR; Np++)
-      {
+      for(Np=0; Np<oR; Np++){
         fwrite( &o[Np], sizeof(float), 1, out_file[Np]);
         //fread(&M_in[0][0][0], sizeof(float), Ncol, in_file[Np]);
       }
@@ -604,8 +596,7 @@ int main(int argc, char *argv[]){
   list_first=(Huelist.front());
   list_last=(Huelist.back());
 
-  for(q=0; q<hueindex; q++)
-  {
+  for(q=0; q<hueindex; q++){
     Huelist.pop_front();
   }
   huecutoff =(Huelist.front()); //back());
@@ -675,8 +666,7 @@ int main(int argc, char *argv[]){
       if(__V > _2percent_cutoff){
         __V = 1.0;
       }
-      else
-      {
+      else{
         __V = (__V - minL)/(_2percent_cutoff-minL);
       }
 
