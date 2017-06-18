@@ -20,7 +20,6 @@
 //*          - Ceiling use of available pixels as percentage
 //*          - Output alteration mask
 //*
-//*
 //* Program output:
 //*      1. ENVI format output file
 //*
@@ -31,7 +30,6 @@
 //*
 //* Developer: Ash Richardson
 //*            mailto:ashlin.richardson@gmail.com
-//*
 //*
 //* Reference:
 //*
@@ -57,13 +55,12 @@
  *<BR> Do not attempt to use any other parameters: the results will be invalid, and you may not be warned.
  */
 
-//make sure that the byte order is 0
-#include "band.h"
-#include "functions.h"
 #include "time.h"
-#include <iostream>
+#include "band.h"
 #include "stdio.h"
 #include "stdlib.h"
+#include <iostream>
+#include "functions.h"
 
 using namespace std;
 #define PIX_ARRAY_SIZE 50
