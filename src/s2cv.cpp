@@ -205,18 +205,31 @@ int main(int argc, char *argv[]){
   FILE *in_file[16], *out_file[16];
 
   char DirInput[1024],DirOutput[1024],file_name[1024],DataFormat[10],DataFormatPP[10];
+  
   char *FileInput[4] = {
-    "s11.bin", "s12.bin", "s21.bin", "s22.bin"
+    "s11.bin",
+    "s12.bin",
+    "s21.bin",
+    "s22.bin"
   };
 
   char *FileOutputIPP[4] = {
-    "I11.bin", "I12.bin", "I21.bin", "I22.bin"
+    "I11.bin",
+    "I12.bin",
+    "I21.bin",
+    "I22.bin"
   };
 
   char *FileOutputT3[9] = {
-    "T11.bin", "T12_real.bin", "T12_imag.bin",
-    "T13_real.bin", "T13_imag.bin", "T22.bin",
-    "T23_real.bin", "T23_imag.bin", "T33.bin"
+    "T11.bin",
+    "T12_real.bin",
+    "T12_imag.bin",
+    "T13_real.bin", 
+    "T13_imag.bin", 
+    "T22.bin",
+    "T23_real.bin",
+    "T23_imag.bin",
+    "T33.bin"
   };
 
   char *FileOutputT4[16] = {
