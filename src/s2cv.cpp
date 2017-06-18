@@ -23,9 +23,9 @@ UMR CNRS 6164
 Groupe Image et Teledetection
 Equipe SAPHIR (SAr Polarimetrie Holographie Interferometrie Radargrammetrie)
 UNIVERSITE DE RENNES I
-Pôle Micro-Ondes Radar
-Bât. 11D - Campus de Beaulieu
-263 Avenue Général Leclerc
+PÃ´le Micro-Ondes Radar
+BÃ¢t. 11D - Campus de Beaulieu
+263 Avenue GÃ©nÃ©ral Leclerc
 35042 RENNES Cedex
 Tel :(+33) 2 23 23 57 63
 Fax :(+33) 2 23 23 69 63
@@ -107,11 +107,13 @@ void write_config(char *dir, int Nlig, int Ncol, char *PolarCase, char *PolarTyp
 #define hv 1
 #define vh 2
 #define vv 3
+
 /* I matrix */
 #define I11 0
 #define I12 1
 #define I21 2
 #define I22 3
+
 /* T3 matrix */
 #define T311     0
 #define T312_re  1
@@ -122,6 +124,7 @@ void write_config(char *dir, int Nlig, int Ncol, char *PolarCase, char *PolarTyp
 #define T323_re  6
 #define T323_im  7
 #define T333     8
+
 /* T4 matrix */
 #define T411     0
 #define T412_re  1
@@ -139,6 +142,7 @@ void write_config(char *dir, int Nlig, int Ncol, char *PolarCase, char *PolarTyp
 #define T434_re  13
 #define T434_im  14
 #define T444     15
+
 /* C3 matrix */
 #define C311     0
 #define C312_re  1
@@ -149,6 +153,7 @@ void write_config(char *dir, int Nlig, int Ncol, char *PolarCase, char *PolarTyp
 #define C323_re  6
 #define C323_im  7
 #define C333     8
+
 /* C4 matrix */
 #define C411     0
 #define C412_re  1
@@ -168,7 +173,7 @@ void write_config(char *dir, int Nlig, int Ncol, char *PolarCase, char *PolarTyp
 #define C444     15
 
 /* ROUTINES DECLARATION */
-#include "../psp/psp.h" //matrix.h"
+#include "../psp/psp.h"
 
 /* CHARACTER STRINGS */
 char CS_Texterreur[80];
@@ -197,30 +202,39 @@ void
 
 int main(int argc, char *argv[]){
 
-/* LOCAL VARIABLES */
-
     FILE *in_file[16], *out_file[16];
 
     char DirInput[1024],DirOutput[1024],file_name[1024],DataFormat[10],DataFormatPP[10];
-    char *FileInput[4] = { "s11.bin", "s12.bin", "s21.bin", "s22.bin"};
+    char *FileInput[4] = { 
+	    "s11.bin", "s12.bin", "s21.bin", "s22.bin"
+    };
 
-    char *FileOutputIPP[4] = { "I11.bin", "I12.bin", "I21.bin", "I22.bin"};
-    char *FileOutputT3[9] = { "T11.bin", "T12_real.bin", "T12_imag.bin",
+    char *FileOutputIPP[4] = {
+	    "I11.bin", "I12.bin", "I21.bin", "I22.bin"
+    };
+    char *FileOutputT3[9] = { 
+	    "T11.bin", "T12_real.bin", "T12_imag.bin",
                               "T13_real.bin", "T13_imag.bin", "T22.bin",
-                              "T23_real.bin", "T23_imag.bin", "T33.bin"};
-    char *FileOutputT4[16]= { "T11.bin", "T12_real.bin", "T12_imag.bin",
+                              "T23_real.bin", "T23_imag.bin", "T33.bin"
+    };
+    char *FileOutputT4[16]= { 
+	    "T11.bin", "T12_real.bin", "T12_imag.bin",
                            	  "T13_real.bin", "T13_imag.bin", "T14_real.bin",
                               "T14_imag.bin", "T22.bin", "T23_real.bin",
                               "T23_imag.bin", "T24_real.bin", "T24_imag.bin",
-                              "T33.bin", "T34_real.bin", "T34_imag.bin", "T44.bin"};
+                              "T33.bin", "T34_real.bin", "T34_imag.bin", "T44.bin"
+    };
     char *FileOutputC3[9] = { "C11.bin", "C12_real.bin", "C12_imag.bin",
                               "C13_real.bin", "C13_imag.bin", "C22.bin",
-                              "C23_real.bin", "C23_imag.bin", "C33.bin"};
-    char *FileOutputC4[16]= { "C11.bin", "C12_real.bin", "C12_imag.bin",
+                              "C23_real.bin", "C23_imag.bin", "C33.bin"
+			    };
+    char *FileOutputC4[16]= { 
+	    "C11.bin", "C12_real.bin", "C12_imag.bin",
                            	  "C13_real.bin", "C13_imag.bin", "C14_real.bin",
                               "C14_imag.bin", "C22.bin", "C23_real.bin",
                               "C23_imag.bin", "C24_real.bin", "C24_imag.bin",
-                              "C33.bin", "C34_real.bin", "C34_imag.bin", "C44.bin"};
+                              "C33.bin", "C34_real.bin", "C34_imag.bin", "C44.bin"
+    };
     char PolarCase[20], PolarType[20];
 
     int lig, col,ii,jj,np,ind;
@@ -359,7 +373,7 @@ for (lig = 0; lig < Nligfin; lig++) {
                      M_in[np][ii][2 * col + 1] = M_tmp[np][ii][2 * col +1];
                      }
             }
-        } //ii//
+        } 
 
     if (strcmp(DataFormat, "IPP") == 0) {
 	for (col = 0; col < Ncolfin; col++) {
