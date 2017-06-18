@@ -1,8 +1,4 @@
-/*#include "SA.h"
-#include "T3.h"
-#include "bin.h"
-#include <math.h>*/
-#include "radlib.h" //matrix2.h"
+#include "radlib.h"
 
 using namespace _SA;
 using namespace _T3;
@@ -43,7 +39,8 @@ float _fabs(float n){
 int main(int argc, char ** argv){
   
   if(argc != 3){
-    printf("four_component_decomposition.cpp: Yamaguchi Four Component Decomposition (of T3 coherency matrix 3x3) Implemented by Ash Richardson 200806. Reimplemented 20170617\n");
+    printf("four_component_decomposition.cpp: Yamaguchi Four Component Decomposition (of T3 coherency matrix 3x3)\n");
+    printf("Implemented by Ash Richardson 200806. Reimplemented 20170617\n");
     printf("Usage: d4 [in_dir] [out_dir]\n");
     exit(1);
   }
@@ -61,7 +58,16 @@ int main(int argc, char ** argv){
   int NRow, NCol;
   T3_in.getDimensions(NRow, NCol);
   
-  char * outnames[N_OUT_FILES] = {"Ps.bin", "Pd.bin", "Pv.bin", "Pc.bin", "a.bin", "b.bin", "fs.bin", "fd.bin", "C13.bin"};
+  char * outnames[N_OUT_FILES] = {
+    "Ps.bin", 
+    "Pd.bin", 
+    "Pv.bin", 
+    "Pc.bin", 
+    "a.bin", 
+    "b.bin", 
+    "fs.bin", 
+    "fd.bin", 
+    "C13.bin"};
   
   Image P[N_OUT_FILES];
   char file_name[100];
@@ -108,7 +114,6 @@ int main(int argc, char ** argv){
       //==>Re(C13)=(1/2)(T11R -T22R)
       
       float disc = (1. / 2.)*real((_T11 - _T12 + _T21 - _T22));
-      
       
       if( disc /*T11R-T22R*/ >0.){
         /* equation 19 */
