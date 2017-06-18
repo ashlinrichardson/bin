@@ -36,7 +36,6 @@ wopen(bak_file).write(dat)
 
 # after making the backup:
 dat = dat.replace('}else{', '}\nelse{')
-
 #dat = dat.replace('{', '{\n')
 #dat = dat.replace('\n\n', '\n')
 new_lines, lines = [], dat.strip().split('\n')
