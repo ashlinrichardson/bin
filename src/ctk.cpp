@@ -109,9 +109,7 @@ int main(int argc, char *argv[]){
 		exit(1);
 	}
 	
-	register int i,j;
-	int NRow=0;
-	int NCol=0;
+	register int i,j, NRow=0, NCol=0;
 
 	char in_dir[1000];
   char out_dir[1000];
@@ -123,8 +121,8 @@ int main(int argc, char *argv[]){
 	getT3_image_Dimensions(in_dir, NRow, NCol);
 
 
-	const int nOutFiles[OUTFILESETS] =
-	{ nOutFiles0, 
+	const int nOutFiles[OUTFILESETS] = { 
+		nOutFiles0, 
 	  nOutFiles1, 
 	  nOutFiles2, 
 	  nOutFiles3
