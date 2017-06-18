@@ -205,36 +205,40 @@ int main(int argc, char *argv[]){
     FILE *in_file[16], *out_file[16];
 
     char DirInput[1024],DirOutput[1024],file_name[1024],DataFormat[10],DataFormatPP[10];
-    char *FileInput[4] = { 
+    char *FileInput[4] = {
 	    "s11.bin", "s12.bin", "s21.bin", "s22.bin"
     };
 
     char *FileOutputIPP[4] = {
 	    "I11.bin", "I12.bin", "I21.bin", "I22.bin"
     };
-    char *FileOutputT3[9] = { 
+	
+    char *FileOutputT3[9] = {
 	    "T11.bin", "T12_real.bin", "T12_imag.bin",
                               "T13_real.bin", "T13_imag.bin", "T22.bin",
                               "T23_real.bin", "T23_imag.bin", "T33.bin"
     };
-    char *FileOutputT4[16]= { 
+    char *FileOutputT4[16] = {
 	    "T11.bin", "T12_real.bin", "T12_imag.bin",
                            	  "T13_real.bin", "T13_imag.bin", "T14_real.bin",
                               "T14_imag.bin", "T22.bin", "T23_real.bin",
                               "T23_imag.bin", "T24_real.bin", "T24_imag.bin",
                               "T33.bin", "T34_real.bin", "T34_imag.bin", "T44.bin"
     };
+	
     char *FileOutputC3[9] = { "C11.bin", "C12_real.bin", "C12_imag.bin",
                               "C13_real.bin", "C13_imag.bin", "C22.bin",
                               "C23_real.bin", "C23_imag.bin", "C33.bin"
 			    };
-    char *FileOutputC4[16]= { 
+	
+    char *FileOutputC4[16]= {
 	    "C11.bin", "C12_real.bin", "C12_imag.bin",
                            	  "C13_real.bin", "C13_imag.bin", "C14_real.bin",
                               "C14_imag.bin", "C22.bin", "C23_real.bin",
                               "C23_imag.bin", "C24_real.bin", "C24_imag.bin",
                               "C33.bin", "C34_real.bin", "C34_imag.bin", "C44.bin"
     };
+	
     char PolarCase[20], PolarType[20];
 
     int lig, col,ii,jj,np,ind;
@@ -274,7 +278,9 @@ int main(int argc, char *argv[]){
 	}
     if (strcmp(DataFormat, "SPP") == 0) strcpy(DataFormatPP, argv[12]);
     if (strcmp(DataFormat, "IPP") == 0) strcpy(DataFormatPP, argv[12]);
-     } else {
+     }
+	else
+	{
 
         printf("data_convert_S2.c (modified by Ash Richardson July 2008)\nUsage: [Input directory] [Output directory] [Output Type] [Azimuth/line subsampling] [Range/col subsampling]\n    Output Type is one of the following: S2, T3, T4, C3, C4, IPP.\n");
 
