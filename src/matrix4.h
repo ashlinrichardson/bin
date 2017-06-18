@@ -1,6 +1,7 @@
-template<class T>
-class herm4{
+template<class T> class herm4{
+
   public:
+
   inline herm4<T>(T A, T B, T C, T D, T E, T F, T G, T H, T I, T J) : a(A), b(B), c(C), d(D), e(E), f(F), g(G), h(H), i(I), j(J){
   }
 
@@ -27,29 +28,29 @@ class herm4{
   }
 
   inline void zero(){
-    a.real( 0.); a.imag( 0.);
-    b.real( 0.); b.imag( 0.);
-    c.real( 0.); c.imag( 0.);
-    d.real( 0.); d.imag( 0.);
-    e.real( 0.); e.imag( 0.);
-    f.real( 0.); f.imag( 0.);
-    g.real( 0.); g.imag( 0.);
-    h.real( 0.); h.imag( 0.);
-    i.real( 0.); i.imag( 0.);
-    j.real( 0.); j.imag( 0.);
+    a.real(0.); a.imag(0.);
+    b.real(0.); b.imag(0.);
+    c.real(0.); c.imag(0.);
+    d.real(0.); d.imag(0.);
+    e.real(0.); e.imag(0.);
+    f.real(0.); f.imag(0.);
+    g.real(0.); g.imag(0.);
+    h.real(0.); h.imag(0.);
+    i.real(0.); i.imag(0.);
+    j.real(0.); j.imag(0.);
   }
 
   inline void nan(){
-    a.real( NAN); a.imag( NAN);
-    b.real( NAN); b.imag( NAN);
-    c.real( NAN); c.imag( NAN);
-    d.real( NAN); d.imag( NAN);
-    e.real( NAN); e.imag( NAN);
-    f.real( NAN); f.imag( NAN);
-    g.real( NAN); g.imag( NAN);
-    h.real( NAN); h.imag( NAN);
-    i.real( NAN); i.imag( NAN);
-    j.real( NAN); j.imag( NAN);
+    a.real(NAN); a.imag(NAN);
+    b.real(NAN); b.imag(NAN);
+    c.real(NAN); c.imag(NAN);
+    d.real(NAN); d.imag(NAN);
+    e.real(NAN); e.imag(NAN);
+    f.real(NAN); f.imag(NAN);
+    g.real(NAN); g.imag(NAN);
+    h.real(NAN); h.imag(NAN);
+    i.real(NAN); i.imag(NAN);
+    j.real(NAN); j.imag(NAN);
   }
 
   inline void operator = (const herm4 &A){
