@@ -22,7 +22,7 @@ template <class T> class Band{
     setDataType(data_type);
     setByteOrder(byte_order);
   }
-  
+
   ~Band();
 
   inline void setFileHandle(FILE * file){
@@ -48,7 +48,7 @@ template <class T> class Band{
     /* number of bands in BSQ file */
     this->bands=bands;
   }
-  
+
   inline void setHeaderOffset(long header_offset){
     this->header_offset=header_offset;
   }
@@ -103,11 +103,10 @@ template <class T> class Band{
   char* interleave;
   int byte_order;
 
-
-/* array to hold a band */
+  /* array to hold a band */
   T ** data;
 
-/* array to hold an output band */
+  /* array to hold an output band */
   T ** out_data;
 
   /* array to hold the data to write to an output file (of the same dimensions and data format) which is a mask representing which pixels have been changed by processing. 0 means that the given pixel was untouched, whereas 1 means the given pixel was touched. */
