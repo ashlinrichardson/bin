@@ -1,47 +1,22 @@
-//;***********************************************************************************************************
-//;*
-//;* bin.h
-//;* \\squall\palsar\pos\RADLIB\bin.h
-//;*
-//;***********************************************************************************************************
-//;*
-//;* This header performs library type functions for generic binary file type data. See:
-//;* http://squall/wiki/index.php/RADLIB
-//;*
-//;* This header supports generic float binary files and generic complex binary files.
-//;*
-//;* Status: R&D
-//;*
-//;* Last modification:June 27, 2008.
-//;*
-//;* Developer: Ashlin Richardson <ashricha@nrcan.gc.ca> <ashlin.richardson@gmail.com>
-//;*
-//;* Modified by A. Richardson on March 18th, 2008 for commenting. with revisions 20170510
-//;*
-//;*
-//;***********************************************************************************************************
-
+/* mods  20080318, 20080627, revisions 20170610, 20170617 */
 #pragma once
 #include <fstream>
 #include <iostream>
 #include <ostream>
 #include <vector>
 #include <math.h>
-//#include <complex>
-#include "./file.h"
+#include "file.h"
 #include "matrix2.h"
-using namespace _matrix2;
 
-using std::ostream;
+using namespace _matrix2;
 using namespace std;
+using std::ostream;
 using std::vector;
 
 namespace _bin{
-
   #define INPUT 0
   #define OUTPUT 1
   #define nT3Files 9
-
   #define BSQ 0
   #define BIP 1
   #define BIL 2
@@ -135,17 +110,15 @@ namespace _bin{
   }
 
   inline float * falloc( int size ){
-
     float * p =(float *) malloc( size*sizeof(float));
     memset( p, '\0', size*sizeof(float));
     return p;
-
   }
 
   //This class represents a floating point generic binary image.
   class Image{
-
     public:
+
     Image(){
       return;
     }
@@ -178,7 +151,7 @@ namespace _bin{
       }
 
       memset( buf, '\0', NRow*NCol*sizeof(float)); //void * memset ( void * ptr, int value, size_t num );
-
+      
       open();
 
       if(type==INPUT){
@@ -303,17 +276,19 @@ namespace _bin{
         printf("Error: not an output file %s\n",filename);
         exit(1);
       }
+      
       if(pixels_processed <= pixels){
         if(!fread(&t[0], sizeof(float), 1, handle)) {
           printf("read failed\n");
           exit(1);
 
         }
+        
         if(!fread(&t[1], sizeof(float), 1, handle)) {
           printf("read failed\n");
           exit(1);
-
         }
+        
         pix.real(t[0]);
         pix.imag(t[1]);
         pixels_processed++;
@@ -338,7 +313,6 @@ namespace _bin{
         return;
       }
       printf("Error: tried to write too many pixels from file %s %d %d\n",filename,pixels_processed,pixels);
-
     }
 
     void writeHeaders(){
