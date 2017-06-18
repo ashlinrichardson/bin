@@ -349,7 +349,9 @@ int main(int argc, char *argv[]){
 
 /* READING AVERAGING AND DECOMPOSITION */
     for (lig = 0; lig < Sub_Nlig; lig++){
-	if (lig%(int)(Sub_Nlig/20) == 0) {printf("%f\r", 100. * lig / (Sub_Nlig - 1));fflush(stdout);}
+	if (lig%(int)(Sub_Nlig/20) == 0) {
+		printf("%f\r", 100. * lig / (Sub_Nlig - 1));fflush(stdout);
+	}
 
 	for (Np = 0; Np < Npolar_in; Np++){
 /* 1 line reading with zero padding */
