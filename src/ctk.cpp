@@ -109,7 +109,7 @@ int main(int argc, char *argv[]){
 		exit(1);
 	}
 	
-	register int i,j, NRow=0, NCol=0;
+	register int i, j, NRow = 0, NCol = 0;
 
 	char in_dir[1000];
   char out_dir[1000];
@@ -241,7 +241,8 @@ int main(int argc, char *argv[]){
 	"anisotropy_lueneburg.bin"
 	};
 	
-	char * ofname3[nOutFiles3] = {"tsvm_alpha_s.bin", 
+	char * ofname3[nOutFiles3] = {
+		"tsvm_alpha_s.bin", 
 				      "tsvm_phi_s.bin",
 				      "tsvm_tau_m.bin", 
 				      "tsvm_psi.bin",
@@ -300,10 +301,7 @@ int main(int argc, char *argv[]){
   float mean[totalfiles];
   float alpha[3], beta[3], delta[3], gamma[3], phase[3], p[3];
 //h_a_alpha_eigenvector
-
 //h_a_alpha_eigenvalue
-
-
   float rau_re, rau_im, nu, zeta, abs_rau_2, delta2;
   float C11, C13_re, C13_im, C22, C33;
   float alpha1,alpha2, k1_re,k1_im,k2_re,k2_im,mask;
@@ -313,8 +311,7 @@ int main(int argc, char *argv[]){
   float * p2 = vector_float(3);
 
 //tsvm_decompositon
-
-  float phi[3], tau[3], psi[3];//, phase[3], p[3];
+  float phi[3], tau[3], psi[3]; //, phase[3], p[3];
   float x1r, x1i, x2r, x2i;
 
 //struct definition:
@@ -366,7 +363,7 @@ for(Row = 0; Row < NRow; Row++){
 		T[2][2][1] = 0.;
 		
 		Diagonalisation(3, T, V, lambda);
-	//	cout <<"l: "<<scientific << lambda[0] <<scientific<<lambda[1]<<scientific<<lambda[2]<<endl;
+
 		for (k = 0; k < 3; k++){
 			if (lambda[k] < 0.){ 
 				lambda[k] = 0.;
@@ -437,35 +434,6 @@ for(Row = 0; Row < NRow; Row++){
     OBUF(ind[0][_1CombH1mA],Col)   = OBUF(ind[0][_1H],Col) * (1. - OBUF(ind[0][_1A],Col));
     OBUF(ind[0][_1Comb1mHA],Col)   = (1. - OBUF(ind[0][_1H],Col)) * OBUF(ind[0][_1A],Col);
     OBUF(ind[0][_1Comb1mH1mA],Col) = (1. - OBUF(ind[0][_1H],Col)) * (1. - OBUF(ind[0][_1A],Col));
-/*col */
-/*set2*/
-/*
-#define _2Alpha1  0
-#define _2Alpha2  1
-#define _2Alpha3  2
-#define _2Beta1   3
-#define _2Beta2   4
-#define _2Beta3   5
-#define _2Delta1  6
-#define _2Delta2  7
-#define _2Delta3  8
-#define _2Gamma1  9
-#define _2Gamma2 10
-#define _2Gamma3 11
-#define _2Alpha  12
-#define _2Beta   13
-#define _2Delta  14
-#define _2Gamma  15
-*/
-/*
-	OBUF(ind[3][_3Eigen1],Col)=lambda[0];
-	OBUF(ind[3][_3Eigen2],Col)=lambda[1];
-	OBUF(ind[3][_3Eigen3],Col)=lambda[2];
-
-	OBUF(ind[3][_3Proba1],Col)=p[0];
-	OBUF(ind[3][_3Proba2],Col)=p[1];
-	OBUF(ind[3][_3Proba3],Col)=p[2];
-*/
 
 /* Scaling */
     OBUF( ind[2][_3A12],Col) = (p[0] - p[1]) / (p[0] + p[1] + eps);
@@ -570,26 +538,7 @@ for(Row = 0; Row < NRow; Row++){
       for (k = _4Phi; k < _4Psi3; k++){
         OBUF(ind[3][k],Col)  *= 180. / pi;
       }
-			/*
-			#define _4Alpha  0
-#define _4Phi    1
-#define _4Tau    2
-#define _4Psi    3
-#define _4Alpha1 4
-#define _4Alpha2 5
-#define _4Alpha3 6
-#define _4Phi1   7
-#define _4Phi2   8
-#define _4Phi3   9
-#define _4Tau1   10
-#define _4Tau2   11
-#define _4Tau3   12
-#define _4Psi1   13
-#define _4Psi2   14
-#define _4Psi3   15   */
 
-//h_a_alpha_eigenvalue_set_T3.c
-//tsvm_decomposition_T3.c
   }
 	for(int i=0; i<totalfiles; i++){
 		//w +=fwrite(  &(  ((*(obuf[i]))) [0] ), sizeof(float), NCol, out_file[i]);
@@ -622,67 +571,6 @@ printf("\r\n");
 	cout << " ======================================================\n";
 	return 0;
 
-/* float r12, i12;
-
-for(i=0; i<NRow;i++){
-
-		for(f=0; f<nFiles; f++) fread(&((*(B[f])))[0], sizeof(float), NCol, before_file[f]);
-		for(f=0; f<nFiles; f++) fread(&((*(A[f])))[0], sizeof(float), NCol, after_file[f]);
-
-		for(j=0; j<NCol; j++)
-		{
-
-		//Channels corresponding to figures B, C, D, E, F respectively are
-
-//================================================================================
-//Before
-
-			r13=  ((*(B[_13r])))[j];
-			i13=  ((*(B[_13i])))[j];
-
-			r23=  ((*(B[_23r])))[j];
-			i23=  ((*(B[_23i])))[j];
-
-			r12=  ((*(B[_12r])))[j]*2;
-			i12=  ((*(B[_12i])))[j]*2;
-// The channels from figures C, E, D, F respectively.
-			(*(O[bHV_2       ]))[j]= ((*(B[_33r])))[j]/2;  //r33o2; //C: (1/2)T33
-			(*(O[bHHpVV_HV   ]))[j]= sqrt((r13*r13) + (i13*i13)); //E: |T13|
-			(*(O[bHHmVV_HV   ]))[j]= sqrt((r23*r23) + (i23*i23)); //D: |T23|
-			(*(O[bHHpVV_HHmVV]))[j]= sqrt((r12*r12) + (i12*i12)); //F: |2*T21|
-//================================================================================
-//After
-			r13=  ((*(A[_13r])))[j];
-			i13=  ((*(A[_13i])))[j];
-			r23=  ((*(A[_23r])))[j];
-			i23=  ((*(A[_23i])))[j];
-			r12=  ((*(A[_12r])))[j]*2;
-			i12=  ((*(A[_12i])))[j]*2;
-
-// The channels from figures C, E, D, F respectively.
-			(*(O[aHV_2       ]))[j]=((*(A[_33r])))[j]/2;// r33o2;  //C: (1/2)T33
-			(*(O[aHHpVV_HV   ]))[j]= sqrt((r13*r13) + (i13*i13)); //E: |T13|
-			(*(O[aHHmVV_HV   ]))[j]= sqrt((r23*r23) + (i23*i23)); //D: |T23|
-			(*(O[aHHpVV_HHmVV]))[j]= sqrt((r12*r12) + (i12*i12)); //F: | 2* T21
-//================================================================================
-
-		}
-		for(f=0; f<nOutFiles; f++)
-			fwrite(&((*(O[f])))[0], sizeof(float), NCol, output_file[f]);
-
-	}
-
-
-	for(f=0; f<nFiles; f++){
-		fclose(before_file[f]);
-		fclose(after_file[f]);
-	}
-
-	for(f=0; f<nOutFiles; f++)
-		fclose(output_file[f]);
-	fprintf(stderr,"exit0\n");
-
-*/
 	cout << "done.\n";
 	return 0;
 }
