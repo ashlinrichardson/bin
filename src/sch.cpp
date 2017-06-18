@@ -286,7 +286,6 @@ float ***matrix3d_float(int nz, int nrh, int nch){
   int ii, jj, dd;
   float ***m;
 
-
   m = (float ***) malloc((unsigned) (nz + 1) * sizeof(float **));
   if (m == NULL)
   edit_error("D'ALLOCATION No.1 DANS MATRIX()", "");
@@ -319,7 +318,6 @@ char *PolarType){
   sprintf(file_name, "%sconfig.txt", dir);
   if ((file = fopen(file_name, "r")) == NULL)
   edit_error("Could not open configuration file : ", file_name);
-
 
   fscanf(file, "%s\n", Tmp);
   fscanf(file, "%i\n", &*Nlig);
@@ -390,7 +388,6 @@ int main(int argc, char *argv[]){
   }
   alphaselect = alphaselect-1; //zero index the alpha.
 
-
   read_config(in_dir, &Nlig, &Ncol, PolarCase, PolarType);
 
   for (Np = 0; Np < Npolar_in; Np++) {
@@ -398,7 +395,6 @@ int main(int argc, char *argv[]){
     if ((in_file[Np] = fopen(file_name, "rb")) == NULL)
     edit_error("Could not open input file : ", file_name);
   }
-
 
   for (Np = 0; Np < Npolar_out; Np++) {
     // if (Flag[Np] == 1) {
@@ -409,7 +405,6 @@ int main(int argc, char *argv[]){
     // }
 
   }
-
 
   float minL, maxL;
   minL=0;
@@ -432,7 +427,6 @@ int main(int argc, char *argv[]){
   zero(alpha,4);
   alpha2=0;
   int count=0;
-
 
   std::list<float> L2pL3;
   L2pL3.clear();
@@ -485,7 +479,6 @@ int main(int argc, char *argv[]){
       T[3][3][0] = eps + m[T44];
       T[3][3][1] = 0.;
 
-
       Diagonalisation(4, T, _V, lambda);
 
       for (k = 0; k < 4; k++)
@@ -515,11 +508,9 @@ int main(int argc, char *argv[]){
       o[oL3]=lambda[2];
       o[oL4]=lambda[3];
 
-
       o[oH]=alpha[alphaselect];//*180.0/PI; //'quadalpha'
       o[oS]=H;
       o[oV]=lambda[1]+lambda[2];
-
 
 
       L2pL3.push_back(o[oV]);
@@ -555,7 +546,6 @@ int main(int argc, char *argv[]){
     exit(0);
   }
 
-
   for(Np=0; Np<Npolar_out; Np++) fclose(out_file[Np]);
   for(Np=0; Np<Npolar_in; Np++) fclose(in_file[Np]);
 
@@ -565,7 +555,6 @@ int main(int argc, char *argv[]){
   printf("\n");
 
   printf("Histogram binning Value...\n");
-
 
   //THIS LINE WAS MODIFIED FOR ARBITRARY PERCENTAGE INDEX
   //int _2percent_index = (int)(((float)( L2pL3.size()))*((float)0.02));
@@ -603,7 +592,6 @@ int main(int argc, char *argv[]){
 
   printf("Applying histogram derived cutoffs to Hue and Value...\n");
 
-
   sprintf(file_name, "%s%s", out_dir, file_name_out[oH]);
   if ((out_file[oH] = fopen(file_name, "rb")) == NULL)
   edit_error("Could not open output file for reading: ", file_name);
@@ -613,7 +601,6 @@ int main(int argc, char *argv[]){
   sprintf(file_name, "%s%s", out_dir, file_name_out[oV]);
   if ((out_file[oV] = fopen(file_name, "rb")) == NULL)
   edit_error("Could not open output file for reading: ", file_name);
-
 
   sprintf(file_name, "%s%s", out_dir, file_name_out[oR]);
   if ((out_file[oR] = fopen(file_name, "wb")) == NULL)
@@ -634,7 +621,6 @@ int main(int argc, char *argv[]){
   sprintf(file_name, "%s%s", out_dir, file_name_out[oVs]);
   if ((out_file[oVs] = fopen(file_name, "wb")) == NULL)
   edit_error("Could not open output file : ", file_name);
-
 
   float __H, __S, __V;
   float __R, __G, __B;
