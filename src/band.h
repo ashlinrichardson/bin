@@ -5,11 +5,7 @@
 #include <fstream>
 #define BIG_BUFFER (1024*1024)
 
-/*! \brief Represents the data and functionality of one Band in a Band Sequential Image.
-* Brief description continued.
-*
-* Detailed description goes here.
-*/
+/* represents the data and functionality of one band in a band-sequential  (BSQ) image */
 template <class T> class Band{
   public:
 
