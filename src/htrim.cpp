@@ -27,7 +27,7 @@ int main(int argc, char ** argv){
   printf("index lower %d index upper %d Nrow*Ncol %d\n", index_lower, index_upper, Nrow * Ncol);
 
   FILE * outf = wopen(outfile);
-  FILE * inf  = open(infile);
+  FILE * inf = open(infile);
   float min, max, dat;
   int lig, col, count;
   std::list<float> my_list;
@@ -50,10 +50,10 @@ int main(int argc, char ** argv){
   }
   printf("Min %e Max %e\n", min, max);
 
-  /* another pass on the file coming */	
+  /* another pass on the file coming */
   rewind(inf);
 
-  /* sort the list of values */	
+  /* sort the list of values */
   my_list.sort();
 
   for(int q = 0; q < index_lower; q++){
@@ -66,17 +66,17 @@ int main(int argc, char ** argv){
   }
   float top_cut = my_list.back();
 
-  printf("index_lower %d  index_upper %d nrow*ncol %d\n", index_lower, index_upper, Nrow * Ncol);
-  printf("Lowercut %e  Topcut %e\n", lower_cut, top_cut);
+  printf("index_lower %d index_upper %d nrow*ncol %d\n", index_lower, index_upper, Nrow * Ncol);
+  printf("Lowercut %e Topcut %e\n", lower_cut, top_cut);
 
   if(isnan(lower_cut) || isinf(lower_cut)){
     lower_cut = min;
-    printf("Warning: NewLower_cut %e  topcut %e\n", lower_cut, top_cut);
+    printf("Warning: NewLower_cut %e topcut %e\n", lower_cut, top_cut);
   }
 
   if(isnan(top_cut) || isinf(top_cut)){
     top_cut = max;
-    printf("Warning: lowercut %e  NewTopcut %e\n", lower_cut, top_cut);
+    printf("Warning: lowercut %e NewTopcut %e\n", lower_cut, top_cut);
   }
 
   printf("Applying histogram derived cutoffs..\n");
