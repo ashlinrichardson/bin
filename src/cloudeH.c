@@ -494,7 +494,7 @@ int main(int argc, char *argv[])
 	    
 		M_out[Serd][col] = (mask*p[0]+(1-mask)*p[1]-p[2])/(mask*p[0]+(1-mask)*p[1]+p[2]+eps);
 	    M_out[Derd][col] = (mask*p[1]+(1-mask)*p[0]-p[2])/(mask*p[1]+(1-mask)*p[0]+p[2]+eps);
-	}			/*col */
+	}		
 
 
 /* Decomposition parameter saving */
@@ -507,7 +507,7 @@ int main(int argc, char *argv[])
 	    for (col = 0; col < Sub_Ncol; col++)
 		for (Np = 0; Np < Npolar_in; Np++)
 		    M_in[Np][l][(Nwin - 1) / 2 + col] = M_in[Np][l + 1][(Nwin - 1) / 2 + col];
-    }				/*lig */
+    }	
 
     free_matrix_float(M_out, Npolar_out);
     free_matrix3d_float(M_in, Npolar_in, Nwin);
