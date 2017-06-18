@@ -1,6 +1,6 @@
 #pragma once
 #include "../psp/util.h"
-#include "bin.h" //#include "matrix2.h"  
+#include "bin.h" //#include "matrix2.h"
 #include "matrix3.h"
 #include "S2.h"
 #include "T3.h"
@@ -31,7 +31,7 @@ using namespace _T3;
 
 #define STRLEN_ 1000
 #define ENVI_DATA_TYPE 4
-#define PI 3.14159265358979323846264338327950288419716939937510f 
+#define PI 3.14159265358979323846264338327950288419716939937510f
 #define EPS FLT_EPSILON //#define eps FLT_EPSILON
 #define TOL (EPS*16.)
 #define BIGTOL (0.01)
@@ -44,15 +44,15 @@ using namespace _T3;
 
 //matrix type macros
 #define TYPE double
-#define M2_ mat2<  complex< TYPE > >
+#define M2_ mat2< complex< TYPE > >
 #define cf_ complex<TYPE>
-#define V2C vec2<  complex< TYPE > >
+#define V2C vec2< complex< TYPE > >
 #define M2C M2_
 
 #define I cf_(0.,1.)
 #define square(x) ((x)*(x))
 
-complex<float> J(0.,1.);   //the complex number.
+complex<float> J(0.,1.); //the complex number.
 complex<float> LL, LR, RL, RR;
 
 #define S11_out (S2_out.pixel[s11])
@@ -62,4 +62,3 @@ complex<float> LL, LR, RL, RR;
 
 #include "M2C.h"
 #include "condiag.h"
-
