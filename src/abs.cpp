@@ -21,7 +21,7 @@ int main(int argc, char ** argv){
   float real, imag, absv;
 
   FILE * infile = open(infn);
-    if(!infile){
+  if(!infile){
     printf("Error: could not open file %s\n", infn);
   }
 
@@ -31,11 +31,11 @@ int main(int argc, char ** argv){
   }
 
   for0(row, nrow){
-    if(nrow % 100 ==0) printf("\rProcessing row %d of %d    ", row + 1, nrow);
+    if(nrow % 100 ==0) printf("\rProcessing row %d of %d ", row + 1, nrow);
     for0(col, ncol){
       fread(&real, sf, 1, infile);
       fread(&imag, sf, 1, infile);
-      absv = (float)(sqrt(  sq(real) + sq(imag)));
+      absv = (float)(sqrt( sq(real) + sq(imag)));
       fwrite(&absv, sf, 1, outfile);
     }
   }
