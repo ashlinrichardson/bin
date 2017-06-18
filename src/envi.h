@@ -17,11 +17,11 @@ void write_envi_hdr(const char * fn, int nrow, int ncol, int nband, int datatype
     error((std::string("Error: could not open file: ") + std::string(fn)).c_str());
   }
 
-  fprintf(f, "ENVI\n"); 
+  fprintf(f, "ENVI\n");
   fprintf(f, "description = {%s}\n", strip(string(asctime(timeinfo))).c_str());
   fprintf(f, "samples = %d\n", ncol);
-  fprintf(f, "lines   = %d\n", nrow);
-  fprintf(f, "bands   = %d\n", nband);
+  fprintf(f, "lines = %d\n", nrow);
+  fprintf(f, "bands = %d\n", nband);
   fprintf(f, "header offset = 0\n");
   fprintf(f, "file type = ENVI Standard\n");
   fprintf(f, "data type = %d\n", datatype);
