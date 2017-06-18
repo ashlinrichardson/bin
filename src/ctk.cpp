@@ -1,5 +1,5 @@
-#include "../psp/psp.h"
 #include "radlib.h"
+#include "../psp/psp.h"
 
 // define indexes for each channel of information from T3 matrix
 #define  _11r  0
@@ -38,11 +38,6 @@
 #define _2Gamma1  9
 #define _2Gamma2 10
 #define _2Gamma3 11
-/*#define _2Alpha  12
-#define _2Beta   13
-#define _2Delta  14
-#define _2Gamma  15
-*/
 
 /*set3*/
 #define _3Eigen1  0
@@ -51,7 +46,6 @@
 #define _3Proba1  3
 #define _3Proba2  4
 #define _3Proba3  5
-//#define _3A       6
 #define _3A12     6
 #define _3AS      7
 #define _3PF      8
@@ -65,7 +59,6 @@
 #define _3LUN     16
 
 /*set4*/
-
 #define _4Alpha  0
 #define _4Phi    1
 #define _4Tau    2
@@ -83,14 +76,9 @@
 #define _4Psi2   14
 #define _4Psi3   15
 
-#define nFiles 9
-//number of input files
-
-
-#define ENVI_DATA_TYPE 4
-//ENVI floating point data type
+#define nFiles 9 //number of input files
+#define ENVI_DATA_TYPE 4 //ENVI floating point data type
 #define OUTFILESETS 4
-
 
 #define nOutFiles0 11
 #define nOutFiles1 (16-4)
@@ -101,7 +89,7 @@
 #define OBUF(i,j) ((*(obuf[(i)])))[(j)]
 
 int main(int argc, char *argv[]){
-	if(sizeof(float)!=4){
+	if(sizeof(float) != 4){
 		cout << "ERROR: INCORRECT FLOAT SIZE: should be 4, was " << sizeof(float) <<endl;
 		exit(1);
 	}
@@ -111,7 +99,7 @@ int main(int argc, char *argv[]){
 	
 	cout << "ktc_v5.c\n";
 	if(argc != 3){
-		cout	<< "Cloude, Touzi, and Kennaugh-Huynen Decompositions,\nImplemented by Ashlin Richardson March 15 2009 (compiled from POLSARPRO).\n"
+		cout	<< "Cloude, Touzi, and Kennaugh-Huynen Decompositions,\nImplemented by Ashlin Richardson March 15 2009; reimplemented 1070612 (compiled from POLSARPRO).\n"
 			<<"\nNote: it is assumed that averaging has already been performed."
 			<<"\nWINDOWING in POLSARPRO has been removed: typically a LEE filter is employed, \nso box windowing is usually neglected, thus removing the windowing feature has saved some processing time."
 			<<"\nNote: TOUZI reports using ~60 looks: \n\tsince ALOS data already uses multilooks, \n\tit's possible that means he's using a very small window size.  \n\tMy initial recommendation will be to use a 7x7 lee filter\n\t(type l3 at the squall prompt)\n"		
