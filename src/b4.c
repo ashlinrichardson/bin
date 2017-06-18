@@ -23,9 +23,9 @@ UMR CNRS 6164
 Groupe Image et Teledetection
 Equipe SAPHIR (SAr Polarimetrie Holographie Interferometrie Radargrammetrie)
 UNIVERSITE DE RENNES I
-Pôle Micro-Ondes Radar
-Bât. 11D - Campus de Beaulieu
-263 Avenue Général Leclerc
+PÃ´le Micro-Ondes Radar
+BÃ¢t. 11D - Campus de Beaulieu
+263 Avenue GÃ©nÃ©ral Leclerc
 35042 RENNES Cedex
 Tel :(+33) 2 23 23 57 63
 Fax :(+33) 2 23 23 69 63
@@ -72,9 +72,7 @@ void read_config(char *dir, int *Nlig, int *Ncol, char *PolarCase, char *PolarTy
 #include <conio.h>
 #endif
 
-
-/* ALIASES  */
-
+#include "../psp/psp.h"
 
 /* T matrix */
 #define T11     0
@@ -93,16 +91,6 @@ void read_config(char *dir, int *Nlig, int *Ncol, char *PolarCase, char *PolarTy
 #define T34_re  13
 #define T34_im  14
 #define T44     15
-
-
-/* CONSTANTS  */
-
-
-/* ROUTINES DECLARATION */
-//#include "matrix.h"
-//#include "util.h"
-#include "../psp/psp.h"
-
 
 /*******************************************************************************
 Routine  : main
@@ -138,12 +126,9 @@ Returned values  :
 *******************************************************************************/
 
 
-int main(int argc, char *argv[])
-{
-
+int main(int argc, char *argv[]){
 
 /* LOCAL VARIABLES */
-
 
 /* Input/Output file pointer arrays */
     FILE *in_file[16], *out_file[16];
@@ -151,13 +136,23 @@ int main(int argc, char *argv[])
 
 /* Strings */
     char file_name[128], in_dir[128], out_dir[128];
-    char *file_name_in_out[16] =
-	{ "T11.bin", "T12_real.bin", "T12_imag.bin",
-	"T13_real.bin", "T13_imag.bin", "T22.bin",
-	"T23_real.bin", "T23_imag.bin", "T33.bin",
-	"T14_real.bin", "T14_imag.bin",
-	"T24_real.bin", "T24_imag.bin",
-	"T34_real.bin", "T34_imag.bin", "T44.bin"
+    char *file_name_in_out[16] = {
+	   "T11.bin", 
+	    "T12_real.bin", 
+	    "T12_imag.bin",
+	"T13_real.bin", 
+	    "T13_imag.bin", 
+	    "T22.bin",
+	"T23_real.bin", 
+	    "T23_imag.bin",
+	    "T33.bin",
+	"T14_real.bin",
+	    "T14_imag.bin",
+	"T24_real.bin", 
+	    "T24_imag.bin",
+	"T34_real.bin", 
+	    "T34_imag.bin", 
+	    "T44.bin"
     };
     char PolarCase[20], PolarType[20];
 
@@ -196,10 +191,8 @@ int main(int argc, char *argv[])
 //	Off_col = atoi(argv[6]);
 //	Sub_Nlig = atoi(argv[7]);
 //	Sub_Ncol = atoi(argv[8]);
-    } else
-	edit_error
-	    ("b4 in_dir out_dir Nwin\n",
-	     "");
+    }
+	else edit_error("b4 in_dir out_dir Nwin\n","");
 
 	Nlook=1;
 	Off_lig=0;
@@ -266,7 +259,9 @@ int main(int argc, char *argv[])
 
 /* FILTERING */
     for (lig = 0; lig < Sub_Nlig; lig++) {
-	if (lig%(int)(Sub_Nlig/20) == 0) {printf("%f\r", 100. * lig / (Sub_Nlig - 1));fflush(stdout);}
+	if (lig%(int)(Sub_Nlig/20) == 0) {
+		printf("%f\r", 100. * lig / (Sub_Nlig - 1));fflush(stdout);
+	}
 
 	for (Np = 0; Np < Npolar; Np++) {
 /* 1 line reading with zero padding */
@@ -301,9 +296,8 @@ int main(int argc, char *argv[])
 							 l] / (Nwin *
 							       Nwin);
 
-	}			/*col */
-
-
+	}	
+	    
 /* FILTERED DATA WRITING */
 	for (Np = 0; Np < Npolar; Np++)
 	    fwrite(&M_out[Np][0], sizeof(float), Sub_Ncol, out_file[Np]);
@@ -315,8 +309,8 @@ int main(int argc, char *argv[])
 		for (Np = 0; Np < Npolar; Np++)
 		    M_in[Np][l][(Nwin - 1) / 2 + col] =
 			M_in[Np][l + 1][(Nwin - 1) / 2 + col];
-    }				/*lig */
-
+    }	
+	
     free_matrix_float(M_out, Npolar);
     free_matrix3d_float(M_in, Npolar, Nwin);
  write_config(out_dir, Nlig, Ncol, PolarCase, PolarType);
