@@ -51,16 +51,16 @@ namespace _C4{
   class C4{
     public:
     float pixel[nT4Files];
-    
+
     void initC4(int _type, char * _dir, int nr, int nc){
-      
+
       //printf("T3::T3\n");
       //T = \0;
       T = new Image[nT4Files];
       for (i=0; i<nT4Files; i++){
         pixel[i] = 0.0;
       }
-      
+
       char file_name[STRLEN_];
       char * filenames[nT4Files] = {
         "C11.bin",
@@ -80,7 +80,7 @@ namespace _C4{
         "C34_imag.bin",
         "C44.bin"
       };
-      
+
       NRow=NCol=0;
       dir = _dir; //new char[100];
       //strcpy(dir, _dir);
@@ -93,7 +93,7 @@ namespace _C4{
       }
       type = _type;
       printf("NRow %i NCol %i\n", NRow, NCol);
-      
+
       for(i = 0; i < nT4Files; i++){
         sprintf(file_name, "%s%s", dir, filenames[i]);
         T[i].setDimensions(NRow, NCol); //must call this before initImage
@@ -102,24 +102,24 @@ namespace _C4{
       }
       return;
     }
-    
+
     C4(int _type, char * _dir){
       T = new Image[nT4Files];
       for(i = 0; i < nT4Files; i++){
         pixel[i]=0.0;
       }
-      
+
       char file_name[1000];
       char * filenames[nT4Files] = {
         "C11.bin", "C12_real.bin", "C12_imag.bin", "C13_real.bin", "C13_imag.bin", "C14_real.bin", "C14_imag.bin", "C22.bin", "C23_real.bin", "C23_imag.bin", "C24_real.bin", "C24_imag.bin", "C33.bin", "C34_real.bin", "C34_imag.bin", "C44.bin"
       };
-      
+
       NRow = NCol = 0;
       dir = _dir;
       getT3_Image_Dimensions(dir, NRow, NCol);
       type=_type;
       printf("NRow %i NCol %i\n", NRow, NCol);
-      
+
       for(i = 0; i < nT4Files; i++){
         sprintf(file_name, "%s%s", dir, filenames[i]);
         T[i].setDimensions(NRow, NCol); //must call this before initImage
@@ -128,42 +128,42 @@ namespace _C4{
       }
       return;
     }
-    
+
     C4(int _type, char * _dir, int nr, int nc){
       if(_type == INPUT){
         printf("Warning (C4.h): for read mode, row/col information should be determined from header (recommend using other constructor).\n");
       }
       initC4( _type, _dir, nr, nc);
     }
-    
+
     void setPixel(){
       for(i = 0; i < nT4Files; i++)
       T[i].setPixel(pixel[i]);
     }
-    
+
     void getPixel(){
       for(i = 0; i < nT4Files; i++){
         pixel[i] = T[i].getPixel();
       }
     }
-    
+
     void writeHeaders(){
     }
-    
+
     ~C4(){
       close();
     }
-    
+
     void close(){
       for(i=0; i<nT4Files; i++)
       T[i].close();
     }
-    
+
     void getDimensions(int & _NRow, int & _NCol){
       _NRow=NRow;
       _NCol=NCol;
     }
-    
+
     inline cf operator[]( unsigned int subscript){
       switch(subscript){
         case 11: return cf(pixel[r11], 0.); break;
@@ -185,7 +185,7 @@ namespace _C4{
         default: printf("Error: invalid subscript on T4 matrix\n"); exit(1); break;
       }
     }
-    
+
     protected:
     char * dir;
     Image * T;
