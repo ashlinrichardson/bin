@@ -9,7 +9,6 @@ PARTICULAR PURPOSE.
 See the GNU General Public License (Version 2, 1991) for more details.
 
 ********************************************************************************
-
 File     : lee_refined_filter_T4.c
 Project  : ESA_POLSARPRO
 Authors  : Eric POTTIER, Laurent FERRO-FAMIL
@@ -23,9 +22,9 @@ UMR CNRS 6164
 Groupe Image et Teledetection
 Equipe SAPHIR (SAr Polarimetrie Holographie Interferometrie Radargrammetrie)
 UNIVERSITE DE RENNES I
-Pôle Micro-Ondes Radar
-Bât. 11D - Campus de Beaulieu
-263 Avenue Général Leclerc
+PÃ´le Micro-Ondes Radar
+BÃ¢t. 11D - Campus de Beaulieu
+263 Avenue GÃ©nÃ©ral Leclerc
 35042 RENNES Cedex
 Tel :(+33) 2 23 23 57 63
 Fax :(+33) 2 23 23 69 63
@@ -69,15 +68,10 @@ void read_config(char *dir, int *Nlig, int *Ncol, char *PolarCase, char *PolarTy
 #include <string.h>
 #include <math.h>
 
-
 #ifdef _WIN32
 #include <dos.h>
 #include <conio.h>
 #endif
-
-
-/* ALIASES  */
-
 
 /* T matrix */
 #define T11     0
@@ -97,17 +91,10 @@ void read_config(char *dir, int *Nlig, int *Ncol, char *PolarCase, char *PolarTy
 #define T34_im  14
 #define T44     15
 
-
-/* CONSTANTS  */
-
-
 /* ROUTINES DECLARATION */
-//#include "matrix.h"
-//#include "util.h"
 #include "../psp/psp.h"
 
 void make_Mask(float ***Mask, int Nwin);
-
 
 /*******************************************************************************
 Routine  : main
@@ -144,21 +131,28 @@ Returned values  :
 1
 *******************************************************************************/
 
-
 int main(int argc, char *argv[]){
+	
 /* Input/Output file pointer arrays */
     FILE *in_file[16], *out_file[16];
 
-
 /* Strings */
     char file_name[128], in_dir[128], out_dir[128];
-    char *file_name_in_out[16] =
-	{ "T11.bin", "T12_real.bin", "T12_imag.bin",
-	"T13_real.bin", "T13_imag.bin", "T22.bin",
-	"T23_real.bin", "T23_imag.bin", "T33.bin",
-	"T14_real.bin", "T14_imag.bin",
-	"T24_real.bin", "T24_imag.bin",
-	"T34_real.bin", "T34_imag.bin", "T44.bin"
+    char *file_name_in_out[16] = { 
+	    "T11.bin", 
+	    "T12_real.bin",
+	    "T12_imag.bin",
+	"T13_real.bin",
+	    "T13_imag.bin", "T22.bin",
+	"T23_real.bin",
+	    "T23_imag.bin", "T33.bin",
+	"T14_real.bin",
+	    "T14_imag.bin",
+	"T24_real.bin", 
+	    "T24_imag.bin",
+	"T34_real.bin", 
+	    "T34_imag.bin", 
+	    "T44.bin"
     };
     char PolarCase[20], PolarType[20];
 
@@ -192,7 +186,7 @@ int main(int argc, char *argv[]){
 
 
 /* PROGRAM START */
-	if(argc !=4){
+	if(argc != 4){
 		printf("lee_refined_filter_T4.c (modified by Ash Richardson)\nUsage: [Input directory] [Output directory] [Window Size]\n");
 		exit(1);
 	}
@@ -201,10 +195,10 @@ int main(int argc, char *argv[]){
 	strcpy(in_dir, argv[1]);
 	strcpy(out_dir, argv[2]);
 	Nwin = atoi(argv[3]);
-	} else
-	edit_error
-	    ("l4 in_dir out_dir Nwin\n",
-	     "");
+	} 
+	else{
+		edit_error("l4 in_dir out_dir Nwin\n", "");
+	}
 	Off_lig = 0; // atoi(argv[5]);
 	Off_col = 0; //atoi(argv[6]);
 	Sub_Nlig = 0;//atoi(argv[7]);
@@ -212,10 +206,8 @@ int main(int argc, char *argv[]){
 
 	Nlook = 1; //atof(argv[3]);
 
-
 /* Speckle variance given by the input data number of looks */
     sigma2 = 1. / Nlook;
-
 
     check_dir(in_dir);
     check_dir(out_dir);
@@ -233,7 +225,6 @@ int main(int argc, char *argv[]){
     Mask = matrix3d_float(8, Nwin, Nwin);
     M_out = matrix_float(Npolar, Ncol);
 
-
 /* INPUT/OUTPUT FILE OPENING*/
     for (Np = 0; Np < Npolar; Np++) {
 	sprintf(file_name, "%s%s", in_dir, file_name_in_out[Np]);
@@ -245,8 +236,6 @@ int main(int argc, char *argv[]){
 	if ((out_file[Np] = fopen(file_name, "wb")) == NULL)
 	    edit_error("Could not open output file : ", file_name);
     }
-
-
 
 /* Gradient window calculation parameters */
     switch (Nwin) {
@@ -271,8 +260,7 @@ int main(int argc, char *argv[]){
 	Deplct = 3;
 	break;
     default:
-	edit_error("The window width Nwin must be set to 3, 5, 7, 9, 11",
-		   "");
+	edit_error("The window width Nwin must be set to 3, 5, 7, 9, 11", "");
     }
 /* Mask */
     make_Mask(Mask, Nwin);
@@ -384,14 +372,11 @@ int main(int argc, char *argv[]){
 	    if (Dist[Nmax] > 0.)
 		Nmax = Nmax + 4;
 
-
-
 /*Within window statistics*/
 	    m_span2 = 0.;
 	    Npoints = 0.;
 	    for (Np = 0; Np < Npolar; Np++)
 		mean[Np] = 0.;
-
 
 	    for (k = -(Nwin - 1) / 2; k < 1 + (Nwin - 1) / 2; k++)
 		for (l = -(Nwin - 1) / 2; l < 1 + (Nwin - 1) / 2; l++)
@@ -438,7 +423,8 @@ int main(int argc, char *argv[]){
 		    coeff *
 		    (M_in[Np][(Nwin - 1) / 2][(Nwin - 1) / 2 + col] -
 		     mean[Np]);
-	}			/*col */
+	}			
+	    /*col */
 
 
 /* FILTERED DATA WRITING */
@@ -452,7 +438,8 @@ int main(int argc, char *argv[]){
 		for (Np = 0; Np < Npolar; Np++)
 		    M_in[Np][l][(Nwin - 1) / 2 + col] =
 			M_in[Np][l + 1][(Nwin - 1) / 2 + col];
-    }				/*lig */
+    }				
+	/*lig */
 
     free_matrix_float(M_out, Npolar);
     free_matrix3d_float(M_in, Npolar, Nwin);
@@ -478,12 +465,11 @@ Nwin  : Filtering window size
 Returned values  :
 void
 *******************************************************************************/
-void make_Mask(float ***Mask, int Nwin)
-{
+void make_Mask(float ***Mask, int Nwin){
+	
     int k, l, Nmax;
 
-
-    for (k = 0; k < Nwin; k++)
+	for (k = 0; k < Nwin; k++)
 	for (l = 0; l < Nwin; l++)
 	    for (Nmax = 0; Nmax < 8; Nmax++)
 		Mask[Nmax][k][l] = 0.;
