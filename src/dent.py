@@ -71,7 +71,10 @@ for i in range(0, len(lines)):
     print reindent
 
     # the new lines to be written
-    new_lines.append(reindent)
+    if reindent.strip() != '':
+        new_lines.append(reindent)
+    else:
+        new_lines.append('')
 
 if(n_indent != 0):
     error('indentation level not 0: either there are open brackets, ' +
