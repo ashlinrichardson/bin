@@ -1,13 +1,17 @@
 #include "radlib.h"
+
 using namespace _matrix2;
+
 #define nS2Files 4
 #define BUFS 1000
 
 int main(int argc, char *argv[]){
+  
   if(argc < 2){
     printf("cpa.cpp: calculate phase of the difference of the HV and VH channels; implemented by Ash Richardson, May 13, 2009 with mods 20170612.\nUsage: cpa [in_dir]\nNote: config.txt file must be present in input directory\n");
     exit(1);
   }
+  
   int NRow, NCol;
 
   char * S2filenames[4] = {
@@ -50,8 +54,7 @@ int main(int argc, char *argv[]){
   }
   writeENVIHeader(&file_name[0], 4, NRow, NCol);
 
-  int Row=0;
-  int Col=0;
+  int Row = 0, Col = 0;
   float S11r, S11i, S12r, S12i, S21r, S21i, S22r, S22i;
 
   double realdif = 0;
@@ -62,10 +65,12 @@ int main(int argc, char *argv[]){
   int tcount = 0;
 
   for(Row = 0; Row < NRow; Row++){
+    
     fcount = 0;
-
     printf("\rProcessing Row %d of %d ", Row + 1, NRow);
+    
     for(Col = 0; Col < NCol; Col++){
+      
       fread(&S12r, sizeof(float), 1, S2_file[1]);
       fread(&S12i, sizeof(float), 1, S2_file[1]);
       fread(&S21r, sizeof(float), 1, S2_file[2]);
@@ -77,17 +82,18 @@ int main(int argc, char *argv[]){
       cpa = (float)(a1 - a2);
       fcount += fwrite(&cpa, sizeof(float), 1, angle_file);
     }
+   
     if(NCol != fcount){
       printf("Error: wrong number of bytes written this row: %d, should have been %d", fcount, NCol);
       exit(1);
     }
   }
-  printf("done\n");
-
+  
   for(i = 0; i < nS2Files; i++){
     fclose(S2_file[i]);
   }
+  
   fclose(angle_file);
-
+  printf("done\n");
   return 0;
 }
