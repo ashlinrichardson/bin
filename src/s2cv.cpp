@@ -372,7 +372,9 @@ for (lig = 0; lig < Nligoffset; lig++){
     }
 
 for (lig = 0; lig < Nligfin; lig++){
-	if (lig%(int)(Nligfin/20) == 0) {printf("%f\r", 100. * lig / (Nligfin - 1));fflush(stdout);}
+	if (lig%(int)(Nligfin/20) == 0) {
+		printf("%f\r", 100. * lig / (Nligfin - 1));fflush(stdout);
+	}
     for (ii = 0; ii < Nlook_lig; ii++){
    	    for (np = 0; np < Npolar_in; np++){
             fread(&M_tmp[np][ii][0], sizeof(float), 2 * Ncol, in_file[np]);
