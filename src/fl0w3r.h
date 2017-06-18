@@ -175,7 +175,8 @@ vector<string> split(string s, char delim){
   istringstream iss(s); string token;
   while(getline(iss,token,delim)){
     ret.push_back(token);
-  }return ret;
+  }
+	return ret;
 }
 
 vector<string> split(string s){
@@ -202,9 +203,11 @@ string getHeaderFileName(string fn){
   string hfn2((gfn.substr(0, gfn.size()-3)) + string("hdr"));
   if(exists(hfn)){
     return hfn;
-  }else if(exists(hfn2)){
+  }
+	else if(exists(hfn2)){
     return hfn2;
-  }else{
+  }
+	else{
     printf("%sError: could not find header file [%s] or [%s]\n", KRED, hfn.c_str(), hfn2.c_str());
     return string("");
   }
