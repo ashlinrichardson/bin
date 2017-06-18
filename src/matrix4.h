@@ -1,8 +1,12 @@
 template<class T>
 class herm4{
 	public:
-	inline herm4<T>(T A, T B, T C, T D, T E, T F, T G, T H, T I, T J) : a(A), b(B), c(C), d(D), e(E), f(F), g(G), h(H), i(I), j(J) {}
-	inline herm4<T>(const complex<T> &A): a(A.a), b(A.b), c(A.c), d(A.d), e(A.e), f(A.f), g(A.g), h(A.h), i(A.i), j(A.j) {}
+	inline herm4<T>(T A, T B, T C, T D, T E, T F, T G, T H, T I, T J) : a(A), b(B), c(C), d(D), e(E), f(F), g(G), h(H), i(I), j(J){
+	}
+	
+	inline herm4<T>(const complex<T> &A): a(A.a), b(A.b), c(A.c), d(A.d), e(A.e), f(A.f), g(A.g), h(A.h), i(A.i), j(A.j){
+	}
+	
 	inline herm4<T>(){
     zero();
   } 
