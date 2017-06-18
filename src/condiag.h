@@ -1,8 +1,8 @@
 #pragma once
-inline void kennaugh_huynen(complex<TYPE> s11_, complex<TYPE> s12_, complex<TYPE> s22_,
-TYPE & psi, TYPE & tau, TYPE & m, TYPE & gamma, TYPE & nu, TYPE & rho, TYPE & r);
+inline void kennaugh_huynen(complex<TYPE> s11_, complex<TYPE> s12_, complex<TYPE> s22_, TYPE & psi, TYPE & tau, TYPE & m, TYPE & gamma, TYPE & nu, TYPE & rho, TYPE & r);
 
 inline void normalize_coneigenvector(const M2C &S, const M2C & G, V2C & e, cf_ & mu){
+  
   e.unit();
 
   V2C prod (S*e);
@@ -12,18 +12,18 @@ inline void normalize_coneigenvector(const M2C &S, const M2C & G, V2C & e, cf_ &
   cf_ mu2_ = (prod.b) / (estar.b);
   mu = mu1_;
 
-  if( norm(estar.a) <TOL){
+  if( norm(estar.a) < TOL){
     mu = mu2_;
   }
-  else if( norm(estar.b) <TOL){
+  else if( norm(estar.b) < TOL){
     mu = mu1_;
   }
-  else if( ( norm(estar.a) <TOL) && ( norm(estar.b) <TOL)){
+  else if( ( norm(estar.a) < TOL) && ( norm(estar.b) < TOL)){
     cout << "Error: zero eigenvector" <<endl;
     exit(1);
   }
   else{
-    assert_0( norm( mu1_ - mu2_));
+    assert_0(norm( mu1_ - mu2_));
   }
 
   assert_0(norm( S*e - mu*conj(e)));
@@ -31,9 +31,9 @@ inline void normalize_coneigenvector(const M2C &S, const M2C & G, V2C & e, cf_ &
   return;
 }
 
-inline void condiag( const M2C &M, cf_ & mu1, cf_ & mu2, V2C & e1, V2C & e2){
+inline void condiag(const M2C &M, cf_ & mu1, cf_ & mu2, V2C & e1, V2C & e2){
 
-  M2C G( adjoint(M) * M);
+  M2C G(adjoint(M) * M);
   cf_ a(G.a);
   cf_ b(G.b);
   cf_ c(G.c);
