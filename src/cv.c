@@ -23,7 +23,7 @@ void chk(const char * type, int result, int expected){
   }
 }
 
-int main(int argc, char * argv[]){
+int main(int argc, char ** argv){
   chk("char", sizeof(char), 1);
   chk("short signed int", sizeof(short signed int), 2);
   chk("signed int", sizeof(signed int), 4);
@@ -94,42 +94,60 @@ int main(int argc, char * argv[]){
   unsigned long int * dat_15;
   unsigned long int * out_15;
   
-  switch(idatatype) {
+  switch(idatatype){
     case 1:
 		  dat_1 = malloc(n_pix * sizeof(char)); 
-		  if(!dat_1){ printf("Malloc failure\n"); exit(1);}
+		  if(!dat_1){
+			  printf("Malloc failure\n"); exit(1);
+		  }
 	    break;
     case 2:
 		  dat_2 = malloc(n_pix * sizeof(short signed int)); 
-		  if(!dat_2){ printf("Malloc failure\n"); exit(1);}
+		  if(!dat_2){
+			  printf("Malloc failure\n"); exit(1);
+			    }
 	    break;
     case 3:
 		  dat_3 = malloc(n_pix * sizeof(signed int)); 
-		  if(!dat_3){ printf("Malloc failure\n"); exit(1);}
+		  if(!dat_3){
+			  printf("Malloc failure\n"); exit(1);
+		  }
 	    break;
     case 4:
 		  dat_4 = malloc(n_pix * sizeof(float)); 
-		  if(!dat_4){ printf("Malloc failure\n"); exit(1);}
+		  if(!dat_4){ 
+			  printf("Malloc failure\n"); exit(1);
+			    }
 	    break;
     case 5:
 		  dat_5 = malloc(n_pix * sizeof(double)); 
-		  if(!dat_5){ printf("Malloc failure\n"); exit(1);}
+		  if(!dat_5){
+			  printf("Malloc failure\n"); exit(1);
+			    }
 	    break;
     case 12:
 		  dat_12 = malloc(n_pix * sizeof(short unsigned int)); 
-		  if(!dat_12){ printf("Malloc failure\n"); exit(1);}
+		  if(!dat_12){ 
+			  printf("Malloc failure\n"); exit(1);
+		  }
 	    break;
     case 13:
 		  dat_13 = malloc(n_pix * sizeof(unsigned int)); 
-		  if(!dat_13){ printf("Malloc failure\n"); exit(1);}
+		  if(!dat_13){
+			  printf("Malloc failure\n"); exit(1);
+			     }
 	    break;
     case 14:
 		  dat_14 = malloc(n_pix * sizeof(long signed int)); 
-		  if(!dat_14){ printf("Malloc failure\n"); exit(1);}
+		  if(!dat_14){ 
+			  printf("Malloc failure\n"); exit(1);
+		  }
 	    break;
     case 15:
 		  dat_15 = malloc(n_pix * sizeof(long unsigned int)); 
-		  if(!dat_15){ printf("Malloc failure\n"); exit(1);}
+		  if(!dat_15){
+			  printf("Malloc failure\n"); exit(1);
+		  }
 	    break;
     default:
 	    printf("Error: Disallowed input data type value\n");
@@ -137,34 +155,61 @@ int main(int argc, char * argv[]){
       break;
   } 
 
-  switch(odatatype) {
+  switch(odatatype){
     case 1:
 		  out_1 = malloc(n_pix * sizeof(char)); 
-		  if(!out_1){ printf("Malloc failure\n"); exit(1);} break;
+		  if(!out_1){
+			  printf("Malloc failure\n"); exit(1);
+		  }
+		  break;
     case 2:
 		  out_2 = malloc(n_pix * sizeof(short signed int)); 
-		  if(!out_2){ printf("Malloc failure\n"); exit(1);} break;
+		  if(!out_2){ 
+			  printf("Malloc failure\n"); exit(1);
+			    } 
+		  break;
     case 3:
 		  out_3 = malloc(n_pix * sizeof(signed int)); 
-		  if(!out_3){ printf("Malloc failure\n"); exit(1);} break;
+		  if(!out_3){ 
+			  printf("Malloc failure\n"); exit(1);
+		  }
+		  break;
     case 4:
 		  out_4 = malloc(n_pix * sizeof(float)); 
-		  if(!out_4){ printf("Malloc failure\n"); exit(1);} break;
+		  if(!out_4){
+			  printf("Malloc failure\n"); exit(1);
+		  } 
+		  break;
     case 5:
 		  out_5 = malloc(n_pix * sizeof(double)); 
-	    if(!out_5){ printf("Malloc failure\n"); exit(1);} break;
+	    if(!out_5){ 
+		    printf("Malloc failure\n"); exit(1);
+		      } 
+		  break;
     case 12:
 		  out_12 = malloc(n_pix * sizeof(short unsigned int)); 
-		  if(!out_12){ printf("Malloc failure\n"); exit(1);}  break;
+		  if(!out_12){ 
+			  printf("Malloc failure\n"); exit(1);
+		  } 
+		  break;
     case 13:
 		  out_13 = malloc(n_pix * sizeof(unsigned int)); 
-	    if(!out_13){ printf("Malloc failure\n"); exit(1);}  break;
+	    if(!out_13){ 
+		    printf("Malloc failure\n"); exit(1);
+		       } 
+		  break;
     case 14:
 		  out_14 = malloc(n_pix * sizeof(long signed int)); 
-		  if(!out_14){ printf("Malloc failure\n"); exit(1);}  break;
+		  if(!out_14){
+			  printf("Malloc failure\n"); exit(1);
+		  }
+		  break;
     case 15:
 		  out_15 = malloc(n_pix * sizeof(long unsigned int)); 
-      if(!out_15){ printf("Malloc failure\n"); exit(1);}  break;
+      if(!out_15){ 
+	      printf("Malloc failure\n"); exit(1);
+      }  
+		  break;
     default:
       printf("Error: Disallowed input data type value\n");  exit(1);  break;
   }
@@ -176,7 +221,7 @@ int main(int argc, char * argv[]){
     exit(1);
   }
 
-register int i,j;
+register int i, j;
 
   for(i = 0; i < bands; i++){
 	  printf("\rBand %i of %i", i + 1, bands);
