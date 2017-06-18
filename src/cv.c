@@ -35,10 +35,13 @@ int main(int argc, char ** argv){
   chk("long unsigned int", sizeof(long unsigned int), 8);
 
   if(argc != 8){	
-	  printf("cvn.c: Convert between ENVI image data types implemented by Ash Richardson 200806 with updates 200905; reimplemented 20170617\nUsage: cvn [input file name] [input data type] [samples] [lines] [bands] [output file name] [output data type]\n\nSupported Data Types:\n1=8-bit byte\n2=16-bit signed integer\n3=32-bit signed long integer\n4=32-bit floating point\n5=64-bit double-precision floating point\n12=16-bit unsigned integer\n13=32-bit unsigned long integer\n14=64-bit signed long integer\n15=64-bit unsigned long integer\n\nUnsupported types:\n6=2x32-bit complex, real-imaginary pair of double precision\n9=2x64-bit double-precision complex, real-imaginary pair of double precision\n");
+	  printf("cvn.c: Convert between ENVI image data types implemented by Ash Richardson 200806 with updates 200905\n);
+	printf("reimplemented 20170617\n");
+	printf("Usage: cvn [input file name] [input data type] [samples] [lines] [bands] [output file name] [output data type]\n");
+	printf("Supported Data Types:\n1=8-bit byte\n2=16-bit signed integer\n3=32-bit signed long integer\n4=32-bit floating point\n5=64-bit double-precision floating point\n12=16-bit unsigned integer\n13=32-bit unsigned long integer\n14=64-bit signed long integer\n15=64-bit unsigned long integer\n\nUnsupported types:\n6=2x32-bit complex, real-imaginary pair of double precision\n9=2x64-bit double-precision complex, real-imaginary pair of double precision\n");
 	  printf("\nNote: this program is not affected by interleave type (although it naively processes the file on a band by band basis).\n");
 	  printf("\nIMPORTANT: program assumes intel convention (byte order 0).\n");
-		exit(1);
+	exit(1);
 	}
 
 	char * infilename = argv[1];
