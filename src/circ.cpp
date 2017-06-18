@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
     "LL.bin",
     "LR.bin",
     "RL.bin",
-  "RR.bin"
+    "RR.bin"
   };
 
   S2 S2_out(OUTPUT, input_dir, outfilenames);
