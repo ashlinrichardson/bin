@@ -428,8 +428,9 @@ SUPPRESS_OUTPUT=1;
 				if(MASK){
 					mask_[x][y]=(float)changeflag;
 				}
-			}//yloop
-		}//xloop
+			}
+		}
+	
 		if(!SUPPRESS_OUTPUT){
 			printf("Band,%d,%d,%d,%d,%d,%d\n", i,n_averaged,samples*lines, filters_in_bounds, extraneous_filters, total_pixels/(samples*lines) );
 		}
