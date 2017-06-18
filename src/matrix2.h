@@ -4,20 +4,27 @@
 #include <string.h>
 #include <fstream>
 #include <iostream>
+
 #define TYPE double
+#define angle(x) (atan2( imag(x), real(x)))
 
 using namespace std;
 
-#define angle(x) (atan2( imag(x), real(x)))
 namespace _matrix2{
 
-template<class T>
-struct complex{
+template<class T> struct complex{
 
-	inline complex( T Re, T Im) : re(Re), im(Im){}
-	inline complex<T>(const complex<double> &A): re(A.re), im(A.im){}
-	inline complex<T>(): re(0.), im(0.){}
-	inline complex<T>(const complex<float> &A): re((double)A.re), im((double)A.im){}
+	inline complex( T Re, T Im) : re(Re), im(Im){
+	}
+	
+	inline complex<T>(const complex<double> &A): re(A.re), im(A.im){
+	}
+	
+	inline complex<T>(): re(0.), im(0.){
+	}
+	
+	inline complex<T>(const complex<float> &A): re((double)A.re), im((double)A.im){
+	}
 
 	inline complex<T> log(){
 		return complex<T>( (T) (double)std::log( (double) sqrt( (double)(re*re + im*im))), (T) (double)atan2(  (double)im, (double)re));
@@ -251,10 +258,17 @@ struct vec2{
 
 template<class T>
 struct mat2{
-	inline mat2( T A, T B, T C, T D ) : a(A), b(B), c(C), d(D){}
-	inline mat2<T>(const mat2<T> &A): a(A.a), b(A.b), c(A.c), d(A.d){}
-	inline mat2<T>(const vec2<T> &A, const vec2<T> &B): a(A.a), b(B.a), c(A.b), d(B.b){}
-	inline mat2<T>(): a(0), b(0), c(0), d(0){}
+	inline mat2( T A, T B, T C, T D ) : a(A), b(B), c(C), d(D){
+	}
+	
+	inline mat2<T>(const mat2<T> &A): a(A.a), b(A.b), c(A.c), d(A.d){
+	}
+	
+	inline mat2<T>(const vec2<T> &A, const vec2<T> &B): a(A.a), b(B.a), c(A.b), d(B.b){
+	}
+	
+	inline mat2<T>(): a(0), b(0), c(0), d(0){
+	}
 
 	inline void operator = (const mat2 &A){
 		a=A.a; b=A.b; c=A.c; d=A.d;
