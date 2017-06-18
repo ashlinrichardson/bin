@@ -59,8 +59,7 @@ int main(int argc, char *argv[]){
       d = total = totaln = 0.;
       isBad = false;
       
-      for(i = rc; i < rc + windowsize; i++){      
-        
+      for(i = rc; i < rc + windowsize; i++){
         for(j = cc; j < cc + windowsize; j++){
           
           if((i >= 0) && (j >= 0) && (i < NRow) && (j < NCol)){
