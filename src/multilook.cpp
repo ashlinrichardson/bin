@@ -6,8 +6,7 @@ not sure why this doesn't multilook in both directions.. fix it.
 #include <stdio.h>
 #include <stdlib.h>
 int main(int argc, char *argv[]){
-  int NBINS;
-
+  
   if(argc < 5){
     printf("multilook.cpp: binary single-precision floating point file. Reimplemented 20170608 from 20100713 version.\n");
     printf("\tEdited Jan 4 2014 to remove the requirement of odd-multilook factor.\n");
@@ -16,9 +15,9 @@ int main(int argc, char *argv[]){
     printf("optional parameters: rowstart colstart rowend colend\n");
     printf("\nNote: config.txt file must be present\n");
     exit(1);
-
   }
-  int NRow, NCol, i, j;
+  
+  int NRow, NCol, i, j, NBINS;
 
   FILE * infile;
   FILE * outfile;
@@ -34,10 +33,10 @@ int main(int argc, char *argv[]){
 
   int dw = (windowsize - 1) / 2;
   float * dat = f32(NRow*NCol);
-
-  float d=0;
-  double total=0.;
-
+  
+  float d = 0;
+  double total = 0.;
+  
   int size = NRow*NCol;
 
   fread(dat, sizeof(float), size, infile); fclose(infile);
@@ -48,15 +47,19 @@ int main(int argc, char *argv[]){
   int nrow_new = NRow / windowsize;
   int ncol_new = NCol / windowsize;
   int isBad = false;
+  
   for(row = 0; row < nrow_new; row++){
     printf("\rProcessing row %d of %d", row+1, nrow_new);
     rc = row*windowsize;
+    
     for(col = 0; col < ncol_new; col++){
       cc = col * windowsize; //pixel window.
       d = total = totaln = 0.;
       isBad = false;
-      for(i = rc; i < rc + windowsize; i++){
+      
+      for(i = rc; i < rc + windowsize; i++){        
         for(j = cc; j < cc + windowsize; j++){
+          
           if((i >= 0) && (j >= 0) && (i < NRow) && (j < NCol)){
             ind = i*NCol + j; //linear coord of pixel
             d = dat[ind];
@@ -66,10 +69,10 @@ int main(int argc, char *argv[]){
             }
             total += (double)d;
             totaln ++;
-
           }
         }
       }
+      
       if(totaln > 0){
         d = (float)(total / ((double)totaln));
       }
@@ -80,10 +83,13 @@ int main(int argc, char *argv[]){
         d = 0.; /* was NAN; */
       }
       fwrite(&d, sizeof(float), 1, outfile);
+      
     }
   }
+
+  write_envi_hdr(string(OUTFILE)+string(".hdr"), nrow_new, ncol_new);
   printf("\r\n");
   fclose(outfile);
-  write_envi_hdr(string(OUTFILE)+string(".hdr"), nrow_new, ncol_new);
   return 0;
+  
 }
