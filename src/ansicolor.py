@@ -1,7 +1,6 @@
 #!/usr/bin/env python2.7
-'''
-  ansi color codes for posix terminal
-'''
+'''  ansi color codes for posix terminal'''
+
 color = {"KNRM": "\\x1B[0m",  #normal
          "KBLK": "\\x1B[30m", #black
          "KRED": "\\x1B[31m", #red
