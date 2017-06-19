@@ -17,9 +17,8 @@ if len(args) > 1:
     except:
         pass
 
-cmd = ' '.join(args[(1 if delay == default else 2):])
+cmd = ' '.join(arg)
 print cmd
-sys.exit(1)
 
 while(True):
     a = os.system(cmd)
