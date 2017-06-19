@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-'''repeat command at regular interval (in seconds): default 10 seconds
+'''repeat command at regular interval (in seconds): default 10 seconds.
 if first command line argument can be interpreted as integer, override
 the default value. use remaining args as command to run. 20170619 AR'''
 import os
