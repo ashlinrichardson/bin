@@ -6,6 +6,7 @@ from ansicolor import KRED, KGRN, KNRM
 to_re_move = ['swn', 'swo', 'swp', 'exe', 'gch', 'o', 'pickle', 'pyc', 'bak']
 to_re_move = ["*." + x for x in to_re_move]
 
+
 def re_move(ext):
     my_files = os.popen('find ./ -name "' + ext + '"').readlines()
     for f in my_files:
