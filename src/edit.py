@@ -26,4 +26,4 @@ if not(ext in suppor):
 run('vim ' + fn)
 
 if ext in compil:
-    run('compile ' + fn)
+    run('python compile.py ' + fn)
