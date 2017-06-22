@@ -24,7 +24,7 @@ ext = fn.split('.')[-1].strip()
 base = fn.split('/')[-1].strip()
 
 # embellish filename (if already exists)
-cmd = 'find ./ -name "' + base + '*"'
+cmd = 'find ./ -name "' + base + '.*"'
 friends = os.popen(cmd).readlines()
 if len(friends) == 1:
     fn = normpath(friends[0]).strip()
