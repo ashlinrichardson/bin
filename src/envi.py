@@ -41,7 +41,7 @@ def hdr_d(fn, nr, nc, nb=1, dt=4):
             'bands   = ' + str(nb),
             'header offset = 0',
             'file type = ENVI Standard',
-            'data type = ' + dt,
+            'data type = ' + str(dt),
             'interleave = bsq',
             'byte order = 0',
             'band names = {}']
@@ -51,14 +51,14 @@ def hdr_d(fn, nr, nc, nb=1, dt=4):
 '''
 
 
-def write_envi_hdr(fn, nr, nc, nb):
+def write_envi_hdr(fn, nr, nc, nb=1, dt=4):
     # open file and write header data
     f = open(fn + '.hdr', 'wb')
-    [f.write(d + '\n') for d in hdr_d(fn, nr, nc, nb)]
+    [f.write(d + '\n') for d in hdr_d(fn, nr, nc, nb, dt)]
 
     # close file and print message
     f.close()
-    printw(fn)
+    printw(fn + '.hdr')
 
 '''
 @brief interpret envi format binary file with header as cv2 image data
