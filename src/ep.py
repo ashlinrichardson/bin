@@ -15,9 +15,9 @@ def findfilestartstring(startstring, cwd):
 	  else:
 	      _if = _if[0].strip()
 	_if = os.path.abspath(_if)
-	return _if 
+	return _if
 
-#Script Start        
+#Script Start
 if len(args) < 3:
         print "ep.py: extract Palsar data 200909 reimpl. 20170622"
         error("Usage: ep [input directory] [output directory]")
@@ -28,7 +28,7 @@ o_dir = normpath(args[2])
 cfgfile = i_dir + "alos_config.txt"
 f = open(cfgfile,"w")
 f.close()
-	
+
 hh = findfilestartstring("IMG-HH", i_dir)
 hv = findfilestartstring("IMG-HV", i_dir)
 vh = findfilestartstring("IMG-VH", i_dir)
@@ -43,7 +43,7 @@ run("aloshdr " + i_dir + " " + led + " " + hh + " " + trl + " " + cfgfile)
 lines = open(i_dir + "alos_config.txt").readlines()
 
 #Some conversion defaults
-NCOL = NROW = 0  
+NCOL = NROW = 0
 OffsetL = 0 #No multilook (Full resolution)
 OffsetC = 0
 EndL = EndC = 0
@@ -62,7 +62,7 @@ NCOL = int(NCOL)
 EndL = NROW
 EndC = NCOL
 
-#Extract s2 coherency matrix from ALOS CEOS           
+#Extract s2 coherency matrix from ALOS CEOS
 #TYPE: alos_convert_11_S2 FileInput11 FileInput12 FileInput21 FileInput22 DirOutput Ncol OffsetLig OffsetCol FinalNlig FinalNcol SubSampRG SubSampAZ Symmetrisation (0/1) ConfigFile
 run("mkdir " + "-p " + o_dir + "s2")
 run("alos2s2 " + hh + " " + hv + " " + vh + " " + vv + " " + o_dir + "s2" + " " + str(NCOL) + " " + str(OffsetL) + " " + str(OffsetC) + " " + str(EndL) + " " + str(EndC) + " " + str(RG) + " " + str(AZ) + " " + str(SYM) + " " + cfgfile)
