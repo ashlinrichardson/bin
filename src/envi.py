@@ -32,7 +32,7 @@ def read_envi_hdr(fn):
 '''
 
 
-def hdr_d(fn, nr, nc, nb):
+def hdr_d(fn, nr, nc, nb=1, dt=4):
     fn = fn.strip().split('/')[-1].strip()
     return ['ENVI',
             'description = {' + fn + '}',
@@ -41,7 +41,7 @@ def hdr_d(fn, nr, nc, nb):
             'bands   = ' + str(nb),
             'header offset = 0',
             'file type = ENVI Standard',
-            'data type = 4',
+            'data type = ' + dt,
             'interleave = bsq',
             'byte order = 0',
             'band names = {}']
