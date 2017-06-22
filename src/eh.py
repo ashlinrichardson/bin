@@ -49,7 +49,7 @@ for b in bins:
         else:
             # normal BSQ binary file: infer nbands from size, filesize
             d_type = 4
-            writeize = os.path.getsize(b)
+            f_size = os.path.getsize(b)
             nband = f_size /(nlin * ncol * 4)
 
-        envi_hdr(fn, nlin, ncol, nband, d_type)
+        write_envi_hdr(fn, nlin, ncol, nband, d_type)
