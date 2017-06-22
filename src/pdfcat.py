@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+'''this program should check for ghostscript'''
 import os
 import sys
 from fl0w3r import error, run
