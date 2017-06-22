@@ -113,8 +113,8 @@ def config_file(nrow, ncol):
 
 # write a PolSARPro config file
 def write_config(fn, nrow, ncol):
-    open(fn, 'wb').write(config_file(nrow, ncol))
-
+    wopen(fn).write(config_file(nrow, ncol))
+  
 
 # read a PolSARPro config file
 def read_config(fn):

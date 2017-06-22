@@ -22,7 +22,7 @@ def read_envi_hdr(fn):
                 d[w[0].strip()] = w[1].strip()
 
         # display dimensions
-        print 'nr', d['lines'], 'nc', d['samples'], 'nb', d['bands']
+        # print 'nr', d['lines'], 'nc', d['samples'], 'nb', d['bands']
         return d['lines'], d['samples'], d['bands']
     except:
         error('could not parse envi .hdr file: ' + fn)
