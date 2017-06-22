@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import normpath, wopen, error, run, chkfile, args, exists
+from fl0w3r import normpath, wopen, error, run, chkfile, args, exists, ext
 from ansicolor import KRED, KGRN, KNRM
 ''' indentation for c/c++ code, by ashlin richardson 20170617'''
 
@@ -10,6 +10,12 @@ if len(args) < 2:
           '\n\tusage: dent [filename]')
 
 in_file = normpath(args[1])
+
+# there's a python version of this program, too:
+if ext(in_file) == 'py':
+    # for python, run that one instead
+    run('pydent ' + in_file)
+    sys.exit(0)
 
 # default for spaces-per-tab, 2
 spaces_per_tab = 2
