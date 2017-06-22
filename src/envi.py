@@ -1,4 +1,7 @@
-import cv2
+try:
+    import cv2
+except:
+    pass
 import struct
 import numpy as np
 from fl0w3r import *
@@ -30,8 +33,9 @@ def read_envi_hdr(fn):
 
 
 def hdr_d(fn, nr, nc, nb):
+    fn = fn.strip().split('/')[-1].strip()
     return ['ENVI',
-            'description = {' + fn.strip() + '}',
+            'description = {' + fn + '}',
             'samples = ' + str(nc),
             'lines   = ' + str(nr),
             'bands   = ' + str(nb),
@@ -49,7 +53,7 @@ def hdr_d(fn, nr, nc, nb):
 
 def write_envi_hdr(fn, nr, nc, nb):
     # open file and write header data
-    f = wopen(fn + '.hdr')
+    f = open(fn + '.hdr', 'wb')
     [f.write(d + '\n') for d in hdr_d(fn, nr, nc, nb)]
 
     # close file and print message
