@@ -31,8 +31,8 @@ if len(friends) == 1:
     base = fn.split('/')[-1].strip()
     ext = base.split('.')[-1].strip()
 else:
-    base = {f.split('/')[-1].strip() : f for f in friends}
-    exts = {b.split('.')[-1].strip() : base[b] for b in base.keys()}
+    base = {f.split('/')[-1].strip(): f for f in friends}
+    exts = {b.split('.')[-1].strip(): base[b] for b in base.keys()}
 
     # should compose dicts instead:
     if 'py' in exts:
