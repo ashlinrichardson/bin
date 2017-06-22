@@ -34,7 +34,6 @@ else:
     base = {f.split('/')[-1].strip() : f for f in friends}
     exts = {b.split('.')[-1].strip() : base[b] for b in base.keys()}
 
-    print "base", base, "exts", exts
     # should compose dicts instead:
     if 'py' in exts:
         fn, ext = exts['py'], 'py'
@@ -48,8 +47,6 @@ else:
         error('supported extensions: ' + (' '.join(suppor)))
 
 if not(ext in suppor):
-    print "ext", ext, "suppor", suppor
-    print 'edit.py: error: file not supported: ' + fn
     error('extension not supported: ' + str(ext))
 
 run('vim ' + fn)
