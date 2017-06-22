@@ -36,7 +36,7 @@ def chkfile(f):
 def exists(f):
     return os.path.exists(f)
 
-
+# check for valid directory
 def chkdir(f):
     return os.path.exists(f) and os.path.isdir(f)
 
@@ -63,7 +63,7 @@ def readlines(f):
 
 # normalized file path (with slash, if directory)
 def normpath(p):
-    pp = os.path.abspath(p)
+    pp = os.path.abspath(p.strip())
     if os.path.isdir(pp):
         pp += '/'
     return pp
@@ -73,6 +73,29 @@ def normpath(p):
 def normdir(p):
     return normpath(os.path.dirname(p))
 
+
+# file path (not including file name)
+def stem(fn):
+    return normdir(fn)
+    # e.g., stem('scm.py') == normpath(expanduser('~/pwd/')) ish
+    
+
+# file name (without path or extension)
+def leaf(fn):
+    fn = normpath(fn)
+    words = fn.split('/')
+    n = words[-1].strip()
+    if(n.split('.') > 1):
+        return n.split('.')[:-1]
+    else:
+        return n
+    # e.g., leaf('scm.py') == 'scm'
+    
+# extension for a file
+def ext(fn):
+    words = normpath(fn.strip()).split('.')
+    return words[-1] if len(words) > 1 else None
+    # e.g., ext('scm.py') == '.py'
 
 # standardized time stamp string
 def timestring():
