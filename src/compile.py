@@ -70,7 +70,7 @@ re: "which"
 this code ensures replacement of existing/previous versions
 of commands. don't want to run this on someone else's system
 '''
-which = os.popen('which '+ cmdname).read().strip()
+which = os.popen('which ' + cmdname).read().strip()
 while which != '':
     cmd = 'rm ' + which
     if os.path.exists(which) and os.path.isfile(which):
