@@ -24,15 +24,15 @@ int main(int argc, char ** argv){
 
   int samples, lines, bands;
   samples = atoi(argv[2]);
-  lines= atoi(argv[3]);
-  bands =atoi(argv[4]);
+  lines = atoi(argv[3]);
+  bands = atoi(argv[4]);
   printf("Samples: %d\nLines: %d\nBands: %d\n", samples, lines, bands);
   char * force_fit_parameter_file_name = argv[5];
   printf("Parameter File: %s\n",force_fit_parameter_file_name);
 
-  register int i=0;
+  register int i = 0;
   register int x;
-  register int y=0;
+  register int y = 0;
 
   /* Attempt to open the parameter input file, as specified in the command line arguments*/
   ifstream ffin;
@@ -57,7 +57,7 @@ int main(int argc, char ** argv){
   memset(&add_coeff[0], '\0', bands*sizeof(float));
 
   /*For each band*/
-  for(i=0; i<bands; i++){
+  for(i = 0; i < bands; i++){
     ffin>>wave[i]; /*Extract the wavelength*/
     ffin>>ch; /*Read a comma*/
     ffin>>mul_coeff[i]; /*Extract the Multiplicative factor*/
@@ -73,7 +73,7 @@ int main(int argc, char ** argv){
 
   /*Prepare the output filename*/
   char out_file_name[50];
-  strcpy( &out_file_name[0],data_file_name);
+  strcpy(&out_file_name[0],data_file_name);
   char out_file_name_ext[4]=".ff";
   strcat(&out_file_name[0], &out_file_name_ext[0]);
 
@@ -91,29 +91,30 @@ int main(int argc, char ** argv){
     exit(1);
   }
 
-  int sl = samples*lines; /*Number of samples * Number of lines: this is how many data items must be read in, per band*/
+  int sl = samples*lines; 
+  /*Number of samples * Number of lines: this is how many data items must be read in, per band*/
 
   /*For each band*/
-  int cnt=0;
-  int cnt2=0;
-  int fsize=sizeof(float);
-  int sisize=sizeof(short int);
+  int cnt = 0;
+  int cnt2 = 0;
+  int fsize = sizeof(float);
+  int sisize = sizeof(short int);
 
   short int * data_in = (short int *) malloc(samples*lines*bands*sizeof(short int));
-  memset( data_in, '\0', samples*lines*bands*sizeof(short int));
+  memset(data_in, '\0', samples*lines*bands*sizeof(short int));
   float * data_out = (float *) malloc(samples*lines*bands*sizeof(float));
-  memset( data_out, '\0', samples*lines*bands*sizeof(float));
+  memset(data_out, '\0', samples*lines*bands*sizeof(float));
   data_file.read((char *)&(data_in[0]),samples*lines*bands*sizeof(short int ));
   loaded_time = clock();
   register int di=0;
 
-  for(i=0; i<bands; i++){
-    printf("Processing band %d of %d\n",i+1, bands, cnt,sl);
-    for(x=0; x< lines; x++){
-      for(y=0; y<samples; y++){
+  for(i = 0; i < bands; i++){
+    printf("Processing band %d of %d\n", i + 1, bands, cnt, sl);
+    for(x = 0; x < lines; x++){
+      for(y = 0; y < samples; y++){
         //data_file.read((char *)&(dat[x]),sizeof(short int ));
         di = (i*samples*lines)+(x*samples)+y;
-        data_out[di]=float(((((float(data_in[di]))/mul_coeff[i])-add_coeff[i])));
+        data_out[di] = float(((((float(data_in[di]))/mul_coeff[i])-add_coeff[i])));
       }
     }
   }
