@@ -13,6 +13,8 @@ in_file = normpath(args[1])
 
 # there's a python version of this program, too:
 if ext(in_file) == 'py':
+    error('python not supported yet')
+
     # for python, run that one instead
     run('pydent ' + in_file)
     sys.exit(0)

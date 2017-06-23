@@ -1,5 +1,7 @@
 '''auto-indentation for python programs (hope it works) 20170622
 we ran this program on itself: no change to the result
+
+this program isn't quite finished yet... still need to test and work on it
 '''
 import os
 import sys
@@ -55,4 +57,5 @@ for i in range(0, len(lines)):
     if line[-1] == ':':
         n_ind += 1  # increase indent
 
+# sys.exit(0)
 wopen(fn).write('\n'.join(dat))
