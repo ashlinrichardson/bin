@@ -27,7 +27,8 @@ int main(int argc, char ** argv){
     "s11.bin",
     "s12.bin",
     "s21.bin",
-  "s22.bin" };
+    "s22.bin"
+  };
   FILE * S2_file[nS2Files];
   FILE * S2_file_out[nS2Files];
 
