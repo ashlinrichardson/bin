@@ -41,7 +41,7 @@ for i in range(0, len(lines)):
         dat.append('')
         continue  
     
-    lin = deepcopy(lines[i]).replace('/t', indent)
+    lin = deepcopy(lines[i]).replace('/t', '  ')  # indent)
     n_spaces = len(lin) - len(lin.lstrip(' '))
     
     # decrease indent, if the indent decreases
@@ -51,11 +51,13 @@ for i in range(0, len(lines)):
 
     spaces_last = n_spaces
 
+    # record the line
     dat.append(((n_ind * indent) + line).rstrip())
+    print ((n_ind * indent) + line).rstrip()
 
     # increase indent, if line ends in ':'
     if line[-1] == ':':
         n_ind += 1  # increase indent
 
-# sys.exit(0)
+sys.exit(0)
 wopen(fn).write('\n'.join(dat))
