@@ -28,6 +28,22 @@ def read_envi_hdr(fn):
         error('could not parse envi .hdr file: ' + fn)
 
 '''
+@brief same as function above, but returns full data structure
+'''
+def read_envi_hdr2(fn):
+    d = {}
+    try:
+        # pick out lines of file that resemble 'assignment statements'
+        for line in readlines(fn):
+            w = line.strip().split('=')
+            if(len(w) == 2):
+                d[w[0].strip()] = w[1].strip()
+        return d
+    except:
+        error('could not parse envi .hdr file: ' + fn)
+
+
+'''
 @brief interpret rows, cols, and number of bands as envi header data
 '''
 
