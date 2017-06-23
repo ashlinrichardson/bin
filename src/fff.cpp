@@ -118,8 +118,10 @@ int main(int argc, char ** argv){
 
   processed_time = clock();
   stored_time = clock();
-  printf ("Load time %f ms\n", (((float)loaded_time-(float)start_time)/((float)CLOCKS_PER_SEC)*1000.) );
-  printf ("Kernel time %f ms %f s %f GFLOPS\n", (((float)processed_time-(float)loaded_time)/((float)CLOCKS_PER_SEC)*1000.) , (((float)processed_time-(float)loaded_time)/((float)CLOCKS_PER_SEC)*1.), (samples*lines*bands*2 / ((((float)processed_time-(float)loaded_time)/((float)CLOCKS_PER_SEC))))/(1000000000.) );
+  printf ("Load time %f ms\n", (((float)loaded_time-(float)start_time)/((float)CLOCKS_PER_SEC)*1000.));
+  printf ("Kernel time %f ms %f s %f GFLOPS\n", (((float)processed_time-(float)loaded_time)/((float)CLOCKS_PER_SEC)*1000.),
+          (((float)processed_time-(float)loaded_time)/((float)CLOCKS_PER_SEC)*1.),
+          (samples*lines*bands*2 / ((((float)processed_time-(float)loaded_time)/((float)CLOCKS_PER_SEC))))/(1000000000.));
   printf ("Store time %f ms\n", (((float)stored_time-(float)processed_time)/((float)CLOCKS_PER_SEC)*1000.) );
 
   printf("Input file: %s\n",argv[1]);
