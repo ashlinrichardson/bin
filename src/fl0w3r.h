@@ -1,10 +1,16 @@
-#include<vector>
-#include<string>
-#include<sstream>
-#include<iostream>
-#include<fstream>
+#ifdef __cplusplus
+  #include<vector>
+  #include<string>
+  #include<sstream>
+  #include<iostream>
+  #include<fstream>
+#endif
+
 #include"ansicolor.h"
-using namespace std;
+
+#ifdef __cplusplus
+  using namespace std;
+#endif 
 
 /* macros */
 #define sq(x) ((x) * (x))
@@ -14,9 +20,11 @@ void wprint(char * file_name){
   printf("%s+%sw %s%s%s\n", KMAG, KRED, KGRN, file_name, KNRM);
 }
 
-void wprint(string file_name){
-  printf("%s+%sw %s%s%s\n", KMAG, KRED, KGRN, file_name.c_str(), KNRM);
-}
+#ifdef __cplusplus
+  void wprint(string file_name){
+    printf("%s+%sw %s%s%s\n", KMAG, KRED, KGRN, file_name.c_str(), KNRM);
+  }
+#endif
 
 void rprint(char * file_name){
   printf("%s+%sr %s%s%s\n", KMAG, KGRN, KRED, file_name, KNRM);
@@ -27,10 +35,12 @@ void error(const char * msg){
   exit(1);
 }
 
-void error(string msg){
-  printf("%sError: %s%s%s\n", KRED, KGRN, msg.c_str(), KNRM);
-  exit(1);
-}
+#ifdef __cplusplus
+  void error(string msg){
+    printf("%sError: %s%s%s\n", KRED, KGRN, msg.c_str(), KNRM);
+    exit(1);
+  }
+#endif
 
 float * f32(int nfloat){
   int nb = sizeof(float) * nfloat;
@@ -55,41 +65,52 @@ char * c8(int nchar){
 FILE * open(const char * fn){
   FILE * f = fopen(fn, "rb");
   if(!f){
-    error(string("could not open (read-access) file: ") + string(fn));
+    #ifdef __cplusplus
+      error(string("could not open (read-access) file: ") + string(fn));
+    #endif
   }
   return(f);
 }
 
-FILE * open(string fn){
-  return open(fn.c_str());
-}
+#ifdef __cplusplus
+  FILE * open(string fn){
+    return open(fn.c_str());
+  }
+#endif
 
 FILE * wopen(const char * fn){
   wprint(fn);
   FILE * f = fopen(fn, "wb");
   if(!f){
-    error(string("could not open (write-access) file: ") + string(fn));
+    #ifdef __cplusplus
+      error(string("could not open (write-access) file: ") + string(fn));
+    #endif
   }
   return(f);
 }
 
-FILE * wopen(string fn){
-  return wopen(fn.c_str());
-}
+#ifdef __cplusplus
+  FILE * wopen(string fn){
+    return wopen(fn.c_str());
+  }
+#endif
 
 /*convert char to string: single character: interpret whitspace as space character */
-string chartos(char s){
-  string ret("");
-  stringstream ss;
-  ss << s;
-  ss >> ret;
-  if(isspace(s)){
-    ret += " ";
+#ifdef __cplusplus
+  string chartos(char s){
+    string ret("");
+    stringstream ss;
+    ss << s;
+    ss >> ret;
+    if(isspace(s)){
+      ret += " ";
+    }
+    return ret;
   }
-  return ret;
-}
+#endif
 
 /*strip leading or trailing whitespace from a string*/
+#ifdef __cplusplus
 string strip(string s){
   string ret("");
   long int i, j, N;
@@ -108,8 +129,10 @@ string strip(string s){
   }
   return ret;
 }
+#endif
 
 /*trim leading or trailing characters from a string*/
+#ifdef __cplusplus
 string trim(string s, char a){
   string ret("");
   long int i, j, N;
@@ -128,7 +151,9 @@ string trim(string s, char a){
   }
   return ret;
 }
+#endif
 
+#ifdef __cplusplus
 long int getFileSize(std::string fn){
   ifstream i;
   i.open(fn.c_str(), ios::binary);
@@ -140,7 +165,9 @@ long int getFileSize(std::string fn){
   long int len = i.tellg();
   return(len);
 }
+#endif
 
+#ifdef __cplusplus
 bool exists(string fn){
   if(getFileSize(fn) > 0){
     printf("%sFound file %s%s\n%s", KGRN, KRED, fn.c_str(), KNRM);
@@ -148,8 +175,11 @@ bool exists(string fn){
   }
   return false;
 }
+#endif
+
 
 /* special case of split (for newline character) */
+#ifdef __cplusplus
 vector<string> split(string s, char delim, long int i){
   //delimiter unused-- function unfinished. need to test this function properly
   vector<string> ret;
@@ -162,8 +192,10 @@ vector<string> split(string s, char delim, long int i){
   }
   return ret;
 }
+#endif
 
 /* split a string (a-la python) */
+#ifdef __cplusplus
 vector<string> split(string s, char delim){
   vector<string> ret;
   long int N = s.size();
@@ -177,11 +209,15 @@ vector<string> split(string s, char delim){
   }
   return ret;
 }
+#endif
 
+#ifdef __cplusplus
 vector<string> split(string s){
   return split(s, ' ');
 }
+#endif
 
+#ifdef __cplusplus
 vector<string> readLines(string fn){
   vector<string> ret;
   long int fs = getFileSize(fn);
@@ -195,7 +231,9 @@ vector<string> readLines(string fn){
   ret = split(s, '\n');
   return(ret);
 }
+#endif
 
+#ifdef __cplusplus
 string getHeaderFileName(string fn){
   string gfn(trim(fn, '\"'));
   string hfn(gfn + string(".hdr"));
@@ -211,7 +249,10 @@ string getHeaderFileName(string fn){
     return string("");
   }
 }
+#endif
 
+
+#ifdef __cplusplus
 vector<string> parseHeaderFile(string hfn, long int & NRow, long int & NCol, long int & NBand){
   vector<string> bandNames;
   if(!exists(hfn)){
@@ -242,14 +283,20 @@ vector<string> parseHeaderFile(string hfn, long int & NRow, long int & NCol, lon
   }
   return bandNames;
 }
+#endif
 
+
+#ifdef __cplusplus
 /* read an envi header file (make a guess at what the header file is called, based on the binary file name */
 void read_envi_hdr(string hfn, long int & nrow, long int & ncol, long int & nband){
   parseHeaderFile(getHeaderFileName(hfn), nrow, ncol, nband);
 }
+#endif
 
+#ifdef __cplusplus
 void read_config(string hfn, int & NRow, int & NCol){
   vector<string> lines = readLines(hfn);
   NRow = atoi(lines[1].c_str());
   NCol = atoi(lines[4].c_str());
 }
+#endif
