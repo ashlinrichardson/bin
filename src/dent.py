@@ -44,15 +44,15 @@ wopen(bak_file).write(dat)
 
 # after making the backup:
 dat = dat.replace('}else{', '}\nelse{')
-#dat = dat.replace('{', '{\n')
-#dat = dat.replace('\n\n', '\n')
+# dat = dat.replace('{', '{\n')
+# dat = dat.replace('\n\n', '\n')
 new_lines, lines = [], dat.strip().split('\n')
 
 for i in range(0, len(lines)):
     line = lines[i].strip()
 
-    #if line == '':
-    #    continue 
+    # if line == '':
+    #    continue
 
     line = ' '.join(line.split())
     reindent = (n_indent * indent) + line
