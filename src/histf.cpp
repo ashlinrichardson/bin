@@ -143,7 +143,7 @@ int main(int argc, char ** argv){
       if(d>fmax) fmax=d;
     }
   }
-  double avg = total / ((double)totaln); // ((double)(NRow*NCol));
+  double avg = total / ((double)totaln);
   printf("Max %e\nMin %e\nMean %e\n", fmax, fmin, avg);
   printf("Second pass... \n");
   for(i = 0; i < size; i++){
@@ -214,7 +214,7 @@ int main(int argc, char ** argv){
     foundmax_above = 0;
 
     for(j = 0; j < nMax_filter; j++){
-      if(iMax[j] < iMin[i] ){
+      if(iMax[j] < iMin[i]){
         foundmax_below = 1;
       }
       if(iMax[j] > iMin[i]){
