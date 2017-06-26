@@ -63,6 +63,3 @@ class SAS : public SA< Pair<T> >{
   }
 };
 
-int main(int argc, char ** argv){
-  return 0;
-}
