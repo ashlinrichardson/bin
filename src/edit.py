@@ -34,7 +34,7 @@ if not exists(fn):
     else:
         base = {f.split('/')[-1].strip(): f for f in friends}
         exts = {b.split('.')[-1].strip(): base[b] for b in base.keys()}
-    
+
         # should compose dicts instead:
         if 'py' in exts:
             fn, ext = exts['py'], 'py'
@@ -54,3 +54,6 @@ run('vim ' + fn)
 
 if ext in compil:
     run('python compile.py ' + fn)
+
+if ext == 'py':
+    run('pep8 ' + fn)
