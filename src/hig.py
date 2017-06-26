@@ -8,6 +8,7 @@ import array
 from envi import read_envi_hdr
 from fl0w3r import run, normpath, exists, error, args, chkfile, wopen
 
+
 def bad(x):
     return math.isinf(x) or math.isnan(x)
 
@@ -42,7 +43,7 @@ for b in range(0, bands):
     print "band", b, "min", mn, "max", mx
     for i in range(0, len(band)):
         band[i] = 255. * (band[i] - mn) / (mx - mn)
-        band[i] = band[i] if not bad(band[i]) else 0.   
+        band[i] = band[i] if not bad(band[i]) else 0.
     fn = 'jpg' + str(b).zfill(5) + '.jpg'
     dat, ci = [], 0
     for i in range(0, lines):
@@ -54,4 +55,5 @@ for b in range(0, bands):
             ci += 1
         dat.append(line)
     mpimg.imsave(fn, dat)
+
 run('convert jpg00*.jpg hig.gif')
