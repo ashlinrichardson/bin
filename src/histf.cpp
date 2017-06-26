@@ -292,7 +292,6 @@ int main(int argc, char ** argv){
       if(wassplit==0){
         wr = (float)nsplit;
       }
-
     }
     w+=fwrite( &wr, sizeof(float), 1, outfile);
   }
@@ -303,7 +302,6 @@ int main(int argc, char ** argv){
   }
   else{
     printf("Error: wrong number of bytes written.\n");
-
   }
 
   fclose(infile);
