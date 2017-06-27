@@ -9,7 +9,7 @@ if len(args) < 4:
   error('pdfcat.py.\nUsage: [file1] [file2] ... [filen] [outfilename.pdf]')
 
 files = args[1:]
-outfile, infile = files[-1], files[:-1]
+outfile, infiles = files[-1], files[:-1]
 
 if os.path.exists(outfile):
   error('output file already exists: aborting')
