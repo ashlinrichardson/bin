@@ -6,7 +6,7 @@ import re
 import sys
 import copy
 import time
-from ansicolor import KYEL, KNRM, KGRN, KRED
+from ansicolor import KYEL, KNRM, KGRN, KRED, KMAG
 from fl0w3r import error, exists, normpath, normdir, timestring, run, printw
 
 time_string = timestring()
@@ -88,7 +88,34 @@ shebang = "#!/usr/bin/python\n"
 comp_m = KGRN + "compile time: " + KRED + str(time_string) + KNRM
 last_comp = "print('" + comp_m + "')\n"
 imp = "import sys\nsys.path.append('" + source_folder + "')\n"
-command_args = compiler_cmd + ' ' + f + ' -o ' + binname + '.exe'
+
+'''search the program for compilation lines with framework tag.. '''
+
+frame_works = []
+dt = open(f).read().strip().split()
+for i in range(0, len(dt)):
+    if dt[i].strip() == '-framework':
+        frame_works.append(dt[i+1].strip())
+
+'''search the system for available frameworks'''
+f_works_avail = []
+f_works = os.popen('ls -1 /System/Library/Frameworks/').readlines()
+for i in f_works:
+    s = i.strip()
+    if s[-10:] == '.framework':
+        f_works_avail.append(s[:-10])
+
+# print str(f_works_avail)
+# print KRED + '-framework ' + KMAG + str(frame_works) + KNRM
+
+frameworks = ''
+for fw in frame_works:
+    if fw in f_works_avail:
+        frameworks += ' -framework ' + fw
+
+print KMAG + frameworks + KNRM
+command_args = (compiler_cmd + ' ' + f + ' ' +
+                frameworks + ' -o ' + binname + '.exe')
 
 dat = shebang + "import os\n" + imp
 dat += "args = sys.argv[1:]\nargs = (' ').join(args)\n"
