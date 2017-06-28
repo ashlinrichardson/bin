@@ -76,10 +76,10 @@ int main(int argc, char ** argv){
   double stddev, total;
   double fh = 0;
 
-  for(row=0; row<NRow; row++){
+  for(row = 0; row < NRow; row++){
     printf("\rProcessing row %d of %d", row+1, NRow);
 
-    for(col=0; col<NCol; col++){
+    for(col = 0; col < NCol; col++){
       totaln = 0;
       total = 0.;
       fmax = FLT_MIN;
