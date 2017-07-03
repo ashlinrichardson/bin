@@ -20,7 +20,7 @@ int main(int argc, char ** argv){
   int nrow = atoi(argv[5]);
   int ncol = atoi(argv[6]);
 
-  if((nrow > row) || (ncol > col) || (nrow <=0) || (ncol <= 0)){
+  if((nrow > row) || (ncol > col) || (nrow <= 0) || (ncol <= 0)){
     printf("Error: check subset size\n");
     exit(1);
   }
@@ -39,16 +39,16 @@ int main(int argc, char ** argv){
   }
 
   float * dati = malloc( sizeof(float) * row * col);
-  memset( dati, '\0', sizeof(float) * row * col);
+  memset(dati, '\0', sizeof(float) * row * col);
   float * dato = malloc( sizeof(float) * nrow * ncol);
-  memset( dato, '\0', sizeof(float) * nrow * ncol);
+  memset(dato, '\0', sizeof(float) * nrow * ncol);
 
   int floatsRead = fread(dati, sizeof(float), row * col, f);
-  if(floatsRead != row*col){
+  if(floatsRead != row * col){
     printf("Error: floatsRead != row*col. floatsRead=%d, row*col=%d\n",floatsRead, row*col);
     exit(1);
   }
-  int i,j;
+  int i, j;
   int ci = 0;
 
   for(i = 0; i < row; i++){
