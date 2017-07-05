@@ -9,7 +9,7 @@ from copy import deepcopy
 from fl0w3r import run, error, normpath, args, exists
 
 pwd = normpath(os.getcwd())
-home = normpath(os.path.expanduser('~/GitHub/fl0w3r/src/'))
+home = normpath(os.path.expanduser('~/GitHub/m3ta0/src/'))
 if pwd != home:
     error('edit.py to be run from home')
 
