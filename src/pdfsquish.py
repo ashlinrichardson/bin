@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import args
+from fl0w3r import args, normpath, run
 
 if len(args) < 3:
     error("pdfsquish.py.\nUsage: [infile.pdf] [outfile.pdf]" +
