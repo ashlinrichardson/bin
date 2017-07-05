@@ -6,7 +6,9 @@ reimplemented 20170605 from 20090624 original implementation at CFS AFT
 
 e.g.,can run the following 5 unix/linux commands:
 
-  wget http://mdacorporation.com/sample_data/RS2_OK76385_PK678063_DK606752_FQ2_20080415_143807_HH_VV_HV_VH_SLC.zip
+  wget http://mdacorporation.com/sample_data/
+    RS2_OK76385_PK678063_DK606752_FQ2_20080415_143807_HH_VV_HV_VH_SLC.zip
+
   unzip RS2_OK76385_PK678063_DK606752_FQ2_20080415_143807_HH_VV_HV_VH_SLC.zip
   mkdir s2
   ers RS2_OK76385_PK678063_DK606752_FQ2_20080415_143807_HH_VV_HV_VH_SLC s2
