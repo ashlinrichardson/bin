@@ -1,4 +1,4 @@
 # m3ta0
-A collection of python and C/C++ programs to help with programming and image analysis related tasks, but particularly for hyperspectral or polarimetric radar image analysis. For posix
+Python and C/C++ programs for programming and image analysis, such as hyperspectral or polarimetric radar image work. Posix required
 
-Some code from PolSARPro is included. Many of the programs are reimaginations of software developed at the Advanced Forest Technologies group (Pacific Forestry Centre) or programs developed subsequently.
+Some PolSARPro code included. Many programs reimaginations of software developed at Advanced Forest Technologies group (Pacific Forestry Centre) or subsequent developments
