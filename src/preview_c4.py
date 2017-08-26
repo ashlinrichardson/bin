@@ -1,5 +1,8 @@
 #!/usr/bin/env python
+'''preview for c4 data in time series
+date unknown; revised 20170826'''
 import os
+
 import sys
 MLKFACTOR = 4
 
