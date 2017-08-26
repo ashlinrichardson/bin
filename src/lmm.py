@@ -17,7 +17,7 @@ lines = []
 for line in a:
     ls = line.strip().split()
     if len(ls) > 2:
-        error('paths with spaces not supported')
+        print('warning: paths with spaces not supported: ' + line.strip())
     lines.append([int(ls[0]), normpath(ls[1])])
 lines.sort(key=lambda x: x[0])
 
