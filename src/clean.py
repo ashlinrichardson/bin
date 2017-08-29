@@ -3,7 +3,7 @@
 import os
 import sys
 from ansicolor import KRED, KGRN, KNRM
-to_re_move = ['swn', 'swo', 'swp', 'exe', 'gch', 'o', 'pickle', 'pyc', 'bak']
+to_re_move = ['a', 'swn', 'swo', 'swp', 'exe', 'gch', 'o', 'pickle', 'pyc', 'bak']
 to_re_move = ["*." + x for x in to_re_move]
 
 
