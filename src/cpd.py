@@ -13,16 +13,18 @@ def error(m):
     print('Error: ' + m)
     sys.exit(1)
 
-v, args = '/Volumes/', sys.argv
+v, args, fn = '/Volumes/', sys.argv, None
 if len(args) < 2:
-    error("cpd.py: [filename in present path]")
+    # error("cpd.py: [filename in present path]")
+    fn = "index.html"
+else:
+    fn = args[1]
 
 # present directory
 pwd = os.path.abspath(os.path.normpath(os.getcwd())) + '/'
 print 'pwd', pwd
 
 # make sure file exists
-fn = args[1]
 if not os.path.exists(fn):
     error('cannot find file: ' + str(fn))
 
@@ -139,11 +141,12 @@ print "arc_fn", arc_fn
 if os.path.exists(arc_fn):
     error('file already exists: ' + arc_fn)
 
-cmd = 'cp -v ' + dst + ' ' + arc_fn
-print cmd
-a = os.system(cmd)
-if a != 0:
-    error('command failed: ' + cmd)
+if os.path.exists(dst) and os.path.isfile(dst):
+    cmd = 'cp -v ' + dst + ' ' + arc_fn
+    print cmd
+    a = os.system(cmd)
+    if a != 0:
+        error('command failed: ' + cmd)
 
 cmd = 'cp -v ' + fn + ' ' + dst
 a = os.system(cmd)
