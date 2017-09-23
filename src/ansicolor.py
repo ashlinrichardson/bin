@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python
 '''  ansi color codes for posix terminal'''
 
 color = {"KNRM": "\\x1B[0m",  #normal
