@@ -169,20 +169,17 @@ open(arcfn_fn, "wb").write(dst)
 
 import shutil
 try:
-    # the version to push, save it with the entry
+    # save the version to push
     print('cp ' + fn + ' ' + arcfn_nxt)
     shutil.copyfile(fn, arcfn_nxt)
-
 except:
     error('failed to copy file', fn, arcfn_nxt)
-    
-# print "arc_fn", arc_fn
 
+# sanity check: make sure archive doesn't already exist    
 if os.path.exists(arc_fn):
     error('file already exists: ' + arc_fn)
 
-
-
+# backup the target file (if exists) before overwriting
 if os.path.exists(dst) and os.path.isfile(dst):
     try:
         print('cp ' + dst + ' ' + arc_fn)
@@ -190,6 +187,7 @@ if os.path.exists(dst) and os.path.isfile(dst):
     except:
         error('failed to copy file', dst, arc_fn)
 
+# copy the source file to the target location
 try:
     print('cp ' + fn + ' ' + dst)
     shutil.copyfile(fn, dst)
@@ -198,5 +196,6 @@ except:
 
 print 'success'
 
+# pause so we can see the output
 d = raw_input('\nplease press ENTER to continue..'); sys.exit(1)    
 
