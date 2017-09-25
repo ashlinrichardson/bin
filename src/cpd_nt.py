@@ -3,14 +3,15 @@
 # $author$ ash richardson
 # $date$ 20170923
 '''a minimalist versioning system
-*** notes: requires test folder on Y:, and dev folder on Z: ***
+*** notes: requires envwwwt on Y:, and envwwwd on Z: ***
 
 *** limitation: program will work on the order of one billion times, cumulatively for a given input parameter
  -- the limitation overcome by applying dynamic length string allocation methods ( trivial
     programming exercise suitable to delegate to a student)
 
 tested for robustness by:
-    attempting to promote things not on dev
+    attempting to promote C:\\python27\\NEWS.txt (failed as, not on dev drive Z:\\)
+    attempting to promote Y:\\_shared\\xml\\parkinfo.json (failed as, not on dev drive) ***
 '''
 
 import sys
@@ -28,6 +29,10 @@ from os.path import expanduser
 
 # home folder, file to promote
 home, args = expanduser("~") + '\\', sys.argv
+
+if len(args) < 2:
+    error('file argument not supplied')
+    
 fn = os.path.abspath(args[1])  # fully qualified path
 
 # make sure the source path exists (and is a file)
@@ -86,10 +91,11 @@ ard = home + 'promote\\'
 # print ard
 
 # create backup folder (if does not yet exist)
-try:
-    os.stat(ard)
-except:
-    os.mkdir(ard)
+if not (os.path.exists(ard) and os.path.isdir(ard)):
+    try:
+        os.mkdir(ard)
+    except:
+        error('failed to make directory: ' + ard)
 
 ph_bk = ard + 'files.txt'
 # print 'phone book: ' + str(ph_bk)
@@ -129,6 +135,8 @@ folder = ard + str(ci) + '\\'
 if os.path.exists(folder) and not os.path.isdir(folder):
     error('path exists but is not folder: ' + folder)
 
+# print "folder", str(folder)
+
 # create backup folder (if does not yet exist)
 try:
     os.stat(folder)
@@ -162,7 +170,8 @@ open(arcfn_fn, "wb").write(dst)
 import shutil
 try:
     # the version to push, save it with the entry
-    cmd = 'cp ' + fn + ' ' + arcfn_nxt; print cmd
+    cmd = 'cp ' + fn + ' ' + arcfn_nxt
+    print cmd
     shutil.copyfile(fn, arcfn_nxt)
 
 except:
@@ -173,19 +182,24 @@ except:
 if os.path.exists(arc_fn):
     error('file already exists: ' + arc_fn)
 
+
+
 if os.path.exists(dst) and os.path.isfile(dst):
     try:
-        cmd = 'cp ' + dst + ' ' + arc_fn; print cmd
+        cmd = 'cp ' + dst + ' ' + arc_fn
+        print cmd
         shutil.copyfile(dst, arc_fn)
     except:
         error('failed to copy file', dst, arc_fn)
 
 try:
-    cmd = 'cp ' + fn + ' ' + dst; print cmd
+    cmd = 'cp ' + fn + ' ' + dst
+    print cmd
     shutil.copyfile(fn, dst)
 except:
     error('failed to copy file', fn, dst)
 
 print 'success'
 
-d = raw_input('\nplease press ENTER to continue..'); sys.exit(1)
+d = raw_input('\nplease press ENTER to continue..'); sys.exit(1)    
+
