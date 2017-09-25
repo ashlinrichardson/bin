@@ -170,8 +170,7 @@ open(arcfn_fn, "wb").write(dst)
 import shutil
 try:
     # the version to push, save it with the entry
-    cmd = 'cp ' + fn + ' ' + arcfn_nxt
-    print cmd
+    print('cp ' + fn + ' ' + arcfn_nxt)
     shutil.copyfile(fn, arcfn_nxt)
 
 except:
@@ -186,15 +185,13 @@ if os.path.exists(arc_fn):
 
 if os.path.exists(dst) and os.path.isfile(dst):
     try:
-        cmd = 'cp ' + dst + ' ' + arc_fn
-        print cmd
+        print('cp ' + dst + ' ' + arc_fn)
         shutil.copyfile(dst, arc_fn)
     except:
         error('failed to copy file', dst, arc_fn)
 
 try:
-    cmd = 'cp ' + fn + ' ' + dst
-    print cmd
+    print('cp ' + fn + ' ' + dst)
     shutil.copyfile(fn, dst)
 except:
     error('failed to copy file', fn, dst)
