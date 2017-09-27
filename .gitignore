@@ -12,3 +12,4 @@ bin/
 *.swp
 
 *.bak
+*.out
