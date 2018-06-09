@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python27
 '''20180606: compare two directories... highlight (in two colors),
 files/folders in the first directory,
 1) not appearing in the second
