@@ -10,14 +10,16 @@ user = 'ashlinrichardson'
 if len(args) > 1:
     user = args[1]
 
+# make local folder to store repo archives
 u_dir = "github:" + user
 if not exists(u_dir):
     os.mkdir(u_dir)
 else:
+    # make sure the name isnt' taken by something else
     if not os.path.isdir(u_dir):
         error(u_dir + " is not directory")
 
-# https://github.com/ashlinrichardson?tab=repositories
+# fetch the repo list
 url, url_ = 'https://github.com/' + user + '?tab=repositories', None
 try:
     url_ = urlopen(url)
@@ -30,22 +32,20 @@ for line in lines:
     l = line.strip()
     ls = l.split('itemprop="name codeRepository"')
     if len(ls) > 1:
+        # this line refers to a repo.. get the repo name
         repo = l.split('itemprop')[0].split('href="')[1]\
                 .split('/')[2].split('"')[0]
         arc = 'https://github.com/' + user + '/' + repo + '/archive/master.zip'
         try:
             o_fil = u_dir + '/' + repo + '_master.zip'
             print 'wget ' + KMAG + arc + KNRM
-            r_url = urlopen(arc)
-            # print "opened"
-            f = wopen(o_fil)
+            r_url = urlopen(arc)  # open the url
+            f = wopen(o_fil)  # open a file handle
             if not(f):
                 error("failed to open file: " + o_fil)
-            # print "reading url..."
-            data = r_url.read()
+            data = r_url.read()  # pull data from url
             print '\t' + KRED + '+' + KMAG + 'w ' + KGRN + o_fil + KNRM
-            f.write(data)
-            # print "written"
+            f.write(data)  # write to file
         except:
             print("warning: failed to open file:\n\t" +
                   KYEL + arc + KNRM + '\n')
