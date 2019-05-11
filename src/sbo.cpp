@@ -33,7 +33,7 @@ int main(int argc, char ** argv){
     if(d.size() >= n){
 	    // write out one record
       while(d.size() > 0){
-	c = d.top();
+	c = d.top(); // stack is first-in, first-out so the byte order gets reversed
         d.pop();
         fputc(c, g);
       }
