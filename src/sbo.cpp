@@ -1,5 +1,7 @@
-/* */
-/* swap byte order for pure-binary file (linear sequence of binary records of length / number of bytes = n. Required command argument: number of bytes per record */
+/* 20190510 swap byte order for pure-binary data file:
+  file contains only linear sequence of binary records:  number of bytes per record = n
+  
+Command argument: number of bytes per record */
 #include<stack>
 #include<stdio.h>
 #include<stdlib.h>
@@ -24,14 +26,14 @@ int main(int argc, char ** argv){
   char c;
   stack<char> d;
   long unsigned int nb = 0;
-  while(1 == fread(&c, 1, 1, f)){
+  while(fread(&c, 1, 1, f) == 1){
     nb ++;
     d.push(c);
 
     if(d.size() == n){
-	    //write out
+	    // write out one record
       while(d.size() > 0){
-	      c = d.top();
+	c = d.top();
         d.pop();
         fputc(c, g);
       }
