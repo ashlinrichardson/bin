@@ -30,7 +30,7 @@ int main(int argc, char ** argv){
     nb ++;
     d.push(c);
 
-    if(d.size() == n){
+    if(d.size() >= n){
 	    // write out one record
       while(d.size() > 0){
 	c = d.top();
