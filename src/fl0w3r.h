@@ -7,6 +7,8 @@
 #endif
 
 #include"ansicolor.h"
+#include<memory.h>
+#include<cstring>
 
 #ifdef __cplusplus
   using namespace std;

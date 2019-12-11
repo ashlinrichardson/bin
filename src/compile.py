@@ -99,11 +99,12 @@ for i in range(0, len(dt)):
 
 '''search the system for available frameworks'''
 f_works_avail = []
-f_works = os.popen('ls -1 /System/Library/Frameworks/').readlines()
-for i in f_works:
-    s = i.strip()
-    if s[-10:] == '.framework':
-        f_works_avail.append(s[:-10])
+if sys.platform == 'darwin':
+    f_works = os.popen('ls -1 /System/Library/Frameworks/').readlines()
+    for i in f_works:
+        s = i.strip()
+        if s[-10:] == '.framework':
+            f_works_avail.append(s[:-10])
 
 # print str(f_works_avail)
 # print KRED + '-framework ' + KMAG + str(frame_works) + KNRM
