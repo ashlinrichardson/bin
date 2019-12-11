@@ -116,7 +116,9 @@ for fw in frame_works:
 
 print KMAG + frameworks + KNRM
 command_args = (compiler_cmd + ' ' + f + ' ' +
-                frameworks + ' -o ' + binname + '.exe')
+                frameworks + ' -o ' + binname + '.exe' +
+                " -lm")
+# print KGRN + command_args + KNRM
 
 dat = shebang + "import os\n" + imp
 dat += "args = sys.argv[1:]\nargs = (' ').join(args)\n"

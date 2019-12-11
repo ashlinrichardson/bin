@@ -9,6 +9,7 @@
 #include"ansicolor.h"
 #include<memory.h>
 #include<cstring>
+#include<math.h>
 
 #ifdef __cplusplus
   using namespace std;
