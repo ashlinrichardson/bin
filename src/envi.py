@@ -142,3 +142,6 @@ def write_cv2_envi(d, fn):
     else:
         # undefined data
         error('nb != 3 not supported')
+
+
+print("ENVI.py imported")

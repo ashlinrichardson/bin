@@ -10,7 +10,7 @@ from ansicolor import KYEL, KNRM, KGRN, KRED, KMAG
 from fl0w3r import error, exists, normpath, normdir, timestring, run, printw
 
 time_string = timestring()
-opt_flags, args = '-O3', sys.argv
+opt_flags, args = '-O3 -fstack-protector -U_FORTIFY_SOURCE', sys.argv
 bin_folder, source_folder = '', ''
 
 if os.name != "posix":
@@ -99,11 +99,12 @@ for i in range(0, len(dt)):
 
 '''search the system for available frameworks'''
 f_works_avail = []
-f_works = os.popen('ls -1 /System/Library/Frameworks/').readlines()
-for i in f_works:
-    s = i.strip()
-    if s[-10:] == '.framework':
-        f_works_avail.append(s[:-10])
+if sys.platform == 'darwin':
+    f_works = os.popen('ls -1 /System/Library/Frameworks/').readlines()
+    for i in f_works:
+        s = i.strip()
+        if s[-10:] == '.framework':
+            f_works_avail.append(s[:-10])
 
 # print str(f_works_avail)
 # print KRED + '-framework ' + KMAG + str(frame_works) + KNRM
@@ -115,7 +116,9 @@ for fw in frame_works:
 
 print KMAG + frameworks + KNRM
 command_args = (compiler_cmd + ' ' + f + ' ' +
-                frameworks + ' -o ' + binname + '.exe')
+                frameworks + ' -o ' + binname + '.exe' +
+                " -lm")
+# print KGRN + command_args + KNRM
 
 dat = shebang + "import os\n" + imp
 dat += "args = sys.argv[1:]\nargs = (' ').join(args)\n"
