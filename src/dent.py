@@ -32,7 +32,7 @@ if len(args) > 2:
 # check the input file is there
 chkfile(in_file)
 ext = in_file.split('.')[-1]
-if not (ext == 'h' or ext == 'c' or ext == 'cpp' or ext == 'js'):
+if not (ext in ['h', 'c', 'cpp', 'js', 'R']):
     error('only c or cpp files supported')
 
 n_indent = 0  # indentation level
@@ -81,7 +81,7 @@ for i in range(0, len(lines)):
         n_indent -= 1
         reindent = (n_indent * indent) + line
 
-    print reindent
+    print(reindent)
 
     # the new lines to be written
     if reindent.strip() != '':
@@ -90,8 +90,8 @@ for i in range(0, len(lines)):
         new_lines.append('')
 
 if(n_indent != 0):
-    print "n_indent", n_indent, "algorithm may have missed a:"
-    print "opening bracket" if n_indent < 0 else "closing bracket"
+    print("n_indent", n_indent, "algorithm may have missed a:")
+    print("opening bracket" if n_indent < 0 else "closing bracket")
     print('indentation level not 0: either there are open brackets, ' +
           ' or the logic of this program is too simple')
 
