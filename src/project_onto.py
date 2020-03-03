@@ -16,9 +16,9 @@ if len(sys.argv) < 4:
           "[output filename] [optional parameter: override bilinear and use nearest-neighbour]")
     sys.exit(1)
 
-use_nearest = sys.argv >= 5
+use_nearest = (len(sys.argv) >= 5)
 if use_nearest:
-    print "using nearest neighbour resampling.."
+    print("using nearest neighbour resampling..")
 
 src_filename = os.path.abspath(sys.argv[1])
 match_filename = os.path.abspath(sys.argv[2])
@@ -58,8 +58,11 @@ match_ds = gdal.Open(match_filename, gdalconst.GA_ReadOnly)
 match_proj, match_geotrans = match_ds.GetProjection(), match_ds.GetGeoTransform()
 wide, high = match_ds.RasterXSize, match_ds.RasterYSize
 
-# Output / destination
-# dst_filename = 'F00574_MB_2m_MLLW_2of3_mllw_offset.tif'
+# Output / destination # dst_filename = 'F00574_MB_2m_MLLW_2of3_mllw_offset.tif'
+default = 'GTiff'
+if dst_filename.split(".")[-1] == 'bin':
+    default = 'ENVI'
+print("driver_type", default)
 dst = gdal.GetDriverByName('GTiff')
 dst = dst.Create(dst_filename, wide, high, 1, gdalconst.GDT_Float32)
 dst.SetGeoTransform(match_geotrans)
