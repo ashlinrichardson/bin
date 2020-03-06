@@ -12,7 +12,7 @@ def re_move(ext):
     for f in my_files:
         fn = f.strip()
         if os.path.exists(fn):
-            a = os.popen("rm "+fn).read()
+            a = os.popen('rm "' + fn + '"').read()
             print("\tdel " + KRED + fn + KNRM)
 
 for e in to_re_move:
