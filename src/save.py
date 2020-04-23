@@ -1,7 +1,7 @@
 import os
 import sys
 args = sys.argv
-msg = "update"
+msg = ""
 
 def err(m):
     print("Error: " + str(m)); sys.exit(1)
@@ -18,9 +18,11 @@ fns = args[1:]
 for fn in fns:
     if not os.path.exists(fn):
         # err("Error: file not found: " + fn)
-        msg = fn.replace('"', ' ')
+        msg += (" " + fn.replace('"', ' '))
     else:
         run('git add ' + fn)
+
+msg = msg.strip()
 
 run('git commit -m "'  + msg + '"')
 run('git push origin master')
