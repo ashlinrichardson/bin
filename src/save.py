@@ -23,6 +23,8 @@ for fn in fns:
         run('git add ' + fn)
 
 msg = msg.strip()
+if msg == "":
+    msg = "update"
 
 run('git commit -m "'  + msg + '"')
 run('git push origin master')
