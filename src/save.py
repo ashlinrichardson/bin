@@ -19,7 +19,8 @@ for fn in fns:
     if not os.path.exists(fn):
         # err("Error: file not found: " + fn)
         msg = fn.replace('"', ' ')
-    run('git add ' + fn)
+    else:
+        run('git add ' + fn)
 
 run('git commit -m "'  + msg + '"')
 run('git push origin master')
