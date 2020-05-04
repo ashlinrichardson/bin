@@ -20,7 +20,7 @@ for fn in fns:
     ci += 1
     if not os.path.exists(fn):
         if ci == 0:
-            err("Error: file not found: " + fn)
+            err("file not found: " + fn)
         msg += (" " + fn.replace('"', ' '))
     else:
         run('git add ' + fn)
