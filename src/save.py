@@ -15,9 +15,12 @@ if len(args) < 2:
     err("Usage: save [file name] # add an extra parameter that's not a file, to change the commit msg")
 
 fns = args[1:]
+ci = -1
 for fn in fns:
+    ci += 1
     if not os.path.exists(fn):
-        # err("Error: file not found: " + fn)
+        if ci == 0:
+            err("Error: file not found: " + fn)
         msg += (" " + fn.replace('"', ' '))
     else:
         run('git add ' + fn)
