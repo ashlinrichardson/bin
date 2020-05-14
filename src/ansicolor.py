@@ -29,4 +29,4 @@ for c in color:
   exec(c + ' = "'  + color[c] + '"')
 
 if __name__ == '__main__':
-  print KMAG + "ansicolor" + KYEL + "." + KGRN + "py" + KNRM
+  print(KMAG + "ansicolor" + KYEL + "." + KGRN + "py" + KNRM)
