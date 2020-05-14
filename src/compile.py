@@ -114,7 +114,7 @@ for fw in frame_works:
     if fw in f_works_avail:
         frameworks += ' -framework ' + fw
 
-print KMAG + frameworks + KNRM
+print(KMAG + frameworks + KNRM)
 command_args = (compiler_cmd + ' ' + f + ' ' +
                 frameworks + ' -o ' + binname + '.exe' +
                 " -lm")
@@ -125,7 +125,7 @@ dat += "args = sys.argv[1:]\nargs = (' ').join(args)\n"
 dat += last_comp + "a = os.system('"+binname+".exe ' + args)\n"
 
 if ext == 'cpp' or ext == 'c':
-    print KYEL + command_args + KNRM
+    print(KYEL + command_args + KNRM)
     a = os.system(command_args)
     open(binname, 'w').write(dat)
 elif ext == 'py':
