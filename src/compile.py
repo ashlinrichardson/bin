@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python
 '''compile scripts: this script expects to live at relative path:
       src/compile.py'''
 import os
@@ -80,11 +80,11 @@ while which != '':
 
 if exists(binname):
     cmd = 'rm -rf ' + binname
-    print cmd
+    print(cmd)
     a = os.system(cmd)
 
 command_args, dat = '', None
-shebang = "#!/usr/bin/env python2\n"
+shebang = "#!/usr/bin/env python\n"
 comp_m = KGRN + "compile time: " + KRED + str(time_string) + KNRM
 last_comp = "print('" + comp_m + "')\n"
 imp = "import sys\nsys.path.append('" + source_folder + "')\n"

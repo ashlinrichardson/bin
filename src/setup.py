@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 '''compile all the entries in the package'''
 import os
 import sys
