@@ -45,7 +45,7 @@ try:
     pass
 except:
     print("Error: gdal python API not available.\n" + 
-        "Please install with e.g., sudo easy_install GDAL." +
+        "Please install with e.g., ./configure --with-python" +
         "Or, google: pip install gdal python")
     sys.exit(1)
 
