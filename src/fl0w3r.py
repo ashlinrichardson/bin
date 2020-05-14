@@ -17,7 +17,7 @@ def terminal_shape():
 
 # error message and quit
 def error(msg):
-    print KRED + "Error: " + KGRN + msg.strip() + KNRM
+    print(KRED + "Error: " + KGRN + msg.strip() + KNRM)
     sys.exit(1)
 
 
@@ -111,7 +111,7 @@ def timestring():
 # run a system command
 def run(cmd):
     global log_file
-    print KGRN + str(cmd).strip() + KNRM
+    print(KGRN + str(cmd).strip() + KNRM)
     log_file = open('logfile.bak', 'a')
     log_file.write(KRED + timestring() + KNRM + ' ' + cmd.strip() + '\n')
     log_file.close()
