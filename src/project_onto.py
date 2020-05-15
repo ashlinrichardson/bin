@@ -6,7 +6,18 @@ Project data from file A to match the coordinate system of file B
 The output to be stored in file C
 
 Optional last parameter [D]: use nearest-neighbour resampling, not
-bilinear which is the default'''
+bilinear which is the default
+
+Note, probably need to compile GDAL from source to get this to work, with:
+    ./configure --with-python
+    make
+    sudo make install
+
+Also, sometimes the last step of that process breaks. May need to go into
+the swig/python folder and manually do the:
+    python setup.py build
+    etc.
+'''
 
 import os
 import sys
