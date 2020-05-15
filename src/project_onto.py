@@ -59,11 +59,11 @@ match_proj, match_geotrans = match_ds.GetProjection(), match_ds.GetGeoTransform(
 wide, high = match_ds.RasterXSize, match_ds.RasterYSize
 
 # Output / destination # dst_filename = 'F00574_MB_2m_MLLW_2of3_mllw_offset.tif'
-default = 'GTiff'
+file_type = 'GTiff'
 if dst_filename.split(".")[-1] == 'bin':
     default = 'ENVI'
-print("driver_type", default)
-dst = gdal.GetDriverByName('GTiff')
+print("driver_type", file_type)
+dst = gdal.GetDriverByName(file_type)
 dst = dst.Create(dst_filename, wide, high, 1, gdalconst.GDT_Float32)
 dst.SetGeoTransform(match_geotrans)
 dst.SetProjection(match_proj)
