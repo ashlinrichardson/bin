@@ -41,7 +41,7 @@ int main(int argc, char *argv[]){
 
   /* write individual bands */
   for(i=0; i<nband; i++){
-    sprintf(fn, "b%02ld.bin\0", i+1);
+    sprintf(fn, "b%03ld.bin\0", i+1);
     printf("%s\n", fn);
     FILE * of = fopen(fn, "wb");
     if(!of){
