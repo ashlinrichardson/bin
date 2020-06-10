@@ -91,8 +91,12 @@ imp = "import sys\nsys.path.append('" + source_folder + "')\n"
 
 '''search the program for compilation lines with framework tag.. '''
 
-frame_works = []
-dt = open(f).read().strip().split()
+frame_works, dt = [], None
+try:
+    dt = open(f).read().strip().split()
+except Exception:
+    dt = open(f, encoding='latin-1').read().strip().split()
+
 for i in range(0, len(dt)):
     if dt[i].strip() == '-framework':
         frame_works.append(dt[i+1].strip())
