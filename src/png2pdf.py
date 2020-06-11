@@ -11,6 +11,7 @@ png = os.popen("ls -1 *.png").readlines()
 
 pns = []
 for p in png:
+    p = p.strip()
     pn = p + ".pdf"
     pns.append(pn)
     run("convert " + p + " " + pn)
