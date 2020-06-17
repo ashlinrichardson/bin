@@ -11,7 +11,6 @@ from ansicolor import KRED, KGRN, KNRM, KMAG
 @brief interpret envi format header
 '''
 
-
 def read_envi_hdr(fn):
     d = {}
     try:
@@ -70,7 +69,7 @@ def hdr_d(fn, nr, nc, nb=1, dt=4):
 def write_envi_hdr(fn, nr, nc, nb=1, dt=4):
     # open file and write header data
     f = open(fn + '.hdr', 'wb')
-    [f.write(d + '\n') for d in hdr_d(fn, nr, nc, nb, dt)]
+    [f.write((d + '\n').encode()) for d in hdr_d(fn, nr, nc, nb, dt)]
 
     # close file and print message
     f.close()
