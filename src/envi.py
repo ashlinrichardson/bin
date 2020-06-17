@@ -51,12 +51,12 @@ def hdr_d(fn, nr, nc, nb=1, dt=4):
     fn = fn.strip().split('/')[-1].strip()
     return ['ENVI',
             'description = {' + fn + '}',
-            'samples = ' + str(nc),
-            'lines   = ' + str(nr),
-            'bands   = ' + str(nb),
+            'samples = ' + str(int(nc)),
+            'lines   = ' + str(int(nr)),
+            'bands   = ' + str(int(nb)),
             'header offset = 0',
             'file type = ENVI Standard',
-            'data type = ' + str(dt),
+            'data type = ' + str(int(dt)),
             'interleave = bsq',
             'byte order = 0',
             'band names = {}']
