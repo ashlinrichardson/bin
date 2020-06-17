@@ -1,4 +1,5 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python 
+# was python2.7
 '''
 '''
 import os
