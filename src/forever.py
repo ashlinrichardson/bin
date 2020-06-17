@@ -18,7 +18,7 @@ if len(args) > 1:
         pass
 
 cmd = ' '.join(arg)
-print cmd
+print(cmd)
 
 while(True):
     a = os.system(cmd)
