@@ -14,8 +14,8 @@ for p in png:
     p = p.strip()
     pn = p + ".pdf"
     pns.append(pn)
-    run("convert " + p + " " + pn)
-
+    # run("convert -gravity center -resize 2550x3300 -density 300 -units pixelsperinch -background Blue -extent 2550x3300 " + p + " " + pn)
+    run(" ".join(["convert", p, "-resize 1240x1753 -extent 1240x1753 -gravity center -units PixelsPerInch -density 300x300", pn]))
 if len(pns) > 0:
     run("pdfcat " + " ".join(pns) + " out.pdf")
 '''
