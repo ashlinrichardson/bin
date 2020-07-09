@@ -15,6 +15,12 @@ int main(int argc, char ** argv){
     exit(1);
   }
 
+  printf(" input file %s\n", argv[1]);
+  printf(" path to configfile: %s\n", argv[2]);
+  printf(" number of bins: %s\n", argv[3]);
+  printf(" output file: %s\n", argv[4]);
+  printf(" window size: %s\n", argv[5]);
+
   NBINS = atoi(argv[3]);
 
   FILE *infile;
