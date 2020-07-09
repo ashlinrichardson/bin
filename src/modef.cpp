@@ -117,7 +117,7 @@ int main(int argc, char ** argv){
   fclose(infile);
   fclose(outfile);
 
-  write_envi_hdr(OUTFILE, NRow, NCol);
+  // write_envi_hdr(OUTFILE, NRow, NCol);
   // write_envi_hdr(INFILE, NRow, NCol);
   return 0;
 }
