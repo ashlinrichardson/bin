@@ -44,6 +44,7 @@ int main(int argc, char ** argv){
   }
 
   getT3_image_Dimensions(argv[2], NRow, NCol);
+  printf("nrow %d ncol %d\n", NRow, NCol);
   int windowsize = atoi(argv[5]);
 
   if(((windowsize-1) <2) || ( ((windowsize-1)%2)!=0 )){
@@ -117,6 +118,6 @@ int main(int argc, char ** argv){
   fclose(outfile);
 
   write_envi_hdr(OUTFILE, NRow, NCol);
-  write_envi_hdr(INFILE, NRow, NCol);
+  // write_envi_hdr(INFILE, NRow, NCol);
   return 0;
 }
