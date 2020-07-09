@@ -36,7 +36,7 @@ stdout, stderr = p.communicate() # get both streams
 ['[Parsed_volumedetect_0', '@', '0x55695fb80ee0]', 'max_volume:', '-0.5', 'dB']
 '''
 mean_volume, max_volume = None, None
-for line in stderr.split("\n"):
+for line in stderr.decode().split("\n"):
     w = line.strip().split()
     try:
         if w[-1] == 'dB':
