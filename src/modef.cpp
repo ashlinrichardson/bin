@@ -77,7 +77,7 @@ int main(int argc, char ** argv){
   double fh = 0;
 
   for(row = 0; row < NRow; row++){
-    if(row % 100 == 0){
+    if(row % 10 == 0){
       printf("\rProcessing row %d of %d", row+1, NRow);
     }
 
