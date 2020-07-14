@@ -40,13 +40,13 @@ for i in range(0, len(lines)):
         if(l_i.strip() != ''):
             min_spaces = l_spaces
 
-print "min_spaces", min_spaces
+print("min_spaces", min_spaces)
 head, tail = ntpath.split(fn)
 head = head.strip() + '/'
 head = os.path.abspath(head) + '/'
-print 'head', head
+print('head', head)
 bfn = fn + '.bak'  # head + '.' + f_base(fn)
-print 'bfn', bfn
+print('bfn', bfn)
 
 # save a backup
 open(bfn, 'wb').write(open(fn).read())
