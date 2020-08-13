@@ -49,7 +49,7 @@ bfn = fn + '.bak'  # head + '.' + f_base(fn)
 print('bfn', bfn)
 
 # save a backup
-open(bfn, 'wb').write(open(fn).read())
+open(bfn, 'wb').write(open(fn).read().encode())
 printw(bfn)
 
 write_ln = []
@@ -58,5 +58,5 @@ for i in range(0, len(lines)):
     write_ln.append(line[min_spaces:])
 
 # write the result.
-open(fn, 'wb').write(('\n').join(write_ln))
+open(fn, 'wb').write(('\n').join(write_ln).encode())
 printw(fn)

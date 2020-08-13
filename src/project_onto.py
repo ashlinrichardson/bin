@@ -75,7 +75,7 @@ if dst_filename.split(".")[-1] == 'bin':
     file_type = 'ENVI'
 print("driver_type", file_type)
 dst = gdal.GetDriverByName(file_type)
-dst = dst.Create(dst_filename, wide, high, 1, gdalconst.GDT_Float32)
+dst = dst.Create(dst_filename, wide, high, src.RasterCount, gdalconst.GDT_Float32)
 dst.SetGeoTransform(match_geotrans)
 dst.SetProjection(match_proj)
 
