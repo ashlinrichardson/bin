@@ -58,11 +58,19 @@ int main(int argc, char** argv){
   }
   else{
     system("ls -1 *.gz > ./.ls_1_gz.txt");
-    ifstream f;
+    system("ls -1 *.zip > ./.ls_1_zp.txt");
+
+    ifstream f, g;
     f.open("./.ls_1_gz.txt");
     if(!f.is_open()){
       err("failed to open file: ./.ls_1_gz.txt");
     }
+
+    g.open("./.ls_1_zp.txt");
+    if(!g.is_open()){
+      err("failed to open file: ./.ls_1_zp.txt");
+    }
+
 
     ofstream o_f;
     o_f.open("./.unzp_jobs.txt");
@@ -78,6 +86,18 @@ int main(int argc, char** argv){
       }
     }
     f.close();
+
+    while(getline(g, s)){
+      trim(s);
+      size_t f_siz = fsize(s);
+      if(f_siz > 0){
+        cout << "\tunzip -o " << s << endl;
+        o_f << "unzip -o " << s << endl;
+      }
+    }
+    f.close();
+
+
     o_f.close();
 
     // hypothetically 4 is enough unzip jobs to run at once!
