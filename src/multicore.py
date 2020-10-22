@@ -4,7 +4,7 @@ import sys
 import time
 import multiprocessing
 from fl0w3r import error, exists, readlines
-from thread import allocate_lock, start_new_thread
+from _thread import allocate_lock, start_new_thread
 
 args = sys.argv
 if(len(args) < 2):
