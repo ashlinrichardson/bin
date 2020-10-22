@@ -26,7 +26,7 @@ threads_alive, next_j, j_max = ncpu, 0, n_task - 1
 def cprint(s):
     global p_lock
     p_lock.acquire()
-    print s
+    print(s)
     p_lock.release()
 
 # worker thread takes a task from the list
