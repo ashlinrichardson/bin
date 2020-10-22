@@ -8,9 +8,12 @@ from _thread import allocate_lock, start_new_thread
 
 args = sys.argv
 if(len(args) < 2):
-    error('multicore.py:\nusage: multicore [text file with one system command per line]')
+    error('multicore.py:\nusage: multicore [text file with one system command per line] # [optional parameter: number of cores]')
 
 fn, ncpu = args[1], multiprocessing.cpu_count()
+
+if len(args) > 2:
+    ncpu = int(args[2])
 
 if not exists(fn):
     error('file: ' + fn.strip() + ' not found')
