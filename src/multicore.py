@@ -46,6 +46,7 @@ def threadfun(my_id):
             threads_alive -= 1
             return
 
+        cprint(tasks[j])
         # run a task
         os.popen(tasks[j]).read()
 
