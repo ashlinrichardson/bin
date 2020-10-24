@@ -122,6 +122,9 @@ print(KMAG + frameworks + KNRM)
 command_args = (compiler_cmd + ' ' + f + ' ' +
                 frameworks + ' -o ' + binname + '.exe' +
                 " -lm")
+
+if cmdname == 'forest':
+    command_args += ' -lgsl '
 # print KGRN + command_args + KNRM
 
 dat = shebang + "import os\n" + imp
