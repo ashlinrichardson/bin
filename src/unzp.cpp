@@ -101,7 +101,7 @@ int main(int argc, char** argv){
     o_f.close();
 
     // hypothetically 4 is enough unzip jobs to run at once!
-    system("multicore ./.unzp_jobs.txt 2");
+    system("multicore ./.unzp_jobs.txt 4");
     system("rm -f ./.unzp_jobs.txt");
     system("rm -f ./.ls_1_gz.txt");
   }
