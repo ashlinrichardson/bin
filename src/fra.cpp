@@ -23,46 +23,45 @@ int main(int argc, char ** argv){
   int NRow, NCol;
   std::complex<float> I(0,1);
 
-  char * S2filenames[4] = {
-    "s11.bin",
-    "s12.bin",
-    "s21.bin",
-    "s22.bin"
+  string S2filenames[4] = {
+    string("s11.bin"),
+    string("s12.bin"),
+    string("s21.bin"),
+    string("s22.bin")
   };
   FILE * S2_file[nS2Files];
   FILE * S2_file_out[nS2Files];
 
-  char input_dir[100];
-  char output_dir[100];
-  char file_name[100];
-  char buf[100];
-  char buffer[100];
+  #define MAX 4096
+  #define str string
+  str input_dir(argv[1]);
+  str output_dir(argv[2]);
 
-  char pc[10];
-  char pt[10];
+  string file_name("");
+  char buf[MAX];
+  char buffer[MAX];
+  char pc[MAX];
+  char pt[MAX];
 
-  strcpy(input_dir, argv[1]);
-  strcpy(output_dir, argv[2]);
-
-  read_config(input_dir, NRow, NCol);
+  printf("read_config\n");
+  read_config((input_dir + str("/config.txt")).c_str(), NRow, NCol);
 
   register int i, j;
   int count = 0;
 
-  for(i=0; i< nS2Files; i++){
-    sprintf(file_name, "%s%s", input_dir, S2filenames[i]);
-    if(!(S2_file[i] = fopen(file_name, "rb"))){
-      printf("Could not open S2 input file: %s\n",file_name);
+  for(i = 0; i < nS2Files; i++){
+    file_name= string(input_dir) + string("/") + str(S2filenames[i]);
+    if(!(S2_file[i] = fopen(file_name.c_str(), "rb"))){
+      printf("Could not open S2 input file: %s\n",file_name.c_str());
       exit(1);
     }
-    file_name[0]='\n';
-    sprintf(file_name, "%s%s", output_dir, S2filenames[i]);
-    if(!(S2_file_out[i] = fopen(file_name, "wb"))){
-      printf("Could not open S2 output file: %s\n",file_name);
+    file_name = string("");
+    file_name = string(output_dir) + string("/") + string(S2filenames[i]);
+    if(!(S2_file_out[i] = fopen(file_name.c_str(), "wb"))){
+      printf("Could not open S2 output file: %s\n",file_name.c_str());
       exit(1);
     }
-    write_envi_hdr(file_name, NRow, NCol, 6);
-    file_name[0]='\n';
+    write_envi_hdr(file_name.c_str(), NRow, NCol, 6);
   }
 
   int Row = 0;
@@ -79,12 +78,19 @@ int main(int argc, char ** argv){
   complex<float> Mvvp;
 
   FILE * angle_file = fopen("fra.bin" ,"wb");
+  if(!angle_file){
+    printf("Error: failed to open output file: fra.bin\n");
+    exit(1);
+  }
+
   write_envi_hdr("fra.bin", NRow, NCol, 4);
   double total = 0;
 
   float cfsf, cf, sf, cf2, sf2;
   for(Row = 0; Row < NRow; Row++){
-    printf("Processing Row %d of %d\n", Row+1, NRow);
+    if(Row % 10 == 0){
+      printf("Processing Row %d of %d\n", Row+1, NRow);
+    }
     for(Col = 0; Col < NCol; Col++){
 
       count++;
@@ -117,22 +123,23 @@ int main(int argc, char ** argv){
   f = float(total/double(count));
 
   for(i = 0; i < nS2Files; i++){
-    sprintf(file_name, "%s%s", input_dir, S2filenames[i]);
-    if(!(S2_file[i] = fopen(file_name, "rb"))){
+    file_name= string(input_dir) + string("/") + str(S2filenames[i]);
+    if(!(S2_file[i] = fopen(file_name.c_str(), "rb"))){
       printf("Could not open S2 input file: %s\n",file_name);
       exit(1);
     }
-    file_name[0]='\n';
-    sprintf(file_name, "%s%s", output_dir, S2filenames[i]);
-    if(!(S2_file_out[i] = fopen(file_name, "wb"))){
-      printf("Could not open S2 output file: %s\n",file_name);
+    file_name = string(""); //file_name[0]='\n';
+    file_name = string(output_dir) + string("/") + string(S2filenames[i]);
+    if(!(S2_file_out[i] = fopen(file_name.c_str(), "wb"))){
+      printf("Could not open S2 output file: %s\n",file_name.c_str());
       exit(1);
     }
-    write_envi_hdr(file_name, NRow, NCol, 6);
+    write_envi_hdr(file_name.c_str(), NRow, NCol, 6);
     file_name[0] = '\n';
 
   }
   for(Row = 0; Row < NRow; Row++){
+    if(Row % 10 == 0)
     printf("Correcting Row %d of %d\n", Row+1, NRow);
     for(Col = 0; Col < NCol; Col++){
 
