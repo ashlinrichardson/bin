@@ -49,8 +49,9 @@ int main(int argc, char ** argv){
 
   i = 0;
   for0(lig, NRow){
-	  if(lig % 10 == 0)
+	  if(lig % 100 == 0){
     printf("Converting row %d\n", lig);
+	  }
     for0(col, NCol){
       arr = R[i];
       gee = G[i];
