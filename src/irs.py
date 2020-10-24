@@ -57,8 +57,8 @@ if polarizations != "HH VV HV VH":
 wopen(cfg_fn).write(config_file(number_of_lines, samples_per_line))
 printw(cfg_fn)
 
-print KMAG + "Recommended vertical multilook factor:" + KGRN
-print '\t' + KRED, int(round( float(line_scale) / float(pixel_scale))), KNRM
+print(KMAG + "Recommended vertical multilook factor:" + KGRN)
+print('\t' + KRED, int(round( float(line_scale) / float(pixel_scale))), KNRM)
 
 
 
