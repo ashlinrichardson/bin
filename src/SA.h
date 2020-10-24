@@ -114,10 +114,10 @@ namespace _SA{
 
     /* array notation: equivalent to at() */
     inline T & operator[](unsigned int subscript){
-      if(sizej + sizek > 0){
-        printf("SA.h: Error: not allowed to use [] notation for 2/3 dimensional arrays.\n");
-        exit(1);
-      }
+      //if(sizej + sizek > 0){
+        // printf("SA.h: Error: not allowed to use [] notation for 2/3 dimensional arrays.\n");
+        // exit(1);
+      //}
       if(mySize == 0){
         std::cerr << "\nError: SA.cpp: size()=0 Subscript " << subscript << " out of range" << std::endl;
         exit(1);
