@@ -11,7 +11,7 @@ int main(int argc, char ** argv){
 
   long int NRow, NCol, NBand;
   char * input_dir = argv[1];
-  read_envi_hdr(string(input_dir) + string("/config.txt"), NRow, NCol, NBand);
+  read_envi_hdr(string(input_dir) + string("/Rtrim.bin.hdr"), NRow, NCol, NBand);
   char file_name[2000];
   char * bmpimage;
   int imgsize = 3 * NCol * NRow * sizeof(char);
@@ -49,7 +49,8 @@ int main(int argc, char ** argv){
 
   i = 0;
   for0(lig, NRow){
-    printf("\rConverting row %d", lig);
+	  if(lig % 10 == 0)
+    printf("Converting row %d\n", lig);
     for0(col, NCol){
       arr = R[i];
       gee = G[i];
