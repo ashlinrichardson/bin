@@ -88,8 +88,8 @@ int main(int argc, char ** argv){
 
   float cfsf, cf, sf, cf2, sf2;
   for(Row = 0; Row < NRow; Row++){
-    if(Row % 10 == 0){
-      printf("Processing Row %d of %d\n", Row+1, NRow);
+    if(Row % 100 == 0){
+      printf("\rProcessing Row %d of %d\n", Row + 1, NRow);
     }
     for(Col = 0; Col < NCol; Col++){
 
@@ -114,7 +114,7 @@ int main(int argc, char ** argv){
       total += (double)f;
     }
   }
-  printf("done\n");
+  printf("\ndone\n");
   for(i = 0; i < nS2Files; i++){
     fclose(S2_file[i]);
     fclose(S2_file_out[i]);
