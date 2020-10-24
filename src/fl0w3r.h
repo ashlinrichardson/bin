@@ -222,8 +222,10 @@ vector<string> split(string s){
 
 #ifdef __cplusplus
 vector<string> readLines(string fn){
+	printf("fn %s\n", fn.c_str());
   vector<string> ret;
   long int fs = getFileSize(fn);
+  printf("file size %zu\n", (size_t)fs);
   char * fd = (char *)(void *)malloc(fs);
   memset(fd, '\0',fs);
   FILE * f = fopen(fn.c_str(), "rb");
@@ -298,8 +300,11 @@ void read_envi_hdr(string hfn, long int & nrow, long int & ncol, long int & nban
 
 #ifdef __cplusplus
 void read_config(string hfn, int & NRow, int & NCol){
+	printf("start\n");
   vector<string> lines = readLines(hfn);
+  printf("d\n", lines.size());
   NRow = atoi(lines[1].c_str());
   NCol = atoi(lines[4].c_str());
+  printf("NRow %d NCol %d\n", NRow, NCol);
 }
 #endif
