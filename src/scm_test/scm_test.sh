@@ -1,7 +1,4 @@
 # test script for scm
-mkdir -p scm_test
-cd scm_test
-
 if [[ ! -f RS2_OK76385_PK678063_DK606752_FQ2_20080415_143807_HH_VV_HV_VH_SLC.zip ]]
 then
   wget https://mdacorporation.com/geospatial/international/satellites/RADARSAT-2/sample-data/RS2_OK76385_PK678063_DK606752_FQ2_20080415_143807_HH_VV_HV_VH_SLC.zip 
