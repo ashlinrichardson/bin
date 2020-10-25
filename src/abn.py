@@ -13,10 +13,11 @@ if not os.path.exists(args[1]):
 data = open(args[1]).read()
 
 nb = 3
-try:
-    nb = int(args[2])
-except Exception:
-    print("Error: number of bands needs to be a number")
+if len(args) > 4):
+    try:
+        nb = int(args[2])
+    except Exception:
+        print("Error: number of bands needs to be a number")
 
 if nb == 3:
     open(args[1], "wb").write( (data + "\nband names = {Band 1,\nBand 2,\nBand 3}").encode())
