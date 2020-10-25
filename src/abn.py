@@ -6,6 +6,7 @@ args = sys.argv
 if len(args) < 2:
     print("usage: abn [header file name] # [optional number of bands parameter]  # add band names to header file for rgb.bin")
     sys.exit(1)
+
 if not os.path.exists(args[1]):
     print("Error: abn [header file name]")
     sys.exit(1)
@@ -13,7 +14,7 @@ if not os.path.exists(args[1]):
 data = open(args[1]).read()
 
 nb = 3
-if len(args) > 4):
+if len(args) > 4:
     try:
         nb = int(args[2])
     except Exception:
