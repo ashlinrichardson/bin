@@ -88,11 +88,9 @@ int main(int argc, char ** argv){
 
   float cfsf, cf, sf, cf2, sf2;
   for(Row = 0; Row < NRow; Row++){
-    if(Row % 100 == 0){
-      printf("\rProcessing Row %d of %d\n", Row + 1, NRow);
-    }
+    if(Row % 1000 == 0) printf("\rProcessing row %d of %d\n", Row + 1, NRow);
+    
     for(Col = 0; Col < NCol; Col++){
-
       count++;
 
       fread(&S11r, sizeof(float), 1, S2_file[0]);
@@ -109,12 +107,13 @@ int main(int argc, char ** argv){
       complex<float> Mvh(S21r, S21i);
       complex<float> Mvv(S22r, S22i);
 
-      f = (1.0/4.0)*arg ((Mvh+(I*(Mhh+Mvv))-Mhv) * conj(Mhv+(I*(Mhh+Mvv))-Mvh) );
+      f = (1.0 / 4.0) * arg ((Mvh + (I * (Mhh + Mvv)) - Mhv) * conj(Mhv + (I * (Mhh + Mvv)) - Mvh));
       fwrite(&f, sizeof(float), 1, angle_file);
       total += (double)f;
     }
   }
   printf("\ndone\n");
+
   for(i = 0; i < nS2Files; i++){
     fclose(S2_file[i]);
     fclose(S2_file_out[i]);
@@ -128,7 +127,7 @@ int main(int argc, char ** argv){
       printf("Could not open S2 input file: %s\n",file_name);
       exit(1);
     }
-    file_name = string(""); //file_name[0]='\n';
+    file_name = string("");
     file_name = string(output_dir) + string("/") + string(S2filenames[i]);
     if(!(S2_file_out[i] = fopen(file_name.c_str(), "wb"))){
       printf("Could not open S2 output file: %s\n",file_name.c_str());
@@ -195,6 +194,7 @@ int main(int argc, char ** argv){
     fclose(S2_file[i]);
     fclose(S2_file_out[i]);
   }
+
   printf("Average Faraday Rotation Angle: %f\n",f);
   return 0;
 }
