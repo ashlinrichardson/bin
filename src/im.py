@@ -6,7 +6,7 @@ import sys
 args = sys.argv
 
 if len(args) < 2:
-    print("Error: im [input binary file name]")
+    print("Error: im [input binary file name] # invoke cmd-line utility: imv, assuming 3-band files: add band names field to header (if no band names field present)")
     sys.exit(1)
 
 f = args[1]
