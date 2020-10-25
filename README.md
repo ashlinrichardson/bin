@@ -9,4 +9,4 @@ In Unix tradition, we keep scripts in a ~/bin/ folder. A number of scripts relat
 
 ## sample output
 **scm** "Shane Cloude Method" (a visualization method of Dr. Shane Cloude for fully-polarimetric SAR data) example output shown using MDA Radarsat2 Vancouver test data: 
-![scm quad-pol visualization example](src/scm_test/scm_test.png){width="40%"}
+![scm quad-pol visualization example](src/scm_test/scm_test.png)<!-- .element height="50%" width="50%" -->
