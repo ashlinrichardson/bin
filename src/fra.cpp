@@ -139,9 +139,8 @@ int main(int argc, char ** argv){
 
   }
   for(Row = 0; Row < NRow; Row++){
-    if(Row % 100 == 0){
-    printf("Correcting Row %d of %d\n", Row+1, NRow);
-    }
+    if(Row % 1000 == 0) printf("Correcting Row %d of %d\n", Row + 1, NRow);
+
     for(Col = 0; Col < NCol; Col++){
 
       fread(&S11r, sizeof(float), 1, S2_file[0]);
