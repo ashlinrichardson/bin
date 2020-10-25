@@ -84,7 +84,7 @@ if exists(binname):
     a = os.system(cmd)
 
 command_args, dat = '', None
-shebang = "#!/usr/bin/env python3\n"
+shebang = "#!/usr/bin/python3\n"
 comp_m = KGRN + "compile time: " + KRED + str(time_string) + KNRM
 last_comp = "print('" + comp_m + "')\n"
 imp = "import sys\nsys.path.append('" + source_folder + "')\n"
