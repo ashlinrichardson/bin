@@ -1,11 +1,13 @@
 # bin
+In Unix tradition, we keep scripts in a ~/bin/ folder. A number of scripts relating to image analysis, multispectral imaging and polarimetry are included. Revitalized versions of some utilities developed with Advanced Forest Technologies group (Pacific Forestry Centre) are included. Some excerpts from the PolSARPro software are included
 
 ## howto
-python src/setup.py
+**python src/setup.py**
 
-## story
-In the Unix/Linux tradition, various things that I keep in a ~/bin/ folder. A "posix" system is assumed (like Mac, Linux, or even MinGW or Cygwin on Windows) although many of the programs / scripts are intended to be translatable between platforms
+## req'ts
+"Posix" system is assumed (Mac, Linux, or even MinGW or Cygwin on Windows) although many scripts multiplatform
 
-Since I program to analyze images a lot, there's a number of Python and/or C/C++ programs for programming and image analysis, incl. but not limited to hyperspectral or polarimetric radar image work
+## sample output
+**scm** "Shane Cloude Method" (a visualization method of Dr. Shane Cloude for fully-polarimetric SAR data) example output shown using MDA Radarsat2 Vancouver test data:
 
-Some code from PolSARPro is included. Reimaginations or revitalizations of some utilities developed while at the Advanced Forest Technologies group (Pacific Forestry Centre) are also available
+<img src="src/scm_test/scm_test.png" width="640">
