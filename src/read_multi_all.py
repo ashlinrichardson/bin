@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import sys
 
@@ -8,5 +9,4 @@ py = '~/GitHub/bcws-psu-research/py/read_multi.py'
 
 for f in files:
     f = f.strip()
-    a = os.system(py + ' ' + f + ' 1')
-
+    a = os.system(py + ' ' + f + ' 1 &')
