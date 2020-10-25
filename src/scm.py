@@ -1,22 +1,17 @@
 #!/usr/bin/env python
-'''integrated Shane-Cloude style visualization method (from S2 matrix data):
-s11.bin, s12.bin, s21.bin, s22.bin
+'''integrated Shane-Cloude style visualization method (from S2 matrix data): s11.bin, s12.bin, s21.bin, s22.bin
 
 reimplemented 20170605 from 20090624 original implementation at CFS AFT
 
-e.g.,can run the following 5 unix/linux commands:
+e.g., can run the following 5 unix/linux commands:
 
-  wget http://mdacorporation.com/sample_data/
-    RS2_OK76385_PK678063_DK606752_FQ2_20080415_143807_HH_VV_HV_VH_SLC.zip
-
+  wget http://mdacorporation.com/sample_data/RS2_OK76385_PK678063_DK606752_FQ2_20080415_143807_HH_VV_HV_VH_SLC.zip
   unzip RS2_OK76385_PK678063_DK606752_FQ2_20080415_143807_HH_VV_HV_VH_SLC.zip
   mkdir s2
   ers RS2_OK76385_PK678063_DK606752_FQ2_20080415_143807_HH_VV_HV_VH_SLC s2
   rm -rf RS2_OK76385_PK678063_DK606752_FQ2_20080415_143807_HH_VV_HV_VH_SLC*
   mkdir scm
   scm.py ./s2/ ./scm/ box 5 yes 3 1
-
-
 '''
 import os
 import sys
