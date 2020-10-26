@@ -11,4 +11,4 @@ for f in files:
 open("bin2png.sh", "wb").write(('\n'.join(cmds)).encode())
 
 a = os.system("multicore ./bin2png.sh")
-
+print(os.popen("which read_multi").read())
