@@ -43,9 +43,13 @@ print(cmd1)
 print(cmd2)
 print(cmd3)
 
-run("mkdir "+od1)
-run("mkdir "+od2)
-run("mkdir "+od3)
+
+def run(cmd):
+    a = os.system(cmd)
+
+run("mkdir -p "+od1)
+run("mkdir -p "+od2)
+run("mkdir -p "+od3)
 
 run(cmd1)
 run(cmd2)
