@@ -108,8 +108,8 @@ int main(int argc, char** argv){
       trim(s);
       size_t f_siz = fsize(s);
       if(f_siz > 0){
-        cout << "\ttar zxvf " << s << endl;
-        o_f << "tar zxvf  " << s << endl;
+        cout << "\ttar zxvf " << s << " --one-top-level" << endl;
+        o_f << "tar zxvf  " << s << " --one-top-level" << endl;
       }
     }
     h.close();
