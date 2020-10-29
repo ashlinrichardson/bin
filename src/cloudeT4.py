@@ -14,9 +14,7 @@ if len(args) < 2:
     sys.exit(1)
 
 PSPexeDIR = "/home/" + os.popen("whoami").read().strip() + "/" + "GitHub/PolSARpro_v4.2.0_Install_Linux/Soft/data_process_sngl/"
-
 cwd = args[1]
-
 nlin, ncol = read_config(cwd + "config.txt")
 
 out1 = "h_a_alpha_decomposition_T4"
@@ -35,30 +33,37 @@ cmd1 = PSPexeDIR+out1+".exe " + cwd +" "+od1+" 1 0 0 "+str(nlin)+" "+str(ncol)+"
 cmd2 = PSPexeDIR+out2+".exe " + cwd +" "+od2+" 1 0 0 "+str(nlin)+" "+str(ncol)+" 1 1 1 1 1 1 1 1 1 1 1 1"
 cmd3 = PSPexeDIR+out3+".exe " + cwd +" "+od3+" 1 0 0 "+str(nlin)+" "+str(ncol)+" 1 1 1 1 1 1 1 "
  
-print("mkdir "+od1)
-print("mkdir "+od2)
-print("mkdir "+od3)
+f = open("cloudeT4.sh", "wb");
 
-print(cmd1)
-print(cmd2)
-print(cmd3)
+def r(cmd):
+    f.write((cmd + "\n").encode())
+    # aa = os.system(cmd)
 
+def w():
+    r("wait")
 
-def run(cmd):
-    a = os.system(cmd)
+r("mkdir -p " + od1 + " &")
+r("mkdir -p " + od2 + " &")
+r("mkdir -p " + od3 + " &")
+w()
 
-run("mkdir -p "+od1)
-run("mkdir -p "+od2)
-run("mkdir -p "+od3)
+r(cmd1 + " &")
+r(cmd2 + " &")
+r(cmd3 + " &")
+w()
 
-run(cmd1)
-run(cmd2)
-run(cmd3)
+r("cp " + cwd + "config.txt " + od1)
+r("cp " + cwd + "config.txt " + od2)
+r("cp " + cwd + "config.txt " + od3)
+w()
 
-run("cp "+cwd+"config.txt "+od1)
-run("cp "+cwd+"config.txt "+od2)
-run("cp "+cwd+"config.txt "+od3)
+r("eh " + od1 + " &")
+r("eh " + od2 + " &")
+r("eh " + od3 + " &")
+w()
 
-run("eh "+od1)
-run("eh "+od2)
-run("eh "+od3)
+f.close()
+
+a = os.system("chmod 755 cloudeT4.sh")
+a = os.system("./cloudeT4.sh")
+
