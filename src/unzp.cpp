@@ -59,8 +59,9 @@ int main(int argc, char** argv){
   else{
     system("ls -1 *.gz > ./.ls_1_gz.txt");
     system("ls -1 *.zip > ./.ls_1_zp.txt");
+    system("ls -1 *.tgz > ./.ls_1_tz.txt");
 
-    ifstream f, g;
+    ifstream f, g, h;
     f.open("./.ls_1_gz.txt");
     if(!f.is_open()){
       err("failed to open file: ./.ls_1_gz.txt");
@@ -70,6 +71,11 @@ int main(int argc, char** argv){
     if(!g.is_open()){
       err("failed to open file: ./.ls_1_zp.txt");
     }
+    h.open("./.ls_1_tz.txt");
+    if(!g.is_open()){
+      err("failed to open file: ./.ls_1_tz.txt");
+    }
+
 
 
     ofstream o_f;
@@ -95,8 +101,18 @@ int main(int argc, char** argv){
         o_f << "unzip -o " << s << endl;
       }
     }
-    f.close();
+    g.close();
 
+
+    while(getline(h, s)){
+      trim(s);
+      size_t f_siz = fsize(s);
+      if(f_siz > 0){
+        cout << "\ttar zxvf " << s << endl;
+        o_f << "tar zxvf  " << s << endl;
+      }
+    }
+    h.close();
 
     o_f.close();
 
@@ -104,6 +120,7 @@ int main(int argc, char** argv){
     system("multicore ./.unzp_jobs.txt 4");
     system("rm -f ./.unzp_jobs.txt");
     system("rm -f ./.ls_1_gz.txt");
+    system("rm -f ./.ls_1_zp.txt");
   }
 
   return 0;
