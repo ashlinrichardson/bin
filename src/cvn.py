@@ -17,7 +17,7 @@ if len(args) != 4:
 
 infile, outfile = args[1], args[2]
 outtype = int(float(args[3]))
-inphdr, outhdr = infile + ".hdr", outfile + ".hdr"
+inphdr, outhdr = infile[:-4] + ".hdr", outfile[:-4] + ".hdr"
 
 flines = open(inphdr).readlines()
 
