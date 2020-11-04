@@ -31,15 +31,16 @@ for line in lines:
     if len(line.split('name=')) > 1:
         user_name = line.split("=")[1].strip()
 
-pr("git_user")
-pr("user_name")
-pr("user_email") 
+# pr("git_user")
+# pr("user_name")
+# pr("user_email") 
 
 cd = os.getcwd()
 w = cd.split(os.path.sep)
 
 def run(x):
     print(x)
+    a = os.system(x)
 
 run('git config user.email ' + user_email)
 run('git config user.name "' + user_name + '"')
