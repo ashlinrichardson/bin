@@ -23,5 +23,5 @@ of = args[1][:-4] + "_isnan.bin"
 print("+w ", of)
 data.tofile(of, '', '<f4')
 oh =args[1][:-4] + "_isnan.hdr"
-
+print("+w ", oh)
 a = os.system("cp " + args[1][:-4] + ".hdr " + oh)
