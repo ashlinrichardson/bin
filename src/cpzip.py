@@ -8,7 +8,7 @@ import sys
 args = sys.argv
 
 if len(args) < 3:
-    print("Usage: cpzip [input folder] [output folder] ")
+    print("Usage: cpzip [input folder] [output folder] # a non-clobber copy! # Need not be just for zips")
     sys.exit(1)
 fi = args[1]
 fo = args[2]
