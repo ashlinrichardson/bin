@@ -1,6 +1,7 @@
 # supposing float image, arbitrary shape, output mask band
 import os
 import sys
+import math
 import numpy as np
 args = sys.argv
 
