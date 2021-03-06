@@ -2,8 +2,12 @@
 import os
 import sys
 import shutil
-
-lines = [line.rstrip() for line in open(sys.argv[1]).readlines()]
-shutil.copyfile(sys.argv[1], sys.argv[1] + ".bak")
-
-open(sys.argv[1], 'wb').write(('\n'.join(['    ' + line for line in lines])).encode())
+args = sys.argv
+f_i = args[1] # input file
+f_b = args[1] + '.bak' # backup original file
+print("+r", f_i)
+lines = [line.rstrip() for line in open(f_i).readlines()]
+print(" ".join(["cp", f_i, f_b]))
+shutil.copyfile(f_i, f_b)
+print("+w", f_i)
+open(f_i, 'wb').write(('\n'.join(['    ' + line for line in lines])).encode())
