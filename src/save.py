@@ -40,4 +40,4 @@ Your branch is up to date with 'origin/master'.
 nothing to commit, working tree clean'''
 branch_name = os.popen("git status").readlines()[0].strip().split()[2]
 
-run('git push origin master') 
+run('git push origin ' + branch_name) 
