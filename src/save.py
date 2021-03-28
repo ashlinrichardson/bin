@@ -29,5 +29,15 @@ msg = msg.strip()
 if msg == "":
     msg = "update"
 
-run('git commit -m "'  + msg + '"')
-run('git push origin master')
+run('git commit -m "'  + msg + '"') # commit to git repo
+
+
+# > git status:
+'''
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean'''
+branch_name = os.popen("git status").readlines()[0].strip().split()[2]
+
+run('git push origin master') 
