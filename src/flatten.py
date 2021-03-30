@@ -16,12 +16,26 @@ b.txt c.txt'''
 
 import os
 import sys
-
-
-count  = {}
+count, paths = {}, {}
 for root, dirs, files in os.walk(os.getcwd()):
-    root = os.path.normpath(root)
+    root = os.path.normpath(root) + os.path.sep
     for f in files:
-        print(root + f)
         leaf = f.split(os.path.sep)[-1]
-        print(leaf)
+        if leaf not in count:
+            count[leaf] = 0
+        count[leaf] += 1
+        paths[root + f] = leaf
+
+stop = False
+for leaf in count:
+    if count[leaf] > 1:
+        stop = True
+        print("error: flatten would collide files with name: " + leaf)
+
+if stop:
+    sys.exit(1)
+
+for f in paths:
+    cmd = "mv -v " + f + " " + paths[f]
+    print(cmd)
+    a = os.system(cmd)
