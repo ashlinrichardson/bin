@@ -340,7 +340,7 @@ int main(int argc, char *argv[]){
   }
   register int lig, col;
   FILE *in_file[Npolar_in], *out_file[Npolar_out];
-  char file_name[128], in_dir[128], out_dir[128];
+  char file_name[8196], in_dir[8196], out_dir[8196];
   char *file_name_in[Npolar_in] = {
     "T11.bin", "T12_real.bin", "T12_imag.bin",
     "T13_real.bin", "T13_imag.bin",
