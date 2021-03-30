@@ -36,6 +36,17 @@ if stop:
     sys.exit(1)
 
 for f in paths:
-    cmd = "mv -v " + f + " " + paths[f]
-    print(cmd)
-    a = os.system(cmd)
+    src, dst = os.path.abspath(f), os.path.abspath(paths[f])
+    cmd = " ".join(["mv -v", src, dst])
+    if src != dst:
+        print(cmd)
+        a = os.system(cmd)
+
+
+for root, dirs, files in os.walk(os.getcwd()):
+    root = os.path.normpath(root) + os.path.sep
+    for d in dirs:
+        d = os.path.abspath(d) + os.path.sep
+        cmd = "rmdir " + d
+        print(cmd)
+        a = os.system(cmd)
