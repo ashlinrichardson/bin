@@ -183,6 +183,8 @@ float ***M_tmp;
 float ***M_in;
 float **M_out;
 
+#define STR_MAX 4196
+
 /*******************************************************************************
 Routine : main
 Authors : Eric POTTIER, Laurent FERRO-FAMIL
@@ -204,7 +206,7 @@ int main(int argc, char *argv[]){
 
   FILE *in_file[16], *out_file[16];
 
-  char DirInput[1024],DirOutput[1024],file_name[1024],DataFormat[10],DataFormatPP[10];
+  char DirInput[4196],DirOutput[4196],file_name[4196],DataFormat[10],DataFormatPP[10];
   
   char *FileInput[4] = {
     "s11.bin",
