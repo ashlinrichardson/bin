@@ -91,6 +91,9 @@ void read_config(char *dir, int *Nlig, int *Ncol, char *PolarCase, char *PolarTy
 #define T34_im 14
 #define T44 15
 
+
+#define STR_MAX 4196
+
 /*******************************************************************************
 Routine : main
 Authors : Eric POTTIER, Laurent FERRO-FAMIL
@@ -132,7 +135,7 @@ int main(int argc, char *argv[]){
   FILE *in_file[16], *out_file[16];
 
   /* Strings */
-  char file_name[128], in_dir[128], out_dir[128];
+  char file_name[STR_MAX], in_dir[STR_MAX], out_dir[STR_MAX];
   char *file_name_in_out[16] = {
     "T11.bin",
     "T12_real.bin",

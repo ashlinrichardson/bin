@@ -46,6 +46,8 @@ Includes some code from PolSARPro */
 #define oSs 11
 #define oVs 12
 
+#define STR_MAX 4192
+
 /*******************************************************************************
 Routine : diagonalisation
 Authors : Eric POTTIER, Laurent FERRO-FAMIL
@@ -311,8 +313,8 @@ void zero(float * a, int l){
 }
 void read_config(char *dir, int *Nlig, int *Ncol, char *PolarCase,
 char *PolarType){
-  char file_name[128];
-  char Tmp[128];
+  char file_name[STR_MAX];
+  char Tmp[STR_MAX];
   FILE *file;
 
   sprintf(file_name, "%sconfig.txt", dir);
@@ -340,7 +342,7 @@ int main(int argc, char *argv[]){
   }
   register int lig, col;
   FILE *in_file[Npolar_in], *out_file[Npolar_out];
-  char file_name[8196], in_dir[8196], out_dir[8196];
+  char file_name[STR_MAX], in_dir[STR_MAX], out_dir[STR_MAX];
   char *file_name_in[Npolar_in] = {
     "T11.bin", "T12_real.bin", "T12_imag.bin",
     "T13_real.bin", "T13_imag.bin",
