@@ -70,6 +70,6 @@ void getT3_image_Dimensions(const char * before_dir, int & NRow, int & NCol){
   return;
 }
 
-void getT3_Image_Dimensions( char * before_dir, int & NRow, int & NCol){
+void getT3_Image_Dimensions(const char * before_dir, int & NRow, int & NCol){
   getT3_image_Dimensions(before_dir, NRow, NCol);
 }
