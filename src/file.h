@@ -1,5 +1,5 @@
 #pragma once
-#define BUFS 2000
+#define BUFS 4096
 void getT3_image_Dimensions(char * before_dir, int & NRow, int & NCol);
 void writeENVIHeader_(char * filename, int datatype, int NRows, int NCols);
 void writeENVIHeader_(char * filename, int datatype, int NRows, int NCols){
@@ -8,7 +8,7 @@ void writeENVIHeader_(char * filename, int datatype, int NRows, int NCols){
   time ( &rawtime );
   timeinfo = localtime ( &rawtime );
 
-  char file_name[100];
+  char file_name[BUFS];
   sprintf(file_name, "%s%s", filename,".hdr");
   FILE * HdrFile = fopen(file_name, "w");
 
@@ -30,10 +30,25 @@ void writeENVIHeader_(char * filename, int datatype, int NRows, int NCols){
   printf("w %s\n",file_name);
 }
 
+
+char sep(){
+  #ifdef _WIN32
+    return '\\'; // windows path separator
+  #else
+    return '/'; // mac/linux/unix path sep
+  #endif
+}
+
 void getT3_image_Dimensions(char * before_dir, int & NRow, int & NCol){
+  // printf("[%s]\n", before_dir);
   //Get T3 radar image dimensions
-  char buf[100];char file_name[100];
-  sprintf(file_name, "%s%s", before_dir, "config.txt");
+  char buf[100];
+  char file_name[BUFS];
+  strcpy(file_name, before_dir);
+  file_name[strlen(before_dir)] = sep();
+  strcpy(file_name + strlen(before_dir) + 1, "config.txt");
+
+  //sprintf(file_name, "%s%s", before_dir, "config.txt");
   FILE * config_file = fopen( file_name ,"r");
   if(!config_file){
     printf("Could not open %s\n",file_name);
@@ -41,11 +56,13 @@ void getT3_image_Dimensions(char * before_dir, int & NRow, int & NCol){
     exit(1);
   }
   file_name[0]='\n';
-
-  fgets ( buf, 100, config_file); fgets ( buf, 100, config_file);
+  fgets(buf, 100, config_file);
+  fgets(buf, 100, config_file);
   NRow = atoi(buf);
 
-  fgets ( buf, 100, config_file); fgets ( buf, 100, config_file); fgets ( buf, 100, config_file);
+  fgets(buf, 100, config_file);
+  fgets(buf, 100, config_file);
+  fgets(buf, 100, config_file);
   NCol = atoi(buf);
 
   fclose(config_file);
