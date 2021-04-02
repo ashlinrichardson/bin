@@ -7,9 +7,9 @@
 
 int main(int argc, char ** argv){
 
-  if(argc < 3){
+  if(argc < 2){
     printf("quickstats.cpp: Quick statistics on binary single-precision floating point file. By A. Richardson, 20090424 revised 20170703.\n");
-    printf("\n\tUsage: quickstats [input file] [path to directory containing config.txt file]\n");
+    printf("\n\tUsage: quickstats [input file] [path to directory containing config.txt file (defaults to present dir if absent)]\n");
     printf("\nNote: config.txt file must be present\n");
     exit(1);
   }
@@ -23,7 +23,7 @@ int main(int argc, char ** argv){
     exit(1);
   }
 
-  getT3_image_Dimensions(argv[2], NRow, NCol);
+  getT3_image_Dimensions(argc > 2 ? argv[2] : "./", NRow, NCol);
   // printf("nrow %d ncol %d\n", NRow, NCol);
   SA<float> * dat = new SA<float>(NRow*NCol);
   for(int i = 0; i < NRow*NCol; i++){
