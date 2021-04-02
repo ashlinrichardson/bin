@@ -16,7 +16,7 @@ int main(int argc, char ** argv){
 
   FILE *infile;
   int NRow, NCol;
-  register int i;
+  size_t i;
 
   if(!(infile = fopen(argv[1], "rb"))){
     printf("Could not open input file: %s\n",argv[1]);
@@ -24,7 +24,12 @@ int main(int argc, char ** argv){
   }
 
   getT3_image_Dimensions(argv[2], NRow, NCol);
+  // printf("nrow %d ncol %d\n", NRow, NCol);
   SA<float> * dat = new SA<float>(NRow*NCol);
+  for(int i = 0; i < NRow*NCol; i++){
+    (*dat)[i] = 0.;
+  }
+
   float fmax, fmin;
   register float d;
   fmax = 0.;
@@ -35,7 +40,11 @@ int main(int argc, char ** argv){
 
   int size = NRow * NCol;
 
-  fread(dat, sizeof(float), size, infile);
+  size_t nr = fread(dat->elements, sizeof(float), size, infile);
+  if(nr != size){
+    printf("Error: read: %d expected: %d\n", nr, size);
+    exit(1);
+    }
   fmax = FLT_MIN;
   fmin = FLT_MAX;
   int totaln = 0;
@@ -59,7 +68,7 @@ int main(int argc, char ** argv){
   }
   double stdev = total_squared_dif / ((double)totaln);
   stdev = sqrt(stdev);
-  printf("Max,Min,Mean,Stdv,%e,%e,%e,%e\n", fmax, fmin, avg, stdev);
+  printf("Max,Min,Mean,Stdv\n%e,%e,%e,%e\n", fmax, fmin, avg, stdev);
   fclose(infile);
   return 0;
 }
