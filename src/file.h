@@ -39,7 +39,7 @@ char sep(){
   #endif
 }
 
-void getT3_image_Dimensions(char * before_dir, int & NRow, int & NCol){
+void getT3_image_Dimensions(const char * before_dir, int & NRow, int & NCol){
   // printf("[%s]\n", before_dir);
   //Get T3 radar image dimensions
   char buf[100];
