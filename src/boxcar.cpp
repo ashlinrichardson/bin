@@ -35,11 +35,14 @@ int main(int argc, char ** argv){
   int ix = window_size / 2;
   float npix;
   fread(dat, lines * samples, sizeof(float), infile);
+
+  double d; // do the filtering in double precision
   for0(x, lines){
     for0(y, samples){
       ind = (x * samples) + y ; //calculate index of current pixel
       out[ind] = 0.; //clear the output value for the current pixel (x,y).
       npix = 0;
+      d = 0.;
       
       /* for each pixel within the filter window around (x,y): */
       for(dx = (x - ix); dx <= (x +ix); dx++){
@@ -53,12 +56,12 @@ int main(int argc, char ** argv){
             npix++;
             
             /* add the value of the pixel to the running total */
-            out[ind] = out[ind] + dat[ wind];
+            d += (double) dat[wind]; //out[ind] = out[ind] + dat[ wind];
           }
         }
       }
       if(npix > 0.){
-        out[ind]= out[ind] / ((float)npix);
+        out[ind] = (float)(d / ((double)npix));
       }
       else{
         /* if no unmasked filter window pixels, leave the pixel unchanged */
