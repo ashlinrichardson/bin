@@ -6,4 +6,4 @@ import os
 print("stopping drivers..")
 a = os.system("sudo killall VDCAssistant")
 a = os.system("sudo killall AppleCameraAssistant")
-print("now restart your app that used the webcam..")`
+print("now restart your app that used the webcam..")
