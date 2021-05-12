@@ -8,11 +8,21 @@ w = src_dir.strip(os.path.sep).split(os.path.sep)[:-2]
 w.append('bin')
 w.append('bin')
 export_dir = os.path.sep + os.path.sep.join(w)
-a = os.system("sudo chmod -R 777 " + export_dir)\
-
+a = os.system("sudo chmod -R 777 " + export_dir)
 export = 'export PATH=$PATH:'  + export_dir
 print(export)
-bash_rc = '/home/' + os.popen('whoami').read().strip() + '/.bashrc'
+
+# install gsl on Ubuntu machine (still need to implement this for others)
+mac = True
+if os.popen('uname -a').read().strip().split()[0] == 'Ubuntu':
+    mac = False
+    run('sudo apt-get install libgsl0-dev')
+
+home_prefix = '/home/'
+if mac:
+    home_prefix = '/Users/'
+
+bash_rc = home_prefix + os.popen('whoami').read().strip() + '/.bashrc'
 d = open(bash_rc).read().rstrip()
 if len(d.split(export)) < 2:
     d += '\n' + export
@@ -21,10 +31,6 @@ if len(d.split(export)) < 2:
     a = os.system('bash; source ' + bash_rc)
 else:
     print(bash_rc + " already includes path")
-
-# install gsl on Ubuntu machine (still need to implement this for others)
-if os.popen('uname -a').read().strip().split()[0] == 'Ubuntu':
-    run('sudo apt-get install libgsl0-dev')
 
 pyfiles, cfiles, cppfiles = [], [], []
 
