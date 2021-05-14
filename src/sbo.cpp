@@ -1,7 +1,9 @@
 /* 20190510 swap byte order for pure-binary data file:
   file contains only linear sequence of binary records:  number of bytes per record = n
   
-Command argument: number of bytes per record */
+Command argument: number of bytes per record
+
+nb need to read whole file instead of this*/
 #include<stack>
 #include<stdio.h>
 #include<stdlib.h>
