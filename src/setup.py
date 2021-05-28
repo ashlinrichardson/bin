@@ -14,7 +14,7 @@ print(export)
 
 # install gsl on Ubuntu machine (still need to implement this for others)
 mac = True
-if os.popen('uname -a').read().strip().split()[0] == 'Ubuntu':
+if os.popen('uname -a').read().strip().split()[0] == 'Linux':
     mac = False
     run('sudo apt-get install libgsl0-dev')
 
