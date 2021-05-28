@@ -37,7 +37,7 @@ int main(int argc, char ** argv){
 
   FILE * t11 = wopen("T11.bin");
   if(!t11){
-    printf("Error: could not open file %s\n", outfile);
+    printf("Error: could not open file T11.bin");
     exit(1);
   }
   FILE * t22 = wopen("T22.bin");
@@ -55,8 +55,8 @@ int main(int argc, char ** argv){
       
       float T11 = a*a + b*b;
       float T22 = c*c + d*d;
-      float T12_r = ac + db;
-      float T12_i = bc - da;
+      float T12_r = a* c + d* b;
+      float T12_i = b* c - d* a;
 
       fwrite(&T11, sf, 1, t11);
       fwrite(&T22, sf, 1, t22);
