@@ -33,10 +33,11 @@ int main(int argc, char ** argv){
   }
  
   size_t f_s = size(infile);
-  NBand = f_s / (NRow * NCol); // infer number of bands from file size
+  NBand = f_s / (NRow * NCol * sizeof(float)); // infer number of bands from file size
+  cout << "NBand" << NBand << endl;
   SA<float> * dat = new SA<float>(NRow*NCol);
 
-  printf("Max,Min,Mean,Stdv\n");
+  printf("band,Max,Min,Mean,Stdv");
   for(k = 0; k < NBand; k++){
     for(int i = 0; i < NRow*NCol; i++) (*dat)[i] = 0.;
     
@@ -78,7 +79,7 @@ int main(int argc, char ** argv){
     }
     double stdev = total_squared_dif / ((double)totaln);
     stdev = sqrt(stdev);
-    printf("\n%e,%e,%e,%e", fmax, fmin, avg, stdev);
+    printf("\n%d,%e,%e,%e,%e", k, fmax, fmin, avg, stdev);
   }
   fclose(infile);
   printf("\n");
