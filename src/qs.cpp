@@ -19,7 +19,7 @@ int main(int argc, char ** argv){
     printf("\nNote: config.txt file must be present\n");
     exit(1);
   }
-  printf("Max,Min,Mean,Stdv\n");
+
 
   FILE *infile;
   int NRow, NCol, NBand, k;
@@ -36,6 +36,7 @@ int main(int argc, char ** argv){
   NBand = f_s / (NRow * NCol); // infer number of bands from file size
   SA<float> * dat = new SA<float>(NRow*NCol);
 
+  printf("Max,Min,Mean,Stdv\n");
   for(k = 0; k < NBand; k++){
     for(int i = 0; i < NRow*NCol; i++) (*dat)[i] = 0.;
     
