@@ -68,4 +68,3 @@ for p in folders:
         c += ' > ' + r_f 
         run(c)
 
-    sys.exit(1)
