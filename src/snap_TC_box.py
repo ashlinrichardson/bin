@@ -12,7 +12,6 @@ def run(c):
     if a != 0:
         err('command failed: ' + c)
 
-
 folders = [x.strip() for x in os.popen("ls -1 -d *SLC").readlines()]
 snap = '/home/' + os.popen('whoami').read().strip() + '/snap/bin/gpt' # assume we installed snap
 ci = 1
@@ -28,6 +27,7 @@ for p in folders:
                   'Terrain-Correction',
                   '-PoutputComplex=true',
                   '-PnodataValueAtSea=false', # '-PsaveLayoverShadowMask=true',
+                  '-PimgResamplingMethod="NEAREST_NEIGHBOUR"', # why? because we will add an index for reverse geocoding...
                   in_1,
                   '-t ' + in_2])
     
