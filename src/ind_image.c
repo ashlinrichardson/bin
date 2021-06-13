@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 int main(int argc, char ** argv){
-
   if(argc < 4){
-    printf("Create index image for coregistration purposes.");
+    printf("Create index image for coregistration purposes (32 bit unsigned int = ENVI type 13");
     printf("\n\tUsage: indImage [nrow] [ncol] [outfile]\n");
     printf("\n\tn.b., the index starts from 0\n");
     exit(1);
@@ -14,7 +13,7 @@ int main(int argc, char ** argv){
   char * outfile = argv[3];
 
   int intsize = sizeof(unsigned int);
-  printf("Sizeof long int: %ld\n", intsize);
+  printf("sizeof(unsigned int): %ld\n", intsize);
   if(intsize != 4){
     printf("Error: data record size should be 4 bytes.\n");
     exit(1);
