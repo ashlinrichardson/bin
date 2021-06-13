@@ -1,6 +1,7 @@
 import os
 import sys
 sep = os.path.sep
+exist = os.path.exists
 
 def err(m):
     print("Error: " + m); sys.exit(1)
@@ -36,5 +37,29 @@ for p in folders:
                   '-PfilterSize=5',
                   in_2,
                   '-t', in_3])  # -t is for output file
-    run(c1)
-    run(c2)
+    
+    if not exist(in_2):
+        run(c1)
+    
+    if not exist(in_3):
+        run(c2)
+    
+    r_f = p + '_rgb.bin'
+    r_h = p + '_rgb.hdr'
+    hf = in_3[:-3] + 'data' + sep + 'T11.hdr'
+
+    if not exist(r_h):
+        run('cp ' + hf + ' ' + r_h)
+
+    dat = open(r_h).read().strip()
+    dat = dat.replace("bands = 1", "bands = 3")
+    dat = dat.replace("band names = { T11 }",
+                      '''band names = {red,
+                         green,
+                         blue}''')
+    open(r_h, 'wb').write(dat.encode())  # write revised header
+    print(p)
+    print(hf)
+    
+    err('done')
+    
