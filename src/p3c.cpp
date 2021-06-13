@@ -17,10 +17,15 @@ using namespace _T3;
 #define T23R (T3_in.pixel[r23])
 #define T33R (T3_in.pixel[r33])
 
+#define STR_MAX 2048
 int main(int argc, char ** argv){
+  if(argc < 3){
+    printf("p3c.exe [t3 input dir] [t3 output dir]\n");
+    exit(1);
+  }
 
-  char input_dir[100];
-  char output_dir[100];
+  char input_dir[STR_MAX];
+  char output_dir[STR_MAX];
   strcpy(input_dir, argv[1]);
   strcpy(output_dir, argv[2]);
 
@@ -54,8 +59,8 @@ int main(int argc, char ** argv){
       theta = (atan2((T23R * (-4.0)), (2.0 * (T33R - T22R))) + 3.14159265358) / 4.0;
       fwrite(&theta, sizeof(float), 1, eta_file);
 
-      if(theta > (3.14159265358 / 4.0)){
-        theta -= (3.14159265358 / 2.0);
+      if(theta > (M_PI / 4.0)){
+        theta -= (M_PI / 2.0);
       }
 
       fwrite(&theta, sizeof(float), 1, theta_file);
