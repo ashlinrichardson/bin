@@ -29,6 +29,7 @@ i_dir = os.path.abspath(args[1]) + sep
 o_dir = os.path.abspath(args[2]) + sep
 
 cfgfile = i_dir + "alos_config.txt"
+print("cfgfile:", str([cfgfile]))
 f = open(cfgfile, "w")
 f.close()
 
