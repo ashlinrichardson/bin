@@ -67,4 +67,4 @@ for p in folders:
             c += (' ' + t + i)
         c += ' > ' + r_f 
         run(c)
-
+    ci += 1
