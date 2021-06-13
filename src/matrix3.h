@@ -4,15 +4,12 @@
 #include <stdlib.h>
 #include "matrix2.h"
 
-using namespace _matrix2;
-
 #define cf complex<TYPE>
 #define _zero ( cf(0.,0.) )
 #define cp(c) printf("%f + %fi\n", real(c), imag(c));
 
 /* representations of 3x3 matrices, 3x3 hermitian matrices, and 3x3 vectors. */
 
-namespace _matrix3{
 
   /* representation of 3-d vector.*/
   template<class T> struct vec3{
@@ -496,4 +493,3 @@ namespace _matrix3{
     /* sort eigenvectors */
     //return norm ( (A*e1)/l1 - e1) + norm( (A*e2)/l2 - e2) + norm( (A*e3)/l3 - e3)
   }
-}

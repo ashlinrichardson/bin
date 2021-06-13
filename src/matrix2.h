@@ -1,5 +1,4 @@
 #pragma once
-#include "radlib.h"
 #include <cmath>
 #include <string.h>
 #include <fstream>
@@ -10,7 +9,6 @@
 
 using namespace std;
 
-namespace _matrix2{
 
   template<class T> struct complex{
 
@@ -345,4 +343,3 @@ namespace _matrix2{
     vec2<T> ret(A.a * B.a + A.b * B.b, A.c * B.a + A.d * B.b);
     return ret;
   }
-}

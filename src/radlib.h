@@ -1,6 +1,7 @@
 #pragma once
 #include "../psp/util.h"
-#include "bin.h" //#include "matrix2.h"
+#include "bin.h"
+#include "matrix2.h"
 #include "matrix3.h"
 #include "S2.h"
 #include "T3.h"
@@ -24,8 +25,8 @@
 
 //namespaces
 using namespace _SA;
-using namespace _matrix2;
-using namespace _matrix3;
+// using namespace _matrix2;
+// using namespace _matrix3;
 using namespace _S2;
 using namespace _T3;
 
@@ -43,7 +44,7 @@ using namespace _T3;
 #define S22 (S2_in.pixel[s22])
 
 //matrix type macros
-#define TYPE double
+// #define TYPE double
 #define M2_ mat2< complex< TYPE > >
 #define cf_ complex<TYPE>
 #define V2C vec2< complex< TYPE > >

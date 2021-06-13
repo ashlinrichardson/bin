@@ -8,7 +8,7 @@
 #include "file.h"
 #include "matrix2.h"
 
-using namespace _matrix2;
+// using namespace _matrix2;
 using namespace std;
 using std::ostream;
 using std::vector;

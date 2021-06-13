@@ -1,5 +1,6 @@
 #pragma once
 #define BUFS 4096
+#include<string.h>
 void getT3_image_Dimensions(char * before_dir, int & NRow, int & NCol);
 void writeENVIHeader_(char * filename, int datatype, int NRows, int NCols);
 void writeENVIHeader_(char * filename, int datatype, int NRows, int NCols){
