@@ -31,10 +31,11 @@ for p in folders:
                   in_1,
                   '-t ' + in_2])
     
-    in_3 = p + sep + 'b5.dim'  # box filtered output
+    in_3 = p + sep + 'b7.dim'  # box filtered output
     c2 = ' '.join([snap,
                   'Polarimetric-Speckle-Filter',
-                  '-PfilterSize=5',
+                  '-Pfilter="Box Car Filter"',
+                  '-PfilterSize=7',
                   in_2,
                   '-t', in_3])  # -t is for output file
     
@@ -66,3 +67,5 @@ for p in folders:
             c += (' ' + t + i)
         c += ' > ' + r_f 
         run(c)
+
+    sys.exit(1)
