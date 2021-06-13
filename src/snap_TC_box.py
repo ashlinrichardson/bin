@@ -55,8 +55,6 @@ for p in folders:
     dat = dat.replace("bands = 1", "bands = 3")
     dat = dat.replace("band names = { T11 }", "band names = {red, \ngreen,\nblue}")
     open(r_h, 'wb').write(dat.encode())  # write revised header
-    print(p)
-    print(hf)
 
     if not exist(r_f):
         c = 'cat'
@@ -64,9 +62,7 @@ for p in folders:
         for i in ['22.bin', '33.bin', '11.bin']:
             ti = t + i
             if not exist(ti):
-                print('sbo ' + (ti[:-3] + 'img') + ' ' + ti + ' 4')
+                run('sbo ' + (ti[:-3] + 'img') + ' ' + ti + ' 4')
             c += (' ' + t + i)
-        print(c)
-
-    err('done')
-    
+        c += ' > ' + r_f 
+        run(c)
