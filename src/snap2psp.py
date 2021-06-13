@@ -15,8 +15,6 @@ def run(c):
 if len(args) < 2:
     print("snap2psp.py [input folder name] # convert snap byte-order 1 .img data to byte-order 0 .bin data")
 
-
-
 p = os.path.abspath(args[1]) + sep
 cmd = "ls -1 " + p + "*.img"
 files = [x.strip() for x in os.popen(cmd).readlines()]
