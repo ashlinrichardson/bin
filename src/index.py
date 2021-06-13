@@ -1,5 +1,7 @@
 #!/usr/bin/env python
-'''20170626 write an "Index band to be geometrically transformed"'''
+'''20170626 write an "Index band to be geometrically transformed"..
+..this was for radarsat2. '''
+
 import os
 import sys
 from fl0w3r import args, error, run, read_config, normpath
