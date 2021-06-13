@@ -88,8 +88,8 @@ See the GNU General Public License (Version 2, 1991) for more details.
 /* constants */
 
 /*#define MAX_MISSING_PAIRS     5*/  /* Max pairs of missing rg lines/chan */
-#define NAME_LEN             128     /* short string length */
-#define LONG_NAME_LEN        128     /* long string length */
+#define NAME_LEN             2048     /* short string length */
+#define LONG_NAME_LEN        2048     /* long string length */
 #define MAX_POLS               4     /* max number of pols: HH, HV, VV, VH */
 
 /******************************************************************************
