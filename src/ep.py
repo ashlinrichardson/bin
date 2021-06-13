@@ -24,8 +24,9 @@ if len(args) < 3:
         print("ep.py: extract Palsar data 200909 reimpl. 20170622")
         error("Usage: ep [input directory] [output directory]")
 
-i_dir = normpath(args[1])
-o_dir = normpath(args[2])
+sep = os.path.sep
+i_dir = os.path.abspath(args[1]) + sep
+o_dir = os.path.abspath(args[2]) + sep
 
 cfgfile = i_dir + "alos_config.txt"
 f = open(cfgfile, "w")
