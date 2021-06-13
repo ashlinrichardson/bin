@@ -31,7 +31,7 @@ for p in folders:
                   in_1,
                   '-t ' + in_2])
     
-    in_3 = p + sep + 'b7.dim'  # box filtered output
+    in_3 = p + sep + 'b7.dim'  # box filtered output # how to get parameters: ./gpt Polarimetric-Speckle-Filter -h
     c2 = ' '.join([snap,
                   'Polarimetric-Speckle-Filter',
                   '-Pfilter="Box Car Filter"',
