@@ -5,15 +5,14 @@ from envi import *
 from fl0w3r import error, run, args, normpath
 '''reimplemented 20170622'''
 
-
 def findfilestartstring(startstring, cwd):
     cmdtorun = 'find ' + cwd + ' -name ' + startstring + '*'
     # "VOL*"')
     _if = os.popen(cmdtorun).readlines()
     if len(_if) > 1:
-        print "Error: more than one VOL file found in directory "+cwd
+        print("Error: more than one VOL file found in directory " + cwd)
         for lines in _if:
-            print lines.strip()
+            print(lines.strip())
         sys.exit(1)
     else:
         _if = _if[0].strip()
@@ -22,7 +21,7 @@ def findfilestartstring(startstring, cwd):
 
 # Script Start
 if len(args) < 3:
-        print "ep.py: extract Palsar data 200909 reimpl. 20170622"
+        print("ep.py: extract Palsar data 200909 reimpl. 20170622")
         error("Usage: ep [input directory] [output directory]")
 
 i_dir = normpath(args[1])
