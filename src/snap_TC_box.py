@@ -54,6 +54,7 @@ for p in folders:
 
     dat = open(r_h).read().strip()
     dat = dat.replace("bands = 1", "bands = 3")
+    dat = dat.replace("byte order = 1", "byte order = 0")
     dat = dat.replace("band names = { T11 }", "band names = {red, \ngreen,\nblue}")
     open(r_h, 'wb').write(dat.encode())  # write revised header
 
