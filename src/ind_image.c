@@ -34,11 +34,11 @@ int main(int argc, char ** argv){
   unsigned int imax = nrow*ncol;
 
   FILE * f = fopen(outfile, "wb");
-  unsigned int nr = 0;
+  size_t nr = 0;
   for(i = 1; i <= imax; i++){
     nr += fwrite(&i,sizeof(unsigned int), 1, f);
   }
   fclose(f);
-  printf("%ld\n", nr);
+  printf("values written: %zu\n", nr);
   return 0;
 }
