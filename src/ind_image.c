@@ -40,5 +40,27 @@ int main(int argc, char ** argv){
   }
   fclose(f);
   printf("values written: %zu\n", nr);
+
+  if(argc > 4){
+    f = fopen(argv[4]);
+    if(!f){
+      printf("Error: failed to open file: %s\n", argv[4]);
+      exit(1);
+    }
+
+    int data_type = 13;
+    fprintf(f, "ENVI\n");
+    fprintf(f, "samples = %d\n", ncol);
+    fprintf(f, "lines = %d\n", nrow);
+    fprintf(f, "bands = 1\n");
+    fprintf(f, "header offset = 0\n");
+    fprintf(f, "file type = ENVI Standard\n");
+    fprintf(f, "data type = %d\n",datatype);
+    fprintf(f, "interleave = bsq\n");
+    fprintf(f, "byte order = 0\n");
+    fprintf(f, "band names = {ENVI type 13 index band}");
+    fclose(f);
+    printf("+w %s\n", argv[4]);
+  }
   return 0;
 }
