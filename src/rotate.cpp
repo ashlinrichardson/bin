@@ -36,7 +36,6 @@ int main(int argc, char *argv[]){
   
   for(col = NCol - 1; col >= 0; col--){
     printf("\rProcessing col %d of %d", col, NCol);
-    rc = row*windowsize;
     for(row = 0; row < NRow; row++)
       fwrite(&d, sizeof(float), 1, outfile);
   }
