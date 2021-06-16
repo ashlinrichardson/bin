@@ -19,7 +19,6 @@ int main(int argc, char *argv[]){
   read_config(string(argv[2]) + string("/config.txt"), NRow, NCol);
 
   char * OUTFILE = argv[3];
-  int windowsize = atoi(argv[4]);
 
   infile = open(INFILE);
   outfile = wopen(OUTFILE);
