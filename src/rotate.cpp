@@ -5,6 +5,7 @@
 #include <stdlib.h>
 int main(int argc, char *argv[]){
   if(argc < 4){
+    printf("usage:\n\trotate[input file] [path containing config.txt] [output file]\n");
     printf("rotate.cpp: rotate a binary single-precision floating point file, 90 degrees to the right. 20210615\n");
     printf("\nNote: config.txt file must be present\n");
     exit(1);
