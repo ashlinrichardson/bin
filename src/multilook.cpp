@@ -1,6 +1,4 @@
-/*
-not sure why this doesn't multilook in both directions.. fix it.
-*/
+/* not sure why this doesn't multilook in both directions.. fix it. */
 #include "envi.h"
 #include <math.h>
 #include <stdio.h>
@@ -49,7 +47,6 @@ int main(int argc, char *argv[]){
   int isBad = false;
   
   for(row = 0; row < nrow_new; row++){
-    
     printf("\rProcessing row %d of %d", row+1, nrow_new);
     rc = row*windowsize;
     
