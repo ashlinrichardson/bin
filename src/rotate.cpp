@@ -35,7 +35,7 @@ int main(int argc, char *argv[]){
   int row, col, ind, rc, cc;
   double dt = 0.;
   
-  for(col = NCol - 1; col <= 0; col--){
+  for(col = NCol - 1; col >= 0; col--){
     printf("\rProcessing col %d of %d", col, NCol);
     rc = row*windowsize;
     for(row = 0; row < NRow; row++)
