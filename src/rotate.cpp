@@ -37,7 +37,7 @@ int main(int argc, char *argv[]){
   for(col = NCol - 1; col >= 0; col--){
     printf("\rProcessing col %d of %d", col, NCol);
     for(row = 0; row < NRow; row++)
-      fwrite(&d, sizeof(float), 1, outfile);
+      fwrite(&dat[row * NCol + col], sizeof(float), 1, outfile);
   }
   printf("\r\n");
   write_envi_hdr(string(OUTFILE)+string(".hdr"), NCol, NRow);
