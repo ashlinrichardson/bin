@@ -40,8 +40,8 @@ int main(int argc, char *argv[]){
     for(row = 0; row < NRow; row++)
       fwrite(&d, sizeof(float), 1, outfile);
   }
-  write_envi_hdr(string(OUTFILE)+string(".hdr"), nrow_new, ncol_new);
   printf("\r\n");
+  write_envi_hdr(string(OUTFILE)+string(".hdr"), NCol, NRow);
   fclose(outfile);
   return 0;
 }
