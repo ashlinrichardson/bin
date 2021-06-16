@@ -34,12 +34,10 @@ int main(int argc, char *argv[]){
   int row, col, ind, rc, cc;
   double dt = 0.;
   
-  for(col = NCol - 1; col >= 0; col--){
-    printf("\rProcessing col %d of %d", col, NCol);
+  for(col = NCol - 1; col >= 0; col--)
     for(row = 0; row < NRow; row++)
       fwrite(&dat[row * NCol + col], sizeof(float), 1, outfile);
-  }
-  printf("\r\n");
+  
   write_envi_hdr(string(OUTFILE)+string(".hdr"), NCol, NRow);
   fclose(outfile);
   return 0;
