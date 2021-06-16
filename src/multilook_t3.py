@@ -40,3 +40,6 @@ for t in T:
     o_f = o_d + sep + t
     cmd = "multilook " + i_f + " " + i_d + " " + o_f + " " + str(ws)
     print(cmd)
+    a = os.system(cmd)
+    if a != 0:
+        err("command failed")
