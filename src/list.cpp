@@ -21,8 +21,8 @@ void listFiles(string base_dir, bool recursive){
     return; // error, could not open:
   else{
     while((dirp = readdir(dp)) != NULL){
-      cout << base_dir << dirp->d_name << endl;
       if(dirp->d_name != string(".") && dirp->d_name != string("..")){
+        cout << base_dir << dirp->d_name << endl;
         if(is_dir(base_dir + dirp->d_name) == true && recursive == true){
           listFiles(base_dir + dirp->d_name + "/", true);
         }
