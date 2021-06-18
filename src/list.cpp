@@ -1,12 +1,11 @@
 /* list files / directories (starting at a path)
  Adapted from code by Dainis Dauners / Date: 02.05.2010
  modified by A. Richardson 20210618 */
-#include <iostream>
-#include <string>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <errno.h>
-
+#include<sys/stat.h>
+#include<iostream>
+#include<dirent.h>
+#include<string.h>
+#include<errno.h>
 using namespace std;
 
 bool is_dir(string dir){
