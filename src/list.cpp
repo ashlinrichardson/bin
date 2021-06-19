@@ -20,11 +20,11 @@ void list_files(string base_dir, bool recursive){
   struct dirent *dirp;
   if((dp = opendir(base_dir.c_str())) == NULL){
     return; // error, could not open:
-  } 
+  }
   else{
     while((dirp = readdir(dp)) != NULL){
       if(dirp->d_name != string(".") && dirp->d_name != string("..")){
-        printf("%s%s\n", base_dir.c_str(), dirp->d_name.c_str());
+        printf("%s%s\n", base_dir.c_str(), dirp->d_name);  // latter is char[256]. An issue?
         if(is_dir(base_dir + dirp->d_name) == true && recursive == true)
           list_files(base_dir + dirp->d_name + "/", true);
       }
@@ -34,7 +34,6 @@ void list_files(string base_dir, bool recursive){
 }
 
 int main(int argc, char *argv[]){
-  if(argc <= 1) listFiles(string("./"), true);
-  else listFiles(argv[1], true);
+  list_files(argc <= 1 ? string("./"): string(argv[1]), true);
   return 0;
 }
