@@ -12,7 +12,7 @@ if len(args) < 2:
 	  print("\tpolsarpro403/Soft/data_process_sngl/h_a_alpha_eigenvector_set_T4.exe")
     sys.exit(1)
 
-PSPexeDIR = "../../PolSARpro_v4.2.0_Install_Linux/Soft/data_process_sngl/"
+PSPexeDIR = "/home/" + os.popen("whoami").read().strip() + "/GitHub/PolSARpro_v4.2.0_Install_Linux/Soft/data_process_sngl/" #"../../PolSARpro_v4.2.0_Install_Linux/Soft/data_process_sngl/"
 
 cwd = normpath(args[1])
 
