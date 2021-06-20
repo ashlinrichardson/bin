@@ -3,6 +3,11 @@ import os
 import sys
 from fl0w3r import error, normpath, run, read_config
 
+def run(c):
+    print(c)
+    a = os.system(c)
+    return(a)
+
 args = sys.argv
 if len(args) < 2:
     print("Usage: cloudeT4 [input directory]")
