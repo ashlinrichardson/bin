@@ -6,10 +6,10 @@ from fl0w3r import error, normpath, run, read_config
 args = sys.argv
 if len(args) < 2:
     print("Usage: cloudeT4 [input directory]")
-	print("Generates the polarimetric decomposition parameters of the following binaries:")
-	print("\tpolsarpro403/Soft/data_process_sngl/h_a_alpha_decomposition_T4.exe")
-	print("\tpolsarpro403/Soft/data_process_sngl/h_a_alpha_eigenvalue_set_T4.exe")
-	print("\tpolsarpro403/Soft/data_process_sngl/h_a_alpha_eigenvector_set_T4.exe")
+    print("Generates the polarimetric decomposition parameters of the following binaries:")
+    print("\tpolsarpro403/Soft/data_process_sngl/h_a_alpha_decomposition_T4.exe")
+    print("\tpolsarpro403/Soft/data_process_sngl/h_a_alpha_eigenvalue_set_T4.exe")
+    print("\tpolsarpro403/Soft/data_process_sngl/h_a_alpha_eigenvector_set_T4.exe")
     sys.exit(1)
 
 PSPexeDIR = "/home/" + os.popen("whoami").read().strip() + "/GitHub/PolSARpro_v4.2.0_Install_Linux/Soft/data_process_sngl/" #"../../PolSARpro_v4.2.0_Install_Linux/Soft/data_process_sngl/"
@@ -40,13 +40,13 @@ cmd3 = PSPexeDIR+out3+".exe " + cwd +" "+od3+" 1 0 0 "+str(nlin)+" "+str(ncol)+"
 # A processing error occured ! 
 # h_a_alpha_eigenvector_set_T3 in_dir out_dir Nwin offset_lig offset_col sub_nlig sub_ncol alpha123 beta123 delta123 gamma123 alpbetdelgam
 
-print "mkdir "+od1
-print "mkdir "+od2
-print "mkdir "+od3
+print("mkdir "+od1)
+print("mkdir "+od2)
+print("mkdir "+od3)
 
-print cmd1
-print cmd2
-print cmd3
+print(cmd1)
+print(cmd2)
+print(cmd3)
 
 run("mkdir "+od1)
 run("mkdir "+od2)
