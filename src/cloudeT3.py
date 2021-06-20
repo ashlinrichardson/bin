@@ -5,11 +5,11 @@ from fl0w3r import error, normpath, run, read_config
 
 args = sys.argv
 if len(args) < 2:
-    print "Usage: cloudeT4 [input directory]"
-	  print "Generates the polarimetric decomposition parameters of the following binaries:"
-	  print "\tpolsarpro403/Soft/data_process_sngl/h_a_alpha_decomposition_T4.exe"
-	  print "\tpolsarpro403/Soft/data_process_sngl/h_a_alpha_eigenvalue_set_T4.exe"
-	  print "\tpolsarpro403/Soft/data_process_sngl/h_a_alpha_eigenvector_set_T4.exe"
+    print("Usage: cloudeT4 [input directory]")
+	  print("Generates the polarimetric decomposition parameters of the following binaries:")
+	  print("\tpolsarpro403/Soft/data_process_sngl/h_a_alpha_decomposition_T4.exe")
+	  print("\tpolsarpro403/Soft/data_process_sngl/h_a_alpha_eigenvalue_set_T4.exe")
+	  print("\tpolsarpro403/Soft/data_process_sngl/h_a_alpha_eigenvector_set_T4.exe")
     sys.exit(1)
 
 PSPexeDIR = "../../PolSARpro_v4.2.0_Install_Linux/Soft/data_process_sngl/"
