@@ -7,9 +7,8 @@
 using namespace std;
 
 int main(int argc, char ** argv){
-  if(argc < 5){
-    error("cp_2_t2.cpp: convert two complex channel (ENVI type 6), implemented 20210527. \n\tuse: cp_2_t2.exe [nrow] [ncol] [ch] [cv] \n\tNote: config.txt file must be present in input directory\n");
-  }
+  if(argc < 5) error("cp_2_t2.cpp: convert two complex channel (ENVI type 6), implemented 20210527. \n\tuse: cp_2_t2.exe [nrow] [ncol] [ch] [cv] \n\tNote: config.txt file must be present in input directory\n");
+  
   size_t sf = sizeof(float);
   int nrow, ncol, row, col, i, j, k, ind;
   nrow = atoi(argv[1]);
@@ -33,7 +32,6 @@ int main(int argc, char ** argv){
     printf("Error: could not open file %s\n", inf2);
     exit(1);
   }
-
 
   FILE * t11 = wopen("T11.bin");
   if(!t11){
