@@ -17,6 +17,12 @@ def run(c):
 if len(args) < 2:
     print("snap_m3fcc")
 
+''' input files:'''
+
+ins = ['i_RCH2.img', 'i_RCH.img', 'q_RCH2.img', 'q_RCH.img']
+for i in ins:
+    if not os.path.exists(i):
+        err("req'd input file: " + i)
 
 run("snap2psp ./")
 
