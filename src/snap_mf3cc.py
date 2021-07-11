@@ -81,7 +81,11 @@ lines = ['ENVI',
          'file type = ENVI Standard',
          'data type = 4',
          'interleave = bsq',
-         'byte order = 0']
+         'byte order = 0',
+         'band names = {Pd_CP.bin,',
+         'Pv_CP.bin,',
+         'Ps_CP.bin,',
+         'Theta_CP.bin}']
 
 # write a header for the stack
 open('stack.hdr', 'wb').write(('\n'.join(lines)).encode())
