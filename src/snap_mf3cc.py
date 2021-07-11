@@ -70,7 +70,21 @@ run('eh2cfg ch.bin.hdr')
 # now run the decom
 run('mf3cc ./ ' + str(nwin))
 
+# stack the stuff
+run('cat Pd_CP.bin Pv_CP.bin Ps_CP.bin Theta_CP.bin > stack.bin')
 
+lines = ['ENVI',
+         'samples = ' + str(ncol),
+         'lines = ' + str(ncol),
+         'bands = 4',
+         'header offset = 0',
+         'file type = ENVI Standard',
+         'data type = 4',
+         'interleave = bsq',
+         'byte order = 0']
+
+# write a header for the stack
+open('stack.hdr', 'wb').write(('\n'.join(lines)).encode())
 
 '''
 [1] Dey et al S. Dey, A. Bhattacharya, D. Ratha, D. Mandal and A. C. Frery, "Target Characterization and Scattering Power Decomposition for Full and Compact Polarimetric SAR Data," in IEEE Transactions on Geoscience and Remote Sensing, doi: https://doi.org/10.1109/TGRS.2020.3010840.
