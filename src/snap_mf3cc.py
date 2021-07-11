@@ -64,6 +64,9 @@ run('mv T22.bin C22.bin')
 run('mv T12_real.bin C12_real.bin')
 run('mv T12_imag.bin C12_imag.bin')
 
+# make sure there is config.txt 
+run('eh2cfg ch.bin.hdr')
+
 # now run the decom
 run('mf3cc ./ ' + str(nwin))
 
