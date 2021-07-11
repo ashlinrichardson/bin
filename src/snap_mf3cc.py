@@ -108,7 +108,7 @@ d = ['C11.bin',
      'Theta_CP.bin']
 
 for i in d:
-    run('rm ' + d)
+    run('rm ' + i)
 
 '''
 [1] Dey et al S. Dey, A. Bhattacharya, D. Ratha, D. Mandal and A. C. Frery, "Target Characterization and Scattering Power Decomposition for Full and Compact Polarimetric SAR Data," in IEEE Transactions on Geoscience and Remote Sensing, doi: https://doi.org/10.1109/TGRS.2020.3010840.
