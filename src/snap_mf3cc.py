@@ -1,5 +1,6 @@
 '''assuming we are inside a .dim folder from snap for compact-pol data..
-apply Dey et al (2021) [1] mf3cc compact-pol decom'''
+
+apply Dey et al [1] mf3cc compact-pol decom'''
 import os
 import sys
 args = sys.argv
@@ -57,8 +58,7 @@ args = ['cp_2_t2',
         'cv.bin']
 run(' '.join(args))
 
-
-# rename files..
+# use the expected filenames convention..
 run('mv T11.bin C11.bin')
 run('mv T22.bin C22.bin')
 run('mv T12_real.bin C12_real.bin')
