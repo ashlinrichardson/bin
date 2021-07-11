@@ -90,6 +90,26 @@ lines = ['ENVI',
 # write a header for the stack
 open('stack.hdr', 'wb').write(('\n'.join(lines)).encode())
 
+
+# clean up some intermediary files
+d = ['C11.bin',
+     'C12_imag.bin',
+     'C12_real.bin',
+     'C22.bin',
+     'ch.bin',
+     'cv.bin',
+     'i_RCH2.bin',
+     'i_RCH.bin',
+     'Pd_CP.bin',
+     'Ps_CP.bin',
+     'Pv_CP.bin',
+     'q_RCH2.bin',
+     'q_RCH.bin',
+     'Theta_CP.bin']
+
+for i in d:
+    run('rm ' + d)
+
 '''
 [1] Dey et al S. Dey, A. Bhattacharya, D. Ratha, D. Mandal and A. C. Frery, "Target Characterization and Scattering Power Decomposition for Full and Compact Polarimetric SAR Data," in IEEE Transactions on Geoscience and Remote Sensing, doi: https://doi.org/10.1109/TGRS.2020.3010840.
 
