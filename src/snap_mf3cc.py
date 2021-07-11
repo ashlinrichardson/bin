@@ -75,7 +75,7 @@ run('cat Pd_CP.bin Pv_CP.bin Ps_CP.bin Theta_CP.bin > stack.bin')
 
 lines = ['ENVI',
          'samples = ' + str(ncol),
-         'lines = ' + str(ncol),
+         'lines = ' + str(nrow),
          'bands = 4',
          'header offset = 0',
          'file type = ENVI Standard',
