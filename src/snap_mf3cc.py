@@ -10,23 +10,18 @@ def err(m):
     print("Error: " + m); sys.exit(1)
 
 def run(c):
-    print(c)
-    a = os.system(c)
-    if a != 0:
-        err("command failed:\n\t" + c)
+    print(c); a = os.system(c)
+    if a != 0: err("command failed:\n\t" + c)
 
 print("snap_m3fcc # optional param: window size: default 9 # needs to be run from inside a .dim folder for compact-pol data")
 nwin = 9
-if len(args) > 1:
-    nwin = int(args[1])
+if len(args) > 1: nwin = int(args[1])
 
 ''' input files:'''
 ins = ['i_RCH2.img', 'i_RCH.img', 'q_RCH2.img', 'q_RCH.img']
 for i in ins:
-    if not os.path.exists(i):
-        err("req'd input file: " + i)
-if not os.path.exists("i_RCH.hdr"):
-    err("req'd input file: i_RCH.hdr")
+    if not os.path.exists(i): err("req'd input file: " + i)
+if not os.path.exists("i_RCH.hdr"): err("req'd input file: i_RCH.hdr")
 
 # swap byte order from european to american convention
 run("snap2psp ./")
@@ -39,41 +34,24 @@ nrow, ncol = None, None
 lines = [x.strip() for x in open('i_RCH.hdr').readlines()]
 for line in lines:
     w = [x.strip() for x in line.split("=")]
-    if w[0] == 'samples':
-        ncol = int(w[1])
-    if w[0] == 'lines':
-        nrow = int(w[1])
-
-# convert to ENVI type-6 format
-run('convert_iq_to_cplx i_RCH.bin q_RCH.bin ch.bin')
-run('convert_iq_to_cplx i_RCH2.bin q_RCH2.bin cv.bin')
-
+    if w[0] == 'samples': ncol = int(w[1])
+    if w[0] == 'lines': nrow = int(w[1])
 print("nrow", nrow, "ncol", ncol)
 
-# convert to C2 matrix cf [1]
-args = ['cp_2_t2', 
-        str(nrow),
-        str(ncol),
-        'ch.bin',
-        'cv.bin']
-run(' '.join(args))
+run('convert_iq_to_cplx i_RCH.bin q_RCH.bin ch.bin') # convert to envi type6 data
+run('convert_iq_to_cplx i_RCH2.bin q_RCH2.bin cv.bin')
 
-# use the expected filenames convention..
-run('mv T11.bin C11.bin')
-run('mv T22.bin C22.bin')
-run('mv T12_real.bin C12_real.bin')
-run('mv T12_imag.bin C12_imag.bin')
+run(' '.join(['cp_2_t2', str(nrow), str(ncol), 'ch.bin', 'cv.bin'])) # convert to C2 mtx cf [1]
 
-# make sure there is config.txt 
-run('eh2cfg ch.bin.hdr')
+run('mv T11.bin C11.bin; mv T22.bin C22.bin') # use expected filenames
+run('mv T12_real.bin C12_real.bin; mv T12_imag.bin C12_imag.bin')
 
-# now run the decom
-run('mf3cc ./ ' + str(nwin))
+run('eh2cfg ch.bin.hdr') # make sure there is config.txt
+run('mf3cc ./ ' + str(nwin)) # run the decom
 
-# stack the stuff
-run('cat Pd_CP.bin Pv_CP.bin Ps_CP.bin Theta_CP.bin > stack.bin')
+run('cat Pd_CP.bin Pv_CP.bin Ps_CP.bin Theta_CP.bin > stack.bin') # stack things
 
-lines = ['ENVI',
+lines = ['ENVI', # write a header for the stack
          'samples = ' + str(ncol),
          'lines = ' + str(nrow),
          'bands = 4',
@@ -86,10 +64,7 @@ lines = ['ENVI',
          'Pv_CP.bin,',
          'Ps_CP.bin,',
          'Theta_CP.bin}']
-
-# write a header for the stack
 open('stack.hdr', 'wb').write(('\n'.join(lines)).encode())
-
 
 # clean up some intermediary files
 d = ['C11.bin',
