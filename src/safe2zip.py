@@ -16,5 +16,5 @@ for f in files:
             to_zip.append(f)
 
 for f in to_zip:
-    target = '.'.join(f.strip().split('.')[:-1] + ['zip']) # replace .SAFE with .zip for zipfile..
+    target = '.'.join(f.strip().split('.')[:-1]) # replace .SAFE with .zip for zipfile..
     shutil.make_archive(target, 'zip', f)
