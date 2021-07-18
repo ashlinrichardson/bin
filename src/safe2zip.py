@@ -9,10 +9,10 @@ def err(m):
     print("Error: " + str(m)); sys.exit(1)
 
 to_zip = []
-files = os.popen("ls -1").readlines()
+files = [f.strip() for f in os.popen("ls -1").readlines()]
 for f in files:
     if os.path.isdir(f):
-        if f.strip().split('.')[-1] == 'SAFE':
+        if f.split('.')[-1] == 'SAFE':
             to_zip.append(f)
 
 for f in to_zip:
