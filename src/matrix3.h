@@ -220,9 +220,9 @@
       return real(a + d + f);
     }
 
-    _matrix3::matrix3<T> inv(){
+    matrix3<T> inv(){
       cf dt = ((cf(1.,0.)/(det())));
-      return _matrix3::matrix3<T>(
+      return matrix3<T>(
       dt* (d*f-abs(e)*abs(e)),
       dt* (-b*f+c*conj(e)),
       dt* (b*e-c*d),
