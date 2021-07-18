@@ -17,4 +17,5 @@ for f in files:
 
 for f in to_zip:
     target = '.'.join(f.strip().split('.')[:-1]) # replace .SAFE with .zip for zipfile..
-    shutil.make_archive(target, 'zip', f)
+    print(f, '->', target + '.zip')
+    shutil.make_archive(target, 'zip', f) # this command adds the extension for us..
