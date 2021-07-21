@@ -76,8 +76,6 @@ int main(int argc, char** argv){
       err("failed to open file: ./.ls_1_tz.txt");
     }
 
-
-
     ofstream o_f;
     o_f.open("./.unzp_jobs.txt");
     if(!o_f.is_open()) err("failed to open file: ./.unzp_jobs.txt");

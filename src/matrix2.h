@@ -56,10 +56,10 @@ using namespace std;
     output << right ;
     output << scientific;
     if( A.im < 0){
-      output << A.re << A.im << "i" ;
+      output << A.re << " " << A.im << "i" ;
     }
     else{
-      output << A.re << "+" << A.im << "i" ;
+      output << A.re << " +" << A.im << "i" ;
     }
     return output;
   }
