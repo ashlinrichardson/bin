@@ -8,6 +8,11 @@ def err(m):
 if len(args) < 2:
     err("usage:\n\tpython3 unique.py [file name] # output unique lines of file")
 
-lines = list(set([x.rstrip() for x in open(args[1]).readlines()]))
+out = []
+lines = [x.rstrip() for x in open(args[1]).readlines()]
 for line in lines:
+    if line not in out:
+        out.append(line)
+
+for line in out:
     print(line)
