@@ -1,6 +1,6 @@
 import os
 import sys
-from fl0w3r import read_config
+from fl0w3r import read_config, write_config
 args, sep = sys.argv, os.path.sep
 
 def err(m):
@@ -29,6 +29,9 @@ row_total = int(args[5])
 col_total = int(args[6])
 row_end = row_start + row_total - 1
 col_end = col_start + col_total - 1
+
+cfg_out = o_d + sep + 'config.txt'
+write_config(cfg_out, row_total, col_total)
 
 T = ["T11.bin",
      "T12_imag.bin",
