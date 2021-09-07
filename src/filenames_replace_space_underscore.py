@@ -10,6 +10,12 @@ sep = os.path.sep
 normpath = os.path.normpath
 
 d = os.getcwd()
+
+for root, dirs, files in os.walk(d):
+    root = normpath(root)
+    if len(root.split(' ')) > 1:
+        err("space detected in path:\n" + root)
+
 for root, dirs, files in os.walk(d):
     root = normpath(root)
     if root[-1] != sep:
