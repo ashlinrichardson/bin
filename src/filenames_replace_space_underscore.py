@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 import os
 import sys
+
+def err(m):
+    print("Error: " + m)
+    sys.exit(1)
+
 sep = os.path.sep
 normpath = os.path.normpath
 
@@ -11,7 +16,12 @@ for root, dirs, files in os.walk(d):
         root += sep
 
     for f in files:
-        print(root + f)
+        ff = root + f
+
+        if len(f.split(' ')) > 1:
+            fff = root + f.replace(' ', '_')
+            print('os.rename("' + ff + '",\n          "' + fff + '")')
+            os.rename(ff, fff)
 
 
 
