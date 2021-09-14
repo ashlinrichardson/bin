@@ -27,6 +27,8 @@ for root, dirs, files in os.walk(d):
 
         for c in ['[', ']', '{', '}', '(', ')']:
             if len(f.split(c)) > 1:
-                fff = root + f.replace(c, '')
-                print('os.rename("' + ff + '",\n          "' + fff + '")')
-                os.rename(ff, fff)
+                f = f.replace(c, '')
+        
+        fff = root + f
+        print('os.rename("' + ff + '",\n          "' + fff + '")')
+        os.rename(ff, fff)
