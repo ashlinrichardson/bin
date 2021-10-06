@@ -2,7 +2,7 @@
 '''20180620: github b4ckup'''
 import os
 import sys
-from urllib2 import urlopen
+from urllib.request import urlopen
 from fl0w3r import normpath, wopen, error, args, exists
 from ansicolor import KYEL, KMAG, KRED, KGRN, KNRM
 
@@ -27,7 +27,7 @@ try:
 except:
     error("github user: " + KYEL + user + KNRM + " not found")
 
-lines = url_.read().split('\n')
+lines = url_.read().decode().split('\n')
 for line in lines:
     l = line.strip()
     ls = l.split('itemprop="name codeRepository"')
@@ -46,6 +46,7 @@ for line in lines:
             data = r_url.read()  # pull data from url
             print('\t' + KRED + '+' + KMAG + 'w ' + KGRN + o_fil + KNRM)
             f.write(data)  # write to file
+            f.close()
         except:
-            print("warning: failed to open file:\n\t" +
+            error("warning: failed to open file:\n\t" +
                   KYEL + arc + KNRM + '\n')
