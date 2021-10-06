@@ -38,13 +38,13 @@ for line in lines:
         arc = 'https://github.com/' + user + '/' + repo + '/archive/master.zip'
         try:
             o_fil = u_dir + '/' + repo + '_master.zip'
-            print 'wget ' + KMAG + arc + KNRM
+            print('wget ' + KMAG + arc + KNRM)
             r_url = urlopen(arc)  # open the url
             f = wopen(o_fil)  # open a file handle
             if not(f):
                 error("failed to open file: " + o_fil)
             data = r_url.read()  # pull data from url
-            print '\t' + KRED + '+' + KMAG + 'w ' + KGRN + o_fil + KNRM
+            print('\t' + KRED + '+' + KMAG + 'w ' + KGRN + o_fil + KNRM)
             f.write(data)  # write to file
         except:
             print("warning: failed to open file:\n\t" +
