@@ -44,7 +44,7 @@ def chkdir(f):
 
 # open write mode
 def wopen(fn):
-    f = open(fn, 'w')
+    f = open(fn, 'wb')
     if(f is None):
         error('no write access to file: ' + fn)
     printw(fn)
