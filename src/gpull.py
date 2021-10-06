@@ -48,5 +48,9 @@ for line in lines:
             f.write(data)  # write to file
             f.close()
         except:
-            error("warning: failed to open file:\n\t" +
+            o_fil = u_dir + '/' + repo + '_master.zip'
+            if os.path.exists(o_fil):
+                os.remove(o_fil)
+
+            print("warning: failed to open file:\n\t" +
                   KYEL + arc + KNRM + '\n')
