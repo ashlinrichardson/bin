@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 
 with urllib.request.urlopen(args[1]) as reply:
     reply = reply.read() # should have infix operator for this!
-    print(reply)
+    print(reply.decode())
 
     links = re.findall("href=[\"\'](.*?)[\"\']", reply)
     print(links[:5])
