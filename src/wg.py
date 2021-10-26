@@ -4,17 +4,17 @@ import re
 import sys
 import urllib.request
 args = sys.argv
-arg = args[1]
-sep = os.path.sep 
+arg, sep = args[1], os.path.sep 
 key = arg.strip().strip(sep).split(sep)[-1]
 
-def afind(x): return re.findall("href=[\"\'](.*?)[\"\']", x)
+def afind(x):
+    return re.findall("href=[\"\'](.*?)[\"\']", x)
 
 def run(x):
     print(x); a = os.system(x); return(a)
 
 with urllib.request.urlopen(arg) as reply:
-    reply = reply.read().decode('utf-8') # should have infix operator for this!
+    reply = reply.read().decode('utf-8') # should have infix operator for this kind!
     links = afind(reply)
     for link in links:
         w = link.split(key)
