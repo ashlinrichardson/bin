@@ -1,5 +1,6 @@
 # webget-ish thing.. 20211026
 import os
+import re
 import sys
 import urllib.request
 args = sys.argv
