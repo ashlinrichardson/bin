@@ -8,8 +8,8 @@ args = sys.argv
 import xml.etree.ElementTree as ET
 
 with urllib.request.urlopen(args[1]) as reply:
-    reply = reply.read() # should have infix operator for this!
-    print(reply.decode())
+    reply = reply.read().decode('utf-8') # should have infix operator for this!
+    print(reply)
 
     links = re.findall("href=[\"\'](.*?)[\"\']", reply)
     print(links[:5])
