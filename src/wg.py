@@ -12,4 +12,5 @@ with urllib.request.urlopen(args[1]) as reply:
     print(reply)
 
     links = re.findall("href=[\"\'](.*?)[\"\']", reply)
-    print(links[:5])
+    for link in links:
+        print(link)
