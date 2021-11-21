@@ -8,6 +8,7 @@ f = args[1]
 
 def mk(f):
     if not os.path.exists(f):
+        print('mkdir', f)
         os.mkdir(f)
 
 mk(f + sep + 'AUX_DATA')
