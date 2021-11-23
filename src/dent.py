@@ -40,7 +40,7 @@ indent = ' ' * spaces_per_tab
 dat = open(in_file).read()
 
 bak_file = in_file + '.bak'
-wopen(bak_file).write(dat)
+wopen(bak_file).write(dat.encode())
 
 # after making the backup:
 dat = dat.replace('}else{', '}\nelse{')
