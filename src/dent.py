@@ -106,5 +106,5 @@ for i in range(0, len(new_lines)):
 
 out = '\n'.join(new_lines_filt).replace('\t', spaces_per_tab * ' ')
 out = out.replace('\n\n\n', '\n\n')
-wopen(in_file).write(out)
+wopen(in_file).write(out.encode())
 sys.stdout.write(KNRM)
