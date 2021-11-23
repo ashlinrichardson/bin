@@ -1,7 +1,7 @@
 '''take all the files in the file system hierarchy subordinate to this node,
 and place them in the present directory
 
-do not perform that if any file collision would occur
+do not perform that if any file collision would occur! 
 
 e.g., flatten
 for:
@@ -13,7 +13,6 @@ would produce:
 > ls
 
 b.txt c.txt'''
-
 import os
 import sys
 count, paths = {}, {}
