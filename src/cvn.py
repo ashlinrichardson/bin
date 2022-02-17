@@ -7,8 +7,7 @@ from fl0w3r import error, run
 program based on cv.c:
 
 Usage: cv [input file name] [input data type] [samples]
-          [lines] [bands] [output file name] [output data type]
-'''
+          [lines] [bands] [output file name] [output data type] '''
 args = sys.argv
 if len(args) != 4:
     msg = "cv.py: Convert between ENVI data types.  Updated 200905 by AR."
@@ -18,8 +17,9 @@ if len(args) != 4:
 infile, outfile = args[1], args[2]
 outtype = int(float(args[3]))
 inphdr, outhdr = infile[:-4] + ".hdr", outfile[:-4] + ".hdr"
-
+print("+r", inphdr)
 flines = open(inphdr).readlines()
+print(flines)
 
 # open output file
 g = open(outhdr, "w")
@@ -27,29 +27,17 @@ g = open(outhdr, "w")
 samples, lines, bands, old = 0, 0, 0, 0
 for _l in flines:
     line = _l.strip()
-
-    if(len(line.split("samples")) == 2):
-        ll = line.split("samples")[1].strip().strip("=")
-        samples = int(ll)
-
-    if(len(line.split("lines")) == 2):
-        ll = line.split("lines")[1].strip().strip("=")
-        lines = int(ll)
-
-    if(len(line.split("bands")) == 2):
-        ll = line.split("bands")[1].strip().strip("=")
-        bands = int(ll)
-
-    if(len(line.split("data type")) == 2):
-        # is data type line
-        ll = line.split("data type")[1].strip().strip("=")
-        old = int(ll[1])
+    w = [x.strip() for x in line.split("=")]
+    if w[0] == "samples": samples = int(w[1])
+    if w[0] == "lines": lines = int(w[1])
+    if w[0] == "bands": bands = int(w[1])
+    if w[0] == "data type":
+        old = int(w[1])
         g.write("data type = " + str(outtype) + "\n")
     else:
-        # is some other kind of line (any kind)
         g.write(line + "\n")
-
 g.close()
+print("Convert from type:", old)      
 
 if(samples * lines * bands == 0):
     error("Error reading samples lines or bands from header file.\n")
