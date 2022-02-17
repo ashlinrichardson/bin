@@ -100,6 +100,9 @@ int main(int argc, char ** argv){
   unsigned long int * dat_15;
   unsigned long int * out_15;
 
+  size_t * dat_16;
+  size_t * out_16;
+
   switch(idatatype){
     case 1:
     dat_1 = malloc(n_pix * sizeof(char));
@@ -155,6 +158,14 @@ int main(int argc, char ** argv){
       printf("Malloc failure\n"); exit(1);
     }
     break;
+
+    case 16:
+      dat_16 = malloc(n_pix * sizeof(size_t));
+      if(!dat_16){
+        printf("Malloc failure\n"); exit(1);
+      }
+      break;
+
     default:
     printf("Error: Disallowed input data type value\n");
     exit(1);
@@ -216,6 +227,14 @@ int main(int argc, char ** argv){
       printf("Malloc failure\n"); exit(1);
     }
     break;
+
+    case 16:
+    out_16 = malloc(n_pix * sizeof(size_t));
+    if(!out_16){
+      printf("Malloc failure\n"); exit(1);
+    }
+    break;
+
     default:
     printf("Error: Disallowed input data type value\n"); exit(1); break;
   }
@@ -251,6 +270,8 @@ int main(int argc, char ** argv){
       fread(dat_14, n_pix * sizeof(long signed int), 1, infile); break;
       case 15:
       fread(dat_15, n_pix * sizeof(long unsigned int), 1, infile); break;
+      case 16:
+      fread(dat_16, n_pix * sizeof(size_t), 1, infile); break;
       default:
       printf("Error: Disallowed input data type value\n"); exit(1); break;
     }
@@ -274,6 +295,10 @@ int main(int argc, char ** argv){
       for(j = 0; j < n_pix; j++){tmp[j] = (conv_type)dat_14[j];} break;
       case 15:
       for(j = 0; j < n_pix; j++){tmp[j] = (conv_type)dat_15[j];} break;
+      
+      case 16:
+      for(j = 0; j < n_pix; j++){tmp[j] = (conv_type)dat_16[j];} break;
+      
       default:
       printf("Error: Disallowed input outa type value\n"); exit(1); break;
     }
@@ -297,6 +322,8 @@ int main(int argc, char ** argv){
       for(j = 0; j < n_pix; j++) out_14[j] = (long signed int)tmp[j]; break;
       case 15:
       for(j = 0; j < n_pix; j++) out_15[j] = (long unsigned int)tmp[j]; break;
+      case 16:
+      for(j = 0; j < n_pix; j++) out_16[j] = (size_t)tmp[j]; break;
       default:
       printf("Error: Disallowed input outa type value\n"); exit(1); break;
     }
@@ -320,6 +347,8 @@ int main(int argc, char ** argv){
       fwrite(out_14, n_pix * sizeof(long signed int), 1, outfile); break;
       case 15:
       fwrite(out_15, n_pix * sizeof(long unsigned int), 1, outfile); break;
+      case 16:
+      fwrite(out_16, n_pix * sizeof(size_t), 1, outfile); break;
       default:
       printf("Error: Disallowed input outa type value\n"); exit(1); break;
     }
