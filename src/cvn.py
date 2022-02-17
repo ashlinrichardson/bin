@@ -19,11 +19,8 @@ outtype = int(float(args[3]))
 inphdr, outhdr = infile[:-4] + ".hdr", outfile[:-4] + ".hdr"
 print("+r", inphdr)
 flines = open(inphdr).readlines()
-print(flines)
 
-# open output file
-g = open(outhdr, "w")
-
+g = open(outhdr, "w")  # open output file
 samples, lines, bands, old = 0, 0, 0, 0
 for _l in flines:
     line = _l.strip()
