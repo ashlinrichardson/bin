@@ -14,7 +14,10 @@
 12 -> 16-bit unsigned integer
 13 -> 32-bit unsigned long integer
 14 -> 64-bit signed long integer
-15 -> 64-bit unsigned long integer */
+15 -> 64-bit unsigned long integer
+
+Ash extensions:
+16 -> size_t */
 
 void chk(const char * type, int result, int expected){
   if(result != expected){
