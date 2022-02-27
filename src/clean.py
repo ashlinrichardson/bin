@@ -3,11 +3,13 @@
 import os
 import sys
 from ansicolor import KRED, KGRN, KNRM
-to_re_move = ['a', 'swn', 'swo', 'swp', 'exe', 'gch', 'o', 'pickle', 'pyc', 'bak', 'DS_Store']
-to_re_move = ["*." + x for x in to_re_move]
+to_re_move = ['_x3.bin', '_x3.hdr',
+              '.a', '.swn', '.swo', '.swp', '.exe', '.gch', '.o', '.pickle', '.pyc', '.bak', '.DS_Store']
+to_re_move = ["*" + x for x in to_re_move]
 
 
 def re_move(ext):
+    # print('find ./ -name "' + ext + '"')
     my_files = os.popen('find ./ -name "' + ext + '"').readlines()
     for f in my_files:
         fn = f.strip()
