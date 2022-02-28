@@ -12,8 +12,6 @@ fig, ax = plt.subplots()
 ax.scatter(hull_pts[0], hull_pts[1], color='red')
 ax.add_patch(PolygonPatch(hull, fill=False, color='green'))
 '''
-
-
 import alphashape
 import matplotlib.pyplot as plt
 from descartes import PolygonPatch
