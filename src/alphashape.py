@@ -29,6 +29,7 @@ alpha = 0.95 * alphashape.optimizealpha(points)
 
 # Generate the alpha shape
 alpha_shape = alphashape.alphashape(points, alpha)
+print(alpha_shape)
 
 # Initialize plot
 fig, ax = plt.subplots()
