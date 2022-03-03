@@ -19,6 +19,12 @@ to_re_move = ['_x3.bin',
               '.DS_Store']
 to_re_move = ["*" + x for x in to_re_move]
 
+s2_remove = ['S*_L2A_10m_EPSG*',
+             'S*_L2A_20m_EPSG*',
+             'S*_L2A_60m_EPSG*',
+             'S*_L2A_TCI_EPSG*']
+
+to_re_move += s2_remove
 
 def re_move(ext):
     # print('find ./ -name "' + ext + '"')
