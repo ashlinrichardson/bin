@@ -27,7 +27,7 @@ d = open(bash_rc).read().rstrip()
 if len(d.split(export)) < 2:
     d += '\n' + export
     open(bash_rc, 'wb').write(d.encode())
-    printf("Added line to .bashrc")
+    print("Added line to .bashrc")
     a = os.system('bash; source ' + bash_rc)
 else:
     print(bash_rc + " already includes path")
