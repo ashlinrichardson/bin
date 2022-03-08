@@ -16,8 +16,8 @@ print(export)
 mac = True
 if os.popen('uname -a').read().strip().split()[0] == 'Linux':
     mac = False
-    run('sudo apt-get install libgsl0-dev')
-
+    if not os.path.exists('/usr/include/gsl/'):
+        run('sudo apt-get install libgsl0-dev')
 home_prefix = '/home/'
 if mac:
     home_prefix = '/Users/'
