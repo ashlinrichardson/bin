@@ -9,6 +9,7 @@ Usage:
     python3 find_unique.py [pattern e.g. PRS*zip for prisma data]'''
 import os
 import sys
+args = sys.argv
 lines = [x.strip()
          for x in os.popen('find ./ -name "' +
                            args[1] +
