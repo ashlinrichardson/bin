@@ -12,7 +12,7 @@ delay, arg = default, args[1:]
 
 if len(args) > 1:
     try:
-        delay = int(args[1])
+        delay = int(args[1].strip('-'))
         arg = args[2:]
     except:
         pass
