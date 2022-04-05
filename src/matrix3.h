@@ -108,7 +108,7 @@
     return vec3<T> (B*(A.a), B*(A.b), B*(A.c));
   }
 
-  template<class T> vec3<T> operator / (const vec3<T> &A, const T &B){
+  template<class T> vec3<T> operator/(const vec3<T> &A, const T &B){
     return vec3<T> ((A.a)/B, (A.b)/B, (A.c)/B);
   }
 
@@ -130,7 +130,7 @@
       g.real( 0.); g.imag( 0.); h.real( 0.); h.imag( 0.); i.real( 0.); i.imag( 0.);
     }
 
-    void operator = (const matrix3 &A){
+    void operator=(const matrix3 &A){
       a=A.a; b=A.b; c=A.c;
       d=A.d; e=A.e; f=A.f;
       g=A.g; h=A.h; i=A.i;
@@ -161,7 +161,6 @@
   };
 
   template<class T> struct herm3{
-
     herm3<T>( T A, T B, T C, T D, T E, T F) : a(A), b(B), c(C), d(D), e(E), f(F){
     }
 
@@ -190,12 +189,12 @@
       f.real(0.); f.imag(0.);
     }
 
-    void operator = (const herm3 &A){
+    void operator=(const herm3 &A){
       a=A.a; b=A.b; c=A.c;
       d=A.d; e=A.e; f=A.f;
     }
 
-    herm3<T> operator * (double s){
+    herm3<T> operator*(double s){
       return herm3<T>(s*a, s*b, s*c, s*d, s*e, s*f);
     }
 
@@ -236,7 +235,7 @@
       return abs(a) + 2. * abs(b) + 2. * abs(c) + abs(d) + 2. * abs(e) + abs(f);
     }
 
-    TYPE d3( const herm3<T> & Z){
+    TYPE d3(const herm3<T> & Z){
       /* sum of positive definite matrices is positive definite: */
 
       if(real( det()) < 0){
@@ -289,28 +288,28 @@
     T a; T b; T c; T d; T e; T f;
   };
 
-  template<class T> herm3<T> operator * (double s, const herm3<T> & A){
+  template<class T> herm3<T> operator*(double s, const herm3<T> & A){
     return herm3<T>( s*(A.a), s*(A.b), s*(A.c), s*(A.d), s*(A.e), s*(A.f));
   }
 
-  template<class T> ostream & operator<<( ostream &output, const herm3<T> A){
+  template<class T> ostream & operator<<(ostream &output, const herm3<T> A){
     output << A.a << " " << A.b << " " << A.c << endl;
     output << conj(A.b) << " " << A.d << " " << A.e << endl;
     output << conj(A.c) << " " << conj(A.e) << " " << A.f << endl;
     return output;
   }
 
-  template<class T> herm3<T> operator + ( const herm3<T> & A, const herm3<T> & B){
+  template<class T> herm3<T> operator+(const herm3<T> & A, const herm3<T> & B){
     return herm3<T>(B.a+A.a, B.b+A.b, B.c+A.c, B.d+A.d, B.e+A.e, B.f+A.f);
   }
 
-  template<class T> matrix3<T> operator + ( const matrix3<T> & A, const matrix3<T> & B){
+  template<class T> matrix3<T> operator+(const matrix3<T> & A, const matrix3<T> & B){
     return matrix3<T>(B.a+A.a, B.b+A.b, B.c+A.c,
     B.d+A.d, B.e+A.e, B.f+A.f,
     B.g+A.g, B.h+A.h, B.i+A.i);
   }
 
-  template<class T> matrix3<T> operator * (const herm3<T> & A, const herm3<T> & B){
+  template<class T> matrix3<T> operator*(const herm3<T> & A, const herm3<T> & B){
     return matrix3<T>(
     (A.a*B.a+A.b*conj(B.b)+A.c*conj(B.c)),
     (A.a*B.b+A.b*B.d+A.c*conj(B.e)),
@@ -324,7 +323,7 @@
     );
   }
 
-  template<class T> matrix3<T> operator * ( const matrix3<T> & X, const herm3<T> & A){
+  template<class T> matrix3<T> operator*(const matrix3<T> & X, const herm3<T> & A){
     return matrix3<T>(
     X.a*A.a+X.b*conj(A.b)+X.c*conj(A.c),
     X.a*A.b+X.b*A.d+X.c*conj(A.e),
