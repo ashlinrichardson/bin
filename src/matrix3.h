@@ -1,4 +1,5 @@
 #pragma once
+/* representations of 3x3 matrices, 3x3 hermitian matrices, and 3x3 vectors. */
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,12 +9,8 @@
 #define _zero ( cf(0.,0.) )
 #define cp(c) printf("%f + %fi\n", real(c), imag(c));
 
-/* representations of 3x3 matrices, 3x3 hermitian matrices, and 3x3 vectors. */
-
-
   /* representation of 3-d vector.*/
   template<class T> struct vec3{
-
     vec3<T>(T A, T B, T C) : a(A), b(B), c(C){
     }
 
@@ -30,7 +27,6 @@
     }
 
     T a; T b; T c;
-
   };
 
   template<class T> ostream & operator<<(ostream &output, const vec3<T> A){
