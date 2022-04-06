@@ -1,5 +1,4 @@
-'''20220325 mirror pattern 
-mp.py
+'''20220325 mirror pattern (mp.py)
 Save a sub selection of file tree matching a pattern, to a new path
 
 e.g.: mirror patterned subselection of present dir to ramdisk:
@@ -21,6 +20,7 @@ def err(m):
     print('Error:' + m); sys.exit(1)
 
 def run(c):
+    print(c)
     return os.system(c)
 
 if len(args) < 4:
@@ -124,13 +124,10 @@ for c in cmds:
             continue
         r = wx.replace(dst, '').strip()
         df = sep.join(w[:i])
-        if r != wx and df != dst:
-            # don't create subpaths of the source path
+        if r != wx and df != dst: # don't create subpaths of src path
             print('mkdir', df)
             c_cmds += ['mkdir -p ' + df]
-if args[-1] != '1':
-    parfor(run, c_cmds, N_THREAD)
 
-# copy the files!
 if args[-1] != '1':
-    parfor(run, cmds, N_THREAD)
+    parfor(run, c_cmds, N_THREAD)  # make folders
+    parfor(run, cmds, N_THREAD)  # copy files
