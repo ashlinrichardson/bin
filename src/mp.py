@@ -9,7 +9,7 @@ e.g.: just list files and confirm adequate space for the above:
 
 
 e.g. copy a certain month:
-    python3 mp.py *202109*_L2A_EPSG_32610_10m.bin   *202109*_L2A_EPSG_32610_10m.hdr ./ /ram/
+    python3 mp.py *202109*_L2A_EPSG_32610_10m.* ./ /ram/
 '''
 N_THREAD = 2 # number of threads for parallel copy operation
 import os
