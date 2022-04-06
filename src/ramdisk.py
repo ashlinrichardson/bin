@@ -35,7 +35,7 @@ if w[0] != 'MemTotal:':
 if w[2] != 'kB':
     err('expected: kB')
 
-k = int(math.floor(int(w[1]/2))) # half of total RAM
+k = int(math.floor(int(w[1])/2)) # half of total RAM
 
 if not exists('/ram'):
     run('sudo mkdir /ram') # run('sudo umount /ram')
