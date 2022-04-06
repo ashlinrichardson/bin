@@ -11,6 +11,9 @@ def run(c):
     print(c)
     return os.system(c)
 
+if len(os.popen('df -h | grep ram').readlines()) > 0:
+    err('ramdisk already mounted')
+
 w = os.popen('cat /proc/meminfo  | grep MemTotal').read().strip().split()
 
 if w[0] != 'MemTotal:':
@@ -23,5 +26,5 @@ k = int(math.floor(k/2))
 if not exists('/ram'):
     run('sudo mkdir /ram')
 
-run('sudo umount /ram')
+# run('sudo umount /ram')
 run('sudo mount -t tmpfs -o rw,size=' + str(k) + 'k tmpfs /ram')
