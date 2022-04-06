@@ -71,11 +71,14 @@ for i in range(len(ptn)):
 
 files = []
 for p in ptn:
-    cmd = 'find ' + str(src) + ' -name "' + p + '"'
+    cmd = 'find ' + str(src) + ' -wholename "' + p + '"'
     print(cmd)
     x = [x.strip() for x in os.popen(cmd).readlines()]
     for i in x:
         files.append(i)
+
+if len(files) < 1:
+    err('no matches')
 
 fs_total = 0
 for f in files:
@@ -97,7 +100,7 @@ for f in files:
     f = abspath(f)
     sf = f
     df = f.replace(src, dst)
-    c = ' '.join(['cp', sf, df])
+    c = ' '.join(['rsync -av', sf, df])
     cmds.append(c)
     print(c)
 
