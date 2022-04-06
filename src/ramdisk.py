@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 '''setup RAM disk on Ubuntu. Default to using 50% of total RAM 20220406
 Example:
-  python3 ramdisk.py # mounts ramdisk at /ram
-  python3 ramdisk.py 1 # dismounts ramdisk
+  python3 ramdisk.py    # mounts ramdisk at /ram
+  python3 ramdisk.py 1  # dismounts ramdisk
+or (equivalent)
+
+  ./ramdisk.py    # mounts ramdisk at /ram
+  ./ramdisk.py 1  # dismounts ramdisk 
 '''
 import os
 import sys
