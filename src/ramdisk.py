@@ -23,6 +23,9 @@ print('python3 ramdisk.py [optional argument: unmount]')
 if mounted():
     if len(args) > 1:
         run('sudo umount /ram')
+        if mounted():
+            err('failed to unmount')
+        sys.exit(0)
     else:
         err('ramdisk already mounted')
 
@@ -32,8 +35,7 @@ if w[0] != 'MemTotal:':
 if w[2] != 'kB':
     err('expected: kB')
 
-k = int(w[1]) # total RAM
-k = int(math.floor(k / 2)) # half of RAM  
+k = int(math.floor(int(w[1]/2))) # half of total RAM
 
 if not exists('/ram'):
     run('sudo mkdir /ram') # run('sudo umount /ram')
