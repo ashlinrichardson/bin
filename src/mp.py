@@ -84,7 +84,8 @@ fs_total = 0
 for f in files:
     fs = fsize(f)
     print(fsize(f), ' ', f)
-    fs_total += fs
+    df = f.replace(src, dst)
+    fs_total += (fs - (fsize(df) if exist(df) else 0))
 print('total # of files matched:', len(f))
 
 # check available space
@@ -105,9 +106,8 @@ for f in files:
     print(c)
 
 print('bytes free', fs, '=', round(fs / gb, 2), 'GB')
+print('bytes    reqd:', fs_total, '=', round(fs_total/gb, 2), 'GB')
 if fs < fs_total:
-    print('bytes   avail:', fs, '=', round(fs / gb, 2), 'GB' )
-    print('bytes    reqd:', fs_total, '=', round(fs_total/gb, 2), 'GB')
     print('bytes deficit:', fs_total - fs, '=', round((fs_total-fs)/gb, 2), 'GB')
     err('insufficient space to copy files.')
 
