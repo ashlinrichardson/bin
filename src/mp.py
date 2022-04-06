@@ -6,6 +6,10 @@ e.g.: mirror patterned subselection of present dir to ramdisk:
 
 e.g.: just list files and confirm adequate space for the above:
     mp *_L2A_EPSG_32610_10m.bin *_L2A_EPSG_32610_10m.hdr ./ /ram/ 1
+
+
+e.g. copy a certain month:
+    python3 mp.py *202109*_L2A_EPSG_32610_10m.bin   *202109*_L2A_EPSG_32610_10m.hdr ./ /ram/
 '''
 N_THREAD = 2 # number of threads for parallel copy operation
 import os
