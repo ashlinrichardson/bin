@@ -132,6 +132,7 @@ for c in cmds:
             print('mkdir', df)
             c_cmds += ['mkdir -p ' + df]
 
+# do the things!
 if args[-1] != '1':
     parfor(run, c_cmds, N_THREAD)  # make folders
     parfor(run, cmds, N_THREAD)  # copy files
