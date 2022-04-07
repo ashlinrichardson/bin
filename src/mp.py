@@ -79,7 +79,8 @@ for p in ptn:
     print(cmd)
     x = [x.strip() for x in os.popen(cmd).readlines()]
     for i in x:
-        files.append(i)
+        if os.path.isfile(i):
+            files.append(i)
 
 if len(files) < 1:
     err('no matches')
