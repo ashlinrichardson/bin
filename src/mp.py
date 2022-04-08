@@ -11,7 +11,6 @@ e.g.: just list files and confirm adequate space for the above:
 e.g. copy a certain month:
     python3 mp.py *202109*_L2A_EPSG_32610_10m.* ./ /ram/
 '''
-N_THREAD = 2 # number of threads for parallel copy operation
 import os
 import sys
 import multiprocessing as mp
@@ -19,6 +18,7 @@ args = sys.argv
 sep = os.path.sep
 exist = os.path.exists
 abspath = os.path.abspath
+N_THREAD = int(mp.cpu_count() / 2)
 
 def err(m):
     print('Error:' + m); sys.exit(1)
