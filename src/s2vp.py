@@ -16,5 +16,5 @@ ptn = args[1]
 if len(ptn.split("*")) < 2:
     ptn = '*' + ptn
 
-cmd = 'find ./ -name "' + ptn '" | s2s | xargs -I ARG sh -c "imv ARG;"'
+cmd = 'find ./ -name "' + ptn + '" | s2s | xargs -I ARG sh -c "imv ARG;"'
 print(cmd)
