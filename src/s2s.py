@@ -1,6 +1,7 @@
-'''
-s2s.py e.g.:
-    find ./ -name "*.bin" | s2s
+''' 20220408 s2s.py: sort sentinel2 filenames from Stdin
+e.g.:
+
+    find ./ -name "*_10m.bin" | s2s
 '''
 import os
 import sys
