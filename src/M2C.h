@@ -1,6 +1,6 @@
 #pragma once
 #include "matrix2.h"
-using namespace _matrix2;
+//using namespace _matrix2;
 
 inline cf_ REAL( TYPE number){
   return cf_ (number,0.);
