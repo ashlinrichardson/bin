@@ -3,11 +3,11 @@ import smtplib
 from fl0w3r import error, args
 from ansicolor import KRED, KGRN
 
-
 def message(fromaddr, toaddrs, msg):
-    print KRED + "FROM: " + KGRN + fromaddr
-    print KRED + " TO:" + KGRN + toaddrs
-    print KRED + " MSG: " + KGRN + str(msg).strip()
+    print(KRED + "FROM: " + KGRN + fromaddr)
+    print(KRED + " TO:" + KGRN + toaddrs)
+    print(KRED + " MSG: " + KGRN + str(msg).strip())
+    sys.exit(1)
     ''' send an email with body "msg" '''
     msg = 'From: ' + fromaddr + '\r\nTo: ' + toaddrs + '\r\n\r\n' + msg
     server = smtplib.SMTP('smtp.telus.net')
