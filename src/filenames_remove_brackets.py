@@ -30,5 +30,6 @@ for root, dirs, files in os.walk(d):
                 f = f.replace(c, '')
         
         fff = root + f
-        print('os.rename("' + ff + '",\n          "' + fff + '")')
-        os.rename(ff, fff)
+        if fff != ff:
+            print('os.rename("' + ff + '",\n          "' + fff + '")')
+            os.rename(ff, fff)
