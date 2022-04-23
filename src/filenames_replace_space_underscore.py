@@ -28,6 +28,3 @@ for root, dirs, files in os.walk(d):
             fff = root + f.replace(' ', '_')
             print('os.rename("' + ff + '",\n          "' + fff + '")')
             os.rename(ff, fff)
-
-
-
