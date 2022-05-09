@@ -11,13 +11,20 @@ normpath = os.path.normpath
 
 d = os.getcwd()
 
+'''
 for root, dirs, files in os.walk(d):
+    print(root, dirs, files)
     root = normpath(root)
     if len(root.split(' ')) > 1:
         err("space detected in path:\n" + root)
-
+'''
 for root, dirs, files in os.walk(d):
     root = normpath(root)
+
+    if len(root.split(' ')) > 1:
+        print("Warning: space detected in path!")
+        continue
+
     if root[-1] != sep:
         root += sep
 
