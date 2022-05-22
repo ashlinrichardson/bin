@@ -26,7 +26,7 @@ def mounted():
 print('python3 ramdisk.py [optional argument: unmount]')
 if mounted():
     if len(args) > 1:
-        run('sudo umount /ram')
+        run('sudo umount --force /ram')
         if mounted():
             err('failed to unmount')
         sys.exit(0)
