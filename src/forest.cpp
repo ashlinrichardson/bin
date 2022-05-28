@@ -198,6 +198,9 @@ int main(int argc, char ** argv){
       gsl_root_fdfsolver *workspace;
       double x, x_l, x_r;
 
+      try{
+      gsl_set_error_handler_off();
+
       /* Define Solver */
       workspace_f = gsl_root_fsolver_alloc(gsl_root_fsolver_bisection);
 
@@ -231,6 +234,9 @@ int main(int argc, char ** argv){
 
       /* free */
       gsl_root_fsolver_free(workspace_f);
+      }
+      catch(const std::exception& e){
+      }
 
       _mD = x_l;
       _aD = _mD * PI / ( (2.*_mD )+ 1);
