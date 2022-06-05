@@ -34,14 +34,16 @@ int main(int argc, char ** argv){
   size_t ci = 0;
 
   for0(row, nrow){
-    if(nrow % 100 ==0) printf("\rProcessing row %d of %d ", row + 1, nrow);
+    if(nrow % 100 ==0){
+      printf("\rProcessing row %d of %d ", row + 1, nrow);
+    }
     for0(col, ncol){
       fread(&real, sf, 1, infile);
       fread(&imag, sf, 1, infile);
       out[ci++] = (float)(sqrt(sq(real) + sq(imag)));
     }
   }
-  
+
   size_t nw = fwrite(out, sf, nrow * ncol, outfile);
   printf("\r");
   fclose(outfile);
