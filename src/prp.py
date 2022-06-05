@@ -32,7 +32,6 @@ if len(sys.argv) == 8:
 else:
     dem = sys.argv[8]
 
-
 i_dir = sys.argv[1]
 i_dir = abspath(realpath(normcase(normpath(i_dir))))
 if i_dir[len(i_dir) - 1] != '/':
@@ -107,7 +106,6 @@ if datatype == "palsar":
                   sys.argv[4] + " " + value + " " + "YES" + " " + "sch" +
                   " " + sys.argv[5] + " " + hue + " " + str(4))
 
-
 if datatype == "radarsat2":
     log.write("Running scm3 with RadarSAT2 parameters\n")
     print "\nRunning scm3 with RadarSAT2 parameters"
@@ -119,11 +117,8 @@ if datatype == "radarsat2":
 log.write("Running cloudeT4\n")
 a = os.system("cloudeT4 "+o_dir+"s2_fr_T4_"+ftype)
 
-
 # Orthorectification
-
 # Configure output file prefix and suffix
-
 out_prefix = "o_"  # Set the output file prefix as you see fit...
 
 prodate = " "  # Product date
