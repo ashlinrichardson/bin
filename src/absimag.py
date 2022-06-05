@@ -34,8 +34,12 @@ for b in bins:
     if data_type == 6:
         run('abs ' + str(nlin) + ' ' + str(ncol) + ' ' + b)
         abs_file = b + '.abs'
-        ml_file = abs_file + '.ml'
-        run('multilook ' + abs_file + ' ' + os.path.dirname(cwd) + ' ' + ml_file + ' ' + str(multi_look))
-        ht_file = ml_file + '.ht'
-        run('htrim ' + ml_file + ' ' + str(int(nlin/multi_look)) + ' ' + str(ncol) + ' 1.5 1.5 ' + ht_file)
+
+        if multi_look > 1:
+            ml_file = abs_file + '.ml'
+            run('multilook ' + abs_file + ' ' + os.path.dirname(cwd) + ' ' + ml_file + ' ' + str(multi_look))
+        
+        if False:
+            ht_file = ml_file + '.ht'
+            run('htrim ' + ml_file + ' ' + str(int(nlin/multi_look)) + ' ' + str(ncol) + ' 1.5 1.5 ' + ht_file)
 
