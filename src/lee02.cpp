@@ -2,7 +2,9 @@
 Jong-Sen Lee terrain classification
 algorithm preserving scattering characteristics
 (TGARS 2004) date: 20120330, 20170626
-author: ashlin richardson*/
+author: ashlin richardson
+
+20220607: need to update this to handle NAN */
 
 #include "lee02.h"
 /* Update a list of distance between class centres (used in initialization by cluster merging) */
@@ -340,6 +342,7 @@ int main(int argc, char ** argv){
       fread(&O, 1, sizeof(float), OF);
       fread(&D, 1, sizeof(float), DF);
       fread(&V, 1, sizeof(float), VF);
+      if(isnan(O) || isnan(D) || isnan(V) || isinf(O) || isinf(D) || isinf(V)) continue;
       if((O > D) && (O > V)){
         fclass = ODD;
         maxpow = O;
