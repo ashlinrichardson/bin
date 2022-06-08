@@ -35,7 +35,7 @@ myargs = [cmd,
           "-fnc " + str(n_col)]
 syscmd = (' ').join(myargs)
 print('Running freeman 3-component decomposition from POLSARPRO...')
-run(syscmd)
+a = os.system(syscmd)
 
 # run the lee algo
 run('lee02.exe ./ ./ ' + str(nsmall) + ' ' + str(nfinal) + ' ' + str(niter))
