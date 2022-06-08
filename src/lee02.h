@@ -10,10 +10,10 @@ CHECK CLASS TYPE INDICES.. o.o. version? */
 #include "hsv.c"
 #include "sas.cpp"
 #include "float.h"
-
+#include<climits>
 using namespace _T3;
 using namespace _SA;
-using namespace _matrix3;
+//using namespace _matrix3;
 using namespace std;
 
 #define T11R (T3_in.pixel[r11])
