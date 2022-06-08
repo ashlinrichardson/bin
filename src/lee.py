@@ -25,7 +25,7 @@ n_row, n_col = read_config('config.txt')
 cmd, nwin = "freeman_decomposition_T3.exe", 5
 myargs = [cmd, "./", "./", str(nwin), str(0), str(0), str(n_row), str(n_col)]
 syscmd = (' ').join(myargs)
-print 'Running freeman 3-component decomposition from POLSARPRO...'
+print('Running freeman 3-component decomposition from POLSARPRO...')
 run(syscmd)
 
 # run the lee algo
