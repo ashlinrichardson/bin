@@ -56,7 +56,7 @@ int main(int argc, char ** argv){
     for(i = 0; i < NCol; i++){
 
       T3_in.getPixel();
-      theta = (atan2((T23R * (-4.0)), (2.0 * (T33R - T22R))) + 3.14159265358) / 4.0;
+      theta = (atan2((T23R * (-4.0)), (2.0 * (T33R - T22R))) + M_PI) / 4.0;
       fwrite(&theta, sizeof(float), 1, eta_file);
 
       if(theta > (M_PI / 4.0)){
