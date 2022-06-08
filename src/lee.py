@@ -5,7 +5,7 @@ date: march 30, 2012. reimpl. 20170626
 author: ashlin richardson'''
 import os
 import sys
-from fl0w3r import args, run, error, normpath, read_config
+from fl0w3r import args, run, error, normpath, read_config, exists
 
 if len(args) < 5:
     error("lee: jong-sen lee's algorithm igarss 2004 reimpl." +
@@ -34,8 +34,9 @@ myargs = [cmd,
           "-fnr " + str(n_row),
           "-fnc " + str(n_col)]
 syscmd = (' ').join(myargs)
-print('Running freeman 3-component decomposition from POLSARPRO...')
-a = os.system(syscmd)
+if not exists("Freeman_Odd.bin"):
+    print('Running freeman 3-component decomposition from POLSARPRO...')
+    a = os.system(syscmd)
 
 # run the lee algo
 run('lee02.exe ./ ./ ' + str(nsmall) + ' ' + str(nfinal) + ' ' + str(niter))
