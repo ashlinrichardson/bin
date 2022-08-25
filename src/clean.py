@@ -18,6 +18,7 @@ to_re_move = ['_x3.bin',
               '.bak',
               '.DS_Store']
 to_re_move = ["*" + x for x in to_re_move]
+to_re_move += ['*_x3.*']
 
 s2_remove = ['S*_L2A_10m_EPSG*',
              'S*_L2A_20m_EPSG*',
