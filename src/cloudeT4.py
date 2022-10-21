@@ -47,9 +47,9 @@ r("mkdir -p " + od2 + " &")
 r("mkdir -p " + od3 + " &")
 w()
 
-r(cmd1 + " &")
-r(cmd2 + " &")
-r(cmd3 + " &")
+r(cmd1) # + " &")
+r(cmd2) # + " &")
+r(cmd3) # + " &")
 w()
 
 r("cp " + cwd + "config.txt " + od1)
