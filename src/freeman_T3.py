@@ -1,4 +1,5 @@
-'''
+''' 20221105 run freeman decom from PolSARPro 
+
  A processing error occured ! 
  Not enough input arguments
  Usage:
@@ -57,9 +58,3 @@ run(' '.join([f,
               p('fnr', nlin),
               p('fnc', ncol)
              ]))
-
-
-
-
-
-
