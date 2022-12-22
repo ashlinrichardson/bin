@@ -44,6 +44,8 @@ wopen(bak_file).write(dat.encode())
 
 # after making the backup:
 dat = dat.replace('}else{', '}\nelse{')
+dat = dat.replace(', {', ',{')
+dat = dat.replace('},{', '},\n{')
 # dat = dat.replace('{', '{\n')
 # dat = dat.replace('\n\n', '\n')
 new_lines, lines = [], dat.strip().split('\n')
@@ -75,9 +77,9 @@ for i in range(0, len(lines)):
     except:
         pass
 
-    if last_char == '{':
+    if last_char == '{' or last_char == '[':
         n_indent += 1
-    elif last_char == '}' or last_chars == '};':
+    elif last_char == '}' or last_char == ']' or last_chars == '};' or last_chars == '},' or last_chars == '],' or last_chars == '];':
         n_indent -= 1
         reindent = (n_indent * indent) + line
 
@@ -99,7 +101,7 @@ if(n_indent != 0):
 new_lines_filt = []
 
 for i in range(0, len(new_lines)):
-    if new_lines[i].strip() == '{':
+    if i > 0 and new_lines[i].strip() == '{' and new_lines_filt[-1][-2:] != '},' and new_lines_filt[-1][-1] not in ['{', '}', '[', ']']:
         new_lines_filt[-1] += '{'
     else:
         new_lines_filt.append(new_lines[i])
