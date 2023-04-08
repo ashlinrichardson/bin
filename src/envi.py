@@ -59,7 +59,7 @@ def hdr_d(fn, nr, nc, nb=1, dt=4):
             'data type = ' + str(int(dt)),
             'interleave = bsq',
             'byte order = 0',
-            'band names = {}']
+            'band names = {band 1}']
 
 '''
 @brief interpret image dimensions as envi header file

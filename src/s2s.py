@@ -1,8 +1,6 @@
 ''' 20220408 s2s.py: sort sentinel2 filenames from Stdin
 e.g.:
-
-    find ./ -name "*_10m.bin" | s2s
-'''
+    find ./ -name "*_10m.bin" | s2s '''
 import os
 import sys
 sep = os.path.sep

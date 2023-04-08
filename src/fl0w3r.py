@@ -144,6 +144,7 @@ def write_config(fn, nrow, ncol):
 def read_config(fn):
     fn = normpath(fn)
     if not (exists(fn) and os.path.isfile(fn)):
+        print("warning: config.txt not found at: " + fn)
         fn += '/config.txt'
     chkfile(fn)
     gl = open(fn).readlines()
