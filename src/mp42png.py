@@ -11,6 +11,8 @@ if not os.path.exists(args[1]):
 
 cap = cv2.VideoCapture(args[1])
 frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+print("frame count:", frame_count)
+
 zeros = math.ceil(math.log(frame_count) / math.log(10)) + 1
 cmd = "ffmpeg -i " + args[1] + " " + args[1] + "_%0" + str(zeros) + "d.png"
 print(cmd)
