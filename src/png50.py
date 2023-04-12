@@ -21,6 +21,7 @@ lines = [x.strip() \
 
 d = 'resize50'
 run('mkdir -p ' + d)
+
 c = ['mogrify -resize 50% -quality 100 -path ' + d + ' ' + x \
      for x in lines]
 
