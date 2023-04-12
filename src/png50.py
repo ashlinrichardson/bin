@@ -16,11 +16,12 @@ def run(c):
     print(c)
     return os.system(c)
 
-lines = [x.strip() for x in os.popen('ls -1 *.png').readlines()]
+lines = [x.strip() \
+         for x in os.popen('ls -1 *.png').readlines()]
 
-run('mkdir -p resize')
-
-c = ['mogrify -resize 50% -quality 100 -path ./resize ' + x for x in lines]
+d = 'resize50'
+run('mkdir -p ' + d)
+c = ['mogrify -resize 50% -quality 100 -path ' + d + ' ' + x \
+     for x in lines]
 
 parfor(run, c)
-
