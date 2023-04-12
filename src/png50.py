@@ -1,4 +1,4 @@
-'''20230411 resize png to 50% and place in folder ./resize'''
+'''20230411 resize png to 50% and place in folder ./resize50'''
 import os
 import multiprocessing as mp
 
