@@ -10,4 +10,5 @@ im = np.array(Image.open(lines[0]))
 for i in range(1, len(lines)):
     im += np.array(Image.open(lines[i]))
 
+im = Image.fromarray(im)
 im.save("sum.png")
