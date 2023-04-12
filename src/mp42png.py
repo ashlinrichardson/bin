@@ -14,3 +14,4 @@ frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 zeros = math.ceil(math.log(frame_count) / math.log(10)) + 1
 cmd = "ffmpeg -i " + args[1] + " " + args[1] + "_%0" + str(zeros) + "d.png"
 print(cmd)
+a = os.system(cmd)
