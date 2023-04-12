@@ -22,7 +22,7 @@ lines = [x.strip() \
 d = 'resize25'
 run('mkdir -p ' + d)
 
-c = ['mogrify -resize 50% -quality 100 -path ' + d + ' ' + x \
+c = ['mogrify -resize 25% -quality 100 -path ' + d + ' ' + x \
      for x in lines]
 
 parfor(run, c)
