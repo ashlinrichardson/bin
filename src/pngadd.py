@@ -1,0 +1,13 @@
+import os
+import sys
+import numpy as np
+from PIL import Image
+
+lines = [x.strip() for x in os.popen("ls -1 *.png").readlines()]
+
+im = np.array(Image.open(lines[0]))
+
+for i in range(1, len(lines)):
+    im += np.array(Image.open(lines[i]))
+
+im.save("sum.png")
