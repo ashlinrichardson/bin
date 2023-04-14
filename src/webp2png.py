@@ -6,3 +6,5 @@ for f in files:
     cmd = 'convert "' + f + '" "' + f[:-4] + 'png"'
     print(cmd)
     a = os.system(cmd)
+    if a==0:
+        a = os.system('rm "' + f + '"')
