@@ -4,14 +4,11 @@ import os
 import sys
 args = sys.argv
 
-def err(m):
-    print("Error:", m); sys.exit(1)
-
 if len(args) < 3:
-    err('python3 ltrim.py [input text file] [number of characters to trim from the left]')
+    print('python3 ltrim.py [input text file] [number of characters to trim from the left]')
+    sys.exit(1)
 
-f, n = args[1], args[2]
-
+f, n = args[1], int(args[2])
 lines = [x.rstrip() for x in open(f).readlines()]
 
 o_f = f + '_ltrim.txt'
