@@ -8,23 +8,17 @@
 using namespace std;
 #define str string
 
-//a trim from start (in place)
+// inplace trim from start
 static inline void ltrim(std::string &s){
-  s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch){
-    return !std::isspace(ch);
-  }
-  ));
+  s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch){ return !std::isspace(ch);}));
 }
 
-// trim from end (in place)
+// inplace trim from end
 static inline void rtrim(std::string &s){
-  s.erase(std::find_if(s.rbegin(), s.rend(), [](int ch){
-    return !std::isspace(ch);
-  }
-  ).base(), s.end());
+  s.erase(std::find_if(s.rbegin(), s.rend(), [](int ch){ return !std::isspace(ch); }).base(), s.end());
 }
 
-// trim from both ends (in place)
+// inplace trim both ends
 static inline void trim(std::string &s){
   ltrim(s);
   rtrim(s);
@@ -62,19 +56,15 @@ int main(int argc, char** argv){
     system("ls -1 *.tgz > ./.ls_1_tz.txt");
 
     ifstream f, g, h;
+    
     f.open("./.ls_1_gz.txt");
-    if(!f.is_open()){
-      err("failed to open file: ./.ls_1_gz.txt");
-    }
-
+    if(!f.is_open()) err("failed to open file: ./.ls_1_gz.txt");
+   
     g.open("./.ls_1_zp.txt");
-    if(!g.is_open()){
-      err("failed to open file: ./.ls_1_zp.txt");
-    }
+    if(!g.is_open()) err("failed to open file: ./.ls_1_zp.txt");
+    
     h.open("./.ls_1_tz.txt");
-    if(!g.is_open()){
-      err("failed to open file: ./.ls_1_tz.txt");
-    }
+    if(!g.is_open()) err("failed to open file: ./.ls_1_tz.txt");
 
     ofstream o_f;
     o_f.open("./.unzp_jobs.txt");
@@ -95,8 +85,8 @@ int main(int argc, char** argv){
       trim(s);
       size_t f_siz = fsize(s);
       if(f_siz > 0){
-        cout << "\tunzip -o " << s << endl;
-        o_f << "unzip -o " << s << endl;
+        cout << "\tunzip -o " << s << " -d " + s.substr(0, s.length() - 4) << endl;
+        o_f << "unzip -o " << s << " -d " + s.substr(0, s.length() - 4) << endl;
       }
     }
     g.close();
@@ -115,11 +105,10 @@ int main(int argc, char** argv){
     o_f.close();
 
     // hypothetically 4 is enough unzip jobs to run at once!
-    system("multicore ./.unzp_jobs.txt 4");
+    system("multicore ./.unzp_jobs.txt 2");
     system("rm -f ./.unzp_jobs.txt");
     system("rm -f ./.ls_1_gz.txt");
     system("rm -f ./.ls_1_zp.txt");
   }
-
   return 0;
 }
