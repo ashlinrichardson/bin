@@ -51,6 +51,7 @@ int main(int argc, char** argv){
     system((str("gunzip ") + str(argv[1])).c_str());
   }
   else{
+    int extra_flag = argc > 2;
     system("ls -1 *.gz > ./.ls_1_gz.txt");
     system("ls -1 *.zip > ./.ls_1_zp.txt");
     system("ls -1 *.tgz > ./.ls_1_tz.txt");
@@ -85,8 +86,12 @@ int main(int argc, char** argv){
       trim(s);
       size_t f_siz = fsize(s);
       if(f_siz > 0){
-        cout << "\tunzip -o " << s << " -d " + s.substr(0, s.length() - 4) << endl;
-        o_f << "unzip -o " << s << " -d " + s.substr(0, s.length() - 4) << endl;
+	str extra = "";
+	if(extra_flag){
+	  extra = " -d " + s.substr(0, s.length() - 4) + " ";
+	}
+        cout << "\tunzip -o " << s << extra << endl;
+        o_f << "unzip -o " << s << extra << endl;
       }
     }
     g.close();
