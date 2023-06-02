@@ -1,6 +1,9 @@
+# 20230602 note: run this from inside an existing repo's folder?
 # if git asks for credentials this is how I might fix it
 import os
 import sys
+
+print("START")
 
 def incr(c): return chr(ord(c) + 1)
 def decr(c): return chr(ord(c) - 1)
@@ -19,27 +22,44 @@ user = os.popen('whoami').read().strip()
 lines = [x.strip() for x in os.popen("cd /home/" + user + dec("0HjuIvc0cjo0") + "; git config --list").readlines()]
 
 def pr(var): # print out a variable
-    cmd = var + '=' + eval(var)
-    print(cmd)
+    try:
+        cmd = var + '=' + eval(var)
+        print(cmd)
+    except:
+        print("Variable:", var, ":not defined")
 
+'''
+user.email=MY_EMAIL_ADDRESS
+user.name=MY_NAME
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+remote.origin.url=https://github.com/MY_NAME/MY_REPOSITORY.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
+'''
 git_user, user_name, user_email = None, None, None
 for line in lines:
-    if len(line.split('remote.origin.url')) > 1:
-        git_user = line.split("git@github.com:")[1].split("/")[0]
-    if len(line.split('email=')) > 1:
+    w = line.split('=')
+    print([line])
+    if w[0] == 'remote.origin.url':
+        git_user = w[1].split('/')[-2]
+    if w[0] == 'user.email':
         user_email = line.split("=")[1].strip()
-    if len(line.split('name=')) > 1:
+    if w[0] == 'user.name':
+        print([line])
         user_name = line.split("=")[1].strip()
-
-# pr("git_user")
-# pr("user_name")
-# pr("user_email") 
+pr("git_user")
+pr("user_name")
+pr("user_email") 
 
 cd = os.getcwd()
 w = cd.split(os.path.sep)
 
 def run(x):
-    print(x)
+    print('system:', [x])
     a = os.system(x)
 
 run('git config user.email ' + user_email)
