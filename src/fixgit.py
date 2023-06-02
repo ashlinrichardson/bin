@@ -62,7 +62,15 @@ def run(x):
     print('system:', [x])
     a = os.system(x)
 
+run('git config pull.rebase false')
 run('git config user.email ' + user_email)
 run('git config user.name "' + user_name + '"')
 run('git remote set-url origin git@github.com:' + git_user + '/' + w[-1] + '.git')
+
+
+'''
+hint:   git config pull.rebase false  # merge (the default strategy)
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+'''
 
