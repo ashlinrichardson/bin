@@ -3,6 +3,9 @@
 import os
 import sys
 from fl0w3r import normpath, run
+
+compile_multithread = True
+
 src_dir = normpath(os.path.dirname(__file__))
 w = src_dir.strip(os.path.sep).split(os.path.sep)[:-2]
 w.append('bin')
@@ -59,12 +62,22 @@ else:
 
 cmpl = src_dir + 'compile.py'
 
+compile_jobs = []
 for afiles in [pyfiles, cfiles, cppfiles]:
     for f in afiles:
         f = f.strip()
         if(f.split('/')[-1] != '__init__.py'):
             f = normpath(f)
-            run(cmpl + ' ' + f)
+            cmd = cmpl + ' ' + f
+
+            if not compile_multithread:
+                run(cmd)
+            else:
+                compile_jobs.append(cmd)
+
+if compile_multithread:
+    open('.compile_jobs.sh', 'wb').write(('\n'.join(compile_jobs)).encode())
+    run('multicore .compile_jobs.sh 16')
 
 
 
