@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 '''20230424 delete network bridge e.g. found by ifconfig'''
 import os
 import sys
