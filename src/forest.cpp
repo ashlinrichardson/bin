@@ -81,7 +81,6 @@ int main(int argc, char ** argv){
   FILE * R = outf("./K1_03_R\0");
   FILE * M = outf("./K1_04_M\0");
   FILE * delta = outf("./K1_05_delta\0");
-
   FILE * entropy = outf("K1_10_entropy\0");
   FILE * alpha = outf("K1_11_alpha\0");
   FILE * mD = outf("K1_12_mD\0");
