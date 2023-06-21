@@ -1,10 +1,11 @@
-#include "stdio.h"
-#include "stdlib.h"
-#include "radlib.h"
-#include "T4.h"
-#include <math.h>
-#include <gsl/gsl_errno.h>
-#include <gsl/gsl_roots.h>
+#include"stdio.h"
+#include"stdlib.h"
+#include"radlib.h"
+#include"T4.h"
+#include<math.h>
+#include<gsl/gsl_errno.h>
+#include<gsl/gsl_roots.h>
+#include<map>
 /* Limit of Iterative Times */
 #define MAXTIMES 100
 
@@ -75,6 +76,8 @@ int main(int argc, char ** argv){
   float * lambda = vector_float(4);
   float p[4], Alpha[4], H;
   float * m;
+
+  
 
   FILE * P = outf("./K1_01_P\0");
   FILE * theta = outf("./K1_02_theta\0");
