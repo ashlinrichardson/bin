@@ -12,8 +12,12 @@ def run(c):
     return os.system(c)
 
 
-lines = [x.strip() for x in os.popen('find ./ -name "' + args[1] + '"').readlines()]
+cmd = 'find ./ -name "*' + args[1] + '*"'
+print(cmd)
+lines = [x.strip() for x in os.popen(cmd).readlines()]
 
+for line in lines:
+    print(line)
 
 cmds = []
 for line in lines:
