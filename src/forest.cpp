@@ -303,11 +303,13 @@ int main(int argc, char ** argv){
   printf("Sigma %e Sigma^2 %e\n", conv*sqrt(sigma2), conv*sigma2);
   printf("Mean %e\n", conv*sqrt(sigma2)*sqrt( pi/2.));
 
+  bool warned = false;
   for(i = 0; i < NRow; i++){
     for(j = 0; j < NCol; j++){
       d = deltaalpha[(i * NCol) + j];
-      if(d < 0){
-        printf("Warning: deltaalpha was less than 0.\n");
+      if(d < 0 and !warned){
+        printf("WARNING: deltaalpha was less than 0.\n");
+        warned = true;
       }
       rp = (d / sigma2) * exp ( - d * d / ( 2. * sigma2));
       putf(raleighp, rp);
