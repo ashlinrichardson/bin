@@ -307,8 +307,7 @@ int main(int argc, char ** argv){
     for(j = 0; j < NCol; j++){
       d = deltaalpha[(i * NCol) + j];
       if(d < 0){
-        printf("Error: deltaalpha was less than 0.\n");
-        exit(1);
+        printf("Warning: deltaalpha was less than 0.\n");
       }
       rp = (d / sigma2) * exp ( - d * d / ( 2. * sigma2));
       putf(raleighp, rp);
