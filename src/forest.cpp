@@ -104,17 +104,17 @@ int main(int argc, char ** argv){
 
   
 
-  FILE * P = outf("./K1_01_P\0");
-  FILE * theta = outf("./K1_02_theta\0");
-  FILE * R = outf("./K1_03_R\0");
-  FILE * M = outf("./K1_04_M\0");
-  FILE * delta = outf("./K1_05_delta\0");
-  FILE * entropy = outf("K1_10_entropy\0");
-  FILE * alpha = outf("K1_11_alpha\0");
-  FILE * mD = outf("K1_12_mD\0");
-  FILE * aD = outf("K1_13_aD\0");
-  FILE * dA = outf("K1_14_dA\0");
-  FILE * raleighp = outf("K1_15_raleighp\0");
+  FILE * P = outf("./K1_01_P.bin\0");
+  FILE * theta = outf("./K1_02_theta.bin\0");
+  FILE * R = outf("./K1_03_R,bin\0");
+  FILE * M = outf("./K1_04_M.bin\0");
+  FILE * delta = outf("./K1_05_delta.bin\0");
+  FILE * entropy = outf("K1_10_entropy,bin\0");
+  FILE * alpha = outf("K1_11_alpha.bin\0");
+  FILE * mD = outf("K1_12_mD.bin\0");
+  FILE * aD = outf("K1_13_aD.bin\0");
+  FILE * dA = outf("K1_14_dA.bin\0");
+  FILE * raleighp = outf("K1_15_raleighp.bin\0");
 
   float _P, _theta, _R, _M, _delta;
   float _entropy, _alpha, _mD, _aD, _dA;
