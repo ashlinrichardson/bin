@@ -5,7 +5,6 @@ import sys
 from fl0w3r import normpath, run
 
 compile_multithread = True
-
 src_dir = normpath(os.path.dirname(__file__))
 w = src_dir.strip(os.path.sep).split(os.path.sep)[:-2]
 w.append('bin')
@@ -26,6 +25,10 @@ if mac:
     home_prefix = '/Users/'
 
 bash_rc = home_prefix + os.popen('whoami').read().strip() + '/.bashrc'
+if not os.path.exists(bash_rc):
+    bash_rc = home_prefix + os.popen('whoami').read().strip() + '/.zprofile'
+    compile_multithread = False
+
 d = open(bash_rc).read().rstrip()
 if len(d.split(export)) < 2:
     d += '\n' + export
