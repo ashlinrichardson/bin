@@ -1,6 +1,8 @@
 import os
 import sys
-'''copy zip files from one to another.
+'''20240609 need to update this for recursive find.
+
+copy zip files from one to another.
  files that exist in source folder, but not destination folder, are copied
  files that exist in source folder, and destination folder: their sizes are checked:
      if the zip from the souce folder is larger, we prompt to copy it over the zip in the destination folder'''
