@@ -34,11 +34,23 @@ zoss = set(zos)
 can = ziss.difference(zoss) # zips not in output folder at all
 chk = ziss.intersection(zoss) # zips we need to check:
 
+print("to copy:", can)
+print("overwrite:", chk)
+print("Proceed? (y/n) n to skip")
+inp = input()
+if inp == '' or inp=='y' or inp =='Y':
+    pass
+else:
+    print("Skip/Exit")
+    sys.exit(1)
+
 # copy files that aren't at destination folder:
 for i in can:
     cmd = "cp -v " + fi + i + " " + fo + i
     a = os.system(cmd)
 
+run = []
+good = []
 for i in range(0, len(zis)):
     ii = zis[i].strip()
     if ii in chk:
@@ -50,9 +62,17 @@ for i in range(0, len(zis)):
             print(s1, src)
             print(s2, dst)
             cmd = "cp -v " + src + " " + dst
-            print(cmd)
-            print("Execute above command? (y/n) n to skip")
-            inp = input()
-            if inp == '' or inp == 'y' or inp == 'Y':
-                a = os.system(cmd)
-            
+            # print(cmd)
+            # print("Execute above command? (y/n) n to skip")
+            # inp = input()
+            # if inp == '' or inp == 'y' or inp == 'Y':
+            run += [cmd] # a = os.system(cmd)
+        else:
+            good += [dst]
+
+print("Already good:")
+for g in good:
+    print('good ' + g)
+
+for c in run:
+    a = os.system(c)
