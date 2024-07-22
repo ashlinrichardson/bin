@@ -7,11 +7,13 @@ from misc import normpath, run
 
 compile_multithread = True
 
+if not os.path.exists(src_dir + '../bin/'):
+    os.mkdir(src_dir + '../bin/')
+
 src_dir = normpath(os.path.dirname(__file__))
 if os.popen('which multicore').read().strip() == '':
     f = src_dir + 'multicore.py'
     g = src_dir + '../bin/multicore'
-    os.mkdir(src_dir + '../bin/')
     shutil.copyfile(f, g)
 
 w = src_dir.strip(os.path.sep).split(os.path.sep)[:-2]
