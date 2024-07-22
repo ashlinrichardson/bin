@@ -7,14 +7,14 @@ from misc import normpath, run
 
 compile_multithread = True
 
+src_dir = normpath(os.path.dirname(__file__))
 if not os.path.exists(src_dir + '../bin/'):
     os.mkdir(src_dir + '../bin/')
 
-src_dir = normpath(os.path.dirname(__file__))
 if os.popen('which multicore').read().strip() == '':
-    f = src_dir + 'multicore.py'
-    g = src_dir + '../bin/multicore'
-    shutil.copyfile(f, g)
+    os.system(f'ln -T {src_dir}multicore.py {src_dir}../bin/multicore')
+    os.system(f'ln -T {src_dir}misc.py {src_dir}../bin/misc.py')
+    os.system(f'ln -T {src_dir}ansicolor.py {src_dir}../bin/ansicolor.py')
 
 w = src_dir.strip(os.path.sep).split(os.path.sep)[:-2]
 w.append('bin')
