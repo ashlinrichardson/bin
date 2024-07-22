@@ -6,7 +6,7 @@ priority. should add auto-commit'''
 import os
 import sys
 from copy import deepcopy
-from fl0w3r import run, error, normpath, args, exists
+from misc import run, error, normpath, args, exists
 
 pwd = normpath(os.getcwd())
 home = normpath(os.path.expanduser('~/bin/src/'))

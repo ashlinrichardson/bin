@@ -5,7 +5,7 @@ date: march 30, 2012. reimpl. 20170626
 author: ashlin richardson'''
 import os
 import sys
-from fl0w3r import args, run, error, normpath, read_config, exists
+from misc import args, run, error, normpath, read_config, exists
 
 if len(args) < 5:
     error("lee: jong-sen lee's algorithm igarss 2004 reimpl." +

@@ -3,7 +3,7 @@ import os
 import re
 import sys
 from os.path import *
-from fl0w3r import error, chkdir, chkfile, normpath, run, require_gdal, wopen
+from misc import error, chkdir, chkfile, normpath, run, require_gdal, wopen
 
 require_gdal()
 

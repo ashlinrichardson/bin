@@ -5,7 +5,7 @@ by arichardson 20170120 reimplemented 20170602 with mods 20170617'''
 import os
 import sys
 import ntpath
-from fl0w3r import error, exists, printw
+from misc import error, exists, printw
 
 args, max_spaces = sys.argv, 0
 if len(args) < 2:

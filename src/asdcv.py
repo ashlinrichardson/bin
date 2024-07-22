@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import error
+from misc import error
 
 
 def to_matlab(a):

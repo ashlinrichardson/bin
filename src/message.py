@@ -1,6 +1,6 @@
 '''20170619 adapted from https://docs.python.org/2/library/smtplib.html '''
 import smtplib
-from fl0w3r import error, args
+from misc import error, args
 from ansicolor import KRED, KGRN
 
 def message(fromaddr, toaddrs, msg):

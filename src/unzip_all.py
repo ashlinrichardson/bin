@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from fl0w3r import run
+from misc import run
 
 print("Extracting all zip files in current directory...")
 lines = os.popen("ls -1 *.zip").readlines()

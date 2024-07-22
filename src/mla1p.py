@@ -3,7 +3,7 @@
 import os
 import sys
 from math import floor
-from fl0w3r import args, error, run, normpath, read_config
+from misc import args, error, run, normpath, read_config
 
 if len(args) < 4:
     error("mla1p.py: multilook all binary files in dir, 1% scaling." +

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import args, run, normpath, error, read_config
+from misc import args, run, normpath, error, read_config
 from envi import write_envi_hdr
 
 if len(args) < 2:

@@ -3,7 +3,7 @@
 import os
 import sys
 from urllib.request import urlopen
-from fl0w3r import normpath, wopen, error, args, exists
+from misc import normpath, wopen, error, args, exists
 from ansicolor import KYEL, KMAG, KRED, KGRN, KNRM
 
 user = 'ashlinrichardson'

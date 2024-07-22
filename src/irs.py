@@ -3,7 +3,7 @@ import re
 import os
 import sys
 from ansicolor import KRED, KGRN, KNRM, KMAG
-from fl0w3r import chkdir, error, normpath, config_file, wopen, printw
+from misc import chkdir, error, normpath, config_file, wopen, printw
 
 args = sys.argv
 if len(args) < 2:

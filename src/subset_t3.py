@@ -1,6 +1,6 @@
 import os
 import sys
-from fl0w3r import read_config, write_config
+from misc import read_config, write_config
 args, sep = sys.argv, os.path.sep
 
 def err(m):

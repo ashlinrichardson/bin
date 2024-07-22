@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import run, error, read_config, normpath
+from misc import run, error, read_config, normpath
 from envi import write_envi_hdr
 args = sys.argv
 

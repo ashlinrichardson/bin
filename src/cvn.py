@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import error, run
+from misc import error, run
 '''reimplemented 20170617
 
 program based on cv.c:

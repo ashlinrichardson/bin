@@ -2,7 +2,7 @@
 '''search for files matching pattern and sort by size 20170626'''
 import os
 import sys
-from fl0w3r import args, normpath, error
+from misc import args, normpath, error
 
 
 def msg():

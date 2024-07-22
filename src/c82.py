@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import error, normpath, run
+from misc import error, normpath, run
 args = sys.argv
 if len(args) < 3:
   error("pci8toS2.py: Convert 8-channel real/imaginary int file (from PCI) into the scattering matrix standard format\nUsage: c82 [infile] [output directory path]\n")

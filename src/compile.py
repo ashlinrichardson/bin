@@ -7,7 +7,7 @@ import sys
 import copy
 import time
 from ansicolor import KYEL, KNRM, KGRN, KRED, KMAG
-from fl0w3r import error, exists, normpath, normdir, timestring, run, printw
+from misc import error, exists, normpath, normdir, timestring, run, printw
 
 time_string = timestring()
 opt_flags, args = '-O3 -fstack-protector -U_FORTIFY_SOURCE', sys.argv

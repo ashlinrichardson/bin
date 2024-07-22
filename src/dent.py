@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import normpath, wopen, error, run, chkfile, args, exists, ext
+from misc import normpath, wopen, error, run, chkfile, args, exists, ext
 from ansicolor import KRED, KGRN, KNRM
 ''' indentation for c/c++ code, by ashlin richardson 20170617'''
 

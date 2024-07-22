@@ -2,7 +2,7 @@
 '''this program should check for ghostscript'''
 import os
 import sys
-from fl0w3r import error, run
+from misc import error, run
 
 args = sys.argv
 if len(args) < 4:

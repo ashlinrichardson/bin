@@ -3,7 +3,7 @@
 import os
 import sys
 from envi import write_envi_hdr
-from fl0w3r import error, run, write_config, chkfile
+from misc import error, run, write_config, chkfile
 
 chkfile("import.hdr")
 

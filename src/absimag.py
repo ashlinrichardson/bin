@@ -2,7 +2,7 @@
 '''20170608 reimplemented from CFS version'''
 import os
 import sys
-from fl0w3r import error, normpath, read_config, run
+from misc import error, normpath, read_config, run
 
 args = sys.argv
 if len(args) < 3:

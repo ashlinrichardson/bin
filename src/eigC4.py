@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import error
+from misc import error
 from envi import read_envi_hdr
 
 mybindir = "~/psp/420/Soft/data_process_sngl/"

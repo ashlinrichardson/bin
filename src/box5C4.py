@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import read_config, run, abspath
+from misc import read_config, run, abspath
 '''takes a list of folder names (rs2folders.txt) and runs the boxcar filter (C4 data) on each folder
 
 *** note: this program isn't tested yet (need to add boxcar_filter_C4.exe to the system

@@ -2,16 +2,24 @@
 '''compile all the entries in the package'''
 import os
 import sys
-from fl0w3r import normpath, run
+import shutil
+from misc import normpath, run
 
 compile_multithread = True
+
 src_dir = normpath(os.path.dirname(__file__))
+if os.popen('which multicore').read().strip() == '':
+    f = src_dir + 'multicore.py'
+    g = src_dir + '../bin/multicore'
+    os.mkdir(src_dir + '../bin/')
+    shutil.copyfile(f, g)
+
 w = src_dir.strip(os.path.sep).split(os.path.sep)[:-2]
 w.append('bin')
 w.append('bin')
 export_dir = os.path.sep + os.path.sep.join(w)
-a = os.system("sudo chmod -R 777 " + export_dir)
-export = 'export PATH=$PATH:'  + export_dir
+a = os.system("chmod -R 777 " + export_dir)
+export = 'export PATH=' + export_dir + ':$PATH' # + export_dir
 print(export)
 
 # install gsl on Ubuntu machine (still need to implement this for others)
@@ -81,7 +89,3 @@ for afiles in [pyfiles, cfiles, cppfiles]:
 if compile_multithread:
     open('.compile_jobs.sh', 'wb').write(('\n'.join(compile_jobs)).encode())
     run('multicore .compile_jobs.sh 16')
-
-
-
-

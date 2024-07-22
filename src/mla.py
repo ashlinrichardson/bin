@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import args, error, normpath
+from misc import args, error, normpath
 
 if len(args) < 4:
     error("mla.py: multilook all binary files in directory." +

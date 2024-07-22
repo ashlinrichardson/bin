@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import run, error, normpath, args
+from misc import run, error, normpath, args
 
 
 def fixp(a):

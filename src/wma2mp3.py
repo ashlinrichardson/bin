@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import args, run, error, normpath
+from misc import args, run, error, normpath
 
 if len(args) < 2:
     error("wma2mp3 [folder]\n\t convert all wma files in folder to mp3")

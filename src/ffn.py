@@ -2,7 +2,7 @@
 import os
 import sys
 from envi import read_envi_hdr2
-from fl0w3r import normpath, run, error, args
+from misc import normpath, run, error, args
 '''Usage: cvn [input file name] [input data type] [samples] [lines] [bands]
  [output file name] [output data type]'''
 

@@ -1,9 +1,9 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 import os
 import sys
 import time
 import multiprocessing
-from fl0w3r import error, exists, readlines
+from misc import error, exists, readlines
 from _thread import allocate_lock, start_new_thread
 
 args = sys.argv

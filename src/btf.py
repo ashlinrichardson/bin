@@ -2,7 +2,7 @@
 import os
 import re
 import sys
-from fl0w3r import normpath, read_config
+from misc import normpath, read_config
 
 args = sys.argv
 if len(args) < 2:

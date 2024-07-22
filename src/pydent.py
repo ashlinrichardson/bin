@@ -6,7 +6,7 @@ this program isn't quite finished yet... still need to test and work on it
 import os
 import sys
 from copy import deepcopy
-from fl0w3r import args, ext, stem, leaf, error, normpath, wopen, chkfile
+from misc import args, ext, stem, leaf, error, normpath, wopen, chkfile
 
 msg = 'pydent.py:\n\tusage: pydent.py [filename.py]'
 

@@ -1,7 +1,4 @@
-#!/usr/bin/env python 
-# was python2.7
-'''
-'''
+#!/usr/bin/env python3
 import os
 import sys
 from ansicolor import KRED, KGRN, KNRM, KMAG

@@ -4,7 +4,7 @@ summarize file space usage, producing a grand total (du -c), with sorting
 '''
 import os
 import sys
-from fl0w3r import error, normpath, exists
+from misc import error, normpath, exists
 args, pwd = sys.argv, normpath(os.getcwd())
 print pwd
 if len(args) > 1:

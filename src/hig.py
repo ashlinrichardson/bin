@@ -6,7 +6,7 @@ import math
 import array
 from envi import read_envi_hdr
 import matplotlib.image as mpimg
-from fl0w3r import run, normpath, exists, error, args, chkfile, wopen
+from misc import run, normpath, exists, error, args, chkfile, wopen
 
 
 def bad(x):

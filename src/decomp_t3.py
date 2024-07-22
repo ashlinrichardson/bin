@@ -9,7 +9,7 @@ todo:
 run PolSARPro decompositions on T3 matrix'''
 import os
 import sys
-from fl0w3r import read_config, error, normpath, run
+from misc import read_config, error, normpath, run
 
 '''this variable represents the (local) root path..
 The basis of the symbols relevant to this operation'''

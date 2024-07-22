@@ -2,7 +2,7 @@
 import os
 import sys
 from envi import read_envi_hdr
-from fl0w3r import args, write_config, error
+from misc import args, write_config, error
 
 if len(args) < 2:
 	error('eh2cfg.py: read lines/samples from envi header file, output to' + 

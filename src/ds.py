@@ -2,7 +2,7 @@
 ''' ds.py: count number of bytes in present directory'''
 import os
 import sys
-from fl0w3r import error, normpath
+from misc import error, normpath
 
 ds, dd = 0, 0
 for root, dirs, files in os.walk(os.getcwd()):

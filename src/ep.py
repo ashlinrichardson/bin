@@ -2,7 +2,7 @@
 import os
 import sys
 from envi import * 
-from fl0w3r import error, run, args, normpath
+from misc import error, run, args, normpath
 '''reimplemented 20170622'''
 
 def findfilestartstring(startstring, cwd):

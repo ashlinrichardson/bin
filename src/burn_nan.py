@@ -6,7 +6,7 @@ take nan from one file, and write it in the same position to each (other) .bin f
 import os
 import sys
 from envi import read_envi_hdr
-from fl0w3r import error, normpath, run
+from misc import error, normpath, run
 abspath = os.path.abspath
 sep = os.path.sep
 args = sys.argv

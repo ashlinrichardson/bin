@@ -6,7 +6,7 @@ files/folders in the first directory,
 import os
 import sys
 import filecmp
-from fl0w3r import normpath, wopen, error, run, chkfile, args, exists, ext
+from misc import normpath, wopen, error, run, chkfile, args, exists, ext
 from ansicolor import KYEL, KMAG, KRED, KGRN, KNRM
 
 if len(args) < 3:

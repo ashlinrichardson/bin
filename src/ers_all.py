@@ -2,7 +2,7 @@
 '''run ers on a bunch of folders'''
 import os
 import sys
-from fl0w3r import run
+from misc import run
 
 ls = os.popen('ls -1 *.zip').readlines()
 pwd = os.popen('pwd').read().strip()

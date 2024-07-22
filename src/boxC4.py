@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import run, normpath, chkfile
+from misc import run, normpath, chkfile
 from envi import read_envi_hdr
 
 filter_size = 3

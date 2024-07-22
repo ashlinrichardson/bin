@@ -6,7 +6,7 @@ takes files named R.bin, G.bin, and B.bin
 '''
 import os
 import sys
-from fl0w3r import error, run, chkdir, read_config
+from misc import error, run, chkdir, read_config
 
 args = sys.argv
 if len(args) < 2:

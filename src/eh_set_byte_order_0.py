@@ -5,7 +5,7 @@ config.txt present. date: march 30, 2012 reimplemented 20170621 arichardson'''
 import os
 import sys
 from envi import write_envi_hdr
-from fl0w3r import run, normpath, error, args, read_config, exists
+from misc import run, normpath, error, args, read_config, exists
 
 if len(args) < 2:
     error('Usage: eh [input directory]')

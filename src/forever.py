@@ -5,7 +5,7 @@ the default value. use remaining args as command to run. 20170619 AR'''
 import os
 import sys
 import time
-from fl0w3r import args, error
+from misc import args, error
 
 default = 10
 delay, arg = default, args[1:]

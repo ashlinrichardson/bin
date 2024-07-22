@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import run, error, exists, args
+from misc import run, error, exists, args
 
 if len(args) < 2:
     error('usage: src2pdf [source code file name]')

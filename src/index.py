@@ -4,7 +4,7 @@
 
 import os
 import sys
-from fl0w3r import args, error, run, read_config, normpath
+from misc import args, error, run, read_config, normpath
 from envi import write_envi_hdr
 ''' Unsigned Long: A 32-bit unsigned integer ranging in value from 0 to
 4 294 967 296. AKA ENVI type: 13 '''

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from fl0w3r import error, normpath, run, read_config
+from misc import error, normpath, run, read_config
 
 args = sys.argv
 cwd = "./"

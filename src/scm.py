@@ -18,7 +18,7 @@ import sys
 import time
 import string
 exist = os.path.exists
-from fl0w3r import error, chkdir, normpath, run, read_config
+from misc import error, chkdir, normpath, run, read_config
 
 me = os.popen('whoami').read().strip()
 convert_command = '/home/' + me + '/GitHub/polsarpro/Soft/bin/data_convert/data_convert.exe'

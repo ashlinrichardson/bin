@@ -2,7 +2,7 @@
 '''take H.bin, S.bin, V.bin files, histogram trim those.. reimpl. 20170625'''
 import os
 import sys
-from fl0w3r import args, run, error
+from misc import args, run, error
 
 lo, hi = 0, 0
 
