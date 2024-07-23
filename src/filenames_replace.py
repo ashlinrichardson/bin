@@ -25,6 +25,7 @@ for line in lines:
     repl = subs.replace(args[1], args[2])
     
     rlin = line.replace(subs, repl)
+    rlin = line.replace(':', '_')
     
     cmd = 'cp ' + line + ' ' + rlin
     print(cmd)
