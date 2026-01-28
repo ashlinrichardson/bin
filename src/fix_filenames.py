@@ -1,15 +1,11 @@
-'''20220423 fix filenames by removing brackets,
-and replacing space w underscore
-
-revised 20260116'''
-
 #!/usr/bin/env python3
-"""
+"""20260127 updated for mac whitespace that doesn't go away. 
+
 fix_filenames.py - Make filesystem tree Unix-friendly
 
 Recursively processes the current directory to:
 - Remove brackets: [ ] { } ( )
-- Replace spaces with underscores
+- Replace ALL whitespace characters with underscores
 
 Processes directories bottom-up to handle nested renames correctly.
 """
@@ -17,18 +13,33 @@ Processes directories bottom-up to handle nested renames correctly.
 import os
 import sys
 import argparse
+import re
+import unicodedata
 
 BRACKETS = ['[', ']', '{', '}', '(', ')']
 
 
 def sanitize_name(name):
-    """Remove brackets and replace spaces with underscores."""
+    """
+    Remove brackets and replace ALL whitespace (ASCII + Unicode)
+    with underscores, in a POSIX-portable way.
+    """
+
+    # Normalize Unicode so visually-identical characters compare equally
+    # (important on macOS / HFS+ / APFS)
+    name = unicodedata.normalize('NFKC', name)
+
+    # Remove brackets
     for char in BRACKETS:
         name = name.replace(char, '')
-    name = name.replace(' ', '_')
+
+    # Replace any Unicode whitespace with underscore
+    name = re.sub(r'\s+', '_', name)
+
     # Collapse multiple underscores
     while '__' in name:
         name = name.replace('__', '_')
+
     return name
 
 
@@ -58,7 +69,6 @@ def process_directory(base_dir, dry_run=False, verbose=False):
     base_dir = os.path.abspath(base_dir)
     rename_count = 0
 
-    # Collect all paths first, then process bottom-up
     all_dirs = []
     all_files = []
 
@@ -83,7 +93,7 @@ def process_directory(base_dir, dry_run=False, verbose=False):
 
     for dirpath in all_dirs:
         if dirpath == base_dir:
-            continue  # Don't rename the base directory
+            continue
 
         parent = os.path.dirname(dirpath)
         dirname = os.path.basename(dirpath)
@@ -99,7 +109,7 @@ def process_directory(base_dir, dry_run=False, verbose=False):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Make filenames Unix-friendly by removing brackets and spaces.',
+        description='Make filenames Unix-friendly by removing brackets and whitespace.',
         epilog='Example: %(prog)s --dry-run /path/to/directory'
     )
     parser.add_argument(
@@ -139,4 +149,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
